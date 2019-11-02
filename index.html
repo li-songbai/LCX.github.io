@@ -213,6 +213,75 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2019/11/02/%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%89%91%E6%8C%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李松柏">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小李の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/02/%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%89%91%E6%8C%87/" class="post-title-link" itemprop="url">牛客在线编程之剑指</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-11-02 09:29:22 / Modified: 10:11:53" itemprop="dateCreated datePublished" datetime="2019-11-02T09:29:22+08:00">2019-11-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="一、栈的压入、弹出序列"><a href="#一、栈的压入、弹出序列" class="headerlink" title="一、栈的压入、弹出序列"></a>一、栈的压入、弹出序列</h1><h5 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h5><p>​        输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的）</p>
+<h6 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h6><p>​        用一个栈来模拟入栈和出栈的过程。</p>
+<h6 id="Stack包中常用的方法："><a href="#Stack包中常用的方法：" class="headerlink" title="Stack包中常用的方法："></a>Stack包中常用的方法：</h6><p>​        push(); 将一个项目推到这个堆栈的顶部。(给堆栈里添加元素，也就是入栈。)</p>
+<p>​        pop():在这个堆栈的顶部删除队形，并返回该对象的值作为该函数的返回值。（即弹栈）</p>
+<p>​        peek():查看此堆栈顶部的对象。（即查看栈顶元素）</p>
+<p><strong>注：栈的弹栈特点是先进后出。</strong></p>
+<p>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="comment">//导入 栈的包</span></span><br><span class="line"><span class="keyword">import</span> java.util.Stack;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">IsPopOrder</span><span class="params">(<span class="keyword">int</span> [] pushA,<span class="keyword">int</span> [] popA)</span> </span>&#123;</span><br><span class="line">    	<span class="comment">//如果pushA，popA之间有一个是空的，则是不合法的，返回false</span></span><br><span class="line">        <span class="keyword">if</span>(pushA == <span class="keyword">null</span> &amp;&amp; popA == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//创建一个辅助栈来模拟入栈出栈的过程</span></span><br><span class="line">        Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">        <span class="comment">//定义一个index来记录出栈popA的位置</span></span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//循环，一直到所有内容入栈完毕</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; pushA.length;i++)&#123;</span><br><span class="line">            stack.push(pushA[i]);</span><br><span class="line">            <span class="comment">//如果目前的栈顶与出栈的队列相同则出栈，然后index++</span></span><br><span class="line">            <span class="comment">//如果栈不为空，继续出栈。</span></span><br><span class="line">            <span class="keyword">while</span>((!stack.isEmpty()) &amp;&amp; stack.peek() == popA[index])&#123;</span><br><span class="line">                stack.pop();</span><br><span class="line">                index++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果最后栈为空，则返回true</span></span><br><span class="line">        <span class="keyword">return</span> stack.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<p><img src="https://s2.ax1x.com/2019/11/02/Kbx6TU.md.png" alt="栈的压入弹出"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2019/10/31/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -657,7 +726,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
