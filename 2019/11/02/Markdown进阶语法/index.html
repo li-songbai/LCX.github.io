@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="12345 tags:  - Markdown - 语言 categories:- 技术  [TOC] 背景写博客需要用到Markdown语法，于是产生了整理Markdown笔记的想法。 这篇文章是基于Markdown基本语法的进阶语法。 正文1.内容目录在文章的最开始使用[TOC]引用目录，例如本文目录： 2.加强代码块使用”```”+”语言名”进行标记。例如：  java示例： 1234567">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markdown进阶语法">
+<meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2019&#x2F;11&#x2F;02&#x2F;Markdown%E8%BF%9B%E9%98%B6%E8%AF%AD%E6%B3%95&#x2F;index.html">
+<meta property="og:site_name" content="小李の博客">
+<meta property="og:description" content="12345 tags:  - Markdown - 语言 categories:- 技术  [TOC] 背景写博客需要用到Markdown语法，于是产生了整理Markdown笔记的想法。 这篇文章是基于Markdown基本语法的进阶语法。 正文1.内容目录在文章的最开始使用[TOC]引用目录，例如本文目录： 2.加强代码块使用”```”+”语言名”进行标记。例如：  java示例： 1234567">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=E%20%3D%20mc%5E2%20%5Cquad%20%5Cboxed%7BE%3Dmc%5E2%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;3187098-f9884c349c6d36df.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;870&#x2F;format&#x2F;webp">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Csum_%7Bi%3D1%7D%5En%20a_i">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=x_%7Bij%7D%5E2%5Cquad%20%5Csqrt%7Bx%7D%5Cquad%20%5Csqrt%5B3%5D%7Bx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cfrac%7B1%7D%7B2%7D%20%5Cdfrac%7B1%7D%7B2%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cfrac%7B1%7D%7B2%7D%20%5Ctfrac%7B1%7D%7B2%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cpm%5C%3B%20%5Ctimes%5C%3B%20%5Cdiv%5C%3B%20%5Ccdot%5C%3B%20%5Ccap%5C%3B%20%5Ccup%5C%3B%20%5Cgeq%5C%3B%20%5Cleq%5C%3B%20%5Cneq%5C%3B%20%5Capprox%5C%3B%20%5Cequiv">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Csum%5C%3B%20%5Cprod%5C%3B%20%5Clim%5C%3B%20%5Cint%5C%3B">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Csum_%7Bi%3D1%7D%5En%20i%20%5Cquad%5Cprod_%7Bi%3D1%7D%5En%20%5Cquad%20%5Clim_%7Bx%5Cto0%7D%20x%5E2%20%5Cquad%5Cint_a%5Eb%20x%5E2%20dx%20%24%24%24%24%20%5Csum_%7Bi%3D1%7D%5En%20i%20%5Cquad%5Cprod_%7Bi%3D1%7D%5En%5Cquad%5Clim_%7Bx%5Cto0%7D%20x%5E2%20%5Cquad%5Cint_a%5Eb%20x%5E2%20dx%20%5Csum%5Cnolimits_%7Bi%3D1%7D%5En%5Cquad%5Cprod%5Cnolimits_%7Bi%3D1%7D%5En%20%5Cquad%20%5Clim%5Cnolimits_%7Bx%5Cto0%7D%20x%5E2%20%5Cquad%5Cint%5Cnolimits_a%5Eb%20x%5E2%20dx">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cint%5Cint%5Cquad%5Cint%5Cint%5Cint%5Cquad%5Cint%5Cint%5Cint%5Cint%5Cquad%5Cint%5Cdots%5Cint%24%24%24%24%20%5Ciint%5Cquad%5Ciiint%5Cquad%5Ciiiint%5Cquad%5Cidotsint">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cleftarrow">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Crightarrow">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cleftrightarrow">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Clongleftarrow">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5CLongleftarrow">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5CLongleftrightarrow">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cxleftarrow%7Bx%2By%2Bz%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cxrightarrow%5Bx%5D%7Bx%2By%2Bz%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cbar%7Bx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cacute%7Bx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cmathring%7Bx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cvec%7Bx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cgrave%7Bx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cdot%7Bx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Chat%7Bx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Ctilde%7Bx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cddot%7Bx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Ccheck%7Bx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cbreve%7Bx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cdddot%7Bx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Coverline%7Bxxx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Coverleftrightarrow%7Bxxx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cunderline%7Bxxx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cunderleftrightarrow%7Bxxx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Coverleftarrow%7Bxxx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Coverbrace%7Bxxx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cunderleftarrow%7Bxxx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cunderbrace%7Bxxx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Coverrightarrow%7Bxxx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cwidehat%7Bxxx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cunderrightarrow%7Bxxx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cwidetilde%7Bxxx%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=x_1%2C%20x_2%2C%20%5Cdots%2C%20x_n%5Cquad%201%2C2%2C%5Ccdots%2Cn%5Cquad%20%5Cvdots%5Cquad%20%5Cddots">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=a%20%5Cquad%20b">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=a%20%5Cqquad%20b">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=a%5C%3Ab">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=a%5C%3Bb">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=a%5C%2Cb">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=ab">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=a%5C!b">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cbegin%7Barray%7D%7Bccc%7D%20x_1%20%26%20x_2%20%26%5Cdots%5C%5C%20x_3%20%26%20x_%204%26%5Cdots%5C%5C%20%5Cvdots%26%5Cvdots%26%5Cddots%20%5Cend%7Barray%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cbegin%7Bpmatrix%7D%20a%20%26%20b%5C%5C%20c%20%26%20d%20%5C%5C%5Cend%7Bpmatrix%7D%5Cquad%5Cbegin%7Bbmatrix%7D%20a%20%26%20b%20%5C%5C%20c%20%26%20d%20%5C%5C%5Cend%7Bbmatrix%7D%5Cquad%5Cbegin%7BBmatrix%7D%20a%20%26%20b%20%5C%5C%20c%20%26%20d%5C%5C%5Cend%7BBmatrix%7D%5Cquad%5Cbegin%7Bvmatrix%7D%20a%20%26%20b%20%5C%5C%20c%20%26%20d%20%5C%5C%5Cend%7Bvmatrix%7D%5Cquad%5Cbegin%7BVmatrix%7D%20a%20%26%20b%5C%5C%20c%20%26%20d%20%5C%5C%5Cend%7BVmatrix%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=(%5Cbegin%7Bsmallmatrix%7D%20a%20%26%20b%20%5C%5C%20c%20%26%20d%20%5Cend%7Bsmallmatrix%7D)">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cbegin%7Bmultline%7D%20x%20%3D%20a%2Bb%2Bc%2B%7B%7D%20%5C%5C%20d%2Be%2Bf%2Bg%20%5Cend%7Bmultline%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cbegin%7Bsplit%7D%20x%20%3D%20%7B%7D%20%26%20a%20%2B%20b%20%2B%20c%20%2B%7B%7D%5C%5C%20%26%20d%20%2B%20e%20%2B%20f%20%2B%20g%20%5Cend%7Bsplit%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cbegin%7Bgather%7D%20a%20%3D%20b%2Bc%2Bd%5C%5C%20x%20%3D%20y%2Bz%5C%5C%205%20%3D%204%2B1%20%5Cend%7Bgather%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cbegin%7Balign%7D%20a%20%26%3Db%2Bc%2Bd%20%5C%5C%20x%20%26%3Dy%2Bz%5C%5C%205%20%26%3D%204%2B1%20%5Cend%7Balign%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=y%3D%5Cbegin%7Bcases%7D-x%2C%5Cquad%20x%5Cleq%200%5C%5Cx%2C%20%5Cquad%20x%3E0%5Cend%7Bcases%7D">
+<meta property="og:updated_time" content="2019-11-02T06:28:46.533Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=E%20%3D%20mc%5E2%20%5Cquad%20%5Cboxed%7BE%3Dmc%5E2%7D">
+
+<link rel="canonical" href="http://lisongbai.top/2019/11/02/Markdown%E8%BF%9B%E9%98%B6%E8%AF%AD%E6%B3%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Markdown进阶语法 | 小李の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小李の博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">我有一壶酒，足以慰平生。</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2019/11/02/Markdown%E8%BF%9B%E9%98%B6%E8%AF%AD%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李松柏">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小李の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Markdown进阶语法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-11-02 11:24:27 / Modified: 14:28:46" itemprop="dateCreated datePublished" datetime="2019-11-02T11:24:27+08:00">2019-11-02</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> tags: </span><br><span class="line"> - Markdown</span><br><span class="line"> - 语言</span><br><span class="line"> categories:</span><br><span class="line">- 技术</span><br></pre></td></tr></table></figure>
+
+<p>[TOC]</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>写博客需要用到Markdown语法，于是产生了整理Markdown笔记的想法。</p>
+<p>这篇文章是基于<a href="[https://lisongbai.top/2019/10/31/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/](https://lisongbai.top/2019/10/31/Markdown基本语法学习笔记-1/)">Markdown基本语法</a>的进阶语法。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="1-内容目录"><a href="#1-内容目录" class="headerlink" title="1.内容目录"></a>1.内容目录</h3><p>在文章的最开始使用[TOC]引用目录，例如本文目录：</p>
+<h3 id="2-加强代码块"><a href="#2-加强代码块" class="headerlink" title="2.加强代码块"></a>2.加强代码块</h3><p>使用”```”+”语言名”进行标记。例如：</p>
+<ul>
+<li><p>java示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">public class TreeNode &#123;</span></span><br><span class="line"><span class="comment">    int val = 0;</span></span><br><span class="line"><span class="comment">    TreeNode left = null;</span></span><br><span class="line"><span class="comment">    TreeNode right = null;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    public TreeNode(int val) &#123;</span></span><br><span class="line"><span class="comment">        this.val = val;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Mirror</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root != <span class="keyword">null</span>)&#123;</span><br><span class="line">            TreeNode temp = root.left;</span><br><span class="line">            root.left = root.right;</span><br><span class="line">            root.right = temp;</span><br><span class="line">            Mirror(root.left);</span><br><span class="line">            Mirror(root.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="3-脚注"><a href="#3-脚注" class="headerlink" title="3.脚注"></a>3.脚注</h3><p>使用[^keyword]表示注脚</p>
+<ul>
+<li><p>注脚</p>
+<p>这是一个注脚[^1]的样例。</p>
+</li>
+</ul>
+<h3 id="4-标签和分类"><a href="#4-标签和分类" class="headerlink" title="4.标签和分类"></a>4.标签和分类</h3><p>一般在吻兽输入tags添加标签，categories添加分类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> tags: </span><br><span class="line"> - Markdown</span><br><span class="line"> - 语言</span><br><span class="line"> categories:</span><br><span class="line">- 技术</span><br></pre></td></tr></table></figure>
+
+<p><strong>注：</strong>分类具有层次性，标签无层次性。</p>
+<h3 id="5-待办事项Todo列表"><a href="#5-待办事项Todo列表" class="headerlink" title="5.待办事项Todo列表"></a>5.待办事项Todo列表</h3><p>使用带有[]或者[x]（未完成或已完成）项的列表语法攥写一个代办事项列表例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- [ ] 早起跑步</span><br><span class="line">- [X] 完成计网大作业</span><br><span class="line">- [x] 编译并更换ubuntu内核</span><br></pre></td></tr></table></figure>
+
+<p>显示效果：</p>
+<ul>
+<li><input disabled="" type="checkbox"> 早起跑步</li>
+<li><input checked="" disabled="" type="checkbox"> 完成计网大作业</li>
+<li><input checked="" disabled="" type="checkbox"> 编译并更换ubuntu内核</li>
+</ul>
+<p><strong>注：</strong>-空格[]空格具体事项（[]中填空格为未完成事项，填x为完成事项）</p>
+<h3 id="6-LaTeX的公式规则"><a href="#6-LaTeX的公式规则" class="headerlink" title="6.LaTeX的公式规则"></a>6.LaTeX的公式规则</h3><h5 id="常用规则"><a href="#常用规则" class="headerlink" title="常用规则"></a>常用规则</h5><h6 id="1）转义"><a href="#1）转义" class="headerlink" title="1）转义"></a>1）转义</h6><blockquote>
+<p>一下几个字符: # $ % &amp; ~ _ ^ \ { }有特殊意义，需要表示这些字符时，需要转义，即在每个字符前加上 \ 。<br> \boxed命令给公式加一个方框。</p>
+</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$E = mc^<span class="number">2</span> $</span><br><span class="line">$ \boxed&#123;E=mc^<span class="number">2</span>&#125; $</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=E%20%3D%20mc%5E2%20%5Cquad%20%5Cboxed%7BE%3Dmc%5E2%7D" alt="E = mc^2 \quad \boxed{E=mc^2}"></p>
+<h6 id="2）希腊字母"><a href="#2）希腊字母" class="headerlink" title="2）希腊字母"></a>2）希腊字母</h6><p><img src="https:////upload-images.jianshu.io/upload_images/3187098-f9884c349c6d36df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/870/format/webp" alt="img"></p>
+<p>希腊字母表.png</p>
+<h6 id="3）上下标和根号"><a href="#3）上下标和根号" class="headerlink" title="3）上下标和根号"></a>3）上下标和根号</h6><blockquote>
+<p>用^来表示上标<br> 用_来表示下标<br> 根号用\sqrt表示</p>
+</blockquote>
+<p>注意：上下标如果多余一个字符或符号，需要用{}括起来。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \sum<span class="number">_</span>&#123;i=<span class="number">1</span>&#125;^n a_i $</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Csum_%7Bi%3D1%7D%5En%20a_i" alt="\sum_{i=1}^n a_i"><br> \sqrt[开方次数，默认为2]{开方公式}， 例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ x_&#123;ij&#125;^<span class="number">2</span>\quad \<span class="built_in">sqrt</span>&#123;x&#125;\quad \<span class="built_in">sqrt</span>[<span class="number">3</span>]&#123;x&#125; $$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=x_%7Bij%7D%5E2%5Cquad%20%5Csqrt%7Bx%7D%5Cquad%20%5Csqrt%5B3%5D%7Bx%7D" alt="x_{ij}^2\quad \sqrt{x}\quad \sqrt[3]{x}"><br> 其中\quad表示添加空格。</p>
+<h6 id="4）分数"><a href="#4）分数" class="headerlink" title="4）分数"></a>4）分数</h6><blockquote>
+<p>分数用\frac表示。</p>
+</blockquote>
+<blockquote>
+<p>字号工具环境设置：<br> \dfrac命令把字号设置为独立公式中的大小；<br> \tfrac则把字号设置为行间公式中的大小。</p>
+</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \frac&#123;<span class="number">1</span>&#125;&#123;<span class="number">2</span>&#125; \dfrac&#123;<span class="number">1</span>&#125;&#123;<span class="number">2</span>&#125; $</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cfrac%7B1%7D%7B2%7D%20%5Cdfrac%7B1%7D%7B2%7D" alt="\frac{1}{2} \dfrac{1}{2}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ \frac&#123;<span class="number">1</span>&#125;&#123;<span class="number">2</span>&#125; \tfrac&#123;<span class="number">1</span>&#125;&#123;<span class="number">2</span>&#125; $$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cfrac%7B1%7D%7B2%7D%20%5Ctfrac%7B1%7D%7B2%7D" alt="\frac{1}{2} \tfrac{1}{2}"></p>
+<h6 id="5）运算符"><a href="#5）运算符" class="headerlink" title="5）运算符"></a>5）运算符</h6><blockquote>
+<p>+ - * / = 直接输入；</p>
+</blockquote>
+<blockquote>
+<p>特殊运算则用以下特殊命令<code>\pm\; \times\; \div\; \cdot\; \cap\; \cup\; \geq\; \leq\; \neq\; \approx\; \equiv</code><br> <img src="https://math.jianshu.com/math?formula=%5Cpm%5C%3B%20%5Ctimes%5C%3B%20%5Cdiv%5C%3B%20%5Ccdot%5C%3B%20%5Ccap%5C%3B%20%5Ccup%5C%3B%20%5Cgeq%5C%3B%20%5Cleq%5C%3B%20%5Cneq%5C%3B%20%5Capprox%5C%3B%20%5Cequiv" alt="\pm\; \times\; \div\; \cdot\; \cap\; \cup\; \geq\; \leq\; \neq\; \approx\; \equiv"></p>
+</blockquote>
+<blockquote>
+<p>和、积、极限、积分等运算符用\sum, \prod, \lim, \int,这些公式在行内公式被压缩，以适应行高，可以通过\limits和\nolimits命令显示制动是否压缩。<br> <img src="https://math.jianshu.com/math?formula=%5Csum%5C%3B%20%5Cprod%5C%3B%20%5Clim%5C%3B%20%5Cint%5C%3B" alt="\sum\; \prod\; \lim\; \int\;"></p>
+</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ \sum<span class="number">_</span>&#123;i=<span class="number">1</span>&#125;^n i </span><br><span class="line"></span><br><span class="line">$ \prod<span class="number">_</span>&#123;i=<span class="number">1</span>&#125;^n </span><br><span class="line"></span><br><span class="line">$\lim<span class="number">_</span>&#123;x\to<span class="number">0</span>&#125;x^<span class="number">2</span> </span><br><span class="line"></span><br><span class="line">$\int<span class="number">_</span>&#123;a&#125;^&#123;b&#125;x^<span class="number">2</span> dx </span><br><span class="line"></span><br><span class="line">$\sum<span class="number">_</span>&#123;i=<span class="number">1</span>&#125;^n i \quad\prod<span class="number">_</span>&#123;i=<span class="number">1</span>&#125;^n </span><br><span class="line">\quad</span><br><span class="line">\lim<span class="number">_</span>&#123;x\to<span class="number">0</span>&#125;x^<span class="number">2</span> \quad\int<span class="number">_</span>&#123;a&#125;^&#123;b&#125;x^<span class="number">2</span> dx </span><br><span class="line">$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Csum_%7Bi%3D1%7D%5En%20i%20%5Cquad%5Cprod_%7Bi%3D1%7D%5En%20%5Cquad%20%5Clim_%7Bx%5Cto0%7D%20x%5E2%20%5Cquad%5Cint_a%5Eb%20x%5E2%20dx%20%24%24%24%24%20%5Csum_%7Bi%3D1%7D%5En%20i%20%5Cquad%5Cprod_%7Bi%3D1%7D%5En%5Cquad%5Clim_%7Bx%5Cto0%7D%20x%5E2%20%5Cquad%5Cint_a%5Eb%20x%5E2%20dx%20%5Csum%5Cnolimits_%7Bi%3D1%7D%5En%5Cquad%5Cprod%5Cnolimits_%7Bi%3D1%7D%5En%20%5Cquad%20%5Clim%5Cnolimits_%7Bx%5Cto0%7D%20x%5E2%20%5Cquad%5Cint%5Cnolimits_a%5Eb%20x%5E2%20dx" alt="\sum_{i=1}^n i \quad\prod_{i=1}^n \quad \lim_{x\to0} x^2 \quad\int_a^b x^2 dx $$$$ \sum_{i=1}^n i \quad\prod_{i=1}^n\quad\lim_{x\to0} x^2 \quad\int_a^b x^2 dx \sum\nolimits_{i=1}^n\quad\prod\nolimits_{i=1}^n \quad \lim\nolimits_{x\to0} x^2 \quad\int\nolimits_a^b x^2 dx"></p>
+<h6 id="6）多重积分"><a href="#6）多重积分" class="headerlink" title="6）多重积分"></a>6）多重积分</h6><blockquote>
+<p>使用如下形式：\int、\iint、\iiint、\iiiint、\idotsint</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$$ \<span class="keyword">int</span> \<span class="keyword">int</span> \quad \<span class="keyword">int</span> \<span class="keyword">int</span> \<span class="keyword">int</span> \quad </span><br><span class="line"> \<span class="keyword">int</span> \<span class="keyword">int</span> \<span class="keyword">int</span> \<span class="keyword">int</span> \quad \<span class="keyword">int</span> \dots \<span class="keyword">int</span> $$</span><br><span class="line"></span><br><span class="line">$$ \iint \quad \iiint \quad \iiiint \quad \idotsint $$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cint%5Cint%5Cquad%5Cint%5Cint%5Cint%5Cquad%5Cint%5Cint%5Cint%5Cint%5Cquad%5Cint%5Cdots%5Cint%24%24%24%24%20%5Ciint%5Cquad%5Ciiint%5Cquad%5Ciiiint%5Cquad%5Cidotsint" alt="\int\int\quad\int\int\int\quad\int\int\int\int\quad\int\dots\int$$$$ \iint\quad\iiint\quad\iiiint\quad\idotsint"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \leftarrow $</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cleftarrow" alt="\leftarrow"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \rightarrow $</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Crightarrow" alt="\rightarrow"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \leftrightarrow $</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cleftrightarrow" alt="\leftrightarrow"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \longleftarrow $</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Clongleftarrow" alt="\longleftarrow"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$longleftrightarrow$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5CLongleftarrow" alt="\Longleftarrow"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \Longrightarrow $</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5CLongleftrightarrow" alt="\Longleftrightarrow"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\xleftarrow和$\xrightarrow可根据内容自动调整</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cxleftarrow%7Bx%2By%2Bz%7D" alt="\xleftarrow{x+y+z}"></p>
+<p><img src="https://math.jianshu.com/math?formula=%5Cxrightarrow%5Bx%5D%7Bx%2By%2Bz%7D" alt="\xrightarrow[x]{x+y+z}"></p>
+<h6 id="7）注音和标注"><a href="#7）注音和标注" class="headerlink" title="7）注音和标注"></a>7）注音和标注</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \bar&#123;x&#125; $</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cbar%7Bx%7D" alt="\bar{x}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \acute&#123;x&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cacute%7Bx%7D" alt="\acute{x}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \mathring&#123;x&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cmathring%7Bx%7D" alt="\mathring{x}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \vec&#123;x&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cvec%7Bx%7D" alt="\vec{x}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \grave&#123;x&#125; $</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cgrave%7Bx%7D" alt="\grave{x}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \dot&#123;x&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cdot%7Bx%7D" alt="\dot{x}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \hat&#123;x&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Chat%7Bx%7D" alt="\hat{x}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \tilde&#123;x&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Ctilde%7Bx%7D" alt="\tilde{x}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \ddot&#123;x&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cddot%7Bx%7D" alt="\ddot{x}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \check&#123;x&#125; $</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Ccheck%7Bx%7D" alt="\check{x}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \breve&#123;x&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cbreve%7Bx%7D" alt="\breve{x}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \dddot&#123;x&#125; $</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cdddot%7Bx%7D" alt="\dddot{x}"></p>
+<h6 id="8）分隔符"><a href="#8）分隔符" class="headerlink" title="8）分隔符"></a>8）分隔符</h6><blockquote>
+<p>括号用() [] {} \lange \rangle表示 ()  []  {}  ⟨⟩</p>
+</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \overline&#123;xxx&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Coverline%7Bxxx%7D" alt="\overline{xxx}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\overleftrightarrow&#123;xxx&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Coverleftrightarrow%7Bxxx%7D" alt="\overleftrightarrow{xxx}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\underline&#123;xxx&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cunderline%7Bxxx%7D" alt="\underline{xxx}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\underleftrightarrow&#123;xxx&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cunderleftrightarrow%7Bxxx%7D" alt="\underleftrightarrow{xxx}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\overleftarrow&#123;xxx&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Coverleftarrow%7Bxxx%7D" alt="\overleftarrow{xxx}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\overbrace&#123;xxx&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Coverbrace%7Bxxx%7D" alt="\overbrace{xxx}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\underleftarrow&#123;xxx&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cunderleftarrow%7Bxxx%7D" alt="\underleftarrow{xxx}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\underbrace&#123;xxx&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cunderbrace%7Bxxx%7D" alt="\underbrace{xxx}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\overrightarrow&#123;xxx&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Coverrightarrow%7Bxxx%7D" alt="\overrightarrow{xxx}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\widehat&#123;xxx&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cwidehat%7Bxxx%7D" alt="\widehat{xxx}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\underrightarrow&#123;xxx&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cunderrightarrow%7Bxxx%7D" alt="\underrightarrow{xxx}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\widetilde&#123;xxx&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cwidetilde%7Bxxx%7D" alt="\widetilde{xxx}"></p>
+<h6 id="9）省略号"><a href="#9）省略号" class="headerlink" title="9）省略号"></a>9）省略号</h6><blockquote>
+<p>省略号用 \dots \cdots \vdots \ddots表示 ，\dots和\cdots的纵向位置不同，前者一般用于有下标的序列</p>
+</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ x_1, x_2, \dots, x_n\quad <span class="number">1</span>,<span class="number">2</span>,\cdots,n\quad \vdots\quad \ddots $$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=x_1%2C%20x_2%2C%20%5Cdots%2C%20x_n%5Cquad%201%2C2%2C%5Ccdots%2Cn%5Cquad%20%5Cvdots%5Cquad%20%5Cddots" alt="x_1, x_2, \dots, x_n\quad 1,2,\cdots,n\quad \vdots\quad \ddots"></p>
+<h6 id="10）空白间距"><a href="#10）空白间距" class="headerlink" title="10）空白间距"></a>10）空白间距</h6><table>
+<thead>
+<tr>
+<th>语法</th>
+<th align="left">格式</th>
+<th>实例</th>
+<th>显示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>quad空格</td>
+<td align="left"><code>a \quad b</code></td>
+<td><img src="https://math.jianshu.com/math?formula=a%20%5Cquad%20b" alt="a \quad b"></td>
+<td>一个<em>m</em>的宽度</td>
+</tr>
+<tr>
+<td>两个quad空格</td>
+<td align="left"><code>a \qquad b</code></td>
+<td><img src="https://math.jianshu.com/math?formula=a%20%5Cqquad%20b" alt="a \qquad b"></td>
+<td>两个<em>m</em>的宽度</td>
+</tr>
+<tr>
+<td>大空格</td>
+<td align="left"><code>a \: b</code></td>
+<td><img src="https://math.jianshu.com/math?formula=a%5C%3Ab" alt="a\:b"></td>
+<td>1/3<em>m</em>宽度</td>
+</tr>
+<tr>
+<td>中等空格</td>
+<td align="left"><code>a \; b</code></td>
+<td><img src="https://math.jianshu.com/math?formula=a%5C%3Bb" alt="a\;b"></td>
+<td>2/7<em>m</em>宽度</td>
+</tr>
+<tr>
+<td>小空格</td>
+<td align="left"><code>a \, b</code></td>
+<td><img src="https://math.jianshu.com/math?formula=a%5C%2Cb" alt="a\,b"></td>
+<td>1/6<em>m</em>宽度</td>
+</tr>
+<tr>
+<td>没有空格</td>
+<td align="left"><code>ab</code></td>
+<td><img src="https://math.jianshu.com/math?formula=ab" alt="ab"></td>
+<td>没有空格</td>
+</tr>
+<tr>
+<td>缩进空格</td>
+<td align="left"><code>a \! b</code></td>
+<td><img src="https://math.jianshu.com/math?formula=a%5C!b" alt="a\!b"></td>
+<td>缩进1/6<em>m</em>宽度</td>
+</tr>
+</tbody></table>
+<h5 id="复杂公式"><a href="#复杂公式" class="headerlink" title="复杂公式"></a>复杂公式</h5><h6 id="1）矩阵"><a href="#1）矩阵" class="headerlink" title="1）矩阵"></a>1）矩阵</h6><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\<span class="keyword">begin</span>&#123;array&#125;&#123;ccc&#125;</span><br><span class="line">x_1 &amp; x_2 &amp;\dots\\</span><br><span class="line">x_3 &amp; x_4 &amp;\dots\\</span><br><span class="line">\vdots&amp;\vdots&amp;\ddots</span><br><span class="line">\<span class="keyword">end</span>&#123;array&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cbegin%7Barray%7D%7Bccc%7D%20x_1%20%26%20x_2%20%26%5Cdots%5C%5C%20x_3%20%26%20x_%204%26%5Cdots%5C%5C%20%5Cvdots%26%5Cvdots%26%5Cddots%20%5Cend%7Barray%7D" alt="\begin{array}{ccc} x_1 &amp; x_2 &amp;\dots\\ x_3 &amp; x_ 4&amp;\dots\\ \vdots&amp;\vdots&amp;\ddots \end{array}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\<span class="keyword">begin</span>&#123;pmatrix&#125; </span><br><span class="line">a &amp; b\\ </span><br><span class="line">c &amp; d \\</span><br><span class="line">\<span class="keyword">end</span>&#123;pmatrix&#125;</span><br><span class="line"></span><br><span class="line">\quad</span><br><span class="line"></span><br><span class="line">\<span class="keyword">begin</span>&#123;bmatrix&#125; </span><br><span class="line">a &amp; b \\ </span><br><span class="line">c &amp; d \\</span><br><span class="line">\<span class="keyword">end</span>&#123;bmatrix&#125;</span><br><span class="line"></span><br><span class="line">\quad</span><br><span class="line"></span><br><span class="line">\<span class="keyword">begin</span>&#123;Bmatrix&#125; </span><br><span class="line">a &amp; b \\ </span><br><span class="line">c &amp; d \\</span><br><span class="line">\<span class="keyword">end</span>&#123;Bmatrix&#125;</span><br><span class="line"></span><br><span class="line">\quad</span><br><span class="line"></span><br><span class="line">\<span class="keyword">begin</span>&#123;vmatrix&#125; </span><br><span class="line">a &amp; b \\ </span><br><span class="line">c &amp; d \\</span><br><span class="line">\<span class="keyword">end</span>&#123;vmatrix&#125;</span><br><span class="line"></span><br><span class="line">\quad</span><br><span class="line"></span><br><span class="line">\<span class="keyword">begin</span>&#123;Vmatrix&#125; </span><br><span class="line">a &amp; b \\ </span><br><span class="line">c &amp; d \\</span><br><span class="line">\<span class="keyword">end</span>&#123;Vmatrix&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cbegin%7Bpmatrix%7D%20a%20%26%20b%5C%5C%20c%20%26%20d%20%5C%5C%5Cend%7Bpmatrix%7D%5Cquad%5Cbegin%7Bbmatrix%7D%20a%20%26%20b%20%5C%5C%20c%20%26%20d%20%5C%5C%5Cend%7Bbmatrix%7D%5Cquad%5Cbegin%7BBmatrix%7D%20a%20%26%20b%20%5C%5C%20c%20%26%20d%5C%5C%5Cend%7BBmatrix%7D%5Cquad%5Cbegin%7Bvmatrix%7D%20a%20%26%20b%20%5C%5C%20c%20%26%20d%20%5C%5C%5Cend%7Bvmatrix%7D%5Cquad%5Cbegin%7BVmatrix%7D%20a%20%26%20b%5C%5C%20c%20%26%20d%20%5C%5C%5Cend%7BVmatrix%7D" alt="\begin{pmatrix} a &amp; b\\ c &amp; d \\\end{pmatrix}\quad\begin{bmatrix} a &amp; b \\ c &amp; d \\\end{bmatrix}\quad\begin{Bmatrix} a &amp; b \\ c &amp; d\\\end{Bmatrix}\quad\begin{vmatrix} a &amp; b \\ c &amp; d \\\end{vmatrix}\quad\begin{Vmatrix} a &amp; b\\ c &amp; d \\\end{Vmatrix}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">(</span><br><span class="line">\<span class="keyword">begin</span>&#123;smallmatrix&#125; </span><br><span class="line">a &amp; b \\ </span><br><span class="line">c &amp; d </span><br><span class="line">\<span class="keyword">end</span>&#123;smallmatrix&#125;</span><br><span class="line">) </span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=(%5Cbegin%7Bsmallmatrix%7D%20a%20%26%20b%20%5C%5C%20c%20%26%20d%20%5Cend%7Bsmallmatrix%7D)" alt="(\begin{smallmatrix} a &amp; b \\ c &amp; d \end{smallmatrix})"></p>
+<h6 id="2）长公式"><a href="#2）长公式" class="headerlink" title="2）长公式"></a>2）长公式</h6><blockquote>
+<p>无需对齐可使用multline；<br> 需要对齐使用split；<br> 用\来分行；<br> 用&amp;设置对齐的位置</p>
+</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\<span class="keyword">begin</span>&#123;multline&#125;    </span><br><span class="line">x = a+b+c+&#123;&#125; \\     </span><br><span class="line">d+e+f+g  </span><br><span class="line">\<span class="keyword">end</span>&#123;multline&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cbegin%7Bmultline%7D%20x%20%3D%20a%2Bb%2Bc%2B%7B%7D%20%5C%5C%20d%2Be%2Bf%2Bg%20%5Cend%7Bmultline%7D" alt="\begin{multline} x = a+b+c+{} \\ d+e+f+g \end{multline}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\<span class="keyword">begin</span>&#123;split&#125;</span><br><span class="line">x = &#123;&#125; &amp; a + b + c +&#123;&#125;\\    </span><br><span class="line">       &amp; d + e + f + g</span><br><span class="line">\<span class="keyword">end</span>&#123;split&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cbegin%7Bsplit%7D%20x%20%3D%20%7B%7D%20%26%20a%20%2B%20b%20%2B%20c%20%2B%7B%7D%5C%5C%20%26%20d%20%2B%20e%20%2B%20f%20%2B%20g%20%5Cend%7Bsplit%7D" alt="\begin{split} x = {} &amp; a + b + c +{}\\ &amp; d + e + f + g \end{split}"></p>
+<h6 id="3）公式组"><a href="#3）公式组" class="headerlink" title="3）公式组"></a>3）公式组</h6><blockquote>
+<p>不需要对齐的公式组用gather；<br> 需要对齐使用align:</p>
+</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$\<span class="keyword">begin</span>&#123;gather&#125;</span><br><span class="line">a = b+c+d\\</span><br><span class="line">x = y+z\\</span><br><span class="line"><span class="number">5</span> = <span class="number">4</span>+<span class="number">1</span>\\</span><br><span class="line">\<span class="keyword">end</span>&#123;gather&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cbegin%7Bgather%7D%20a%20%3D%20b%2Bc%2Bd%5C%5C%20x%20%3D%20y%2Bz%5C%5C%205%20%3D%204%2B1%20%5Cend%7Bgather%7D" alt="\begin{gather} a = b+c+d\\ x = y+z\\ 5 = 4+1 \end{gather}"></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$\<span class="keyword">begin</span>&#123;align&#125;</span><br><span class="line">a &amp;=b+c+d \\</span><br><span class="line">x &amp;=y+z\\</span><br><span class="line"><span class="number">5</span> &amp;= <span class="number">4</span>+<span class="number">1</span></span><br><span class="line">\<span class="keyword">end</span>&#123;align&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=%5Cbegin%7Balign%7D%20a%20%26%3Db%2Bc%2Bd%20%5C%5C%20x%20%26%3Dy%2Bz%5C%5C%205%20%26%3D%204%2B1%20%5Cend%7Balign%7D" alt="\begin{align} a &amp;=b+c+d \\ x &amp;=y+z\\ 5 &amp;= 4+1 \end{align}"></p>
+<h6 id="4）分支公式"><a href="#4）分支公式" class="headerlink" title="4）分支公式"></a>4）分支公式</h6><blockquote>
+<p><strong>分段函数</strong>通常用cases次环境携程分支公式</p>
+</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ y=\<span class="keyword">begin</span>&#123;cases&#125;</span><br><span class="line">-x,\quad x\leq <span class="number">0</span>\\</span><br><span class="line">x, \quad x&gt;<span class="number">0</span></span><br><span class="line">\<span class="keyword">end</span>&#123;cases&#125; $</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://math.jianshu.com/math?formula=y%3D%5Cbegin%7Bcases%7D-x%2C%5Cquad%20x%5Cleq%200%5C%5Cx%2C%20%5Cquad%20x%3E0%5Cend%7Bcases%7D" alt="y=\begin{cases}-x,\quad x\leq 0\\x, \quad x&gt;0\end{cases}"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/02/%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%89%91%E6%8C%87/" rel="next" title="牛客在线编程之剑指">
+                  <i class="fa fa-chevron-left"></i> 牛客在线编程之剑指
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-内容目录"><span class="nav-number">2.1.</span> <span class="nav-text">1.内容目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-加强代码块"><span class="nav-number">2.2.</span> <span class="nav-text">2.加强代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-脚注"><span class="nav-number">2.3.</span> <span class="nav-text">3.脚注</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-标签和分类"><span class="nav-number">2.4.</span> <span class="nav-text">4.标签和分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-待办事项Todo列表"><span class="nav-number">2.5.</span> <span class="nav-text">5.待办事项Todo列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-LaTeX的公式规则"><span class="nav-number">2.6.</span> <span class="nav-text">6.LaTeX的公式规则</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#常用规则"><span class="nav-number">2.6.0.1.</span> <span class="nav-text">常用规则</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1）转义"><span class="nav-number">2.6.0.1.1.</span> <span class="nav-text">1）转义</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2）希腊字母"><span class="nav-number">2.6.0.1.2.</span> <span class="nav-text">2）希腊字母</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3）上下标和根号"><span class="nav-number">2.6.0.1.3.</span> <span class="nav-text">3）上下标和根号</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4）分数"><span class="nav-number">2.6.0.1.4.</span> <span class="nav-text">4）分数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5）运算符"><span class="nav-number">2.6.0.1.5.</span> <span class="nav-text">5）运算符</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6）多重积分"><span class="nav-number">2.6.0.1.6.</span> <span class="nav-text">6）多重积分</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7）注音和标注"><span class="nav-number">2.6.0.1.7.</span> <span class="nav-text">7）注音和标注</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#8）分隔符"><span class="nav-number">2.6.0.1.8.</span> <span class="nav-text">8）分隔符</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#9）省略号"><span class="nav-number">2.6.0.1.9.</span> <span class="nav-text">9）省略号</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#10）空白间距"><span class="nav-number">2.6.0.1.10.</span> <span class="nav-text">10）空白间距</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#复杂公式"><span class="nav-number">2.6.0.2.</span> <span class="nav-text">复杂公式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1）矩阵"><span class="nav-number">2.6.0.2.1.</span> <span class="nav-text">1）矩阵</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2）长公式"><span class="nav-number">2.6.0.2.2.</span> <span class="nav-text">2）长公式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3）公式组"><span class="nav-number">2.6.0.2.3.</span> <span class="nav-text">3）公式组</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4）分支公式"><span class="nav-number">2.6.0.2.4.</span> <span class="nav-text">4）分支公式</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="李松柏"
+    src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">李松柏</p>
+  <div class="site-description" itemprop="description">记录学习的技能和遇到的问题</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yym08090809" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;yym08090809" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:1217393203@qq.com" title="E-Mail &amp;rarr; mailto:1217393203@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李松柏</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.2
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
