@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="注：为了迅速的复习完ARM9的寻址方式以及基本指令集，在此只做指令演示，不做详细的文字叙述。 一、ARM处理器的寻址方式 寄存器寻址12MOV R2,R3		;R2&amp;lt;-R3		R3中的内容赋给R2ADD R2,R3,R4    ;R2&amp;lt;-R3+R4	R3+R4中的内容相加，结果赋给R2       立即寻址12ADD R1.R1,#1234		:R1&amp;lt;-R1+1234ADD R1">
+<meta name="keywords" content="嵌入式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ARM9指令操作系统">
+<meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2019&#x2F;11&#x2F;04&#x2F;ARM9%E6%8C%87%E4%BB%A4%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F&#x2F;index.html">
+<meta property="og:site_name" content="小李の博客">
+<meta property="og:description" content="注：为了迅速的复习完ARM9的寻址方式以及基本指令集，在此只做指令演示，不做详细的文字叙述。 一、ARM处理器的寻址方式 寄存器寻址12MOV R2,R3		;R2&amp;lt;-R3		R3中的内容赋给R2ADD R2,R3,R4    ;R2&amp;lt;-R3+R4	R3+R4中的内容相加，结果赋给R2       立即寻址12ADD R1.R1,#1234		:R1&amp;lt;-R1+1234ADD R1">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-04T11:23:59.991Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://lisongbai.top/2019/11/04/ARM9%E6%8C%87%E4%BB%A4%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>ARM9指令操作系统 | 小李の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小李の博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">我有一壶酒，足以慰平生。</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2019/11/04/ARM9%E6%8C%87%E4%BB%A4%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李松柏">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小李の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ARM9指令操作系统
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-11-04 15:50:45 / Modified: 19:23:59" itemprop="dateCreated datePublished" datetime="2019-11-04T15:50:45+08:00">2019-11-04</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>注：</strong>为了迅速的复习完ARM9的寻址方式以及基本指令集，在此只做指令演示，不做详细的文字叙述。</p>
+<h1 id="一、ARM处理器的寻址方式"><a href="#一、ARM处理器的寻址方式" class="headerlink" title="一、ARM处理器的寻址方式"></a>一、ARM处理器的寻址方式</h1><ul>
+<li><h2 id="寄存器寻址"><a href="#寄存器寻址" class="headerlink" title="寄存器寻址"></a>寄存器寻址</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MOV R2,R3		;R2&lt;-R3		R3中的内容赋给R2</span><br><span class="line">ADD R2,R3,R4    ;R2&lt;-R3+R4	R3+R4中的内容相加，结果赋给R2</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><h2 id="立即寻址"><a href="#立即寻址" class="headerlink" title="立即寻址"></a>立即寻址</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ADD R1.R1,#1234		:R1&lt;-R1+1234</span><br><span class="line">ADD R1,R1,#0x7f		;R1&lt;-R1+0x7f</span><br></pre></td></tr></table></figure>
+</li>
+<li><h2 id="寄存器间接寻址"><a href="#寄存器间接寻址" class="headerlink" title="寄存器间接寻址"></a>寄存器间接寻址</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LDR R1,[R2]		;R1&lt;-[R2]		R2中的内容为地址，该指令实现将该地址中的数据传送到R1</span><br><span class="line">STR R1,[R2]		;[R2]&lt;-R1</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><h2 id="变址寻址"><a href="#变址寻址" class="headerlink" title="变址寻址"></a>变址寻址</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LDR R0,[R1,#8]		;R0&lt;-[R1+8]	R1的内容加上8形成的操作数的有效地址，并将地址中的操作数存入R0中</span><br><span class="line">LDR R0,[R1,#8]!		;R0&lt;-[R1+8],R1&lt;-R1+8</span><br><span class="line">LDR R0,[R1],#2		;R0&lt;-[R1],R1&lt;-R1+2</span><br><span class="line">LDR R0,[R1,R2]		;R0&lt;-[R1+R2]</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><h2 id="寄存器移位寻址"><a href="#寄存器移位寻址" class="headerlink" title="寄存器移位寻址"></a>寄存器移位寻址</h2><p><strong>1.LSL(或ASL)操作</strong></p>
+<p>操作的格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通用寄存器，LSL（或ASL）操作数</span><br></pre></td></tr></table></figure>
+
+<p>作用：可完成对通用寄存器中的内容进行逻辑（或算术）的左移操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV R0,R1,LSL#4		;将R1中的内容逻辑左移四位后送给R0</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.LSR操作</strong></p>
+<p>操作的格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通用寄存器，LSR操作数</span><br></pre></td></tr></table></figure>
+
+<p>作用：可完成对通用寄存器中的内容进行逻辑的右移操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV R0,R1,LSR#4		;将R1中的内容逻辑右移四位后送给R0</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.ROR操作</strong></p>
+<p>操作的格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通用寄存器，ROR操作数</span><br></pre></td></tr></table></figure>
+
+<p>作用：对寄存器中的内容进行循环右移的操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV R0,R1,ROR#4		;R1的内容循环右移4位后传到R0中</span><br></pre></td></tr></table></figure>
+
+<p><strong>4.ASR操作</strong></p>
+<p>操作的格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通用寄存器，ASR操作数</span><br></pre></td></tr></table></figure>
+
+<p>作用：对寄存器中的内容进行右移的操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV R0,R1,ASR#4		;R1的内容右移4位后传到R0中，符号为保持不变。</span><br></pre></td></tr></table></figure>
+
+<p><strong>5.RRX操作</strong></p>
+<p>操作的格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通用寄存器，RRX</span><br></pre></td></tr></table></figure>
+
+<p>作用：对寄存器中的内容进行带扩充的循环右移的操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV R0,R1,RRX		;R1的内容进行带扩充的循环右移1位后传到R0中</span><br></pre></td></tr></table></figure>
+</li>
+<li><h2 id="多寄存器寻址"><a href="#多寄存器寻址" class="headerlink" title="多寄存器寻址"></a>多寄存器寻址</h2><ul>
+<li><h3 id="堆栈寻址"><a href="#堆栈寻址" class="headerlink" title="堆栈寻址"></a>堆栈寻址</h3></li>
+<li><h3 id="相对寻址"><a href="#相对寻址" class="headerlink" title="相对寻址"></a>相对寻址</h3></li>
+</ul>
+</li>
+</ul>
+<h1 id="二、ARM指令集"><a href="#二、ARM指令集" class="headerlink" title="二、ARM指令集"></a>二、ARM指令集</h1><ul>
+<li><h2 id="指令格式"><a href="#指令格式" class="headerlink" title="指令格式"></a>指令格式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;opcode&gt;&#123;&lt;code&gt;&#125;&#123;s&#125;&lt;Rd&gt;,&lt;Rn&gt;,&lt;op2&gt;</span><br></pre></td></tr></table></figure>
+
+<p>各项介绍如下：</p>
+<p><opcode>:操作码，如ADD等操作指令。</p>
+<p>{<code>}：决定指令执行的条件码。</p>
+<p>{s}：决定指令执行是否影响CPRS寄存器的值。</p>
+<p><Rd>：目的寄存器。</p>
+<p><Rn>：第一个操作数，为寄存器。</p>
+<p><op2>：第二个操作数。</p>
+</li>
+</ul>
+<p><strong>注</strong>：opcode、cond与s之间没有分隔符，s与Rd之间用空格隔开。</p>
+<ul>
+<li><h2 id="条件码"><a href="#条件码" class="headerlink" title="条件码"></a>条件码</h2><p>如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th align="center">条件码</th>
+<th align="center">助记符后缀</th>
+<th align="center">标志</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0000</td>
+<td align="center">EQ</td>
+<td align="center">Z置位</td>
+<td align="center">相等</td>
+</tr>
+<tr>
+<td align="center">0001</td>
+<td align="center">NE</td>
+<td align="center">Z清零</td>
+<td align="center">不相等</td>
+</tr>
+<tr>
+<td align="center">0010</td>
+<td align="center">CS</td>
+<td align="center">C置位</td>
+<td align="center">无符号数大于或等于</td>
+</tr>
+<tr>
+<td align="center">0011</td>
+<td align="center">CC</td>
+<td align="center">C清零</td>
+<td align="center">无符号数小于</td>
+</tr>
+<tr>
+<td align="center">0100</td>
+<td align="center">MI</td>
+<td align="center">N置位</td>
+<td align="center">负数</td>
+</tr>
+<tr>
+<td align="center">0101</td>
+<td align="center">PL</td>
+<td align="center">N清零</td>
+<td align="center">正数或零</td>
+</tr>
+<tr>
+<td align="center">0110</td>
+<td align="center">VS</td>
+<td align="center">V置位</td>
+<td align="center">溢出</td>
+</tr>
+<tr>
+<td align="center">0111</td>
+<td align="center">VC</td>
+<td align="center">V清零</td>
+<td align="center">未溢出</td>
+</tr>
+<tr>
+<td align="center">1000</td>
+<td align="center">HI</td>
+<td align="center">C置位Z清零</td>
+<td align="center">无符号数大于</td>
+</tr>
+<tr>
+<td align="center">1001</td>
+<td align="center">LS</td>
+<td align="center">C清零Z置位</td>
+<td align="center">无符号数小于或等于</td>
+</tr>
+<tr>
+<td align="center">1010</td>
+<td align="center">GE</td>
+<td align="center">N等于V</td>
+<td align="center">带符号数大于或等于</td>
+</tr>
+<tr>
+<td align="center">1011</td>
+<td align="center">LT</td>
+<td align="center">N不等于V</td>
+<td align="center">带符号数小于</td>
+</tr>
+<tr>
+<td align="center">1100</td>
+<td align="center">GT</td>
+<td align="center">Z清零且（N等于V）</td>
+<td align="center">带符号数大于</td>
+</tr>
+<tr>
+<td align="center">1101</td>
+<td align="center">LE</td>
+<td align="center">Z置位或（N不等V）</td>
+<td align="center">带符号数小于或等于</td>
+</tr>
+<tr>
+<td align="center">1110</td>
+<td align="center">AL</td>
+<td align="center">忽略</td>
+<td align="center">无条件执行</td>
+</tr>
+</tbody></table>
+</li>
+<li><h2 id="ARM存储器访问指令"><a href="#ARM存储器访问指令" class="headerlink" title="ARM存储器访问指令"></a>ARM存储器访问指令</h2><p><strong>1.单一数据加载/存储指令</strong></p>
+<p><strong><1>.LDR指令</strong></p>
+<p>LDR的指令格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LDR&#123;条件&#125; 目的寄存器,&lt;存储器地址&gt;</span><br></pre></td></tr></table></figure>
+
+<p>指令示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LDR R3,[R4]			;将存储器地址为R4中的字数据读入R3寄存器中</span><br><span class="line">LDR R3,[R1,R2]		;将存储器地址为R1+R2中的字数据读入R3寄存器中</span><br><span class="line">LDR R3,[R1,#8]		;将存储器地址为R1+8中的字数据读入R3寄存器中</span><br><span class="line">LDR R3,[R1,R2]!		;将存储器地址为R1中的字数据读入R3寄存器中,将新地址R1+R2写入R1</span><br></pre></td></tr></table></figure>
+
+<p>LDR指令是字加载指令。</p>
+<p><strong><2>.LDRB指令</strong></p>
+<p>LDRB的指令格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LDR&#123;条件&#125;B 目的寄存器,&lt;存储器地址&gt;</span><br></pre></td></tr></table></figure>
+
+<p>指令示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LDRB R3,[R1]		;将存储器地址为R4中的字数据读入R3寄存器中,并将R3的高24位清零</span><br></pre></td></tr></table></figure>
+
+<p>LDRB指令是字加载指令，同时将寄存器的高24位清零。</p>
+<p><strong><3>.LDRH指令</strong></p>
+<p>LDRH的指令格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LDR&#123;条件&#125;H 目的寄存器,&lt;存储器地址&gt;</span><br></pre></td></tr></table></figure>
+
+<p>指令示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LDRH R3,[R1]		;将存储器地址为R4中的字数据读入R3寄存器中,并将R3的高16位清零</span><br></pre></td></tr></table></figure>
+
+<p>LDRB指令是字加载指令，同时将寄存器的高16位清零。</p>
+<p><strong><4>.STR指令</strong></p>
+<p>STR的指令格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">STR&#123;条件&#125; 源寄存器,&lt;存储器地址&gt;</span><br></pre></td></tr></table></figure>
+
+<p>指令示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">STR R3,[R1],#8		;将R3中的字数据写入以R1为地址的存储器中，并将新地址R1+8写入R1</span><br></pre></td></tr></table></figure>
+
+<p>STR指令是字存储指令，从源寄存器中将一个32位的字数据传送到寄存器中。</p>
+<p><strong><5>.STRB指令</strong></p>
+<p>STRB的指令格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">STR&#123;条件&#125;B 源寄存器,&lt;存储器地址&gt;</span><br></pre></td></tr></table></figure>
+
+<p>指令示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">STRB R3,[R1,#8]		;将R3中的字数据写入以R1+8为地址的存储器中</span><br></pre></td></tr></table></figure>
+
+<p>STRB指令是无符号字节存储指令，从源寄存器中将一个8位的字节数据传送到寄存器中。该字节数据是源寄存器中的低8位。</p>
+<p><strong><6>.STRH指令</strong></p>
+<p>STRH的指令格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">STR&#123;条件&#125;H 源寄存器,&lt;存储器地址&gt;</span><br></pre></td></tr></table></figure>
+
+<p>指令示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">STRH R3,[R1]		;将R3中的半字数据写入以R1为地址的存储器中</span><br></pre></td></tr></table></figure>
+
+<p>STRH指令是无符号半字存储指令，从源寄存器中将一个16位的半字数据传送到寄存器中。该字节数据是源寄存器中的低16位。</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag"># 嵌入式</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/03/DES%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95JAVA%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" rel="next" title="DES加解密算法JAVA代码实现">
+                  <i class="fa fa-chevron-left"></i> DES加解密算法JAVA代码实现
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、ARM处理器的寻址方式"><span class="nav-number">1.</span> <span class="nav-text">一、ARM处理器的寻址方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#寄存器寻址"><span class="nav-number">1.1.</span> <span class="nav-text">寄存器寻址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#立即寻址"><span class="nav-number">1.2.</span> <span class="nav-text">立即寻址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#寄存器间接寻址"><span class="nav-number">1.3.</span> <span class="nav-text">寄存器间接寻址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变址寻址"><span class="nav-number">1.4.</span> <span class="nav-text">变址寻址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#寄存器移位寻址"><span class="nav-number">1.5.</span> <span class="nav-text">寄存器移位寻址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多寄存器寻址"><span class="nav-number">1.6.</span> <span class="nav-text">多寄存器寻址</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#堆栈寻址"><span class="nav-number">1.6.1.</span> <span class="nav-text">堆栈寻址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相对寻址"><span class="nav-number">1.6.2.</span> <span class="nav-text">相对寻址</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、ARM指令集"><span class="nav-number">2.</span> <span class="nav-text">二、ARM指令集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#指令格式"><span class="nav-number">2.1.</span> <span class="nav-text">指令格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条件码"><span class="nav-number">2.2.</span> <span class="nav-text">条件码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARM存储器访问指令"><span class="nav-number">2.3.</span> <span class="nav-text">ARM存储器访问指令</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="李松柏"
+    src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">李松柏</p>
+  <div class="site-description" itemprop="description">记录学习的技能和遇到的问题</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yym08090809" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;yym08090809" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:1217393203@qq.com" title="E-Mail &amp;rarr; mailto:1217393203@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李松柏</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.2
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
