@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="RSA的加解密机制RSA的加密系统可分为三个部分，即用户密钥的产生、加密算法以及解密算法。 用户密钥的产生在用户密钥的产生部分，首先此系统的每一个用户将自行选择一组公开密钥，然后公之于众，使得他人都能使用此公开密钥对机密数据进行加密，然后自己使用私密密钥进行解密，获取机密数据。 ​        以下是RSA密钥的产生过程： ​        &amp;lt;1&amp;gt;.首先找出两个大质数p和q，两者均至">
+<meta name="keywords" content="网络信息安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RSA加密算法浅析">
+<meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2019&#x2F;11&#x2F;09&#x2F;RSA%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E6%B5%85%E6%9E%90&#x2F;index.html">
+<meta property="og:site_name" content="小李の博客">
+<meta property="og:description" content="RSA的加解密机制RSA的加密系统可分为三个部分，即用户密钥的产生、加密算法以及解密算法。 用户密钥的产生在用户密钥的产生部分，首先此系统的每一个用户将自行选择一组公开密钥，然后公之于众，使得他人都能使用此公开密钥对机密数据进行加密，然后自己使用私密密钥进行解密，获取机密数据。 ​        以下是RSA密钥的产生过程： ​        &amp;lt;1&amp;gt;.首先找出两个大质数p和q，两者均至">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;09&#x2F;MmEbex.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;09&#x2F;MmElJe.md.png">
+<meta property="og:updated_time" content="2019-11-09T07:05:54.070Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;09&#x2F;MmEbex.png">
+
+<link rel="canonical" href="http://lisongbai.top/2019/11/09/RSA%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E6%B5%85%E6%9E%90/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>RSA加密算法浅析 | 小李の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小李の博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">我有一壶酒，足以慰平生。</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2019/11/09/RSA%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E6%B5%85%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李松柏">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小李の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          RSA加密算法浅析
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-11-09 12:02:11 / Modified: 15:05:54" itemprop="dateCreated datePublished" datetime="2019-11-09T12:02:11+08:00">2019-11-09</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="RSA的加解密机制"><a href="#RSA的加解密机制" class="headerlink" title="RSA的加解密机制"></a>RSA的加解密机制</h1><p>RSA的加密系统可分为三个部分，即用户密钥的产生、加密算法以及解密算法。</p>
+<h2 id="用户密钥的产生"><a href="#用户密钥的产生" class="headerlink" title="用户密钥的产生"></a>用户密钥的产生</h2><p>在用户密钥的产生部分，首先此系统的每一个用户将自行选择一组公开密钥，然后公之于众，使得他人都能使用此公开密钥对机密数据进行加密，然后自己使用私密密钥进行解密，获取机密数据。</p>
+<p>​        以下是RSA密钥的产生过程：</p>
+<p>​        &lt;1&gt;.首先找出两个大质数p和q，两者均至少为100位的十进制数。</p>
+<p>​        &lt;2&gt;.计算N=p * q 及 φ(N)= (q-1)*(p-1),    其中φ(N)为欧拉函数，意为小于N的整数中与N互质的整数个数。例如，只有1和5这两个数与6互质，所以φ(6)=2。</p>
+<p>​        &lt;3&gt;.找出一个与φ(N)互质的数e，因此（e，N）可以作为该用户的公开密钥。</p>
+<p>​        &lt;4&gt;.计算出该用户的私密密钥d，使得e * d mod φ(N) =1，也就是在模φ(N)的情况下，使得e和d互为乘法反元素，其中d称为用户的私密密钥，须绝对保密。</p>
+<h2 id="加密解密机制"><a href="#加密解密机制" class="headerlink" title="加密解密机制"></a>加密解密机制</h2><p>在RSA密码系统里，每次加密或解密的信息块的值在0~（N-1）的范围内。若明文及密文大于这个块，则分块。</p>
+<p>在实际加解密过程中，N至少为521位。N值越大，RSA的安全性越高，加解密所需要的时间就越长。</p>
+<p>现在假设要对M信息进行加密，其中0&lt;=M&lt;=(N-1),RSA加密算法为：C=Ee（M）=M^2modN.<br>$$<br>C=Ee(M)=M^emodN<br>$$<br>C为加密后的密文。若要对C进行解密，则需要计算：M=D<sub>d<sub>（C）modM<br>$$<br>M=Dd(C)modN<br>$$</p>
+<h2 id="加密解密算法的JAVA代码实现"><a href="#加密解密算法的JAVA代码实现" class="headerlink" title="加密解密算法的JAVA代码实现"></a>加密解密算法的JAVA代码实现</h2><p><strong>RSA加密解密的简单JAVA实现代码如下：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lcx.rsa;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.BufferedReader;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RSAEncrypt</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> p=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> q=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> n=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> m=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> public_key=<span class="number">0</span>;<span class="comment">//公匙</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> private_key=<span class="number">0</span>;<span class="comment">//密匙</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> text=<span class="number">0</span>;<span class="comment">//明文</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> secretword=<span class="number">0</span>;<span class="comment">//密文</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> word=<span class="number">0</span>;<span class="comment">//解密后明文</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断是否为素数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">primenumber</span><span class="params">(<span class="keyword">long</span> t)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> k=<span class="number">0</span>;</span><br><span class="line">        k=(<span class="keyword">long</span>)Math.sqrt((<span class="keyword">double</span>)t);</span><br><span class="line">        <span class="keyword">boolean</span> flag=<span class="keyword">true</span>;</span><br><span class="line">        outer:<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=k;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>((t%i)==<span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                flag = <span class="keyword">false</span>;</span><br><span class="line">                <span class="keyword">break</span> outer;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> flag;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//输入PQ</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inputPQ</span><span class="params">()</span><span class="keyword">throws</span> Exception</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">do</span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"请输入素数p: "</span>);</span><br><span class="line">            BufferedReader stdin=<span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</span><br><span class="line">            String br=stdin.readLine();</span><br><span class="line">            <span class="keyword">this</span>.p=Integer.parseInt(br);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(!primenumber(<span class="keyword">this</span>.p));</span><br><span class="line">        <span class="keyword">do</span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"请输入素数q: "</span>);</span><br><span class="line">            BufferedReader stdin=<span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</span><br><span class="line">            String br=stdin.readLine();</span><br><span class="line">            <span class="keyword">this</span>.q=Integer.parseInt(br);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(!primenumber(<span class="keyword">this</span>.q));</span><br><span class="line">        <span class="keyword">this</span>.n=<span class="keyword">this</span>.p*<span class="keyword">this</span>.q;</span><br><span class="line">        <span class="keyword">this</span>.m=(p-<span class="number">1</span>)*(q-<span class="number">1</span>);</span><br><span class="line">        System.out.println(<span class="string">"这两个素数的乘积为p*q："</span>+<span class="keyword">this</span>.n);</span><br><span class="line">        System.out.println(<span class="string">"所得的小于Ｎ并且与Ｎ互素的整数的个数为m=(p-1)(q-1)："</span>+<span class="keyword">this</span>.m);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//求最大公约数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">gcd</span><span class="params">(<span class="keyword">long</span> a,<span class="keyword">long</span> b)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> gcd;</span><br><span class="line">        <span class="keyword">if</span>(b==<span class="number">0</span>)</span><br><span class="line">            gcd=a;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            gcd=gcd(b,a%b);</span><br><span class="line">        System.out.println(<span class="string">"gcd:"</span>+gcd);</span><br><span class="line">        <span class="keyword">return</span> gcd;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//输入公匙</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getPublic_key</span><span class="params">()</span><span class="keyword">throws</span> Exception</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">do</span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"请输入一个公钥的值，这个值要求小于m并且和m互质： "</span>);</span><br><span class="line">            BufferedReader stdin=<span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</span><br><span class="line">            String br=stdin.readLine();</span><br><span class="line">            <span class="keyword">this</span>.public_key=Long.parseLong(br);</span><br><span class="line">        &#125;<span class="keyword">while</span>((<span class="keyword">this</span>.public_key &gt;= <span class="keyword">this</span>.m) || (<span class="keyword">this</span>.gcd(<span class="keyword">this</span>.m,<span class="keyword">this</span>.public_key)!=<span class="number">1</span>));</span><br><span class="line">        System.out.println(<span class="string">"公钥为："</span>+<span class="keyword">this</span>.public_key);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//计算得到密匙</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getPrivate_key</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> value=<span class="number">1</span>;</span><br><span class="line">        outer:<span class="keyword">for</span>(<span class="keyword">long</span> i=<span class="number">1</span>;;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            value=i*<span class="keyword">this</span>.m+<span class="number">1</span>;</span><br><span class="line">            System.out.println(<span class="string">"value:  "</span>+value);</span><br><span class="line">            <span class="keyword">if</span>((value%<span class="keyword">this</span>.public_key==<span class="number">0</span>)&amp;&amp; (value/<span class="keyword">this</span>.public_key &lt; <span class="keyword">this</span>.m))</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">this</span>.private_key=value/<span class="keyword">this</span>.public_key;</span><br><span class="line">                <span class="keyword">break</span> outer;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"产生的一个私钥为："</span>+<span class="keyword">this</span>.private_key);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//输入明文</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getText</span><span class="params">()</span><span class="keyword">throws</span> Exception</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"请输入明文："</span>);</span><br><span class="line">        BufferedReader stdin=<span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</span><br><span class="line">        String br=stdin.readLine();</span><br><span class="line">        <span class="keyword">this</span>.text=Long.parseLong(br);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//加密、解密计算</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">colum</span><span class="params">(<span class="keyword">long</span> y,<span class="keyword">long</span> n,<span class="keyword">long</span> key)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> mul;</span><br><span class="line">        <span class="keyword">if</span>(key==<span class="number">1</span>)</span><br><span class="line">            mul=y%n;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            mul=y*<span class="keyword">this</span>.colum(y,n,key-<span class="number">1</span>)%n;</span><br><span class="line">        <span class="keyword">return</span> mul;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//加密后解密</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pascolum</span><span class="params">()</span><span class="keyword">throws</span> Exception</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.getText();</span><br><span class="line">        System.out.println(<span class="string">"输入明文为: "</span>+<span class="keyword">this</span>.text);</span><br><span class="line">        <span class="comment">//加密</span></span><br><span class="line">        <span class="keyword">this</span>.secretword=<span class="keyword">this</span>.colum(<span class="keyword">this</span>.text,<span class="keyword">this</span>.n,<span class="keyword">this</span>.public_key);</span><br><span class="line">        System.out.println(<span class="string">"所得的密文为："</span>+<span class="keyword">this</span>.secretword);</span><br><span class="line">        <span class="comment">//解密</span></span><br><span class="line">        <span class="keyword">this</span>.word=<span class="keyword">this</span>.colum(<span class="keyword">this</span>.secretword,<span class="keyword">this</span>.n,<span class="keyword">this</span>.private_key);</span><br><span class="line">        System.out.println(<span class="string">"解密后所得的明文为："</span>+<span class="keyword">this</span>.word);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试如下代码：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lcx.rsa;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RSAEncryptTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String []args)</span><span class="keyword">throws</span> Exception</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        RSAEncrypt t = <span class="keyword">new</span> RSAEncrypt();</span><br><span class="line">        t.inputPQ();</span><br><span class="line">        t.getPublic_key();</span><br><span class="line">        t.getPrivate_key();</span><br><span class="line">        t.pascolum();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输入数据来源为课本上例题所给，用来验证加密解密算法实现的正确性。</p>
+<p><strong>课本例题如下：</strong></p>
+<p><img src="https://s2.ax1x.com/2019/11/09/MmEbex.png" alt="MmEbex.png"></p>
+<p><strong>运行结果如下：</strong></p>
+<p><a href="https://imgchr.com/i/MmElJe" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/11/09/MmElJe.md.png" alt="MmElJe.md.png"></a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/" rel="tag"># 网络信息安全</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/04/ARM9%E6%8C%87%E4%BB%A4%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="next" title="ARM9指令操作系统">
+                  <i class="fa fa-chevron-left"></i> ARM9指令操作系统
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RSA的加解密机制"><span class="nav-number">1.</span> <span class="nav-text">RSA的加解密机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用户密钥的产生"><span class="nav-number">1.1.</span> <span class="nav-text">用户密钥的产生</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加密解密机制"><span class="nav-number">1.2.</span> <span class="nav-text">加密解密机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加密解密算法的JAVA代码实现"><span class="nav-number">1.3.</span> <span class="nav-text">加密解密算法的JAVA代码实现</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="李松柏"
+    src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">李松柏</p>
+  <div class="site-description" itemprop="description">记录学习的技能和遇到的问题</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yym08090809" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;yym08090809" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:1217393203@qq.com" title="E-Mail &amp;rarr; mailto:1217393203@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李松柏</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.2
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
