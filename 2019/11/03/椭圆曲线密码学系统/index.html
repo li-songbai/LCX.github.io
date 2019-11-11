@@ -57,8 +57,12 @@
 <meta property="og:site_name" content="小李の博客">
 <meta property="og:description" content="椭圆曲线密码系统一个简单的RAS算法​        RAS密码系统最让人头疼的问题就是，在加解密或者签名的时候需要庞大的运算量，所需较长的运算时间。对于一些处理器不强大的设备，比如手机、PDA（Personal Digital Assistant）或者及时响应的系统不友好。因此有了椭圆曲线密码系统（ECC）。ECC运算量较少，因此能提高效率。 椭圆曲线的加法概念中心思想： ​        椭圆">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-09T03:21:28.982Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;MQLB59.md.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;Ml3d1J.md.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;MltcSU.png">
+<meta property="og:updated_time" content="2019-11-11T14:40:40.076Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;MQLB59.md.png">
 
 <link rel="canonical" href="http://lisongbai.top/2019/11/03/%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E5%AF%86%E7%A0%81%E5%AD%A6%E7%B3%BB%E7%BB%9F/">
 
@@ -244,7 +248,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-11-09 11:21:28" itemprop="dateModified" datetime="2019-11-09T11:21:28+08:00">2019-11-09</time>
+                <time title="Modified: 2019-11-11 22:40:40" itemprop="dateModified" datetime="2019-11-11T22:40:40+08:00">2019-11-11</time>
               </span>
 
           
@@ -270,9 +274,24 @@
 <p>​        椭圆曲线的密码系统主要是利用椭圆曲线所构成的有限群来代替传统的RSA或ElGamal所使用的有限群，这里所使用的椭圆曲线方程式可以简化为 :<br>$$<br>y^2=x^3+ax+b<br>$$<br>它的曲线恰好对称于y=0这条直线，但在决定参数a、b时，必须让曲线没有重根（如此才能确保唯一解），因此a和b必须满足：<br>$$<br>4a^3+27b^2!=0<br>$$<br>​        决定参数a和b后，就可以在椭圆曲线上定义出一个有限加法群，这个加法与一般的加法不同，它的几何概念时令其加法单位元素为一无穷远的点O，且O=-O，并且此加法单位元素要满足：若椭圆曲线上某三点共线的话，其和就等于O。</p>
 <p>​        椭圆曲线的加法运算是将椭圆曲线上两个坐标点相加，依坐标点的位置不同共有共有以下几种情况，其加法的过程都要满足3点共线时其和为O的这一项要求。</p>
 <ul>
-<li><h3 id="椭圆曲线上的不同坐标点相加"><a href="#椭圆曲线上的不同坐标点相加" class="headerlink" title="椭圆曲线上的不同坐标点相加"></a>椭圆曲线上的不同坐标点相加</h3></li>
-<li><h3 id="椭圆曲线上相同坐标点相加"><a href="#椭圆曲线上相同坐标点相加" class="headerlink" title="椭圆曲线上相同坐标点相加"></a>椭圆曲线上相同坐标点相加</h3></li>
-<li><h3 id="椭圆曲线上一坐标点与无穷远点相加"><a href="#椭圆曲线上一坐标点与无穷远点相加" class="headerlink" title="椭圆曲线上一坐标点与无穷远点相加"></a>椭圆曲线上一坐标点与无穷远点相加</h3></li>
+<li><h3 id="椭圆曲线上的不同坐标点相加"><a href="#椭圆曲线上的不同坐标点相加" class="headerlink" title="椭圆曲线上的不同坐标点相加"></a>椭圆曲线上的不同坐标点相加</h3><p>A、B为椭圆曲线上的不同点，将两个坐标相加，其做法如下：</p>
+<p>&lt;1&gt;.先找出A与B这两点所构成的直线。</p>
+<p>&lt;2&gt;.接着找出这条直线与椭圆曲线的交点R。</p>
+<p>&lt;3&gt;.由于A、B、R这三点共线，根据椭圆曲线加法定义可知A+B+R=O,因此可求得A+B=-R，这里-R表示坐标点R对y=0这条直线的影射，也就是R对称于y轴的坐标点（如下图所示）。</p>
+<p><a href="https://imgchr.com/i/MQLB59" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/11/11/MQLB59.md.png" alt="MQLB59.md.png"></a></p>
+</li>
+<li><h3 id="椭圆曲线上相同坐标点相加"><a href="#椭圆曲线上相同坐标点相加" class="headerlink" title="椭圆曲线上相同坐标点相加"></a>椭圆曲线上相同坐标点相加</h3><p>若椭圆曲线上的相同点做相加，其做法如下：</p>
+<p>&lt;1&gt;.找出A点在椭圆曲线上的切线。</p>
+<p>&lt;2&gt;.找出这条切线与椭圆曲线的交点R。</p>
+<p>&lt;3&gt;.可以看成A、A、R这三点共线，根据椭圆曲线加法的定义可知A+A+R=O，因此A+A=-R(如下图所示)。</p>
+<p><a href="https://imgchr.com/i/Ml3d1J" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/11/11/Ml3d1J.md.png" alt="Ml3d1J.md.png"></a></p>
+</li>
+<li><h3 id="椭圆曲线上一坐标点与无穷远点相加"><a href="#椭圆曲线上一坐标点与无穷远点相加" class="headerlink" title="椭圆曲线上一坐标点与无穷远点相加"></a>椭圆曲线上一坐标点与无穷远点相加</h3><p>第三种状况是椭圆曲线上一A点与无穷远点做相加，其几何概念如下图所示：</p>
+<p><img src="https://s2.ax1x.com/2019/11/11/MltcSU.png" alt="MltcSU.png"></p>
+<p>把无穷远点视为y轴上一个正向极远的点，依据定义此无穷远的点就是O。此无穷远点与A点所构成的直线，可视为一条垂直线。因此，此垂直线与椭圆曲线会相交于另一点R，因此可求得A+oo=-R，而R与A刚好互为y轴的对称点（A=-R），故A+oo=A。</p>
+</li>
+</ul>
+<ul>
 <li><h3 id="椭圆曲线上两对称点相加"><a href="#椭圆曲线上两对称点相加" class="headerlink" title="椭圆曲线上两对称点相加"></a>椭圆曲线上两对称点相加</h3></li>
 </ul>
 <h2 id="在有限体内的椭圆曲线运算"><a href="#在有限体内的椭圆曲线运算" class="headerlink" title="在有限体内的椭圆曲线运算"></a>在有限体内的椭圆曲线运算</h2><h2 id="椭圆曲线的公开密钥加密机制"><a href="#椭圆曲线的公开密钥加密机制" class="headerlink" title="椭圆曲线的公开密钥加密机制"></a>椭圆曲线的公开密钥加密机制</h2><h2 id="椭圆曲线的数字签名"><a href="#椭圆曲线的数字签名" class="headerlink" title="椭圆曲线的数字签名"></a>椭圆曲线的数字签名</h2><p>​    </p>
