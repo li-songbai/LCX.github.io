@@ -60,7 +60,7 @@
 <meta property="og:site_name" content="小李の博客">
 <meta property="og:description" content="一、装饰者模式动态地给一个对象添加一些额外地职责。就增加功能来说，Decorator模式相比生成子类来说更为灵活。适用性 在不影响其他对象的情况下，以动态透明的方式给单个对象增加职责。 处理那些可以撤销的职责。 当不能采用生成子类的方法进行扩充时。 参与者 Component 定义一个对象接口，可以给这些对象动态地添加职责。  ConcereteComponent 定义一个对象，可以给这个对象添加">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-18T11:44:39.635Z">
+<meta property="og:updated_time" content="2019-11-24T15:06:45.576Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://lisongbai.top/2019/11/18/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
@@ -242,10 +242,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-11-18 14:28:15 / 修改时间：19:44:39" itemprop="dateCreated datePublished" datetime="2019-11-18T14:28:15+08:00">2019-11-18</time>
+              <time title="创建时间：2019-11-18 14:28:15" itemprop="dateCreated datePublished" datetime="2019-11-18T14:28:15+08:00">2019-11-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-24 23:06:45" itemprop="dateModified" datetime="2019-11-24T23:06:45+08:00">2019-11-24</time>
+              </span>
 
           
             <span id="/2019/11/18/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-meta-item leancloud_visitors" data-flag-title="Java设计模式" title="阅读次数">
@@ -324,6 +330,69 @@
 
 <p><strong>result</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">男人在吃</span><br><span class="line">再吃一顿饭</span><br><span class="line">ManDecoratorA类</span><br><span class="line">===============</span><br><span class="line">ManDecoratorB类</span><br></pre></td></tr></table></figure>
+
+<h1 id="二、单例模式"><a href="#二、单例模式" class="headerlink" title="二、单例模式"></a>二、单例模式</h1><p>保证一个类有且仅有一个实例化对象，提供一个访问它的全局访问点。</p>
+<h2 id="适用性-1"><a href="#适用性-1" class="headerlink" title="适用性"></a>适用性</h2><ul>
+<li>当类只能有一个实例而且客户可以从一个众所周知的访问点访问它时。</li>
+<li>当这个唯一实例应该是通过子类化可扩展的，并且客户应该无需更改代码就能使用一个扩展的实例时。</li>
+</ul>
+<h2 id="参与者-1"><a href="#参与者-1" class="headerlink" title="参与者"></a>参与者</h2><ul>
+<li><p><strong>Singleton</strong></p>
+<p>定义一个Instance操作，允许客户访问它的唯一实例。Instance是一个类操作。</p>
+</li>
+</ul>
+<h2 id="单例模式特点"><a href="#单例模式特点" class="headerlink" title="单例模式特点"></a>单例模式特点</h2><ul>
+<li>单例类只能有一个实例。</li>
+<li>单例类必须自己创建自己的唯一实例。</li>
+<li>单例类必须给所有其他对象提供这一实例。</li>
+</ul>
+<p>单例模式保证了全局对象的唯一性，比如系统启动读取配置文件就需要单例保证配置的一致性。</p>
+<h2 id="单例模式的线程安全问题"><a href="#单例模式的线程安全问题" class="headerlink" title="单例模式的线程安全问题"></a>单例模式的线程安全问题</h2><p>一方面在获取单例的时候，要保证不能产生多个实例对象，后面会详细讲到五种实现方式；</p>
+<p>​        另一方面，在使用单例对象的时候，要注意单例对象内的实例变量是会被多线程共享的，推荐使用无状态的对象，不会因为多个线程的交替调度而破坏自身状态导致线程安全问题，比如我们常用的VO，DTO等（局部变量是在用户栈中的，而且用户栈本身就是线程私有的内存区域，所以不存在线程安全问题）。</p>
+<h2 id="单例模式的选择"><a href="#单例模式的选择" class="headerlink" title="单例模式的选择"></a>单例模式的选择</h2><p>​        我们最早使用的MVC框架Struts1中的action就是单例模式的，而到了Struts2就使用了多例。在Struts1里，当有多个请求访问，每个都会分配一个新线程，在这些线程，操作的都是同一个action对象，每个用户的数据都是不同的，而action却只有一个。到了Struts2， action对象为每一个请求产生一个实例，并不会带来线程安全问题（实际上servlet容器给每个请求产生许多可丢弃的对象，但是并没有影响到性能和垃圾回收问题，有时间会做下研究）。</p>
+<h2 id="实现单例模式的方式"><a href="#实现单例模式的方式" class="headerlink" title="实现单例模式的方式"></a>实现单例模式的方式</h2><ul>
+<li><strong>饿汉模式（立即加载）</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//饿汉模式</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton1</span> </span>&#123;</span><br><span class="line">    <span class="comment">//私有构造方法</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton1 single = <span class="keyword">new</span> Singleton1();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//静态工厂方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton1 <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> single;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​        饿汉模式在类加载初始化时就创建好一个静态的对象供外部使用，除非系统重启，这个对象不会改变，所以本身就是线程安全的。</p>
+<p>​        Singleton通过将构造方法限定为private避免了类在外部被实例化，在同一个虚拟机范围内，Singleton的唯一实例只能通过getInstance()方法访问。（事实上，通过Java反射机制是能够实例化构造方法为private的类的，那基本上会使所有的Java单例实现失效。此问题在此处不做讨论，姑且闭着眼就认为反射机制不存在。）</p>
+<ul>
+<li><strong>懒汉模式（延时加载）</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//懒汉模式</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton2</span> </span>&#123;</span><br><span class="line">    <span class="comment">//私有构造方法</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton2</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton2 single = <span class="keyword">null</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton2 <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(single == <span class="keyword">null</span>)&#123;</span><br><span class="line">            single = <span class="keyword">new</span> Singleton2();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> single;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​        该示例虽然用延迟加载方式实现了懒汉式单例，但在多线程环境下会产生多个single对象，如何改造请看以下方式。</p>
+<p><strong>使用Synchronized同步锁</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton3</span> </span>&#123;</span><br><span class="line">    <span class="comment">//私有构造方法</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton3 single = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton3 <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (Singleton3.class) &#123;</span><br><span class="line">            <span class="keyword">if</span> (single == <span class="keyword">null</span>) &#123;</span><br><span class="line">                single = <span class="keyword">new</span> Singleton3();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> single;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​        在方法上加synchronized同步锁或是用同步代码块对类加同步锁，此种方式虽然解决了多个实例对象问题，但是该方式运行效率却很低下，下一个线程想要获取对象，就必须等待上一个线程释放锁之后，才可以继续运行。</p>
+<p><strong>双层校验锁</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton4</span> </span>&#123;</span><br><span class="line">    <span class="comment">//私有构造方法</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton4</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton4 single = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//双层校验锁</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton4 <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (single == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton4.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (single == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    single = <span class="keyword">new</span> Singleton4();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> single;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用双重检查进一步做了优化，可以避免整个方法被锁，只对需要锁的代码部分加锁，可以提高执行效率。</p>
+<ul>
+<li><strong>静态内部类</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton5</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton5</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//静态内部类</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">InnerObject</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> Singleton5 single = <span class="keyword">new</span> Singleton5();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton5 <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> InnerObject.single;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​        静态内部类虽然保证了单例在多线程并发下的线程安全性，<em>但是在遇到序列化对象时，默认的方式运行得到的结果就是多例的</em>。这种情况不多做说明了，使用时请注意。</p>
+<ul>
+<li><strong>static静态代码块</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton6</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton6</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton6 single = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//静态代码块</span></span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        single = <span class="keyword">new</span> Singleton6();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton6 <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> single;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>静态代码块在类首次加载的时候执行一次。</p>
+<ul>
+<li><strong>内部枚举类</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonFactory</span> </span>&#123;</span><br><span class="line">    <span class="comment">//内部枚举类</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">enum</span> EnumSingleton&#123;</span><br><span class="line">        Singleton;</span><br><span class="line">        <span class="keyword">private</span> Singleton7 singleton;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//枚举类的构造方法在类加载时被实例化</span></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="title">EnumSingleton</span><span class="params">()</span></span>&#123;</span><br><span class="line">            singleton = <span class="keyword">new</span> Singleton7();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> Singleton7 <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> singleton;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton7 <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> EnumSingleton.Singleton.getInstance();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton7</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Singleton7</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试代码</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> java设计模式.单例模式;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SinglletonTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"饿汉模式(立即加载)"</span>);</span><br><span class="line">        Singleton1 singleton1 = Singleton1.getInstance();</span><br><span class="line">        Singleton1 singleton2 = Singleton1.getInstance();</span><br><span class="line">        System.out.println(singleton1);</span><br><span class="line">        System.out.println(singleton2);</span><br><span class="line">        System.out.println(<span class="string">"懒汉模式（延时加载）"</span>);</span><br><span class="line">        Singleton2 singleton3 = Singleton2.getInstance();</span><br><span class="line">        Singleton2 singleton4 = Singleton2.getInstance();</span><br><span class="line">        System.out.println(singleton3);</span><br><span class="line">        System.out.println(singleton4);</span><br><span class="line">        System.out.println(<span class="string">"使用Synchronized同步锁"</span>);</span><br><span class="line">        Singleton3 singleton5 = Singleton3.getInstance();</span><br><span class="line">        Singleton3 singleton6 = Singleton3.getInstance();</span><br><span class="line">        System.out.println(singleton5);</span><br><span class="line">        System.out.println(singleton6);</span><br><span class="line">        System.out.println(<span class="string">"双层校验锁"</span>);</span><br><span class="line">        Singleton4 singleton7 = Singleton4.getInstance();</span><br><span class="line">        Singleton4 singleton8 = Singleton4.getInstance();</span><br><span class="line">        System.out.println(singleton7);</span><br><span class="line">        System.out.println(singleton8);</span><br><span class="line">        System.out.println(<span class="string">"静态内部类"</span>);</span><br><span class="line">        Singleton5 singleton9 = Singleton5.getInstance();</span><br><span class="line">        Singleton5 singleton10 = Singleton5.getInstance();</span><br><span class="line">        System.out.println(singleton9);</span><br><span class="line">        System.out.println(singleton10);</span><br><span class="line">        System.out.println(<span class="string">"static静态代码块"</span>);</span><br><span class="line">        Singleton6 singleton11 = Singleton6.getInstance();</span><br><span class="line">        Singleton6 singleton12 = Singleton6.getInstance();</span><br><span class="line">        System.out.println(singleton11);</span><br><span class="line">        System.out.println(singleton12);</span><br><span class="line">        System.out.println(<span class="string">"内部枚举类"</span>);</span><br><span class="line">        Singleton7 singletonFactory = SingletonFactory.getInstance();</span><br><span class="line">        Singleton7 singletonFactory1 = SingletonFactory.getInstance();</span><br><span class="line">        System.out.println(singletonFactory);</span><br><span class="line">        System.out.println(singletonFactory1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试结果</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">饿汉模式(立即加载)</span><br><span class="line">java设计模式.单例模式.Singleton1@<span class="number">74</span>a14482</span><br><span class="line">java设计模式.单例模式.Singleton1@<span class="number">74</span>a14482</span><br><span class="line">懒汉模式（延时加载）</span><br><span class="line">java设计模式.单例模式.Singleton2@<span class="number">1540e19</span>d</span><br><span class="line">java设计模式.单例模式.Singleton2@<span class="number">1540e19</span>d</span><br><span class="line">使用Synchronized同步锁</span><br><span class="line">java设计模式.单例模式.Singleton3@<span class="number">677327</span>b6</span><br><span class="line">java设计模式.单例模式.Singleton3@<span class="number">677327</span>b6</span><br><span class="line">双层校验锁</span><br><span class="line">java设计模式.单例模式.Singleton4@<span class="number">14</span>ae5a5</span><br><span class="line">java设计模式.单例模式.Singleton4@<span class="number">14</span>ae5a5</span><br><span class="line">静态内部类</span><br><span class="line">java设计模式.单例模式.Singleton5@<span class="number">7f</span>31245a</span><br><span class="line">java设计模式.单例模式.Singleton5@<span class="number">7f</span>31245a</span><br><span class="line"><span class="keyword">static</span>静态代码块</span><br><span class="line">java设计模式.单例模式.Singleton6@<span class="number">6</span>d6f6e28</span><br><span class="line">java设计模式.单例模式.Singleton6@<span class="number">6</span>d6f6e28</span><br><span class="line">内部枚举类</span><br><span class="line">java设计模式.单例模式.Singleton7@<span class="number">135f</span>baa4</span><br><span class="line">java设计模式.单例模式.Singleton7@<span class="number">135f</span>baa4</span><br><span class="line"></span><br><span class="line">Process finished with exit code <span class="number">0</span></span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -406,23 +475,23 @@
           
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
-            <li class="tab"><a href="#comment-disqus">disqus</a></li>
             <li class="tab"><a href="#comment-livere">livere</a></li>
+            <li class="tab"><a href="#comment-disqus">disqus</a></li>
         </ul>
         <div class="tab-content">
+            <div class="tab-pane livere" id="comment-livere">
+              
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzY2MC8yNDE1OA=="></div>
+  </div>
+  
+            </div>
             <div class="tab-pane disqus" id="comment-disqus">
               
   <div class="comments" id="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
-  </div>
-  
-            </div>
-            <div class="tab-pane livere" id="comment-livere">
-              
-  <div class="comments" id="comments">
-    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzY2MC8yNDE1OA=="></div>
   </div>
   
             </div>
@@ -468,7 +537,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、装饰者模式"><span class="nav-number">1.</span> <span class="nav-text">一、装饰者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#适用性"><span class="nav-number">1.1.</span> <span class="nav-text">适用性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参与者"><span class="nav-number">1.2.</span> <span class="nav-text">参与者</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">1.3.</span> <span class="nav-text">例子</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、装饰者模式"><span class="nav-number">1.</span> <span class="nav-text">一、装饰者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#适用性"><span class="nav-number">1.1.</span> <span class="nav-text">适用性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参与者"><span class="nav-number">1.2.</span> <span class="nav-text">参与者</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">1.3.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、单例模式"><span class="nav-number">2.</span> <span class="nav-text">二、单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#适用性-1"><span class="nav-number">2.1.</span> <span class="nav-text">适用性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参与者-1"><span class="nav-number">2.2.</span> <span class="nav-text">参与者</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式特点"><span class="nav-number">2.3.</span> <span class="nav-text">单例模式特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式的线程安全问题"><span class="nav-number">2.4.</span> <span class="nav-text">单例模式的线程安全问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式的选择"><span class="nav-number">2.5.</span> <span class="nav-text">单例模式的选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现单例模式的方式"><span class="nav-number">2.6.</span> <span class="nav-text">实现单例模式的方式</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -701,6 +770,20 @@
   
 
 <script>
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+<script>
   function loadCount() {
     var d = document, s = d.createElement('script');
     s.src = 'https://visitor.disqus.com/count.js';
@@ -730,20 +813,6 @@
     }
   }
     window.addEventListener('load', loadComments, false);
-</script>
-
-<script>
-  window.livereOptions = {
-    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
-  };
-  (function(d, s) {
-    var j, e = d.getElementsByTagName(s)[0];
-    if (typeof LivereTower === 'function') { return; }
-    j = d.createElement(s);
-    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-    j.async = true;
-    e.parentNode.insertBefore(j, e);
-  })(document, 'script');
 </script>
 
  
