@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2019-11-22T14:28:07.968Z</updated>
+  <updated>2019-11-26T08:44:05.160Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mysql笔记整理</title>
+    <link href="http://lisongbai.top/2019/11/26/mysql%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/"/>
+    <id>http://lisongbai.top/2019/11/26/mysql%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/</id>
+    <published>2019-11-26T08:10:54.000Z</published>
+    <updated>2019-11-26T08:44:05.160Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Windows服务&quot;&gt;&lt;a href=&quot;#Windows服务&quot; class=&quot;headerlink&quot; title=&quot;Windows服务&quot;&gt;&lt;/a&gt;Windows服务&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;-- 启动MySQL&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    net start mysql&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-- 创建Windows服务&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    sc create mysql binPath = mysqld_bin_path(注意：等号与值之间有空格)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&quot;连接与断开服务器&quot;&gt;&lt;a href=&quot;#连接与断开服务器&quot; class=&quot;headerlink&quot; title=&quot;连接与断开服务器&quot;&gt;&lt;/a&gt;连接与断开服务器&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;mysql -h 地址 -P 端口 -u 用户名 -p 密码&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;SHOW PROCESSLIST -- 显示哪些线程正在运行&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;SHOW VARIABLES -- 显示系统变量信息&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="Mysql" scheme="http://lisongbai.top/tags/Mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>java多线程之线程同步</title>
@@ -61,7 +80,7 @@
     <link href="http://lisongbai.top/2019/11/18/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     <id>http://lisongbai.top/2019/11/18/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</id>
     <published>2019-11-18T06:28:15.000Z</published>
-    <updated>2019-11-24T15:06:45.576Z</updated>
+    <updated>2019-11-24T15:19:52.837Z</updated>
     
     <summary type="html">
     
