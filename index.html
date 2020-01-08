@@ -243,7 +243,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-01-08 11:21:01 / 修改时间：19:11:17" itemprop="dateCreated datePublished" datetime="2020-01-08T11:21:01+08:00">2020-01-08</time>
+              <time title="创建时间：2020-01-08 11:21:01 / 修改时间：19:19:35" itemprop="dateCreated datePublished" datetime="2020-01-08T11:21:01+08:00">2020-01-08</time>
             </span>
 
           
@@ -278,115 +278,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <ol>
-<li><h1 id="ubuntu18-04系统移植过及程序焼写"><a href="#ubuntu18-04系统移植过及程序焼写" class="headerlink" title="ubuntu18.04系统移植过及程序焼写"></a>ubuntu18.04系统移植过及程序焼写</h1><h2 id="ubuntu18-04系统移植（目标版为contex-A系列）"><a href="#ubuntu18-04系统移植（目标版为contex-A系列）" class="headerlink" title="ubuntu18.04系统移植（目标版为contex A系列）"></a>ubuntu18.04系统移植（目标版为contex A系列）</h2><h3 id="一、tftp文件服务器"><a href="#一、tftp文件服务器" class="headerlink" title="一、tftp文件服务器"></a>一、tftp文件服务器</h3><ul>
+          <h1 id="ubuntu18-04系统移植过及程序焼写"><a href="#ubuntu18-04系统移植过及程序焼写" class="headerlink" title="ubuntu18.04系统移植过及程序焼写"></a>ubuntu18.04系统移植过及程序焼写</h1><h2 id="ubuntu18-04系统移植（目标版为contex-A系列）"><a href="#ubuntu18-04系统移植（目标版为contex-A系列）" class="headerlink" title="ubuntu18.04系统移植（目标版为contex A系列）"></a>ubuntu18.04系统移植（目标版为contex A系列）</h2><h3 id="一、tftp文件服务器"><a href="#一、tftp文件服务器" class="headerlink" title="一、tftp文件服务器"></a>一、tftp文件服务器</h3><ul>
 <li><strong>tftp的作用</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在嵌入式系统开发中，经常需要从主机上传送映像、文件等到目标机上。实现的方法有很多。如tftp，scp等。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TFTP（Trivial File Transfer Protocol）是用来下载远程文件的最简单的网络协议，它基于UDP协议而实现。</li>
 <li><strong>安装tftp-hpa</strong></li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install tftp-hpa</span><br></pre></td></tr></table></figure>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tftp-hpa是客户端，作用是从别人的TFTP服务器端上传/下载东西。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install tftpd-hpa</span><br></pre></td></tr></table></figure>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tftpd-hpa是服务端，字母d代表daemon，作用是为别人提供TFTP服务，供别人上传/下载东西。</p>
-<ul>
-<li><strong>创建TFTP目录</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在此我使用的是默认文件夹。</li>
-<li><strong>修改配置文件</strong></li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/default/tftpd-hpa</span><br></pre></td></tr></table></figure>
-
-<p>更改后内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1 # /etc/default/tftpd-hpa                                                    </span><br><span class="line">2 </span><br><span class="line">3 TFTP_USERNAME=&quot;tftp&quot;</span><br><span class="line">4 TFTP_DIRECTORY=&quot;/var/lib/tftpboot&quot;  // 指定tftp的共享目录 </span><br><span class="line">5 TFTP_ADDRESS=&quot;0.0.0.0:69&quot;</span><br><span class="line">6 TFTP_OPTIONS=&quot;-c -s -l&quot;</span><br></pre></td></tr></table></figure>
-
-<p>修改配置后重启tfti服务器</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service tftpd-hpa restart</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：</strong><br>上传文件时注意权限<br>建议给最大权限（777）</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod -R  777  目录名</span><br></pre></td></tr></table></figure>
-
-<h3 id="二、nfs网络文件系统"><a href="#二、nfs网络文件系统" class="headerlink" title="二、nfs网络文件系统"></a>二、nfs网络文件系统</h3><ul>
-<li><strong>nfs的作用</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一个嵌入式操作系统的核心组成部分：内核和文件系统。在本次课设中，使用的内核是别人提供的，使用的操作系统是nfs网络文件系统。在内核中应添加对nfs的支持，实质是在内核启动过程中，启动了一个nfs客户端通过配置文件去读取nfs服务端上的文件系统。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;将pcNFS是由Sun开发并发展起来的一项在不同机器、不同操作系统之间通过网络共享文件的技术。在嵌入式Linux系统的开发调试阶段，可以利用该技术在主机上建立基于NFS 的根文件系统，挂载到嵌入式设备，可以很方便地修改根文件系统的内容。以上讨论的都是基于存储设备的文件系统(memory-based file system)，它们都可用作Linux的根文件系统。实际上，Linux还支持逻辑的或伪文件系统(logical or pseudo file system)，例如procfs(proc文件系统)，用于获取系统信息，以及devfs(设备文件系统)和sysfs，用于维护设备文件。<br><strong>安装nfs服务器</strong></li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nfs-kernel-server</span><br></pre></td></tr></table></figure>
-
-<p><strong>配置nfs服务器</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/exports</span><br></pre></td></tr></table></figure>
-
-<p>更改后内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> 1 # /etc/exports: the access control list for filesystems which may be exporte    d                                                                           </span><br><span class="line"> 2 #       to NFS clients.  See exports(5).</span><br><span class="line"> 3 #</span><br><span class="line"> 4 # Example for NFSv2 and NFSv3:</span><br><span class="line"> 5 # /srv/homes       hostname1(rw,sync,no_subtree_check) hostname2(ro,sync,no_    subtree_check)</span><br><span class="line"> 6 #</span><br><span class="line"> 7 # Example for NFSv4:</span><br><span class="line"> 8 # /srv/nfs4        gss/krb5i(rw,sync,fsid=0,crossmnt,no_subtree_check)</span><br><span class="line"> 9 # /srv/nfs4/homes  gss/krb5i(rw,sync,no_subtree_check)</span><br><span class="line">10 #</span><br><span class="line">11 /home/source/rootfs *(rw,sync,no_root_squash)</span><br><span class="line"># 指定共享目录为/home/source/rootfs  权限为读写 ...</span><br></pre></td></tr></table></figure>
-
-<p><strong>复制文件系统压缩包至指定目录并解压</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;将根文件系统的压缩包rootfs.tar.xz拷贝至/home/source，然后解压，注意权限<br><strong>解压指令:</strong>sudo tar -xvf  rootfs.tar.xz<br><strong>重启NFS服务器</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service nfs-kernel-server restart</span><br></pre></td></tr></table></figure>
-
-<p><strong>进行挂载测试</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mount -t nfs localhost:/source/rootfs /mnt</span><br><span class="line">ls -l /mnt</span><br></pre></td></tr></table></figure>
-
-<p><strong>卸载测试</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo umount /mnt/</span><br></pre></td></tr></table></figure>
-
-<h3 id="三、开发板的环境搭建（contex-A系列）"><a href="#三、开发板的环境搭建（contex-A系列）" class="headerlink" title="三、开发板的环境搭建（contex A系列）"></a>三、开发板的环境搭建（contex A系列）</h3><ul>
-<li><strong>查看串口驱动</strong><br><strong>指令如下：</strong></li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lcx@lcx-linux:~$ cd /dev/</span><br><span class="line">lcx@lcx-linux:/dev$ ls ttyUSB*</span><br><span class="line">crw-rw-rw- 1 root dialout 188, 0 2020-01-08 10:38 ttyUSB0</span><br><span class="line">lcx@lcx-linux:/dev$</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>安装传串口通讯软件（putty ）</strong></li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install putty</span><br></pre></td></tr></table></figure>
-
-<p>设置端口：位/秒 115200，数据位 8，奇偶校验 无，停止位 1，数据流控制 无</p>
-<ul>
-<li><strong>连接串口线到开发板</strong><br>给开发板上电，应该能从putty看到串口信息。</li>
-<li><strong>配置开发板的环境变量</strong><br>setenv ipaddr 192.168.1.3—-&gt;开发板IP<br>setenv serverip 192.168.1.2—&gt;nfs服务器IP<br><strong>ping 测试</strong><br>开发板ping 192.168.1.2<br>显示alive ping通了  也可用主机ping开发板<br><strong>系统启动参数</strong><br>setenv bootcmd tftp 41000000 uImage;tftp 42000000 exynos4412-fs4412.dtb;bootm 41000000 - 42000000<br><strong>内核启动nfs文件系统参数</strong><br>setenv bootargs root=/dev/nfs nfsroot=192.168.1.2:/home/source/rootfs rw ip=192.168.1.3 console=ttySAC2,115200 init=/linuxrc</li>
-</ul>
-<h3 id="四、交叉编译工具链"><a href="#四、交叉编译工具链" class="headerlink" title="四、交叉编译工具链"></a>四、交叉编译工具链</h3><ul>
-<li><strong>交叉编译工具链的作用：</strong><br>arm交叉编译工具链是用于在一种平台上编译出能运行在体系结构不同的另一种平台上的程序，比如在PC平台（X86 CPU）上编译出能运行在以ARM为内核的CPU平台上的程序，编译得到的程序在X86 CPU平台上是不能运行的，必须放到ARM CPU平台上才能运行，虽然两个平台用的都是Linux系统。</li>
-<li><strong>下载交叉编译链工具</strong><br><strong>方法一：</strong></li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">下载指令：</span><br><span class="line">sudo apt-get install gcc-arm-linux-gnueabihf </span><br><span class="line">卸载指令：</span><br><span class="line">sudo apt-get remove gcc-arm-linux-gnueabihf</span><br></pre></td></tr></table></figure>
-
-<p>这种方法不需要配置环境  但是可能出现not found的问题   该问题是因为你的linux系统是64位的系统的而你安装的arm-linux-gcc-4.4.3是32位的软件，虽然64位系统可以运行32位的软件，但需要安装32位的运行库，你没安装32位运行库就不能使用。<br><strong>方法二：</strong><br>1.从网上下载对应版本的交叉编译工具。<br>2.使用tar命令解压安装包，即在Terminal中输入以下命令：（前面的sudo表示使用root权限执行该命令）。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lcx@lcx-linux:~/下载$ sudo tar -xvf gcc-4.6.4.tar.xz</span><br></pre></td></tr></table></figure>
-
-<p>3.查看解压后bin目录的全路径。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lcx@lcx-linux:~$ cd 下载/gcc-4.6.4/bin/</span><br><span class="line">lcx@lcx-linux:~/下载/gcc-4.6.4/bin$ pwd</span><br><span class="line">/home/lcx/下载/gcc-4.6.4/bin</span><br><span class="line">lcx@lcx-linux:~/下载/gcc-4.6.4/bin$</span><br></pre></td></tr></table></figure>
-
-<p>4.添加环境变量。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lcx@lcx-linux:~$ vim .bashrc</span><br></pre></td></tr></table></figure>
-
-<p>最后一行添加：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 交叉编译工具链</span><br><span class="line"> export PATH=$PATH:/home/lcx/下载/gcc-4.6.4/bin</span><br></pre></td></tr></table></figure>
-
-<p>执行如下命令即可：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lcx@lcx-linux:~$ source .bashrc</span><br></pre></td></tr></table></figure>
-
-<h3 id="五、将程序烧入开发板"><a href="#五、将程序烧入开发板" class="headerlink" title="五、将程序烧入开发板"></a>五、将程序烧入开发板</h3><p>1.将项目程序拷贝至nfs文件系统中<br>2.在ubuntu18.04中将项目程序使用交叉编译工具链进行编译<br>代码如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lcx@lcx-linux:/home/source/rootfs$ arm-none-linux-gnueabi-gcc-4.6.4 -o write write.c</span><br></pre></td></tr></table></figure>
-
-<p>3.在开发板上执行程序<br>代码如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@farsight ]# ./write 1.txt 2.txt</span><br></pre></td></tr></table></figure>
-
-<p>执行结果如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">open source file ok!</span><br><span class="line">Create new file successfully!</span><br><span class="line">Write ok!</span><br></pre></td></tr></table></figure>
-
-<p>项目代码如下（实现文件拷贝功能）：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"> <span class="number">1</span> <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"> <span class="number">2</span> <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"> <span class="number">3</span> <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"> <span class="number">4</span> <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"> <span class="number">5</span> <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="number">6</span> <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"> <span class="number">7</span> <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"> <span class="number">8</span> <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"> <span class="number">9</span> </span><br><span class="line"><span class="number">10</span> <span class="meta"># <span class="meta-keyword">define</span> BUF_SIZE 20</span></span><br><span class="line"><span class="number">11</span> </span><br><span class="line"><span class="number">12</span> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc,<span class="keyword">char</span> *argv[])</span></span>&#123;</span><br><span class="line"><span class="number">13</span>     <span class="keyword">int</span> fd,fd1;</span><br><span class="line"><span class="number">14</span>     <span class="keyword">char</span> bufs[<span class="number">20</span>];</span><br><span class="line"><span class="number">15</span>     <span class="keyword">int</span> len;</span><br><span class="line"><span class="number">16</span>     <span class="keyword">if</span>(argc != <span class="number">3</span>)&#123;</span><br><span class="line"><span class="number">17</span>         <span class="built_in">printf</span>(<span class="string">"please input file name!\n"</span>);</span><br><span class="line"><span class="number">18</span>         <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"><span class="number">19</span>     &#125;</span><br><span class="line"><span class="number">20</span>     <span class="keyword">else</span>&#123;</span><br><span class="line"><span class="number">21</span>         <span class="comment">//1 打开源文件</span></span><br><span class="line"><span class="number">22</span>         fd = open(argv[<span class="number">1</span>],O_RDONLY,<span class="number">0666</span>);</span><br><span class="line"><span class="number">23</span>         <span class="keyword">if</span>(<span class="number">-1</span> == fd)&#123;</span><br><span class="line"><span class="number">24</span>             perror(<span class="string">"open read file error!\n"</span>);</span><br><span class="line"><span class="number">25</span>             <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"><span class="number">26</span>         &#125;</span><br><span class="line"><span class="number">27</span>         <span class="keyword">else</span>&#123;</span><br><span class="line"><span class="number">28</span>             <span class="built_in">printf</span>(<span class="string">"open source file ok!\n"</span>);</span><br><span class="line"><span class="number">29</span>         <span class="comment">//2 打开目标文件 </span></span><br><span class="line"><span class="number">30</span>             <span class="comment">//如果目标文件不存在  则创建目标文件</span></span><br><span class="line"><span class="number">31</span>             fd1 = open(argv[<span class="number">2</span>],O_WRONLY,<span class="number">0666</span>);</span><br><span class="line"><span class="number">32</span>             <span class="keyword">if</span>(<span class="number">-1</span> == fd1)&#123;</span><br><span class="line"><span class="number">33</span>                 <span class="comment">//创建目标文件</span></span><br><span class="line"><span class="number">34</span>                 fd1 = creat(argv[<span class="number">2</span>],<span class="number">0775</span>);</span><br><span class="line"><span class="number">35</span>                 <span class="built_in">printf</span>(<span class="string">"Create new file successfully!\n"</span>);</span><br><span class="line"><span class="number">36</span>                 fd1 = open(argv[<span class="number">2</span>],O_WRONLY,<span class="number">0666</span>);</span><br><span class="line"><span class="number">37</span>             <span class="comment">// cp</span></span><br><span class="line"><span class="number">38</span>                 <span class="keyword">while</span>((len = read(fd,bufs,BUF_SIZE))&gt;<span class="number">0</span>)&#123;</span><br><span class="line"><span class="number">39</span>                       write(fd1,bufs,len);</span><br><span class="line"><span class="number">40</span>                 &#125;</span><br><span class="line"><span class="number">41</span>                 <span class="built_in">printf</span>(<span class="string">"Write ok!\n"</span>);</span><br><span class="line"><span class="number">42</span> </span><br><span class="line"><span class="number">43</span>                 <span class="keyword">if</span>(<span class="number">-1</span> == fd1)</span><br><span class="line"><span class="number">44</span>                 &#123;</span><br><span class="line"><span class="number">45</span>                 perror(<span class="string">"open write file error!\n"</span>);</span><br><span class="line"><span class="number">46</span>                 <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"><span class="number">47</span>                 &#125;                                                                                                                                                                                             </span><br><span class="line"><span class="number">48</span>             &#125;</span><br><span class="line"><span class="number">49</span>             <span class="keyword">else</span>&#123;</span><br><span class="line"><span class="number">50</span>                 <span class="built_in">printf</span>(<span class="string">"open destination file ok!\n"</span>);</span><br><span class="line"><span class="number">51</span>         <span class="comment">//3  如果存在 则复制到目标文件</span></span><br><span class="line"><span class="number">52</span>                 <span class="keyword">while</span>((len = read(fd,bufs,BUF_SIZE))&gt;<span class="number">0</span>)&#123;</span><br><span class="line"><span class="number">53</span>                     write(fd1,bufs,len);</span><br><span class="line"><span class="number">54</span> </span><br><span class="line"><span class="number">55</span>                 &#125;</span><br><span class="line"><span class="number">56</span>                 <span class="built_in">printf</span>(<span class="string">"write ok!\n"</span>);</span><br><span class="line"><span class="number">57</span>             &#125;</span><br><span class="line"><span class="number">58</span>             close(fd);</span><br><span class="line"><span class="number">59</span>             close(fd1);</span><br><span class="line"><span class="number">60</span>             <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="number">61</span>         &#125;</span><br><span class="line"><span class="number">62</span>     &#125;</span><br><span class="line"><span class="number">63</span> &#125;</span><br></pre></td></tr></table></figure>
-
-<p>由于开发板不支持中文格式，故将测试源文件命名为1.txt，内容为舌尖上的中国英译版文案 ,在此不创建目标文件。（拷贝时创建）<br>测试结果如下：<br><img src="https://s2.ax1x.com/2020/01/08/l26KL6.png" alt="运行编译后的可执行文件.png"><br><img src="https://s2.ax1x.com/2020/01/08/l26koF.png" alt="2.txt.png"></p>
-<h3 id="六、遇到的问题"><a href="#六、遇到的问题" class="headerlink" title="六、遇到的问题"></a>六、遇到的问题</h3><ul>
-<li><strong>注意事项</strong><br>在使用开发板前，应打开tftp服务器和nfs服务器。<br>开发板属于热插拔器件，应断电后插拔。<br>在使用nfs网络文件系统时，应注意在编译内核的过程中，选择nfs选项，使得在内核启动过程中去创建一个nfs客户端去连接服务端 获取文件系统。</li>
-<li><strong>可能出现的问题</strong><br>在内核启动过程中无法加在nfs文件系统。<br>应从以下几个方面去查错：<br>1.内核编译时是否选择nfs文件系统选项。<br>2.nfs服务器是否搭建完成。（需要做本机挂载测试）<br>3.网络是否通畅。（ping 命令查看）<br>4.nfs参数配置是否正确。</li>
-<li><strong>最严重的问题</strong></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">VFS: Unable to mount root fs via NFS, trying floppy.</span><br><span class="line">VFS: Cannot open root device &quot;nfs&quot; or unknown-block(2,0): error -6</span><br><span class="line">Please append a correct &quot;root=&quot; boot option; here are the available partitions:</span><br><span class="line">1f00             256 mtdblock0  (driver?)</span><br><span class="line">1f01             128 mtdblock1  (driver?)</span><br><span class="line">1f02            2048 mtdblock2  (driver?)</span><br><span class="line">1f03          259712 mtdblock3  (driver?)</span><br><span class="line">Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(2,0)</span><br></pre></td></tr></table></figure>
-
-<p>查找资料发现从Ubuntu17.04开始，nfs默认只支持协议3和协议4，而kernel中默认支持协议2，所以才会出现挂载失败的情况，现有两种方法可以解决该问题：</p>
-<ol>
-<li>设置Ubuntu18.04系统中的nfs服务支持协议2，修改nfs配置文件 /etc/default/nfs-kernel-server,在文件末尾加入一句：RPCNFSDOPTS=”–nfs-version 2,3,4 –debug –syslog”。</li>
-<li>如果kernel版本较高支持nfs协议3的话，可以在Uboot传到Kernel的bootargs参数中加入’nfsvers=3’,使kernel使用nfs协议3。</li>
-</ol>
-</li>
-</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/08/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%A7%BB%E6%A4%8D/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

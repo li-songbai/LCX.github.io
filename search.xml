@@ -3,11 +3,10 @@
   <entry>
     <title>ubuntu18.04系统移植过及程序焼写</title>
     <url>/2020/01/08/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%A7%BB%E6%A4%8D/</url>
-    <content><![CDATA[<ol>
-<li><h1 id="ubuntu18-04系统移植过及程序焼写"><a href="#ubuntu18-04系统移植过及程序焼写" class="headerlink" title="ubuntu18.04系统移植过及程序焼写"></a>ubuntu18.04系统移植过及程序焼写</h1><h2 id="ubuntu18-04系统移植（目标版为contex-A系列）"><a href="#ubuntu18-04系统移植（目标版为contex-A系列）" class="headerlink" title="ubuntu18.04系统移植（目标版为contex A系列）"></a>ubuntu18.04系统移植（目标版为contex A系列）</h2><h3 id="一、tftp文件服务器"><a href="#一、tftp文件服务器" class="headerlink" title="一、tftp文件服务器"></a>一、tftp文件服务器</h3><ul>
+    <content><![CDATA[<h1 id="ubuntu18-04系统移植过及程序焼写"><a href="#ubuntu18-04系统移植过及程序焼写" class="headerlink" title="ubuntu18.04系统移植过及程序焼写"></a>ubuntu18.04系统移植过及程序焼写</h1><h2 id="ubuntu18-04系统移植（目标版为contex-A系列）"><a href="#ubuntu18-04系统移植（目标版为contex-A系列）" class="headerlink" title="ubuntu18.04系统移植（目标版为contex A系列）"></a>ubuntu18.04系统移植（目标版为contex A系列）</h2><h3 id="一、tftp文件服务器"><a href="#一、tftp文件服务器" class="headerlink" title="一、tftp文件服务器"></a>一、tftp文件服务器</h3><ul>
 <li><strong>tftp的作用</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在嵌入式系统开发中，经常需要从主机上传送映像、文件等到目标机上。实现的方法有很多。如tftp，scp等。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TFTP（Trivial File Transfer Protocol）是用来下载远程文件的最简单的网络协议，它基于UDP协议而实现。</li>
 <li><strong>安装tftp-hpa</strong></li>
-</ul>
+</ul><a id="more"></a>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install tftp-hpa</span><br></pre></td></tr></table></figure>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tftp-hpa是客户端，作用是从别人的TFTP服务器端上传/下载东西。</p>
@@ -110,8 +109,7 @@
 <li>设置Ubuntu18.04系统中的nfs服务支持协议2，修改nfs配置文件 /etc/default/nfs-kernel-server,在文件末尾加入一句：RPCNFSDOPTS=”–nfs-version 2,3,4 –debug –syslog”。</li>
 <li>如果kernel版本较高支持nfs协议3的话，可以在Uboot传到Kernel的bootargs参数中加入’nfsvers=3’,使kernel使用nfs协议3。</li>
 </ol>
-</li>
-</ol>]]></content>
+]]></content>
       <tags>
         <tag>嵌入式系统移植</tag>
       </tags>
