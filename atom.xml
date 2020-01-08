@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-01-08T03:30:07.790Z</updated>
+  <updated>2020-01-08T11:11:17.747Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -17,24 +17,25 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>ubuntu18.04嵌入式系统移植</title>
+    <title>ubuntu18.04系统移植过及程序焼写</title>
     <link href="http://lisongbai.top/2020/01/08/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%A7%BB%E6%A4%8D/"/>
     <id>http://lisongbai.top/2020/01/08/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%A7%BB%E6%A4%8D/</id>
     <published>2020-01-08T03:21:01.000Z</published>
-    <updated>2020-01-08T03:30:07.790Z</updated>
+    <updated>2020-01-08T11:11:17.747Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;ubuntu18-04系统移植过程-目标板contex-A&quot;&gt;&lt;a href=&quot;#ubuntu18-04系统移植过程-目标板contex-A&quot; class=&quot;headerlink&quot; title=&quot;ubuntu18.04系统移植过程 目标板contex A&quot;&gt;&lt;/a&gt;ubuntu18.04系统移植过程 目标板contex A&lt;/h1&gt;&lt;h2 id=&quot;一、tftp文件服务器&quot;&gt;&lt;a href=&quot;#一、tftp文件服务器&quot; class=&quot;headerlink&quot; title=&quot;一、tftp文件服务器&quot;&gt;&lt;/a&gt;一、tftp文件服务器&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;tftp的作用&lt;/strong&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在嵌入式系统开发中，经常需要从主机上传送映像、文件等到目标机上。实现的方法有很多。如tftp，scp等。&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TFTP（Trivial File Transfer Protocol）是用来下载远程文件的最简单的网络协议，它基于UDP协议而实现。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;安装tftp-hpa&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;sudo apt-get install tftp-hpa&lt;/strong&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;tftp-hpa是客户端，作用是从别人的TFTP服务器端上传/下载东西。&lt;br&gt;&lt;strong&gt;sudo apt-get install tftpd-hpa&lt;/strong&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;tftpd-hpa是服务端，字母d代表daemon，作用是为别人提供TFTP服务，供别人上传/下载东西。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;创建TFTP目录&lt;/strong&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在此我使用的是默认文件夹。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;修改配置文件&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;$ sudo vim /etc/default/tftpd-hpa&lt;/strong&gt;&lt;br&gt;更改后内容如下：&lt;/li&gt;
-&lt;/ul&gt;
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;&lt;h1 id=&quot;ubuntu18-04系统移植过及程序焼写&quot;&gt;&lt;a href=&quot;#ubuntu18-04系统移植过及程序焼写&quot; class=&quot;headerlink&quot; title=&quot;ubuntu18.04系统移植过及程序焼写&quot;&gt;&lt;/a&gt;ubuntu18.04系统移
+      
     
     </summary>
     
     
+    
+      <category term="嵌入式系统移植" scheme="http://lisongbai.top/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%A7%BB%E6%A4%8D/"/>
     
   </entry>
   
