@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-01-09T02:29:40.380Z</updated>
+  <updated>2020-01-11T12:23:07.062Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,49 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java框架学习&lt;一&gt;</title>
+    <link href="http://lisongbai.top/2020/01/11/Java%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0-%E4%B8%80/"/>
+    <id>http://lisongbai.top/2020/01/11/Java%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0-%E4%B8%80/</id>
+    <published>2020-01-11T12:16:08.000Z</published>
+    <updated>2020-01-11T12:23:07.062Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一、JavaSE&quot;&gt;&lt;a href=&quot;#一、JavaSE&quot; class=&quot;headerlink&quot; title=&quot;一、JavaSE&quot;&gt;&lt;/a&gt;一、JavaSE&lt;/h1&gt;&lt;h2 id=&quot;遗忘知识回顾&quot;&gt;&lt;a href=&quot;#遗忘知识回顾&quot; class=&quot;headerlink&quot; title=&quot;遗忘知识回顾&quot;&gt;&lt;/a&gt;遗忘知识回顾&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;java基本数据类型：byte、char、short、int、long、float、double、boolean&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;对应包装类：Byte、Character、Short、Integer、Long、Float、Double、Boolean&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;访问修饰符范围从大到小：public、protected、default、private。如下图所示：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2020/01/11/l5ijzt.png&quot; alt=&quot;l5ijzt.png&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;标识接口&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;标识接口是没有任何方法和属性的接口。标识接口不对实现它的类有任何语义上的要求，它仅仅表明实现它的类属于一个特定的类型。&lt;/p&gt;
+&lt;p&gt;　标接口在Java语言中有一些很著名的应用，例如我们常用的ArrayList类，它的类实现接口如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;ArrayList&lt;/span&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;E&lt;/span&gt;&amp;gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;AbstractList&lt;/span&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;E&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;	&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        implements List&amp;lt;E&amp;gt;, RandomAccess, Cloneable, java.io.Serializable&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;仔细看 RandomAccess、RandomAccess、Serializable的接口可以看到，内部都是一些空接口，没有定义接口方法&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public interface RandomAccess &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public interface Cloneable &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public interface Serializable &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt; 标识接口，&lt;strong&gt;当一个类实现了一个标识接口之后就像是给自己打了个标签。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;　　打个比喻，不是很恰当。就像是一个人穿了件名牌衣服（实现了标识接口），别人一看他穿的衣服（标识接口）就知道他的品味、身份（特性）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;java反射机制&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;注解&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="框架学习" scheme="http://lisongbai.top/tags/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>ubuntu18.04系统移植过及程序焼写</title>
