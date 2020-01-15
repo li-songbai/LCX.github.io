@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-01-15T03:07:39.752Z</updated>
+  <updated>2020-01-15T04:35:14.451Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mySql中的事务</title>
+    <link href="http://lisongbai.top/2020/01/15/mySql%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1/"/>
+    <id>http://lisongbai.top/2020/01/15/mySql%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1/</id>
+    <published>2020-01-15T03:15:47.000Z</published>
+    <updated>2020-01-15T04:35:14.451Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一、MySql中的事务&quot;&gt;&lt;a href=&quot;#一、MySql中的事务&quot; class=&quot;headerlink&quot; title=&quot;一、MySql中的事务&quot;&gt;&lt;/a&gt;一、MySql中的事务&lt;/h1&gt;&lt;p&gt;MySQL 事务主要用于处理操作量大，复杂度高的数据。比如说，在人员管理系统中，你删除一个人员，你既需要删除人员的基本资料，也要删除和该人员相关的信息，如信箱，文章等等，这样，这些数据库操作语句就构成一个事务！&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;在 MySQL 中只有使用了 Innodb 数据库引擎的数据库或表才支持事务。&lt;/li&gt;
+&lt;li&gt;事务处理可以用来维护数据库的完整性，保证成批的 SQL 语句要么全部执行，要么全部不执行。&lt;/li&gt;
+&lt;li&gt;事务用来管理 insert,update,delete 语句&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="mysql事务" scheme="http://lisongbai.top/tags/mysql%E4%BA%8B%E5%8A%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring框架</title>
