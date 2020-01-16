@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-01-15T04:35:14.451Z</updated>
+  <updated>2020-01-16T12:25:44.307Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java mysql数据类型对照</title>
+    <link href="http://lisongbai.top/2020/01/16/java-mysql%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%AF%B9%E7%85%A7/"/>
+    <id>http://lisongbai.top/2020/01/16/java-mysql%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%AF%B9%E7%85%A7/</id>
+    <published>2020-01-16T12:24:11.000Z</published>
+    <updated>2020-01-16T12:25:44.307Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;java-mysql数据类型对照&quot;&gt;&lt;a href=&quot;#java-mysql数据类型对照&quot; class=&quot;headerlink&quot; title=&quot;java mysql数据类型对照&quot;&gt;&lt;/a&gt;java mysql数据类型对照&lt;/h1&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>mySql中的事务</title>
