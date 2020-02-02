@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-01-24T08:21:44.314Z</updated>
+  <updated>2020-02-02T15:46:20.761Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SpringMVC</title>
+    <link href="http://lisongbai.top/2020/01/29/SpringMVC/"/>
+    <id>http://lisongbai.top/2020/01/29/SpringMVC/</id>
+    <published>2020-01-29T06:03:30.000Z</published>
+    <updated>2020-02-02T15:46:20.761Z</updated>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;&lt;hr&gt;&lt;h1 id=&quot;一、SpringMVC是什么&quot;&gt;&lt;a href=&quot;#一、SpringMVC是什么&quot; class=&quot;headerlink&quot; title=&quot;一、SpringMVC是什么?&quot;&gt;&lt;/a&gt;一、SpringMVC是什么?&lt;/h1&gt;&lt;p&gt;Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web Flow里面。Spring 框架提供了构建 Web 应用程序的全功能 MVC 模块。使用 Spring 可插入的 MVC 架构，从而在使用Spring进行WEB开发时，可以选择使用Spring的Spring MVC框架或集成其他MVC开发框架，如Struts1(现在一般不用)，Struts 2(一般老项目使用)等。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="SSM" scheme="http://lisongbai.top/tags/SSM/"/>
+    
+  </entry>
   
   <entry>
     <title>orange pi zero</title>
