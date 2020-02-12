@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-02-02T15:46:20.761Z</updated>
+  <updated>2020-02-12T15:25:19.735Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,134 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SpringMVC02</title>
+    <link href="http://lisongbai.top/2020/02/12/SpringMVC02/"/>
+    <id>http://lisongbai.top/2020/02/12/SpringMVC02/</id>
+    <published>2020-02-12T15:24:13.000Z</published>
+    <updated>2020-02-12T15:25:19.735Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一、lombok注解开发&quot;&gt;&lt;a href=&quot;#一、lombok注解开发&quot; class=&quot;headerlink&quot; title=&quot;一、lombok注解开发&quot;&gt;&lt;/a&gt;一、lombok注解开发&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;大部分项目中都必不可少的包含数据库实体(Entity)、数据载体(dto,dataObject),而这两部分都包含着大量的没有业务逻辑的setter、getter、空参构造，同时我们一般要复写类的toString(),equals(),hashCode()方法(贫血模型)。这些工作都是重复性的工作，作为程序员，懒是必备素质之一，这些工作肯定已经有大牛封装好了处理方法,这就是lombok。 &lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="SSM" scheme="http://lisongbai.top/tags/SSM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>牛客在线编程之剑指</title>
+    <link href="http://lisongbai.top/2020/02/11/%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%89%91%E6%8C%87/"/>
+    <id>http://lisongbai.top/2020/02/11/%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%89%91%E6%8C%87/</id>
+    <published>2020-02-11T08:58:36.461Z</published>
+    <updated>2019-11-30T06:29:14.295Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一、栈的压入、弹出序列&quot;&gt;&lt;a href=&quot;#一、栈的压入、弹出序列&quot; class=&quot;headerlink&quot; title=&quot;一、栈的压入、弹出序列&quot;&gt;&lt;/a&gt;一、栈的压入、弹出序列&lt;/h1&gt;&lt;h5 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h5&gt;&lt;p&gt;​        输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的）&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>椭圆曲线密码学系统</title>
+    <link href="http://lisongbai.top/2020/02/11/%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E5%AF%86%E7%A0%81%E5%AD%A6%E7%B3%BB%E7%BB%9F/"/>
+    <id>http://lisongbai.top/2020/02/11/%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E5%AF%86%E7%A0%81%E5%AD%A6%E7%B3%BB%E7%BB%9F/</id>
+    <published>2020-02-11T08:58:36.430Z</published>
+    <updated>2019-11-11T14:40:40.076Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;椭圆曲线密码系统&quot;&gt;&lt;a href=&quot;#椭圆曲线密码系统&quot; class=&quot;headerlink&quot; title=&quot;椭圆曲线密码系统&quot;&gt;&lt;/a&gt;椭圆曲线密码系统&lt;/h1&gt;&lt;h2 id=&quot;一个简单的RAS算法&quot;&gt;&lt;a href=&quot;#一个简单的RAS算法&quot; class=&quot;headerlink&quot; title=&quot;一个简单的RAS算法&quot;&gt;&lt;/a&gt;一个简单的RAS算法&lt;/h2&gt;&lt;p&gt;​        RAS密码系统最让人头疼的问题就是，在加解密或者签名的时候需要庞大的运算量，所需较长的运算时间。对于一些处理器不强大的设备，比如手机、PDA（Personal Digital Assistant）或者及时响应的系统不友好。因此有了椭圆曲线密码系统（ECC）。ECC运算量较少，因此能提高效率。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Markdown进阶语法</title>
+    <link href="http://lisongbai.top/2020/02/11/Markdown%E8%BF%9B%E9%98%B6%E8%AF%AD%E6%B3%95/"/>
+    <id>http://lisongbai.top/2020/02/11/Markdown%E8%BF%9B%E9%98%B6%E8%AF%AD%E6%B3%95/</id>
+    <published>2020-02-11T08:58:36.227Z</published>
+    <updated>2019-11-02T06:33:01.718Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;[TOC]&lt;/p&gt;&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;写博客需要用到Markdown语法，于是产生了整理Markdown笔记的想法。&lt;/p&gt;&lt;p&gt;这篇文章是基于&lt;a href=&quot;[https://lisongbai.top/2019/10/31/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/](https://lisongbai.top/2019/10/31/Markdown基本语法学习笔记-1/)&quot;&gt;Markdown基本语法&lt;/a&gt;的进阶语法。&lt;/p&gt;&lt;h2 id=&quot;正文&quot;&gt;&lt;a href=&quot;#正文&quot; class=&quot;headerlink&quot; title=&quot;正文&quot;&gt;&lt;/a&gt;正文&lt;/h2&gt;&lt;h3 id=&quot;1-内容目录&quot;&gt;&lt;a href=&quot;#1-内容目录&quot; class=&quot;headerlink&quot; title=&quot;1.内容目录&quot;&gt;&lt;/a&gt;1.内容目录&lt;/h3&gt;&lt;p&gt;在文章的最开始使用[TOC]引用目录，例如本文目录：&lt;/p&gt;&lt;h3 id=&quot;2-加强代码块&quot;&gt;&lt;a href=&quot;#2-加强代码块&quot; class=&quot;headerlink&quot; title=&quot;2.加强代码块&quot;&gt;&lt;/a&gt;2.加强代码块&lt;/h3&gt;&lt;p&gt;使用”```”+”语言名”进行标记。例如：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;java示例：&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/**&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;public class TreeNode &amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;    int val = 0;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;    TreeNode left = null;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;    TreeNode right = null;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;    public TreeNode(int val) &amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;        this.val = val;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;*/&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Solution&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Mirror&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(TreeNode root)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(root != &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            TreeNode temp = root.left;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            root.left = root.right;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            root.right = temp;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            Mirror(root.left);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            Mirror(root.right);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>html学习笔记&lt;一&gt;</title>
+    <link href="http://lisongbai.top/2020/02/11/html%E4%B8%8Ecss%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"/>
+    <id>http://lisongbai.top/2020/02/11/html%E4%B8%8Ecss%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</id>
+    <published>2020-02-11T08:58:36.072Z</published>
+    <updated>2019-10-31T11:15:46.884Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1-一个完整的网页&quot;&gt;&lt;a href=&quot;#1-一个完整的网页&quot; class=&quot;headerlink&quot; title=&quot;1. 一个完整的网页&quot;&gt;&lt;/a&gt;1. 一个完整的网页&lt;/h1&gt;&lt;p&gt;​    网页的内容 + 网页的样式 + 网页的动作&lt;/p&gt;&lt;h1 id=&quot;2-万维网联盟-W3C&quot;&gt;&lt;a href=&quot;#2-万维网联盟-W3C&quot; class=&quot;headerlink&quot; title=&quot;2. 万维网联盟(W3C)&quot;&gt;&lt;/a&gt;2. 万维网联盟(W3C)&lt;/h1&gt;&lt;p&gt;由蒂姆·伯纳斯-李于1994年10月在麻省理工学院（MIT）计算机科学实验室成立&lt;br&gt;是Web技术领域最具权威和影响力的国际中立性技术标准机构&lt;br&gt;为Web技术的互相兼容，互联网技术的发展和应用起到了基础性和根本性的支撑作用&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://lisongbai.top/2020/02/11/hello-world/"/>
+    <id>http://lisongbai.top/2020/02/11/hello-world/</id>
+    <published>2020-02-11T08:58:36.043Z</published>
+    <updated>2019-10-22T10:26:01.640Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>DES加解密算法浅析</title>
+    <link href="http://lisongbai.top/2020/02/11/DES%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95%E6%B5%85%E6%9E%90/"/>
+    <id>http://lisongbai.top/2020/02/11/DES%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95%E6%B5%85%E6%9E%90/</id>
+    <published>2020-02-11T08:58:36.037Z</published>
+    <updated>2019-11-09T07:58:27.871Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;DES加解密算法浅析&quot;&gt;&lt;a href=&quot;#DES加解密算法浅析&quot; class=&quot;headerlink&quot; title=&quot;DES加解密算法浅析&quot;&gt;&lt;/a&gt;DES加解密算法浅析&lt;/h1&gt;&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;DES是一个分组加密算法，它以64位为分组对数据加密。同时DES也是一个对称算法：加密和解密用的是同一个算法。DES是一个包含16个阶段的“替换–置换”的分组加密算法，64位的分组明文序列作为加密算法的输入，经过16轮加密得到64位的密文序列。&lt;/p&gt;&lt;p&gt;算法原理看下图：&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/11/09/MmQzp6.png&quot; alt=&quot;MmQzp6.png&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;原理浅析&quot;&gt;&lt;a href=&quot;#原理浅析&quot; class=&quot;headerlink&quot; title=&quot;原理浅析&quot;&gt;&lt;/a&gt;原理浅析&lt;/h2&gt;&lt;p&gt;DES算法主要分为3部分：加解密运算、f函数的处理、轮子密钥的生成，从右往左分别简单介绍一下。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>SpringMVC</title>
@@ -329,130 +457,6 @@
     
     
       <category term="嵌入式" scheme="http://lisongbai.top/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DES加解密算法浅析</title>
-    <link href="http://lisongbai.top/2019/11/03/DES%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95%E6%B5%85%E6%9E%90/"/>
-    <id>http://lisongbai.top/2019/11/03/DES%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95%E6%B5%85%E6%9E%90/</id>
-    <published>2019-11-03T13:04:36.423Z</published>
-    <updated>2019-11-09T07:58:27.871Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;DES加解密算法浅析&quot;&gt;&lt;a href=&quot;#DES加解密算法浅析&quot; class=&quot;headerlink&quot; title=&quot;DES加解密算法浅析&quot;&gt;&lt;/a&gt;DES加解密算法浅析&lt;/h1&gt;&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;DES是一个分组加密算法，它以64位为分组对数据加密。同时DES也是一个对称算法：加密和解密用的是同一个算法。DES是一个包含16个阶段的“替换–置换”的分组加密算法，64位的分组明文序列作为加密算法的输入，经过16轮加密得到64位的密文序列。&lt;/p&gt;&lt;p&gt;算法原理看下图：&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/11/09/MmQzp6.png&quot; alt=&quot;MmQzp6.png&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;原理浅析&quot;&gt;&lt;a href=&quot;#原理浅析&quot; class=&quot;headerlink&quot; title=&quot;原理浅析&quot;&gt;&lt;/a&gt;原理浅析&lt;/h2&gt;&lt;p&gt;DES算法主要分为3部分：加解密运算、f函数的处理、轮子密钥的生成，从右往左分别简单介绍一下。&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>椭圆曲线密码学系统</title>
-    <link href="http://lisongbai.top/2019/11/03/%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E5%AF%86%E7%A0%81%E5%AD%A6%E7%B3%BB%E7%BB%9F/"/>
-    <id>http://lisongbai.top/2019/11/03/%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E5%AF%86%E7%A0%81%E5%AD%A6%E7%B3%BB%E7%BB%9F/</id>
-    <published>2019-11-03T11:46:31.582Z</published>
-    <updated>2019-11-11T14:40:40.076Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;椭圆曲线密码系统&quot;&gt;&lt;a href=&quot;#椭圆曲线密码系统&quot; class=&quot;headerlink&quot; title=&quot;椭圆曲线密码系统&quot;&gt;&lt;/a&gt;椭圆曲线密码系统&lt;/h1&gt;&lt;h2 id=&quot;一个简单的RAS算法&quot;&gt;&lt;a href=&quot;#一个简单的RAS算法&quot; class=&quot;headerlink&quot; title=&quot;一个简单的RAS算法&quot;&gt;&lt;/a&gt;一个简单的RAS算法&lt;/h2&gt;&lt;p&gt;​        RAS密码系统最让人头疼的问题就是，在加解密或者签名的时候需要庞大的运算量，所需较长的运算时间。对于一些处理器不强大的设备，比如手机、PDA（Personal Digital Assistant）或者及时响应的系统不友好。因此有了椭圆曲线密码系统（ECC）。ECC运算量较少，因此能提高效率。&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Markdown进阶语法</title>
-    <link href="http://lisongbai.top/2019/11/02/Markdown%E8%BF%9B%E9%98%B6%E8%AF%AD%E6%B3%95/"/>
-    <id>http://lisongbai.top/2019/11/02/Markdown%E8%BF%9B%E9%98%B6%E8%AF%AD%E6%B3%95/</id>
-    <published>2019-11-02T03:24:27.345Z</published>
-    <updated>2019-11-02T06:33:01.718Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;[TOC]&lt;/p&gt;&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;写博客需要用到Markdown语法，于是产生了整理Markdown笔记的想法。&lt;/p&gt;&lt;p&gt;这篇文章是基于&lt;a href=&quot;[https://lisongbai.top/2019/10/31/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/](https://lisongbai.top/2019/10/31/Markdown基本语法学习笔记-1/)&quot;&gt;Markdown基本语法&lt;/a&gt;的进阶语法。&lt;/p&gt;&lt;h2 id=&quot;正文&quot;&gt;&lt;a href=&quot;#正文&quot; class=&quot;headerlink&quot; title=&quot;正文&quot;&gt;&lt;/a&gt;正文&lt;/h2&gt;&lt;h3 id=&quot;1-内容目录&quot;&gt;&lt;a href=&quot;#1-内容目录&quot; class=&quot;headerlink&quot; title=&quot;1.内容目录&quot;&gt;&lt;/a&gt;1.内容目录&lt;/h3&gt;&lt;p&gt;在文章的最开始使用[TOC]引用目录，例如本文目录：&lt;/p&gt;&lt;h3 id=&quot;2-加强代码块&quot;&gt;&lt;a href=&quot;#2-加强代码块&quot; class=&quot;headerlink&quot; title=&quot;2.加强代码块&quot;&gt;&lt;/a&gt;2.加强代码块&lt;/h3&gt;&lt;p&gt;使用”```”+”语言名”进行标记。例如：&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;java示例：&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/**&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;public class TreeNode &amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;    int val = 0;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;    TreeNode left = null;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;    TreeNode right = null;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;    public TreeNode(int val) &amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;        this.val = val;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;*/&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Solution&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Mirror&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(TreeNode root)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(root != &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            TreeNode temp = root.left;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            root.left = root.right;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            root.right = temp;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            Mirror(root.left);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            Mirror(root.right);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>牛客在线编程之剑指</title>
-    <link href="http://lisongbai.top/2019/11/02/%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%89%91%E6%8C%87/"/>
-    <id>http://lisongbai.top/2019/11/02/%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%89%91%E6%8C%87/</id>
-    <published>2019-11-02T01:29:22.631Z</published>
-    <updated>2019-11-30T06:29:14.295Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一、栈的压入、弹出序列&quot;&gt;&lt;a href=&quot;#一、栈的压入、弹出序列&quot; class=&quot;headerlink&quot; title=&quot;一、栈的压入、弹出序列&quot;&gt;&lt;/a&gt;一、栈的压入、弹出序列&lt;/h1&gt;&lt;h5 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h5&gt;&lt;p&gt;​        输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的）&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Markdown基本语法学习笔记</title>
-    <link href="http://lisongbai.top/2019/10/31/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"/>
-    <id>http://lisongbai.top/2019/10/31/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</id>
-    <published>2019-10-31T13:28:03.000Z</published>
-    <updated>2019-11-02T06:23:24.426Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;[TOC]&lt;/p&gt;&lt;h1 id=&quot;一、标题&quot;&gt;&lt;a href=&quot;#一、标题&quot; class=&quot;headerlink&quot; title=&quot;一、标题&quot;&gt;&lt;/a&gt;一、标题&lt;/h1&gt;&lt;p&gt;一个#是一级标题，二个#是二级标题，以此类推。最多到六级标题。&lt;/p&gt;&lt;p&gt;注：标准语法一般在#后面跟空格再写标题，有的地方可以不加空格（比如：简书上写Markdown）。&lt;/p&gt;&lt;p&gt;实例：&lt;/p&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 这是一级标题&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;## 这是二级标题&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;### 这是三级标题&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;###### 这是六级标题&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;效果如下：&lt;/p&gt;&lt;h1 id=&quot;这是一级标题&quot;&gt;&lt;a href=&quot;#这是一级标题&quot; class=&quot;headerlink&quot; title=&quot;这是一级标题&quot;&gt;&lt;/a&gt;这是一级标题&lt;/h1&gt;&lt;h2 id=&quot;这是二级标题&quot;&gt;&lt;a href=&quot;#这是二级标题&quot; class=&quot;headerlink&quot; title=&quot;这是二级标题&quot;&gt;&lt;/a&gt;这是二级标题&lt;/h2&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>html学习笔记&lt;一&gt;</title>
-    <link href="http://lisongbai.top/2019/10/31/html%E4%B8%8Ecss%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"/>
-    <id>http://lisongbai.top/2019/10/31/html%E4%B8%8Ecss%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</id>
-    <published>2019-10-31T10:35:33.512Z</published>
-    <updated>2019-10-31T11:15:46.884Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1-一个完整的网页&quot;&gt;&lt;a href=&quot;#1-一个完整的网页&quot; class=&quot;headerlink&quot; title=&quot;1. 一个完整的网页&quot;&gt;&lt;/a&gt;1. 一个完整的网页&lt;/h1&gt;&lt;p&gt;​    网页的内容 + 网页的样式 + 网页的动作&lt;/p&gt;&lt;h1 id=&quot;2-万维网联盟-W3C&quot;&gt;&lt;a href=&quot;#2-万维网联盟-W3C&quot; class=&quot;headerlink&quot; title=&quot;2. 万维网联盟(W3C)&quot;&gt;&lt;/a&gt;2. 万维网联盟(W3C)&lt;/h1&gt;&lt;p&gt;由蒂姆·伯纳斯-李于1994年10月在麻省理工学院（MIT）计算机科学实验室成立&lt;br&gt;是Web技术领域最具权威和影响力的国际中立性技术标准机构&lt;br&gt;为Web技术的互相兼容，互联网技术的发展和应用起到了基础性和根本性的支撑作用&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://lisongbai.top/2019/10/22/hello-world/"/>
-    <id>http://lisongbai.top/2019/10/22/hello-world/</id>
-    <published>2019-10-22T10:26:01.639Z</published>
-    <updated>2019-10-22T10:26:01.640Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-    
-    </summary>
-    
-    
     
   </entry>
   

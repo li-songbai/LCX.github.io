@@ -52,20 +52,18 @@
   };
 </script>
 
-  <meta name="description" content="一、查询最晚入职员工的所有信息 题目描述 123456789查找最晚入职员工的所有信息CREATE TABLE `employees` (`emp_no` int(11) NOT NULL,`birth_date` date NOT NULL,`first_name` varchar(14) NOT NULL,`last_name` varchar(16) NOT NULL,`gender` ch">
-<meta name="keywords" content="SQL">
+  <meta name="description" content="一、lombok注解开发 简介 大部分项目中都必不可少的包含数据库实体(Entity)、数据载体(dto,dataObject),而这两部分都包含着大量的没有业务逻辑的setter、getter、空参构造，同时我们一般要复写类的toString(),equals(),hashCode()方法(贫血模型)。这些工作都是重复性的工作，作为程序员，懒是必备素质之一，这些工作肯定已经有大牛封装好了处理方法">
+<meta name="keywords" content="SSM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="牛客在线编程之数据库SQL实战">
-<meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2019&#x2F;11&#x2F;19&#x2F;%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E5%AE%9E%E6%88%98&#x2F;index.html">
+<meta property="og:title" content="SpringMVC02">
+<meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2020&#x2F;02&#x2F;12&#x2F;SpringMVC02&#x2F;index.html">
 <meta property="og:site_name" content="小李の博客">
-<meta property="og:description" content="一、查询最晚入职员工的所有信息 题目描述 123456789查找最晚入职员工的所有信息CREATE TABLE `employees` (`emp_no` int(11) NOT NULL,`birth_date` date NOT NULL,`first_name` varchar(14) NOT NULL,`last_name` varchar(16) NOT NULL,`gender` ch">
+<meta property="og:description" content="一、lombok注解开发 简介 大部分项目中都必不可少的包含数据库实体(Entity)、数据载体(dto,dataObject),而这两部分都包含着大量的没有业务逻辑的setter、getter、空参构造，同时我们一般要复写类的toString(),equals(),hashCode()方法(贫血模型)。这些工作都是重复性的工作，作为程序员，懒是必备素质之一，这些工作肯定已经有大牛封装好了处理方法">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;19&#x2F;Mg0c01.png">
-<meta property="og:updated_time" content="2019-11-19T11:25:21.957Z">
+<meta property="og:updated_time" content="2020-02-12T15:25:19.735Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;19&#x2F;Mg0c01.png">
 
-<link rel="canonical" href="http://lisongbai.top/2019/11/19/%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E5%AE%9E%E6%88%98/">
+<link rel="canonical" href="http://lisongbai.top/2020/02/12/SpringMVC02/">
 
 
 <script id="page-configurations">
@@ -79,7 +77,7 @@
   };
 </script>
 
-  <title>牛客在线编程之数据库SQL实战 | 小李の博客</title>
+  <title>SpringMVC02 | 小李の博客</title>
   
 
 
@@ -222,7 +220,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2019/11/19/%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E5%AE%9E%E6%88%98/">
+    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/02/12/SpringMVC02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -235,7 +233,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          牛客在线编程之数据库SQL实战
+          SpringMVC02
         </h1>
 
         <div class="post-meta">
@@ -246,11 +244,11 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-11-19 13:07:42 / 修改时间：19:25:21" itemprop="dateCreated datePublished" datetime="2019-11-19T13:07:42+08:00">2019-11-19</time>
+              <time title="创建时间：2020-02-12 23:24:13 / 修改时间：23:25:19" itemprop="dateCreated datePublished" datetime="2020-02-12T23:24:13+08:00">2020-02-12</time>
             </span>
 
           
-            <span id="/2019/11/19/%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E5%AE%9E%E6%88%98/" class="post-meta-item leancloud_visitors" data-flag-title="牛客在线编程之数据库SQL实战" title="阅读次数">
+            <span id="/2020/02/12/SpringMVC02/" class="post-meta-item leancloud_visitors" data-flag-title="SpringMVC02" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -272,8 +270,8 @@
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/2019/11/19/%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E5%AE%9E%E6%88%98/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/11/19/牛客在线编程之数据库SQL实战/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2020/02/12/SpringMVC02/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/02/12/SpringMVC02/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -288,54 +286,98 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="一、查询最晚入职员工的所有信息"><a href="#一、查询最晚入职员工的所有信息" class="headerlink" title="一、查询最晚入职员工的所有信息"></a>一、查询最晚入职员工的所有信息</h1><ul>
-<li><strong>题目描述</strong></li>
-</ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">查找最晚入职员工的所有信息</span><br><span class="line">CREATE TABLE `employees` (</span><br><span class="line">`emp_no` int(11) NOT NULL,</span><br><span class="line">`birth_date` date NOT NULL,</span><br><span class="line">`first_name` varchar(14) NOT NULL,</span><br><span class="line">`last_name` varchar(16) NOT NULL,</span><br><span class="line">`gender` char(1) NOT NULL,</span><br><span class="line">`hire_date` date NOT NULL,</span><br><span class="line">PRIMARY KEY (`emp_no`));</span><br></pre></td></tr></table></figure><a id="more"></a>
-
+        <h1 id="一、lombok注解开发"><a href="#一、lombok注解开发" class="headerlink" title="一、lombok注解开发"></a>一、lombok注解开发</h1><ul>
+<li><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2></li>
+</ul><p>大部分项目中都必不可少的包含数据库实体(Entity)、数据载体(dto,dataObject),而这两部分都包含着大量的没有业务逻辑的setter、getter、空参构造，同时我们一般要复写类的toString(),equals(),hashCode()方法(贫血模型)。这些工作都是重复性的工作，作为程序员，懒是必备素质之一，这些工作肯定已经有大牛封装好了处理方法,这就是lombok。 </p><a id="more"></a>
 
 <ul>
-<li><strong>SQL语句</strong></li>
+<li><h2 id="下载安装插件"><a href="#下载安装插件" class="headerlink" title="下载安装插件"></a>下载安装插件</h2><p>去官网下载idea对应版本的lombok的压缩包</p>
+<p>插件配置</p>
+<p>重启</p>
+</li>
+<li><h2 id="引入pom依赖"><a href="#引入pom依赖" class="headerlink" title="引入pom依赖"></a>引入pom依赖</h2></li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * </span><br><span class="line"><span class="keyword">from</span> employees</span><br><span class="line"><span class="keyword">where</span> hire_date = (<span class="keyword">select</span> <span class="keyword">max</span>(hire_date)<span class="keyword">from</span> employees);</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.18.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><p><strong>总结</strong></p>
-<p>考察select语句的嵌套使用</p>
+<li><h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><ul>
+<li><p><strong>@Setter</strong></p>
+<p>生成setter方法，final变量不包含</p>
+</li>
+<li><p><strong>@Getter</strong></p>
+<p>生成getter方法，final变量不包含</p>
+</li>
+<li><p><strong>@NoArgsConstructor</strong></p>
+<p>生成空参构造</p>
+</li>
+<li><p><strong>@AllArgsConstructor</strong></p>
+<p>生成全部参数构造</p>
+</li>
+<li><p><strong>@RequiredArgsConstructor</strong></p>
+<p>将标记为@NoNull的属性生成一个构造器 ， 如果运行中标记为@NoNull的属性为null,会抛出空指针异常。 </p>
+</li>
+<li><p><strong>@ToString</strong></p>
+<p>生成所有属性的toString()方法 </p>
+</li>
+<li><p><strong>@EqualsAndHashCode</strong></p>
+<p>生成equals()方法和hashCode方法 </p>
+</li>
+<li><p><strong>@Data(常用)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Data直接修饰POJO or beans， getter所有的变量，setter所有不为final的变量。如果你不需要默认的生成方式，直接填写你需要的annotation的就可以了。默认生成的所有的annotation都是public的，如果需要不同权限修饰符可以使用AccessLevel.NONE选项。当然@Data 也可以使用staticConstructor选项生成一个静态方法。</span><br></pre></td></tr></table></figure>
+
+<p><strong>@Data=@Setter+@Getter+@EqualsAndHashCode+@NoArgsConstructor</strong></p>
+</li>
+<li><p><strong>@SneakyThrows</strong> </p>
+<p>可以对受检异常进行捕捉并抛出。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyDateConversion</span> <span class="keyword">implements</span> <span class="title">Converter</span> &lt;<span class="title">String</span>, <span class="title">Date</span>&gt;</span>&#123;</span><br><span class="line">    <span class="meta">@SneakyThrows</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Date <span class="title">convert</span><span class="params">(String  str)</span> </span>&#123;</span><br><span class="line">        SimpleDateFormat  simpleDateFormat  =  <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd hh:mm:ss"</span>);</span><br><span class="line">        Date  date =  simpleDateFormat.parse(str);</span><br><span class="line">        <span class="keyword">return</span> date;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ul>
-<h1 id="二、查找入职员工时间排名倒数第三名的员工所有信息"><a href="#二、查找入职员工时间排名倒数第三名的员工所有信息" class="headerlink" title="二、查找入职员工时间排名倒数第三名的员工所有信息"></a>二、查找入职员工时间排名倒数第三名的员工所有信息</h1><ul>
-<li><strong>题目描述</strong></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">查找入职员工时间排名倒数第三的员工所有信息</span><br><span class="line">CREATE TABLE `employees` (</span><br><span class="line">`emp_no` int(11) NOT NULL,</span><br><span class="line">`birth_date` date NOT NULL,</span><br><span class="line">`first_name` varchar(14) NOT NULL,</span><br><span class="line">`last_name` varchar(16) NOT NULL,</span><br><span class="line">`gender` char(1) NOT NULL,</span><br><span class="line">`hire_date` date NOT NULL,</span><br><span class="line">PRIMARY KEY (`emp_no`));</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>SQL语句</strong></li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span>*</span><br><span class="line"><span class="keyword">from</span> employees</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> hire_date <span class="keyword">desc</span> </span><br><span class="line"><span class="keyword">limit</span> <span class="number">2</span>,<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p><strong>总结</strong></p>
-<p>order by作用：</p>
-<p>对记录进行排序（默认升序），desc为降序，asc为升序。</p>
-<p>limit作用：</p>
-<p>用于限制显示的条数。</p>
-<p>Limit [offset,] N<br> Offset: 偏移量,即跳过几行，0可不写<br> N: 取出条目</p>
-<p><conter> <img src="https://s2.ax1x.com/2019/11/19/Mg0c01.png" alt="Mg0c01.png"></conter></p>
 </li>
 </ul>
-<h1 id="三、查找当前薪水详情以及部门编号"><a href="#三、查找当前薪水详情以及部门编号" class="headerlink" title="三、查找当前薪水详情以及部门编号"></a>三、查找当前薪水详情以及部门编号</h1><ul>
-<li><strong>题目描述</strong></li>
+<h1 id="二、SpringMVC注解开发"><a href="#二、SpringMVC注解开发" class="headerlink" title="二、SpringMVC注解开发"></a>二、SpringMVC注解开发</h1><ul>
+<li><h3 id="导入MVC、Web依赖"><a href="#导入MVC、Web依赖" class="headerlink" title="导入MVC、Web依赖"></a>导入MVC、Web依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.13.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.13.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h2 id="SpringMVC中注解开发的注解总结"><a href="#SpringMVC中注解开发的注解总结" class="headerlink" title="SpringMVC中注解开发的注解总结"></a>SpringMVC中注解开发的注解总结</h2><ul>
+<li><p><strong>@controller</strong> </p>
+<p>标记为处理器，方便Spring容器进行映射。 </p>
+</li>
+<li><p><strong>@RequestMapping</strong> </p>
+<p>通过RequestMapping注解可以定义不同的处理器映射规则。 </p>
+<p><strong>作用：</strong></p>
+<p>1、URL路径映射。</p>
+<p>2、窄化请求映射。</p>
+<p>@RequestMapping放在类名上边，设置请求前缀</p>
+<p>@Controller</p>
+<p>@RequestMapping(“/item”)</p>
+<p>方法名上边设置请求映射url：</p>
+<p>@RequestMapping放在方法名上边，如下：</p>
+<p>@RequestMapping(“/queryItem “) </p>
+<p>访问地址为：/item/queryItem</p>
+<p> 3、请求方法限定 </p>
+</li>
+<li><p><strong>@RequestParam</strong> </p>
+<p>使用@RequestParam常用于处理简单类型的绑定。</p>
+<p>常用定义如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">editItem</span><span class="params">(@RequestParam(value=<span class="string">"item_id"</span>,required=<span class="keyword">true</span>)</span> String id) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>@Validated</strong> </p>
+<p>在绑定参数的参数前添加，表示对该参数进行校验。参数后面还需要添加BindingResult，表示检验信息写入此。 </p>
+</li>
+<li><p><strong>@RequestBody和ResponseBody</strong> </p>
+<p>@RequestBody和ResponseBody分别表示输入和输出转换为json数据。</p>
+<p>controller编写：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/json"</span>)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">json</span><span class="params">(Person person)</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"------------jsondata-----------------"</span>);</span><br><span class="line">    <span class="keyword">return</span>  person;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">查找各个部门当前(to_date=&apos;9999-01-01&apos;)领导当前薪水详情以及其对应部门编号dept_no</span><br><span class="line">CREATE TABLE `dept_manager` (</span><br><span class="line">`dept_no` char(4) NOT NULL,</span><br><span class="line">`emp_no` int(11) NOT NULL,</span><br><span class="line">`from_date` date NOT NULL,</span><br><span class="line">`to_date` date NOT NULL,</span><br><span class="line">PRIMARY KEY (`emp_no`,`dept_no`));</span><br><span class="line">CREATE TABLE `salaries` (</span><br><span class="line">`emp_no` int(11) NOT NULL,</span><br><span class="line">`salary` int(11) NOT NULL,</span><br><span class="line">`from_date` date NOT NULL,</span><br><span class="line">`to_date` date NOT NULL,</span><br><span class="line">PRIMARY KEY (`emp_no`,`from_date`));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>@PathVariable</strong> </p>
+<p>用于RESTfull中的模板模式映射。</p>
+<p>@PathVariable用于将请求URL中的模板变量映射到功能处理方法的参数上。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">/* 多个占位符的值得接受和传递 */</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/param04/&#123;id&#125;/&#123;name&#125;"</span>,method = RequestMethod.GET)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">param04</span><span class="params">(@PathVariable(value = <span class="string">"id"</span>,required = <span class="keyword">true</span>)</span> <span class="keyword">int</span>  id</span></span><br><span class="line"><span class="function">  ,@<span class="title">PathVariable</span><span class="params">(value = <span class="string">"name"</span>)</span>String name)</span>&#123;</span><br><span class="line">      System.out.println(id +<span class="string">"-----------"</span>+ name);</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"index"</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><strong>SQL语句</strong></li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> salaries.*,dept_manager.dept_no </span><br><span class="line"><span class="keyword">from</span> salaries, dept_manager </span><br><span class="line"><span class="keyword">where</span> salaries.emp_no = dept_manager.emp_no</span><br><span class="line"><span class="keyword">and</span> salaries.to_date = <span class="string">"9999-01-01"</span></span><br><span class="line"><span class="keyword">and</span> dept_manager.to_date = <span class="string">"9999-01-01"</span>;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p><strong>总结</strong></p>
-<p>多条件查询。</p>
 </li>
 </ul>
 
@@ -374,7 +416,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://lisongbai.top/2019/11/19/%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E5%AE%9E%E6%88%98/" title="牛客在线编程之数据库SQL实战">http://lisongbai.top/2019/11/19/%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E5%AE%9E%E6%88%98/</a>
+    <a href="http://lisongbai.top/2020/02/12/SpringMVC02/" title="SpringMVC02">http://lisongbai.top/2020/02/12/SpringMVC02/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -385,24 +427,21 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/SQL/" rel="tag"># SQL</a>
+              <a href="/tags/SSM/" rel="tag"># SSM</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/18/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="next" title="Java设计模式">
-                  <i class="fa fa-chevron-left"></i> Java设计模式
+                <a href="/2020/02/11/%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%89%91%E6%8C%87/" rel="next" title="牛客在线编程之剑指">
+                  <i class="fa fa-chevron-left"></i> 牛客在线编程之剑指
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/20/java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8B%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" rel="prev" title="java多线程之线程同步">
-                  java多线程之线程同步 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -481,7 +520,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、查询最晚入职员工的所有信息"><span class="nav-number">1.</span> <span class="nav-text">一、查询最晚入职员工的所有信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、查找入职员工时间排名倒数第三名的员工所有信息"><span class="nav-number">2.</span> <span class="nav-text">二、查找入职员工时间排名倒数第三名的员工所有信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、查找当前薪水详情以及部门编号"><span class="nav-number">3.</span> <span class="nav-text">三、查找当前薪水详情以及部门编号</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、lombok注解开发"><span class="nav-number">1.</span> <span class="nav-text">一、lombok注解开发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载安装插件"><span class="nav-number">1.2.</span> <span class="nav-text">下载安装插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引入pom依赖"><span class="nav-number">1.3.</span> <span class="nav-text">引入pom依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用方法"><span class="nav-number">1.4.</span> <span class="nav-text">常用方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、SpringMVC注解开发"><span class="nav-number">2.</span> <span class="nav-text">二、SpringMVC注解开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#导入MVC、Web依赖"><span class="nav-number">2.0.1.</span> <span class="nav-text">导入MVC、Web依赖</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringMVC中注解开发的注解总结"><span class="nav-number">2.1.</span> <span class="nav-text">SpringMVC中注解开发的注解总结</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -729,9 +768,9 @@
       DISQUS.reset({
         reload: true,
         config: {page: {
-            url: "http://lisongbai.top/2019/11/19/%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E5%AE%9E%E6%88%98/",
-            identifier: "2019/11/19/牛客在线编程之数据库SQL实战/",
-            title: "牛客在线编程之数据库SQL实战"
+            url: "http://lisongbai.top/2020/02/12/SpringMVC02/",
+            identifier: "2020/02/12/SpringMVC02/",
+            title: "SpringMVC02"
           }
         }
       });
