@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-02-12T15:25:19.735Z</updated>
+  <updated>2020-02-21T06:38:28.487Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>笔试题总结</title>
+    <link href="http://lisongbai.top/2020/02/21/%E7%AC%94%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/"/>
+    <id>http://lisongbai.top/2020/02/21/%E7%AC%94%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/</id>
+    <published>2020-02-21T06:07:36.000Z</published>
+    <updated>2020-02-21T06:38:28.487Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;1-编程题&quot;&gt;&lt;a href=&quot;#1-编程题&quot; class=&quot;headerlink&quot; title=&quot;1.编程题&quot;&gt;&lt;/a&gt;1.编程题&lt;/h2&gt;&lt;h3 id=&quot;1-1倒序数：&quot;&gt;&lt;a href=&quot;#1-1倒序数：&quot; class=&quot;headerlink&quot; title=&quot;1.1倒序数：&quot;&gt;&lt;/a&gt;1.1倒序数：&lt;/h3&gt;&lt;p&gt;将一个整数中的数字进行颠倒，当颠倒后的整数溢出时，返回 0 (标记为 32 位整数)。&lt;br&gt;给定 x = 123，返回 321 &lt;/p&gt;&lt;p&gt;给定 x = -123，返回 -321&lt;/p&gt;&lt;p&gt;思路；通过取余取得最后一位 然后除以十再取最后一位(相当于往前取一位) ,用一个数保存，每次取得都乘十并加上取得的数字（相当于往前挤一位），&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>SpringMVC02</title>
@@ -432,31 +449,6 @@
     
     
       <category term="网络信息安全" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ARM9指令操作系统</title>
-    <link href="http://lisongbai.top/2019/11/04/ARM9%E6%8C%87%E4%BB%A4%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    <id>http://lisongbai.top/2019/11/04/ARM9%E6%8C%87%E4%BB%A4%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</id>
-    <published>2019-11-04T07:50:45.000Z</published>
-    <updated>2019-11-04T11:23:59.991Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;注：&lt;/strong&gt;为了迅速的复习完ARM9的寻址方式以及基本指令集，在此只做指令演示，不做详细的文字叙述。&lt;/p&gt;&lt;h1 id=&quot;一、ARM处理器的寻址方式&quot;&gt;&lt;a href=&quot;#一、ARM处理器的寻址方式&quot; class=&quot;headerlink&quot; title=&quot;一、ARM处理器的寻址方式&quot;&gt;&lt;/a&gt;一、ARM处理器的寻址方式&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;&lt;h2 id=&quot;寄存器寻址&quot;&gt;&lt;a href=&quot;#寄存器寻址&quot; class=&quot;headerlink&quot; title=&quot;寄存器寻址&quot;&gt;&lt;/a&gt;寄存器寻址&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;MOV R2,R3		;R2&amp;lt;-R3		R3中的内容赋给R2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ADD R2,R3,R4    ;R2&amp;lt;-R3+R4	R3+R4中的内容相加，结果赋给R2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="嵌入式" scheme="http://lisongbai.top/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
     
   </entry>
   
