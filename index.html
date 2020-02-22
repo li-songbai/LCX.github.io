@@ -243,7 +243,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-02-22 09:40:01 / 修改时间：09:59:00" itemprop="dateCreated datePublished" datetime="2020-02-22T09:40:01+08:00">2020-02-22</time>
+              <time title="创建时间：2020-02-22 09:40:01 / 修改时间：10:48:17" itemprop="dateCreated datePublished" datetime="2020-02-22T09:40:01+08:00">2020-02-22</time>
             </span>
 
           
@@ -278,7 +278,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="1-需要导入的依赖"><a href="#1-需要导入的依赖" class="headerlink" title="1.需要导入的依赖"></a>1.需要导入的依赖</h1><p>在springboot项目的基础上导入以下依赖：</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-logging<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.1.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.projectlombok/lombok --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.18.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          <h1 id="1-使用自带的日志系统（longback）进行配置"><a href="#1-使用自带的日志系统（longback）进行配置" class="headerlink" title="1.使用自带的日志系统（longback）进行配置"></a>1.使用自带的日志系统（longback）进行配置</h1><h2 id="1-1longback简介"><a href="#1-1longback简介" class="headerlink" title="1.1longback简介"></a>1.1longback简介</h2><h3 id="1-1-1Logback主要有下面的特性："><a href="#1-1-1Logback主要有下面的特性：" class="headerlink" title="1.1.1Logback主要有下面的特性："></a>1.1.1Logback主要有下面的特性：</h3><ul>
+<li><p><strong>更快的执行速度：</strong></p>
+<p>基于我们先前在Log4j上的工作，Logback 重写了内部的实现，在某些特定的场景上面，甚至可以比之前的速度快上10倍。在保证Logback的组件更加快速的同时，同时所需的内存更加少；</p>
+</li>
+<li><p><strong>充分的测试：</strong></p>
+<p>Logback 历经了几年，数不清小时数的测试。尽管Log4j也是测试过的，但是Logback的测试更加充分，跟Log4j不在同一个级别。我们认为，这正是人们选择Logback而不是Log4j的最重要的原因。谁不希望即使在恶劣的条件下，你的日志框架依然稳定而可靠呢？</p>
+</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/02/22/SpringBoot-logging%E9%85%8D%E7%BD%AE/#more" rel="contents">
