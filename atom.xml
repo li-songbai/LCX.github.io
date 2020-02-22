@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-02-21T06:38:28.487Z</updated>
+  <updated>2020-02-22T01:59:00.101Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SpringBoot-logging配置</title>
+    <link href="http://lisongbai.top/2020/02/22/SpringBoot-logging%E9%85%8D%E7%BD%AE/"/>
+    <id>http://lisongbai.top/2020/02/22/SpringBoot-logging%E9%85%8D%E7%BD%AE/</id>
+    <published>2020-02-22T01:40:01.000Z</published>
+    <updated>2020-02-22T01:59:00.101Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1-需要导入的依赖&quot;&gt;&lt;a href=&quot;#1-需要导入的依赖&quot; class=&quot;headerlink&quot; title=&quot;1.需要导入的依赖&quot;&gt;&lt;/a&gt;1.需要导入的依赖&lt;/h1&gt;&lt;p&gt;在springboot项目的基础上导入以下依赖：&lt;/p&gt;&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;org.springframework.boot&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;spring-boot-starter-logging&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;2.2.1.RELEASE&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;comment&quot;&gt;&amp;lt;!-- https://mvnrepository.com/artifact/org.projectlombok/lombok --&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;org.projectlombok&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;lombok&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;1.18.10&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;scope&lt;/span&gt;&amp;gt;&lt;/span&gt;provided&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;scope&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="SpringBoot" scheme="http://lisongbai.top/tags/SpringBoot/"/>
+    
+  </entry>
   
   <entry>
     <title>笔试题总结</title>
@@ -430,25 +449,6 @@
     
     
       <category term="Java设计模式" scheme="http://lisongbai.top/tags/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>RSA加密算法浅析</title>
-    <link href="http://lisongbai.top/2019/11/09/RSA%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E6%B5%85%E6%9E%90/"/>
-    <id>http://lisongbai.top/2019/11/09/RSA%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E6%B5%85%E6%9E%90/</id>
-    <published>2019-11-09T04:02:11.000Z</published>
-    <updated>2019-11-09T07:05:54.070Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;RSA的加解密机制&quot;&gt;&lt;a href=&quot;#RSA的加解密机制&quot; class=&quot;headerlink&quot; title=&quot;RSA的加解密机制&quot;&gt;&lt;/a&gt;RSA的加解密机制&lt;/h1&gt;&lt;p&gt;RSA的加密系统可分为三个部分，即用户密钥的产生、加密算法以及解密算法。&lt;/p&gt;&lt;h2 id=&quot;用户密钥的产生&quot;&gt;&lt;a href=&quot;#用户密钥的产生&quot; class=&quot;headerlink&quot; title=&quot;用户密钥的产生&quot;&gt;&lt;/a&gt;用户密钥的产生&lt;/h2&gt;&lt;p&gt;在用户密钥的产生部分，首先此系统的每一个用户将自行选择一组公开密钥，然后公之于众，使得他人都能使用此公开密钥对机密数据进行加密，然后自己使用私密密钥进行解密，获取机密数据。&lt;/p&gt;&lt;p&gt;​        以下是RSA密钥的产生过程：&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="网络信息安全" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
