@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-02-22T02:48:17.907Z</updated>
+  <updated>2020-02-23T10:57:27.732Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>windows10搭建truffle及出现问题的解决方案</title>
+    <link href="http://lisongbai.top/2020/02/23/windows10%E6%90%AD%E5%BB%BAtruffle%E5%8F%8A%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    <id>http://lisongbai.top/2020/02/23/windows10%E6%90%AD%E5%BB%BAtruffle%E5%8F%8A%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</id>
+    <published>2020-02-23T10:56:18.000Z</published>
+    <updated>2020-02-23T10:57:27.732Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1-版本信息&quot;&gt;&lt;a href=&quot;#1-版本信息&quot; class=&quot;headerlink&quot; title=&quot;1.版本信息&quot;&gt;&lt;/a&gt;1.版本信息&lt;/h1&gt;&lt;h2 id=&quot;1-1-node&quot;&gt;&lt;a href=&quot;#1-1-node&quot; class=&quot;headerlink&quot; title=&quot;1.1 node&quot;&gt;&lt;/a&gt;1.1 node&lt;/h2&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;node -v&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;v12.15.0&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&quot;1-2-npm&quot;&gt;&lt;a href=&quot;#1-2-npm&quot; class=&quot;headerlink&quot; title=&quot;1.2 npm&quot;&gt;&lt;/a&gt;1.2 npm&lt;/h2&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;npm -v&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6.13.4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;bash&quot;&gt;换源&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;npm config set registry https://registry.npm.taobao.org&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;npm config list&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;; cli configs&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;metrics-registry = &quot;https://registry.npm.taobao.org/&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;scope = &quot;&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;user-agent = &quot;npm/6.13.4 node/v12.15.0 win32 x64&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;; userconfig C:\Users\12173\.npmrc&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;registry = &quot;https://registry.npm.taobao.org/&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;; builtin config undefined&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;prefix = &quot;C:\\Users\\12173\\AppData\\Roaming\\npm&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;; node bin location = E:\Program Files\nodejs\node.exe&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;; cwd = C:\Users\12173&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;; HOME = C:\Users\12173&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;; &quot;npm config ls -l&quot; to show all defaults.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="truffle" scheme="http://lisongbai.top/tags/truffle/"/>
+    
+  </entry>
   
   <entry>
     <title>SpringBoot-logging配置</title>
@@ -52,6 +71,25 @@
     <summary type="html">
     
       &lt;h2 id=&quot;1-编程题&quot;&gt;&lt;a href=&quot;#1-编程题&quot; class=&quot;headerlink&quot; title=&quot;1.编程题&quot;&gt;&lt;/a&gt;1.编程题&lt;/h2&gt;&lt;h3 id=&quot;1-1倒序数：&quot;&gt;&lt;a href=&quot;#1-1倒序数：&quot; class=&quot;headerlink&quot; title=&quot;1.1倒序数：&quot;&gt;&lt;/a&gt;1.1倒序数：&lt;/h3&gt;&lt;p&gt;将一个整数中的数字进行颠倒，当颠倒后的整数溢出时，返回 0 (标记为 32 位整数)。&lt;br&gt;给定 x = 123，返回 321 &lt;/p&gt;&lt;p&gt;给定 x = -123，返回 -321&lt;/p&gt;&lt;p&gt;思路；通过取余取得最后一位 然后除以十再取最后一位(相当于往前取一位) ,用一个数保存，每次取得都乘十并加上取得的数字（相当于往前挤一位），&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>postman</title>
+    <link href="http://lisongbai.top/2020/02/13/postman/"/>
+    <id>http://lisongbai.top/2020/02/13/postman/</id>
+    <published>2020-02-13T13:22:50.086Z</published>
+    <updated>2020-02-23T09:06:31.172Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一、Postman&quot;&gt;&lt;a href=&quot;#一、Postman&quot; class=&quot;headerlink&quot; title=&quot;一、Postman&quot;&gt;&lt;/a&gt;一、Postman&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;h2 id=&quot;postman简介&quot;&gt;&lt;a href=&quot;#postman简介&quot; class=&quot;headerlink&quot; title=&quot;postman简介&quot;&gt;&lt;/a&gt;postman简介&lt;/h2&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;用户在开发或者调试网络程序或者是网页B/S模式的程序的时候是需要一些方法来跟踪网页请求的，用户可以使用一些网络的监视工具比如著名的Firebug等网页调试工具。今天给大家介绍的这款网页调试工具不仅可以调试简单的css、html、脚本等简单的网页基本信息，它还可以发送几乎所有类型的HTTP请求！Postman在发送网络HTTP请求方面可以说是Chrome插件类产品中的代表产品之一。&lt;/p&gt;
     
     </summary>
     
@@ -399,63 +437,6 @@
     
     
       <category term="java线程同步" scheme="http://lisongbai.top/tags/java%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>牛客在线编程之数据库SQL实战</title>
-    <link href="http://lisongbai.top/2019/11/19/%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E5%AE%9E%E6%88%98/"/>
-    <id>http://lisongbai.top/2019/11/19/%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E5%AE%9E%E6%88%98/</id>
-    <published>2019-11-19T05:07:42.000Z</published>
-    <updated>2019-11-19T11:25:21.957Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一、查询最晚入职员工的所有信息&quot;&gt;&lt;a href=&quot;#一、查询最晚入职员工的所有信息&quot; class=&quot;headerlink&quot; title=&quot;一、查询最晚入职员工的所有信息&quot;&gt;&lt;/a&gt;一、查询最晚入职员工的所有信息&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;题目描述&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;查找最晚入职员工的所有信息&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;CREATE TABLE `employees` (&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;`emp_no` int(11) NOT NULL,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;`birth_date` date NOT NULL,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;`first_name` varchar(14) NOT NULL,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;`last_name` varchar(16) NOT NULL,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;`gender` char(1) NOT NULL,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;`hire_date` date NOT NULL,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;PRIMARY KEY (`emp_no`));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="SQL" scheme="http://lisongbai.top/tags/SQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java设计模式</title>
-    <link href="http://lisongbai.top/2019/11/18/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://lisongbai.top/2019/11/18/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</id>
-    <published>2019-11-18T06:28:15.000Z</published>
-    <updated>2019-11-24T15:19:52.837Z</updated>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;&lt;h1 id=&quot;一、装饰者模式&quot;&gt;&lt;a href=&quot;#一、装饰者模式&quot; class=&quot;headerlink&quot; title=&quot;一、装饰者模式&quot;&gt;&lt;/a&gt;一、装饰者模式&lt;/h1&gt;&lt;p&gt;动态地给一个对象添加一些额外地职责。就增加功能来说，Decorator模式相比生成子类来说更为灵活。&lt;/p&gt;&lt;h2 id=&quot;适用性&quot;&gt;&lt;a href=&quot;#适用性&quot; class=&quot;headerlink&quot; title=&quot;适用性&quot;&gt;&lt;/a&gt;适用性&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;在不影响其他对象的情况下，以动态透明的方式给单个对象增加职责。&lt;/li&gt;
-&lt;li&gt;处理那些可以撤销的职责。&lt;/li&gt;
-&lt;li&gt;当不能采用生成子类的方法进行扩充时。&lt;/li&gt;
-&lt;/ul&gt;&lt;h2 id=&quot;参与者&quot;&gt;&lt;a href=&quot;#参与者&quot; class=&quot;headerlink&quot; title=&quot;参与者&quot;&gt;&lt;/a&gt;参与者&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Component&lt;/p&gt;
-&lt;p&gt;定义一个对象接口，可以给这些对象动态地添加职责。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;ConcereteComponent&lt;/p&gt;
-&lt;p&gt;定义一个对象，可以给这个对象添加一些职责。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Decorator&lt;/p&gt;
-&lt;p&gt;维持一个指向Component对象地指针，并定义一个与Component接口一致地接口&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;ConcreteDecorator&lt;/p&gt;
-&lt;p&gt;向组件添加职责。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="Java设计模式" scheme="http://lisongbai.top/tags/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   

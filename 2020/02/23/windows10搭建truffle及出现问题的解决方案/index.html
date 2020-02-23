@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="1.版本信息1.1 node12node -vv12.15.01.2 npm12345678910111213141516171819202122npm -v6.13.4#换源npm config set registry https:&#x2F;&#x2F;registry.npm.taobao.orgnpm config list; cli configsmetrics-registry = &quot;https:&#x2F;&#x2F;r">
+<meta name="keywords" content="truffle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows10搭建truffle及出现问题的解决方案">
+<meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2020&#x2F;02&#x2F;23&#x2F;windows10%E6%90%AD%E5%BB%BAtruffle%E5%8F%8A%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88&#x2F;index.html">
+<meta property="og:site_name" content="小李の博客">
+<meta property="og:description" content="1.版本信息1.1 node12node -vv12.15.01.2 npm12345678910111213141516171819202122npm -v6.13.4#换源npm config set registry https:&#x2F;&#x2F;registry.npm.taobao.orgnpm config list; cli configsmetrics-registry = &quot;https:&#x2F;&#x2F;r">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2020&#x2F;02&#x2F;23&#x2F;3188K0.png">
+<meta property="og:updated_time" content="2020-02-23T10:57:27.732Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2020&#x2F;02&#x2F;23&#x2F;3188K0.png">
+
+<link rel="canonical" href="http://lisongbai.top/2020/02/23/windows10%E6%90%AD%E5%BB%BAtruffle%E5%8F%8A%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>windows10搭建truffle及出现问题的解决方案 | 小李の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="小李の博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小李の博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">我有一壶酒，足以慰平生。</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/yym08090809" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/02/23/windows10%E6%90%AD%E5%BB%BAtruffle%E5%8F%8A%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李松柏">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小李の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          windows10搭建truffle及出现问题的解决方案
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-23 18:56:18 / 修改时间：18:57:27" itemprop="dateCreated datePublished" datetime="2020-02-23T18:56:18+08:00">2020-02-23</time>
+            </span>
+
+          
+            <span id="/2020/02/23/windows10%E6%90%AD%E5%BB%BAtruffle%E5%8F%8A%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="post-meta-item leancloud_visitors" data-flag-title="windows10搭建truffle及出现问题的解决方案" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/02/23/windows10%E6%90%AD%E5%BB%BAtruffle%E5%8F%8A%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/02/23/windows10搭建truffle及出现问题的解决方案/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-版本信息"><a href="#1-版本信息" class="headerlink" title="1.版本信息"></a>1.版本信息</h1><h2 id="1-1-node"><a href="#1-1-node" class="headerlink" title="1.1 node"></a>1.1 node</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">v12.15.0</span><br></pre></td></tr></table></figure><h2 id="1-2-npm"><a href="#1-2-npm" class="headerlink" title="1.2 npm"></a>1.2 npm</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">npm -v</span><br><span class="line">6.13.4</span><br><span class="line"><span class="meta">#</span><span class="bash">换源</span></span><br><span class="line">npm config set registry https://registry.npm.taobao.org</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">npm config list</span><br><span class="line">; cli configs</span><br><span class="line">metrics-registry = "https://registry.npm.taobao.org/"</span><br><span class="line">scope = ""</span><br><span class="line">user-agent = "npm/6.13.4 node/v12.15.0 win32 x64"</span><br><span class="line"></span><br><span class="line">; userconfig C:\Users\12173\.npmrc</span><br><span class="line">registry = "https://registry.npm.taobao.org/"</span><br><span class="line"></span><br><span class="line">; builtin config undefined</span><br><span class="line">prefix = "C:\\Users\\12173\\AppData\\Roaming\\npm"</span><br><span class="line"></span><br><span class="line">; node bin location = E:\Program Files\nodejs\node.exe</span><br><span class="line">; cwd = C:\Users\12173</span><br><span class="line">; HOME = C:\Users\12173</span><br><span class="line">; "npm config ls -l" to show all defaults.</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+<h2 id="1-3-git"><a href="#1-3-git" class="headerlink" title="1.3 git"></a>1.3 git</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br><span class="line">git version 2.21.0.windows.1</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-4-安装ganache-cli节点仿真器"><a href="#1-4-安装ganache-cli节点仿真器" class="headerlink" title="1.4 安装ganache-cli节点仿真器"></a>1.4 安装ganache-cli节点仿真器</h2><h3 id="1-4-1-简介"><a href="#1-4-1-简介" class="headerlink" title="1.4.1 简介"></a>1.4.1 简介</h3><p>用于测试和开发的快速以太坊RPC客户端。</p>
+<p>注意：testrpc 是现在的ganache-cli。 像使用testrpc一样去使用它。</p>
+<p> 为了快速开发和测试以太坊DApp，我们通常使用以太坊节点仿真器来模拟区块链，最流行的节点仿真器就是Ganache，之前被称为TeseRPC。 </p>
+<h3 id="1-4-2-安装"><a href="#1-4-2-安装" class="headerlink" title="1.4.2 安装"></a>1.4.2 安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">npm install -g ganache-cli</span><br><span class="line"></span><br><span class="line">C:\Users\12173\AppData\Roaming\npm\ganache-cli -&gt; C:\Users\12173\AppData\Roaming\npm\node_modules\ganache-cli\cli.js</span><br><span class="line">+ ganache-cli@6.9.1</span><br><span class="line">updated 1 package in 5.506s</span><br><span class="line"></span><br><span class="line">ganache-cli --version</span><br><span class="line">Ganache CLI v6.9.1 (ganache-core: 2.10.2)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-5-安装solidity编译器"><a href="#1-5-安装solidity编译器" class="headerlink" title="1.5 安装solidity编译器"></a>1.5 安装solidity编译器</h2><h3 id="1-5-1-简介"><a href="#1-5-1-简介" class="headerlink" title="1.5.1 简介"></a>1.5.1 简介</h3><p> solidity是开发以太坊智能合约的编程语言。[ 官网 ] : <a href="https://solidity.readthedocs.io/en/v0.6.3/" target="_blank" rel="noopener">https://solidity.readthedocs.io/en/v0.6.3/</a> </p>
+<h3 id="1-5-2-安装"><a href="#1-5-2-安装" class="headerlink" title="1.5.2 安装"></a>1.5.2 安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">npm install -g solc</span><br><span class="line"></span><br><span class="line">C:\Users\12173\AppData\Roaming\npm\solcjs -&gt; C:\Users\12173\AppData\Roaming\npm\node_modules\solc\solcjs</span><br><span class="line">+ solc@0.6.3</span><br><span class="line">added 25 packages from 15 contributors in 39.318s</span><br><span class="line"></span><br><span class="line">solcjs -V</span><br><span class="line">0.6.3+commit.8dda9521.Emscripten.clang</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-6-Web3"><a href="#1-6-Web3" class="headerlink" title="1.6 Web3"></a>1.6 Web3</h2><h3 id="1-6-1-简介"><a href="#1-6-1-简介" class="headerlink" title="1.6.1 简介"></a>1.6.1 简介</h3><p> web3.js是一个库集合，你可以使用HTTP或IPC连接本地或远程以太它节点进行交互。 web3的JavaScript库能够与以太坊区块链交互。 它可以检索用户帐户，发送交易，与智能合约交互等。 </p>
+<h3 id="1-6-2-安装"><a href="#1-6-2-安装" class="headerlink" title="1.6.2 安装"></a>1.6.2 安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">npm install -g web3@0.20.2</span><br><span class="line">+ web3@0.20.2</span><br><span class="line">added 6 packages from 9 contributors in 44.408s</span><br><span class="line"></span><br><span class="line">node -p 'require("web3")'</span><br><span class="line">require(web3)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-7-Truffle"><a href="#1-7-Truffle" class="headerlink" title="1.7 Truffle"></a>1.7 Truffle</h2><h3 id="1-7-1-简介"><a href="#1-7-1-简介" class="headerlink" title="1.7.1 简介"></a>1.7.1 简介</h3><p> Truffle是针对基于以太坊的Solidity语言的一套开发框架。  本身基于Javascript </p>
+<h3 id="1-7-2-安装"><a href="#1-7-2-安装" class="headerlink" title="1.7.2 安装"></a>1.7.2 安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">npm install -g truffle</span><br><span class="line">C:\Users\12173\AppData\Roaming\npm\truffle -&gt; C:\Users\12173\AppData\Roaming\npm\node_modules\truffle\build\cli.bundled.js</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> truffle@5.1.14 postinstall C:\Users\12173\AppData\Roaming\npm\node_modules\truffle</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> node ./scripts/postinstall.js</span></span><br><span class="line"></span><br><span class="line">- Fetching solc version list from solc-bin. Attempt #1</span><br><span class="line">- Fetching solc version list from solc-bin. Attempt #2</span><br><span class="line">- Fetching solc version list from solc-bin. Attempt #3</span><br><span class="line">+ truffle@5.1.14</span><br><span class="line">added 27 packages from 439 contributors in 121.064s</span><br><span class="line"></span><br><span class="line">truffle --version</span><br><span class="line">Truffle v5.1.14 - a development framework for Ethereum</span><br><span class="line"></span><br><span class="line">Usage: truffle &lt;command&gt; [options]</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  build     Execute build pipeline (if configuration present)</span><br><span class="line">  compile   Compile contract source files</span><br><span class="line">  config    Set user-level configuration options</span><br><span class="line">  console   Run a console with contract abstractions and commands available</span><br><span class="line">  create    Helper to create new contracts, migrations and tests</span><br><span class="line">  debug     Interactively debug any transaction on the blockchain (experimental)</span><br><span class="line">  deploy    (alias for migrate)</span><br><span class="line">  develop   Open a console with a local development blockchain</span><br><span class="line">  exec      Execute a JS module within this Truffle environment</span><br><span class="line">  help      List all commands or provide information about a specific command</span><br><span class="line">  init      Initialize new and empty Ethereum project</span><br><span class="line">  install   Install a package from the Ethereum Package Registry</span><br><span class="line">  migrate   Run migrations to deploy contracts</span><br><span class="line">  networks  Show addresses for deployed contracts on each network</span><br><span class="line">  obtain    Fetch and cache a specified compiler</span><br><span class="line">  opcode    Print the compiled opcodes for a given contract</span><br><span class="line">  publish   Publish a package to the Ethereum Package Registry</span><br><span class="line">  run       Run a third-party command</span><br><span class="line">  test      Run JavaScript and Solidity tests</span><br><span class="line">  unbox     Download a Truffle Box, a pre-built Truffle project</span><br><span class="line">  version   Show version number and exit</span><br><span class="line">  watch     Watch filesystem for changes and rebuild the project automatically</span><br><span class="line"></span><br><span class="line">See more at http://truffleframework.com/docs</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-8webpack"><a href="#1-8webpack" class="headerlink" title="1.8webpack"></a>1.8webpack</h2><h3 id="1-8-1简介"><a href="#1-8-1简介" class="headerlink" title="1.8.1简介"></a>1.8.1简介</h3><p> 本质上，<em>webpack</em> 是一个现代 JavaScript 应用程序的<em>静态模块打包器(module bundler)</em>。当 webpack 处理应用程序时，它会递归地构建一个<em>依赖关系图(dependency graph)</em>，其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 <em>bundle</em>。 </p>
+<h3 id="1-8-2安装"><a href="#1-8-2安装" class="headerlink" title="1.8.2安装"></a>1.8.2安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> npm install -g webpack@3.11.0</span><br><span class="line">C:\Users\12173\AppData\Roaming\npm\webpack -&gt; C:\Users\12173\AppData\Roaming\npm\node_modules\webpack\bin\webpack.js</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> uglifyjs-webpack-plugin@0.4.6 postinstall C:\Users\12173\AppData\Roaming\npm\node_modules\webpack\node_modules\uglifyjs-webpack-plugin</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> node lib/post_install.js</span></span><br><span class="line"></span><br><span class="line">npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.11 (node_modules\webpack\node_modules\fsevents):</span><br><span class="line">npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.11: wanted &#123;"os":"darwin","arch":"any"&#125; (current: &#123;"os":"win32","arch":"x64"&#125;)</span><br><span class="line"></span><br><span class="line">+ webpack@3.11.0</span><br><span class="line">added 333 packages from 285 contributors in 26.975s</span><br><span class="line"></span><br><span class="line">webpack -v</span><br><span class="line">3.11.0</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-相关知识"><a href="#2-相关知识" class="headerlink" title="2.相关知识"></a>2.相关知识</h1><h2 id="2-1-Truffle与web3初始"><a href="#2-1-Truffle与web3初始" class="headerlink" title="2.1 Truffle与web3初始"></a>2.1 Truffle与web3初始</h2><p><strong>Truffle提供功能如下</strong></p>
+<ol>
+<li><p>内置智能合约编译、链接、部署和二进制字节码管理</p>
+</li>
+<li><p>针对快速迭代开发的自动化合约</p>
+</li>
+<li><p>可脚本化、可扩展部署和迁移框架</p>
+</li>
+<li><p>网络管理，可部署到任意数量的公共网络和私有网络</p>
+</li>
+<li><p>使用EthPM和NPM进行包安装管理</p>
+</li>
+<li><p>用于直接与合约通信的交互式控制台</p>
+</li>
+<li><p>支持持续集成可配置构建管道</p>
+</li>
+<li><p>外部脚本运行程序可以在Truffle环境中执行脚本</p>
+</li>
+<li><p>提供合约抽象接口，可以直接通过var instance = Storage.deployed()拿到合约对象，然后在JavaScript中直接操作对应的合约函数。</p>
+</li>
+</ol>
+<p>*<em>web3.js *</em></p>
+<ol>
+<li><p>web3.js提供了用于和geth通信的javascript API,其内部使用了JSON-RPC与geth通信。</p>
+</li>
+<li><p>JSON-RPC是一个无状态且轻量级的远程过程调用，允许使用socket,http等协议进行通信。使用JSON作为数据格式。</p>
+</li>
+<li><p>web3.js可以与所有支持JSON-RPC的节点通信。不仅支持ETH中的API，还支持ETH生态中其他系统的API，比如whispir</p>
+</li>
+<li><p>whispir是一个集成进ETH的消息系统 ， 允许DApp发送小量信息进行非实时通信。</p>
+</li>
+</ol>
+<h1 id="3-Truffle项目构建"><a href="#3-Truffle项目构建" class="headerlink" title="3. Truffle项目构建"></a>3. Truffle项目构建</h1><h2 id="3-1初始化项目（truffle-unbox-webpack）"><a href="#3-1初始化项目（truffle-unbox-webpack）" class="headerlink" title="3.1初始化项目（truffle unbox webpack）"></a>3.1初始化项目（truffle unbox webpack）</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br></pre></td><td class="code"><pre><span class="line">truffle unbox webpack</span><br><span class="line">This directory is non-empty...</span><br><span class="line">? Proceed anyway? (Y/n)</span><br><span class="line">Starting unbox...</span><br><span class="line">=================</span><br><span class="line"></span><br><span class="line">? Proceed anyway? Yes</span><br><span class="line">√ Preparing to download box</span><br><span class="line">√ Downloading</span><br><span class="line">gyp ERR! find Python</span><br><span class="line">gyp ERR! find Python Python is not set from command line or npm configuration</span><br><span class="line">gyp ERR! find Python Python is not set from environment variable PYTHON</span><br><span class="line">gyp ERR! find Python checking if "python" can be used</span><br><span class="line">gyp ERR! find Python - "python" is not in PATH or produced an error</span><br><span class="line">gyp ERR! find Python checking if "python2" can be used</span><br><span class="line">gyp ERR! find Python - "python2" is not in PATH or produced an error</span><br><span class="line">gyp ERR! find Python checking if "python3" can be used</span><br><span class="line">gyp ERR! find Python - "python3" is not in PATH or produced an error</span><br><span class="line">gyp ERR! find Python checking if the py launcher can be used to find Python 2</span><br><span class="line">gyp ERR! find Python - "py.exe" is not in PATH or produced an error</span><br><span class="line">gyp ERR! find Python checking if Python is C:\Python27\python.exe</span><br><span class="line">gyp ERR! find Python - "C:\Python27\python.exe" could not be run</span><br><span class="line">gyp ERR! find Python checking if Python is C:\Python37\python.exe</span><br><span class="line">gyp ERR! find Python - "C:\Python37\python.exe" could not be run</span><br><span class="line">gyp ERR! find Python</span><br><span class="line">gyp ERR! find Python **********************************************************</span><br><span class="line">gyp ERR! find Python You need to install the latest version of Python.</span><br><span class="line">gyp ERR! find Python Node-gyp should be able to find and use Python. If not,</span><br><span class="line">gyp ERR! find Python you can try one of the following options:</span><br><span class="line">gyp ERR! find Python - Use the switch --python="C:\Path\To\python.exe"</span><br><span class="line">gyp ERR! find Python   (accepted by both node-gyp and npm)</span><br><span class="line">gyp ERR! find Python - Set the environment variable PYTHON</span><br><span class="line">gyp ERR! find Python - Set the npm configuration variable python:</span><br><span class="line">gyp ERR! find Python   npm config set python "C:\Path\To\python.exe"</span><br><span class="line">gyp ERR! find Python For more information consult the documentation at:</span><br><span class="line">gyp ERR! find Python https://github.com/nodejs/node-gyp#installation</span><br><span class="line">gyp ERR! find Python **********************************************************</span><br><span class="line">gyp ERR! find Python</span><br><span class="line">gyp ERR! configure error</span><br><span class="line">gyp ERR! stack Error: Could not find any Python installation to use</span><br><span class="line">gyp ERR! stack     at PythonFinder.fail (E:\Program Files\nodejs\node_modules\npm\node_modules\node-gyp\lib\find-python.js:307:47)</span><br><span class="line">gyp ERR! stack     at PythonFinder.runChecks (E:\Program Files\nodejs\node_modules\npm\node_modules\node-gyp\lib\find-python.js:136:21)</span><br><span class="line">gyp ERR! stack     at PythonFinder.&lt;anonymous&gt; (E:\Program Files\nodejs\node_modules\npm\node_modules\node-gyp\lib\find-python.js:225:16)</span><br><span class="line">gyp ERR! stack     at PythonFinder.execFileCallback (E:\Program Files\nodejs\node_modules\npm\node_modules\node-gyp\lib\find-python.js:271:16)</span><br><span class="line">gyp ERR! stack     at exithandler (child_process.js:302:5)</span><br><span class="line">gyp ERR! stack     at ChildProcess.errorhandler (child_process.js:314:5)</span><br><span class="line">gyp ERR! stack     at ChildProcess.emit (events.js:223:5)</span><br><span class="line">gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:270:12)</span><br><span class="line">gyp ERR! stack     at onErrorNT (internal/child_process.js:456:16)</span><br><span class="line">gyp ERR! stack     at processTicksAndRejections (internal/process/task_queues.js:81:21)</span><br><span class="line">gyp ERR! System Windows_NT 10.0.16299</span><br><span class="line">gyp ERR! command "E:\\Program Files\\nodejs\\node.exe" "E:\\Program Files\\nodejs\\node_modules\\npm\\node_modules\\node-gyp\\bin\\node-gyp.js" "rebuild"</span><br><span class="line">gyp ERR! cwd E:\Dapp\hello\app\node_modules\keccak</span><br><span class="line">gyp ERR! node -v v12.15.0</span><br><span class="line">gyp ERR! node-gyp -v v5.0.5</span><br><span class="line">gyp ERR! not ok</span><br><span class="line">/ Downloading</span><br><span class="line">npm ERR! errno 1</span><br><span class="line">npm ERR! keccak@2.1.0 rebuild: `node-gyp rebuild`</span><br><span class="line"></span><br><span class="line">npm ERR!</span><br><span class="line">npm ERR! Failed at the keccak@2.1.0 rebuild script.</span><br><span class="line">npm ERR! This is probably not a problem with npm. There is likely additional logging output above.</span><br><span class="line">npm WARN Local package.json exists, but node_modules missing, did you mean to install?</span><br><span class="line"></span><br><span class="line">npm ERR! A complete log of this run can be found in:</span><br><span class="line">npm ERR!     C:\Users\12173\AppData\Roaming\npm-cache\_logs\2020-02-22T17_26_38_700Z-debug.log</span><br><span class="line">gyp ERR! find Python</span><br><span class="line"></span><br><span class="line">gyp ERR! find Python Python is not set from environment variable PYTHON</span><br><span class="line">gyp ERR! find Python checking if "python" can be used</span><br><span class="line">gyp ERR! find Python - "python" is not in PATH or produced an error</span><br><span class="line">gyp ERR! find Python checking if "python2" can be used</span><br><span class="line">gyp ERR! find Python - "python2" is not in PATH or produced an error</span><br><span class="line">gyp ERR! find Python checking if "python3" can be used</span><br><span class="line">gyp ERR! find Python - "python3" is not in PATH or produced an error</span><br><span class="line">gyp ERR! find Python checking if the py launcher can be used to find Python 2</span><br><span class="line">gyp ERR! find Python - "py.exe" is not in PATH or produced an error</span><br><span class="line">gyp ERR! find Python checking if Python is C:\Python27\python.exe</span><br><span class="line">gyp ERR! find Python - "C:\Python27\python.exe" could not be run</span><br><span class="line">gyp ERR! find Python checking if Python is C:\Python37\python.exe</span><br><span class="line">gyp ERR! find Python - "C:\Python37\python.exe" could not be run</span><br><span class="line">gyp ERR! find Python</span><br><span class="line">gyp ERR! find Python **********************************************************</span><br><span class="line">gyp ERR! find Python You need to install the latest version of Python.</span><br><span class="line">gyp ERR! find Python Node-gyp should be able to find and use Python. If not,</span><br><span class="line">gyp ERR! find Python you can try one of the following options:</span><br><span class="line">gyp ERR! find Python - Use the switch --python="C:\Path\To\python.exe"</span><br><span class="line">gyp ERR! find Python   (accepted by both node-gyp and npm)</span><br><span class="line">gyp ERR! find Python - Set the environment variable PYTHON</span><br><span class="line">gyp ERR! find Python - Set the npm configuration variable python:</span><br><span class="line">gyp ERR! find Python   npm config set python "C:\Path\To\python.exe"</span><br><span class="line">gyp ERR! find Python For more information consult the documentation at:</span><br><span class="line">gyp ERR! find Python https://github.com/nodejs/node-gyp#installation</span><br><span class="line">gyp ERR! find Python **********************************************************</span><br><span class="line">gyp ERR! find Python</span><br><span class="line">gyp ERR! configure error</span><br><span class="line">gyp ERR! stack Error: Could not find any Python installation to use</span><br><span class="line">gyp ERR! stack     at PythonFinder.fail (E:\Program Files\nodejs\node_modules\npm\node_modules\node-gyp\lib\find-python.js:307:47)</span><br><span class="line">gyp ERR! stack     at PythonFinder.runChecks (E:\Program Files\nodejs\node_modules\npm\node_modules\node-gyp\lib\find-python.js:136:21)</span><br><span class="line">gyp ERR! stack     at PythonFinder.&lt;anonymous&gt; (E:\Program Files\nodejs\node_modules\npm\node_modules\node-gyp\lib\find-python.js:225:16)</span><br><span class="line">gyp ERR! stack     at PythonFinder.execFileCallback (E:\Program Files\nodejs\node_modules\npm\node_modules\node-gyp\lib\find-python.js:271:16)</span><br><span class="line">gyp ERR! stack     at exithandler (child_process.js:302:5)</span><br><span class="line">gyp ERR! stack     at ChildProcess.errorhandler (child_process.js:314:5)</span><br><span class="line">gyp ERR! stack     at ChildProcess.emit (events.js:223:5)</span><br><span class="line">gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:270:12)</span><br><span class="line">gyp ERR! stack     at onErrorNT (internal/child_process.js:456:16)</span><br><span class="line">gyp ERR! stack     at processTicksAndRejections (internal/process/task_queues.js:81:21)</span><br><span class="line">gyp ERR! System Windows_NT 10.0.16299</span><br><span class="line">gyp ERR! command "E:\\Program Files\\nodejs\\node.exe" "E:\\Program Files\\nodejs\\node_modules\\npm\\node_modules\\node-gyp\\bin\\node-gyp.js" "rebuild"</span><br><span class="line">gyp ERR! cwd E:\Dapp\hello\app\node_modules\secp256k1</span><br><span class="line">gyp ERR! node -v v12.15.0</span><br><span class="line">gyp ERR! node-gyp -v v5.0.5</span><br><span class="line">gyp ERR! not ok</span><br><span class="line">npm ERR! code ELIFECYCLE</span><br><span class="line">npm ERR! errno 1</span><br><span class="line">npm ERR! secp256k1@3.7.1 rebuild: `node-gyp rebuild`</span><br><span class="line">npm ERR! Exit status 1</span><br><span class="line">npm ERR!</span><br><span class="line">npm ERR! Failed at the secp256k1@3.7.1 rebuild script.</span><br><span class="line">npm ERR! This is probably not a problem with npm. There is likely additional logging output above.</span><br><span class="line">npm WARN Local package.json exists, but node_modules missing, did you mean to install?</span><br><span class="line"></span><br><span class="line">npm ERR! A complete log of this run can be found in:</span><br><span class="line">npm ERR!     C:\Users\12173\AppData\Roaming\npm-cache\_logs\2020-02-22T17_26_39_779Z-debug.log</span><br><span class="line">npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.9 (node_modules\fsevents):</span><br><span class="line">npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.9: wanted &#123;"os":"darwin","arch":"any"&#125; (current: &#123;"os":"win32","arch":"x64"&#125;)</span><br><span class="line"></span><br><span class="line">√ cleaning up temporary files</span><br><span class="line">√ Setting up box</span><br><span class="line"></span><br><span class="line">Unbox successful, sweet!</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line"></span><br><span class="line">  Compile:              truffle compile</span><br><span class="line">  Migrate:              truffle migrate</span><br><span class="line">  Test contracts:       truffle test</span><br><span class="line">  Run dev server:       cd app &amp;&amp; npm run dev</span><br><span class="line">  Build for production: cd app &amp;&amp; npm run build</span><br></pre></td></tr></table></figure>
+
+<p>解决没有python环境的问题：</p>
+<p>我们选择安装windows-build-tools,他的依赖中包含一些Visual Studio Build Tools以及python2.7</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">npm install --global --production windows-build-tools </span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> windows-build-tools@5.2.2 postinstall C:\Users\12173\AppData\Roaming\npm\node_modules\windows-build-tools</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> node ./dist/index.js</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Downloading python-2.7.15.amd64.msi</span><br><span class="line"><span class="meta">[&gt;</span><span class="bash">                                            ] 0.0% (0 B/s)</span></span><br><span class="line">Downloaded python-2.7.15.amd64.msi. Saved to C:\Users\12173\.windows-build-tools\python-2.7.15.amd64.msi.</span><br><span class="line">Downloading vs_BuildTools.exe</span><br><span class="line"><span class="meta">[&gt;</span><span class="bash">                                            ] 0.0% (0 B/s)</span></span><br><span class="line">Downloaded vs_BuildTools.exe. Saved to C:\Users\12173\.windows-build-tools\vs_BuildTools.exe.</span><br><span class="line"></span><br><span class="line">Starting installation...</span><br><span class="line">Launched installers, now waiting for them to finish.</span><br><span class="line">This will likely take some time - please be patient!</span><br><span class="line"></span><br><span class="line">Status from the installers:</span><br><span class="line">---------- Visual Studio Build Tools ----------</span><br><span class="line">Successfully installed Visual Studio Build Tools.</span><br><span class="line">------------------- Python --------------------</span><br><span class="line">Action ended 12:45:23: MsiUnpublishAssemblies. Return value 1.</span><br><span class="line">Action start 12:45:23: UnpublishFeatures.</span><br><span class="line">Action ended 12:45:23: UnpublishFeatures. Return value 1.</span><br><span class="line">Action start 12:45:23: StopServices.</span><br><span class="line">Action ended 12:45:23: StopServices. Return value 1.</span><br><span class="line"></span><br><span class="line">Now configuring the Visual Studio Build Tools and Python...</span><br><span class="line"></span><br><span class="line">All done!</span><br><span class="line"></span><br><span class="line">+ windows-build-tools@5.2.2</span><br><span class="line">updated 1 package in 15.463s</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置python2.7的环境变量</strong></p>
+<p>在系统变量path下添加如下内容：</p>
+<p>C:\Users\12173.windows-build-tools\python27</p>
+<p>初始化成功结果如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> truffle unbox webpack</span></span><br><span class="line"></span><br><span class="line">Starting unbox...</span><br><span class="line">=================</span><br><span class="line"></span><br><span class="line">- Preparing to download box</span><br><span class="line">√ Preparing to download box</span><br><span class="line">- Downloading</span><br><span class="line">√ Downloading</span><br><span class="line">npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.9 (node_modules\fsevents):</span><br><span class="line">npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.9: wanted &#123;"os":"darwin","arch":"any"&#125; (current: &#123;"os":"win32","arch":"x64"&#125;)</span><br><span class="line"></span><br><span class="line">- cleaning up temporary files</span><br><span class="line">√ cleaning up temporary files</span><br><span class="line">- Setting up box</span><br><span class="line">√ Setting up box</span><br><span class="line"></span><br><span class="line">Unbox successful, sweet!</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line"></span><br><span class="line">  Compile:              truffle compile</span><br><span class="line">  Migrate:              truffle migrate</span><br><span class="line">  Test contracts:       truffle test</span><br><span class="line">  Run dev server:       cd app &amp;&amp; npm run dev</span><br><span class="line">  Build for production: cd app &amp;&amp; npm run build</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-2-修改truffle配置"><a href="#3-2-修改truffle配置" class="headerlink" title="3.2 修改truffle配置"></a>3.2 修改truffle配置</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">development: &#123;</span><br><span class="line"> host: <span class="string">"127.0.0.1"</span>,     <span class="comment">// Localhost (default: none)</span></span><br><span class="line"> port: <span class="number">8545</span>,            <span class="comment">// Standard Ethereum port (default: none)</span></span><br><span class="line"> network_id: <span class="string">"*"</span>,       <span class="comment">// Any network (default: none)</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-3启动节点（-ganache-cli-）"><a href="#3-3启动节点（-ganache-cli-）" class="headerlink" title="3.3启动节点（ ganache-cli ）"></a>3.3启动节点（ ganache-cli ）</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ganache-cli</span></span><br><span class="line">Ganache CLI v6.9.1 (ganache-core: 2.10.2)</span><br><span class="line"></span><br><span class="line">Available Accounts</span><br><span class="line">==================</span><br><span class="line">(0) 0xc1a8803eAA83aCb7bf942e5cAf4284b0e2AdcDD7 (100 ETH)</span><br><span class="line">(1) 0xd188bc0a7BEE5890dcd0D59d384199520D75665D (100 ETH)</span><br><span class="line">(2) 0xC7be8b832cb3A3285803a006648Fe4dB0E0e4dD9 (100 ETH)</span><br><span class="line">(3) 0xe1F1B3C361fd5361ad131aA9BBfDef9BaC3f009C (100 ETH)</span><br><span class="line">(4) 0x2d8AfB48dA53BDFFd25B52d7f89A1455769571C7 (100 ETH)</span><br><span class="line">(5) 0x8Ce8ceF65b854A49df75D7f9DcCd2a8017E263B8 (100 ETH)</span><br><span class="line">(6) 0x87d5646Fcb48DBB8d0453104EDe3bb8b75fc75b6 (100 ETH)</span><br><span class="line">(7) 0x6B950A801d325a08Fe7d064E2D1A60A700dA0812 (100 ETH)</span><br><span class="line">(8) 0x74C29Af89F6ABD921059B3666168CD78F9144aE7 (100 ETH)</span><br><span class="line">(9) 0x96708eaE55B8D3749493b7069692E31BDc9B4465 (100 ETH)</span><br><span class="line"></span><br><span class="line">Private Keys</span><br><span class="line">==================</span><br><span class="line">(0) 0xe71b27443128f13736d4abf56be959231a495e240827fecda3e89671ddaf03c2</span><br><span class="line">(1) 0xc6d43777cce13673ffce12406437e97d85f10809704643a6b348c00cb7bbeea3</span><br><span class="line">(2) 0x9bdcbb3a51e3645c4788091f27fa33043f6a1c7ad078c654482bc04c847bd41b</span><br><span class="line">(3) 0x0978ac0611e532bac1697beca2b7494981bababc9680a0d8176df3ef8a7f9e13</span><br><span class="line">(4) 0xf0e5af8777fee7fc5aa1dff3ffac6f41f9f28a3da4abd300e9b5439b309822d3</span><br><span class="line">(5) 0x9475d9b1047e2d52be6d9ab4c0eaeba2d0ecc54a305d3e75874551d0308d83cf</span><br><span class="line">(6) 0x496a8ceed4f5c273905ade586e654c1504cbeaab61128e0197aa81bcfa0badd9</span><br><span class="line">(7) 0xea4a812229f425bcab97c684b7aade7399e35bbe3f27971ff6c4d394d862a64f</span><br><span class="line">(8) 0xba0a1f75915f771b4e24ceee2a96841e7d2f57849569b3da4d6e567b3206f278</span><br><span class="line">(9) 0x79fa9edf9864b0f90c0b0e88e69cb56eb7a01e33f07c669b82ee053bd1248d3d</span><br><span class="line"></span><br><span class="line">HD Wallet</span><br><span class="line">==================</span><br><span class="line">Mnemonic:      deputy explain stock just boat year health desk arrive double almost depend</span><br><span class="line">Base HD Path:  m/44'/60'/0'/0/&#123;account_index&#125;</span><br><span class="line"></span><br><span class="line">Gas Price</span><br><span class="line">==================</span><br><span class="line">20000000000</span><br><span class="line"></span><br><span class="line">Gas Limit</span><br><span class="line">==================</span><br><span class="line">6721975</span><br><span class="line"></span><br><span class="line">Call Gas Limit</span><br><span class="line">==================</span><br><span class="line">9007199254740991</span><br><span class="line"></span><br><span class="line">Listening on 127.0.0.1:8545</span><br></pre></td></tr></table></figure>
+
+<p> 成功之后，会给自动建立10个账户，必须先启动这个之后才能合约的编译与部署。否则部署不成功。 </p>
+<h2 id="3-4-安装项目依赖的NPM包"><a href="#3-4-安装项目依赖的NPM包" class="headerlink" title="3.4 安装项目依赖的NPM包"></a>3.4 安装项目依赖的NPM包</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line">npm WARN saveError ENOENT: no such file or directory, open 'E:\Dapp\myproject\package.json'</span><br><span class="line">npm WARN enoent ENOENT: no such file or directory, open 'E:\Dapp\myproject\package.json'</span><br><span class="line">npm WARN myproject No description</span><br><span class="line">npm WARN myproject No repository field.</span><br><span class="line">npm WARN myproject No README data</span><br><span class="line">npm WARN myproject No license field.</span><br><span class="line"></span><br><span class="line">up to date in 0.418s</span><br></pre></td></tr></table></figure>
+
+<p><strong>出错原因：</strong></p>
+<p>缺少<strong>package.json</strong>文件。</p>
+<p>解决办法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">初始化项目</span></span><br><span class="line">npm init -f</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装依赖</span></span><br><span class="line">npm install formidable --save</span><br></pre></td></tr></table></figure>
+
+<p><code>-f</code>表示force的意思，不加这个，npm会让你输入一堆信息，比如name、version之类，如果只是做做实验小demo，直接<code>-f</code>，npm帮你初始化package.json，并填充各种默认值，省事。</p>
+<p><code>--save</code>表示将安装的包加入依赖列表的意思，可以看下package.json 里的<code>dependencies</code>字段。后面再运行 <code>npm install</code>，就会把所有依赖安装下来。如果不加<code>--save</code>，什么都不会安装。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">npm init -f</span><br><span class="line">npm WARN using --force I sure hope you know what you are doing.</span><br><span class="line">Wrote to E:\Dapp\myproject\package.json:</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  "name": "myproject",</span><br><span class="line">  "version": "1.0.0",</span><br><span class="line">  "description": "",</span><br><span class="line">  "main": "truffle-config.js",</span><br><span class="line">  "directories": &#123;</span><br><span class="line">    "test": "test"</span><br><span class="line">  &#125;,</span><br><span class="line">  "scripts": &#123;</span><br><span class="line">    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1"</span><br><span class="line">  &#125;,</span><br><span class="line">  "keywords": [],</span><br><span class="line">  "author": "",</span><br><span class="line">  "license": "ISC"</span><br><span class="line">  </span><br><span class="line">npm install formidable --save</span><br><span class="line">npm WARN myproject@1.0.0 No description</span><br><span class="line">npm WARN myproject@1.0.0 No repository field.</span><br><span class="line"></span><br><span class="line">+ formidable@1.2.1</span><br><span class="line">added 1 package in 0.438s</span><br></pre></td></tr></table></figure>
+
+<p><strong>错误描述：</strong></p>
+<p>缺少描述、缺少仓库。</p>
+<p><strong>解决办法：</strong></p>
+<p>修改package.内容如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"myproject"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"description"</span>: <span class="string">"my first project"</span>,</span><br><span class="line">  <span class="attr">"main"</span>: <span class="string">"truffle-config.js"</span>,</span><br><span class="line">  <span class="attr">"directories"</span>: &#123;</span><br><span class="line">    <span class="attr">"test"</span>: <span class="string">"test"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"keywords"</span>: [],</span><br><span class="line">  <span class="attr">"author"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"license"</span>: <span class="string">"ISC"</span>,</span><br><span class="line">  <span class="attr">"private"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"formidable"</span>: <span class="string">"^1.2.1"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install formidable --save</span><br><span class="line">+ formidable@1.2.1</span><br><span class="line">updated 1 package in 0.353s</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-5编译合约（truffle-compile）"><a href="#3-5编译合约（truffle-compile）" class="headerlink" title="3.5编译合约（truffle compile）"></a>3.5编译合约（truffle compile）</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">E:\Dapp\myproject&gt;truffle compile</span><br><span class="line"></span><br><span class="line">Compiling your contracts...</span><br><span class="line">===========================</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Compiling .\contracts\ConvertLib.sol</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Compiling .\contracts\MetaCoin.sol</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Compiling .\contracts\Migrations.sol</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Artifacts written to E:\Dapp\myproject\build\contracts</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Compiled successfully using:</span></span><br><span class="line">   - solc: 0.5.16+commit.9c3226ce.Emscripten.clang</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-6部署合约（truffle-migrate）"><a href="#3-6部署合约（truffle-migrate）" class="headerlink" title="3.6部署合约（truffle migrate）"></a>3.6部署合约（truffle migrate）</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">E:\Dapp\myproject&gt;truffle migrate</span><br><span class="line"></span><br><span class="line">Compiling your contracts...</span><br><span class="line">===========================</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Compiling .\contracts\ConvertLib.sol</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Compiling .\contracts\MetaCoin.sol</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Compiling .\contracts\Migrations.sol</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Artifacts written to E:\Dapp\myproject\build\contracts</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Compiled successfully using:</span></span><br><span class="line">   - solc: 0.5.16+commit.9c3226ce.Emscripten.clang</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Starting migrations...</span><br><span class="line">======================</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Network name:    <span class="string">'development'</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Network id:      1582444858253</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Block gas <span class="built_in">limit</span>: 0x6691b7</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1_initial_migration.js</span><br><span class="line">======================</span><br><span class="line"></span><br><span class="line">   Deploying 'Migrations'</span><br><span class="line">   ----------------------</span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> transaction <span class="built_in">hash</span>:    0xe0b8512e708ca45c8b2e7237f689f61f658b4075f149f76cb8c842363f848af0</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> Blocks: 0            Seconds: 0</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> contract address:    0x9A73F98453dF48993F7a252C1e7810C05C976891</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> block number:        1</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> block timestamp:     1582446022</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> account:             0xc1a8803eAA83aCb7bf942e5cAf4284b0e2AdcDD7</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> balance:             99.9967165</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> gas used:            164175</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> gas price:           20 gwei</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> value sent:          0 ETH</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> total cost:          0.0032835 ETH</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> Saving migration to chain.</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> Saving artifacts</span></span><br><span class="line">   -------------------------------------</span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> Total cost:           0.0032835 ETH</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2_deploy_contracts.js</span><br><span class="line">=====================</span><br><span class="line"></span><br><span class="line">   Deploying 'ConvertLib'</span><br><span class="line">   ----------------------</span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> transaction <span class="built_in">hash</span>:    0xb5e1469996cbd6f1592edce0d68c9661abb9c6d47d1b9af3b9121e7273c4c987</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> Blocks: 0            Seconds: 0</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> contract address:    0xe8b65D954EC3dB61A068184DAFAEcc7a4Ce3784E</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> block number:        3</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> block timestamp:     1582446023</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> account:             0xc1a8803eAA83aCb7bf942e5cAf4284b0e2AdcDD7</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> balance:             99.99396028</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> gas used:            95470</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> gas price:           20 gwei</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> value sent:          0 ETH</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> total cost:          0.0019094 ETH</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   Linking</span><br><span class="line">   -------</span><br><span class="line">   * Contract: MetaCoin &lt;--&gt; Library: ConvertLib (at address: 0xe8b65D954EC3dB61A068184DAFAEcc7a4Ce3784E)</span><br><span class="line"></span><br><span class="line">   Deploying 'MetaCoin'</span><br><span class="line">   --------------------</span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> transaction <span class="built_in">hash</span>:    0x411669a9e6bb3c8986d411433ce92e4c2a89228069221b2d2f25efe01764bc9b</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> Blocks: 0            Seconds: 0</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> contract address:    0xC0B8C2A1384b4bacE94FA448B7cA1fD01C012f68</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> block number:        4</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> block timestamp:     1582446023</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> account:             0xc1a8803eAA83aCb7bf942e5cAf4284b0e2AdcDD7</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> balance:             99.98822898</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> gas used:            286565</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> gas price:           20 gwei</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> value sent:          0 ETH</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> total cost:          0.0057313 ETH</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> Saving migration to chain.</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> Saving artifacts</span></span><br><span class="line">   -------------------------------------</span><br><span class="line"><span class="meta">   &gt;</span><span class="bash"> Total cost:           0.0076407 ETH</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Summary</span><br><span class="line">=======</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Total deployments:   3</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Final cost:          0.0109242 ETH</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-7启动Dapp（npm-run-dev）"><a href="#3-7启动Dapp（npm-run-dev）" class="headerlink" title="3.7启动Dapp（npm run dev）"></a>3.7启动Dapp（npm run dev）</h2><p><strong>注意：</strong>需要在app目录下执行，或者在当前目录执行cd app &amp;&amp; npm run dev</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br><span class="line">npm ERR! missing script: dev</span><br><span class="line"></span><br><span class="line">npm ERR! A complete log of this run can be found in:</span><br><span class="line">npm ERR!     C:\Users\12173\AppData\Roaming\npm-cache\_logs\2020-02-23T08_21_47_877Z-debug.log</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">E:\Dapp\webpacktest\app&gt;npm run dev</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> app@1.0.0 dev E:\Dapp\webpacktest\app</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> webpack-dev-server</span></span><br><span class="line"></span><br><span class="line">i ｢wds｣: Project is running at http://localhost:8080/</span><br><span class="line">i ｢wds｣: webpack output is served from /</span><br><span class="line">i ｢wds｣: Content not from webpack is served from E:\Dapp\webpacktest\app\dist</span><br><span class="line">× ｢wdm｣: Hash: 438dc1a71410c6fb5b06</span><br><span class="line">Version: webpack 4.41.2</span><br><span class="line">Time: 1794ms</span><br><span class="line">Built at: 2020-02-23 16:52:17</span><br><span class="line">     Asset       Size  Chunks             Chunk Names</span><br><span class="line">index.html  879 bytes          [emitted]</span><br><span class="line">  index.js   2.37 MiB    main  [emitted]  main</span><br><span class="line">Entrypoint main = index.js</span><br><span class="line">[0] multi (webpack)-dev-server/client?http://localhost:8080 ./src/index.js 40 bytes &#123;main&#125; [built]</span><br><span class="line">[./node_modules/ansi-html/index.js] 4.16 KiB &#123;main&#125; [built]</span><br><span class="line">[./node_modules/html-entities/index.js] 231 bytes &#123;main&#125; [built]</span><br><span class="line">[./node_modules/loglevel/lib/loglevel.js] 8.36 KiB &#123;main&#125; [built]</span><br><span class="line">[./node_modules/web3/src/index.js] 2.01 KiB &#123;main&#125; [built]</span><br><span class="line">[./node_modules/webpack-dev-server/client/index.js?http://localhost:8080] (webpack)-dev-server/client?http://localhost:8080 4.29 KiB &#123;main&#125; [built]</span><br><span class="line">[./node_modules/webpack-dev-server/client/overlay.js] (webpack)-dev-server/client/overlay.js 3.51 KiB &#123;main&#125; [built]</span><br><span class="line">[./node_modules/webpack-dev-server/client/socket.js] (webpack)-dev-server/client/socket.js 1.53 KiB &#123;main&#125; [built]</span><br><span class="line">[./node_modules/webpack-dev-server/client/utils/createSocketUrl.js] (webpack)-dev-server/client/utils/createSocketUrl.js 2.89 KiB &#123;main&#125; [built]</span><br><span class="line">[./node_modules/webpack-dev-server/client/utils/log.js] (webpack)-dev-server/client/utils/log.js 964 bytes &#123;main&#125; [built]</span><br><span class="line">[./node_modules/webpack-dev-server/client/utils/reloadApp.js] (webpack)-dev-server/client/utils/reloadApp.js 1.59 KiB &#123;main&#125; [built]</span><br><span class="line">[./node_modules/webpack-dev-server/client/utils/sendMessage.js] (webpack)-dev-server/client/utils/sendMessage.js 402 bytes &#123;main&#125; [built]</span><br><span class="line">[./node_modules/webpack-dev-server/node_modules/strip-ansi/index.js] (webpack)-dev-server/node_modules/strip-ansi/index.js 161 bytes &#123;main&#125; [built]</span><br><span class="line">[./node_modules/webpack/hot sync ^\.\/log$] (webpack)/hot sync nonrecursive ^\.\/log$ 170 bytes &#123;main&#125; [built]</span><br><span class="line">[./src/index.js] 2.08 KiB &#123;main&#125; [built]</span><br><span class="line">    + 349 hidden modules</span><br><span class="line"></span><br><span class="line">ERROR in ./src/index.js</span><br><span class="line">Module not found: Error: Can't resolve '../../build/contracts/MetaCoin.json' in 'E:\Dapp\webpacktest\app\src'</span><br><span class="line"> @ ./src/index.js 2:0-67 15:30-46 17:8-24</span><br><span class="line">i ｢wdm｣: Failed to compile.</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<p><img src="https://s2.ax1x.com/2020/02/23/3188K0.png" alt="3188K0.png"></p>
+
+    </div>
+
+    
+    
+    
+      
+        <div class="reward-container">
+  <div>您的支持是我继续创作的动力</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="李松柏 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="李松柏 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>李松柏
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lisongbai.top/2020/02/23/windows10%E6%90%AD%E5%BB%BAtruffle%E5%8F%8A%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="windows10搭建truffle及出现问题的解决方案">http://lisongbai.top/2020/02/23/windows10%E6%90%AD%E5%BB%BAtruffle%E5%8F%8A%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/truffle/" rel="tag"># truffle</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/02/22/SpringBoot-logging%E9%85%8D%E7%BD%AE/" rel="next" title="SpringBoot-logging配置">
+                  <i class="fa fa-chevron-left"></i> SpringBoot-logging配置
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-disqus">disqus</a></li>
+            <li class="tab"><a href="#comment-livere">livere</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane disqus" id="comment-disqus">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+            <div class="tab-pane livere" id="comment-livere">
+              
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzY2MC8yNDE1OA=="></div>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+      <script>
+        window.addEventListener('tabs:register', () => {
+          let activeClass = '';
+            activeClass = localStorage.getItem('comments_active') || activeClass;
+          if (activeClass) {
+            let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+            if (activeTab) {
+              activeTab.click();
+            }
+          }
+        });
+        window.addEventListener('tabs:click', event => {
+          let commentClass = event.target.classList[1];
+          localStorage.setItem('comments_active', commentClass);
+        });
+      </script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-版本信息"><span class="nav-number">1.</span> <span class="nav-text">1.版本信息</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-node"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 node</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-npm"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 npm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-git"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-安装ganache-cli节点仿真器"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 安装ganache-cli节点仿真器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-1-简介"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.4.1 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-2-安装"><span class="nav-number">1.4.2.</span> <span class="nav-text">1.4.2 安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-安装solidity编译器"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 安装solidity编译器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-1-简介"><span class="nav-number">1.5.1.</span> <span class="nav-text">1.5.1 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-2-安装"><span class="nav-number">1.5.2.</span> <span class="nav-text">1.5.2 安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-Web3"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 Web3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-1-简介"><span class="nav-number">1.6.1.</span> <span class="nav-text">1.6.1 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-2-安装"><span class="nav-number">1.6.2.</span> <span class="nav-text">1.6.2 安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-Truffle"><span class="nav-number">1.7.</span> <span class="nav-text">1.7 Truffle</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-1-简介"><span class="nav-number">1.7.1.</span> <span class="nav-text">1.7.1 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-2-安装"><span class="nav-number">1.7.2.</span> <span class="nav-text">1.7.2 安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-8webpack"><span class="nav-number">1.8.</span> <span class="nav-text">1.8webpack</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-1简介"><span class="nav-number">1.8.1.</span> <span class="nav-text">1.8.1简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-2安装"><span class="nav-number">1.8.2.</span> <span class="nav-text">1.8.2安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-相关知识"><span class="nav-number">2.</span> <span class="nav-text">2.相关知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Truffle与web3初始"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Truffle与web3初始</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Truffle项目构建"><span class="nav-number">3.</span> <span class="nav-text">3. Truffle项目构建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1初始化项目（truffle-unbox-webpack）"><span class="nav-number">3.1.</span> <span class="nav-text">3.1初始化项目（truffle unbox webpack）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-修改truffle配置"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 修改truffle配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3启动节点（-ganache-cli-）"><span class="nav-number">3.3.</span> <span class="nav-text">3.3启动节点（ ganache-cli ）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-安装项目依赖的NPM包"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 安装项目依赖的NPM包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5编译合约（truffle-compile）"><span class="nav-number">3.5.</span> <span class="nav-text">3.5编译合约（truffle compile）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6部署合约（truffle-migrate）"><span class="nav-number">3.6.</span> <span class="nav-text">3.6部署合约（truffle migrate）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7启动Dapp（npm-run-dev）"><span class="nav-number">3.7.</span> <span class="nav-text">3.7启动Dapp（npm run dev）</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="李松柏"
+    src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">李松柏</p>
+  <div class="site-description" itemprop="description">记录学习的技能和遇到的问题</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yym08090809" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;yym08090809" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:songbai0112@163.com" title="E-Mail &amp;rarr; mailto:songbai0112@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李松柏</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.2
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': '',
+            'X-LC-Key': '',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+        if (localhost.test(document.URL)) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://visitor.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "http://lisongbai.top/2020/02/23/windows10%E6%90%AD%E5%BB%BAtruffle%E5%8F%8A%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/",
+            identifier: "2020/02/23/windows10搭建truffle及出现问题的解决方案/",
+            title: "windows10搭建truffle及出现问题的解决方案"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://visitor.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
+
+<script>
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+ 
+</body>
+</html>
