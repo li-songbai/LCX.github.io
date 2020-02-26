@@ -52,21 +52,20 @@
   };
 </script>
 
-  <meta name="description" content="椭圆曲线密码系统一个简单的RAS算法​        RAS密码系统最让人头疼的问题就是，在加解密或者签名的时候需要庞大的运算量，所需较长的运算时间。对于一些处理器不强大的设备，比如手机、PDA（Personal Digital Assistant）或者及时响应的系统不友好。因此有了椭圆曲线密码系统（ECC）。ECC运算量较少，因此能提高效率。">
+  <meta name="description" content="1.JUC（java.util.concurrent）高并发、并行问题1.1java.util.concurrent.atomic1.1.1Class AtomicIntefger原子引用1.你对volatile的理解？ volatile是java虚拟机提供的轻量级的同步机制。有三大特性：  保证可见性。 代码验证： 1234567891011121314151617181920212223242">
 <meta property="og:type" content="article">
-<meta property="og:title" content="椭圆曲线密码学系统">
-<meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2020&#x2F;02&#x2F;11&#x2F;%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E5%AF%86%E7%A0%81%E5%AD%A6%E7%B3%BB%E7%BB%9F&#x2F;index.html">
+<meta property="og:title" content="JUC&#x2F;GC">
+<meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2020&#x2F;02&#x2F;25&#x2F;JUC-GC&#x2F;index.html">
 <meta property="og:site_name" content="小李の博客">
-<meta property="og:description" content="椭圆曲线密码系统一个简单的RAS算法​        RAS密码系统最让人头疼的问题就是，在加解密或者签名的时候需要庞大的运算量，所需较长的运算时间。对于一些处理器不强大的设备，比如手机、PDA（Personal Digital Assistant）或者及时响应的系统不友好。因此有了椭圆曲线密码系统（ECC）。ECC运算量较少，因此能提高效率。">
+<meta property="og:description" content="1.JUC（java.util.concurrent）高并发、并行问题1.1java.util.concurrent.atomic1.1.1Class AtomicIntefger原子引用1.你对volatile的理解？ volatile是java虚拟机提供的轻量级的同步机制。有三大特性：  保证可见性。 代码验证： 1234567891011121314151617181920212223242">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;MQLB59.md.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;Ml3d1J.md.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;MltcSU.png">
-<meta property="og:updated_time" content="2019-11-11T14:40:40.076Z">
+<meta property="og:image" content="c:%5CUsers%5C12173%5CDesktop%5Cimage%5CJMM01.png">
+<meta property="og:image" content="c:%5CUsers%5C12173%5CDesktop%5Cimage%5CJMM.png">
+<meta property="og:updated_time" content="2020-02-25T11:24:27.952Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;MQLB59.md.png">
+<meta name="twitter:image" content="c:%5CUsers%5C12173%5CDesktop%5Cimage%5CJMM01.png">
 
-<link rel="canonical" href="http://lisongbai.top/2020/02/11/%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E5%AF%86%E7%A0%81%E5%AD%A6%E7%B3%BB%E7%BB%9F/">
+<link rel="canonical" href="http://lisongbai.top/2020/02/25/JUC-GC/">
 
 
 <script id="page-configurations">
@@ -80,7 +79,7 @@
   };
 </script>
 
-  <title>椭圆曲线密码学系统 | 小李の博客</title>
+  <title>JUC/GC | 小李の博客</title>
   
 
 
@@ -223,7 +222,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/02/11/%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E5%AF%86%E7%A0%81%E5%AD%A6%E7%B3%BB%E7%BB%9F/">
+    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/02/25/JUC-GC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -236,7 +235,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          椭圆曲线密码学系统
+          JUC/GC
         </h1>
 
         <div class="post-meta">
@@ -245,19 +244,13 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-02-11 16:58:36" itemprop="dateCreated datePublished" datetime="2020-02-11T16:58:36+08:00">2020-02-11</time>
+              <time title="创建时间：2020-02-25 15:07:17 / 修改时间：19:24:27" itemprop="dateCreated datePublished" datetime="2020-02-25T15:07:17+08:00">2020-02-25</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-11 22:40:40" itemprop="dateModified" datetime="2019-11-11T22:40:40+08:00">2019-11-11</time>
-              </span>
 
           
-            <span id="/2020/02/11/%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E5%AF%86%E7%A0%81%E5%AD%A6%E7%B3%BB%E7%BB%9F/" class="post-meta-item leancloud_visitors" data-flag-title="椭圆曲线密码学系统" title="阅读次数">
+            <span id="/2020/02/25/JUC-GC/" class="post-meta-item leancloud_visitors" data-flag-title="JUC/GC" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -279,8 +272,8 @@
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/2020/02/11/%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E5%AF%86%E7%A0%81%E5%AD%A6%E7%B3%BB%E7%BB%9F/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/02/11/椭圆曲线密码学系统/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2020/02/25/JUC-GC/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/02/25/JUC-GC/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -295,32 +288,34 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="椭圆曲线密码系统"><a href="#椭圆曲线密码系统" class="headerlink" title="椭圆曲线密码系统"></a>椭圆曲线密码系统</h1><h2 id="一个简单的RAS算法"><a href="#一个简单的RAS算法" class="headerlink" title="一个简单的RAS算法"></a>一个简单的RAS算法</h2><p>​        RAS密码系统最让人头疼的问题就是，在加解密或者签名的时候需要庞大的运算量，所需较长的运算时间。对于一些处理器不强大的设备，比如手机、PDA（Personal Digital Assistant）或者及时响应的系统不友好。因此有了椭圆曲线密码系统（ECC）。ECC运算量较少，因此能提高效率。</p><a id="more"></a>
-<h2 id="椭圆曲线的加法概念"><a href="#椭圆曲线的加法概念" class="headerlink" title="椭圆曲线的加法概念"></a>椭圆曲线的加法概念</h2><p><strong>中心思想：</strong></p>
-<p>​        椭圆曲线的密码系统主要是利用椭圆曲线所构成的有限群来代替传统的RSA或ElGamal所使用的有限群，这里所使用的椭圆曲线方程式可以简化为 :<br>$$<br>y^2=x^3+ax+b<br>$$<br>它的曲线恰好对称于y=0这条直线，但在决定参数a、b时，必须让曲线没有重根（如此才能确保唯一解），因此a和b必须满足：<br>$$<br>4a^3+27b^2!=0<br>$$<br>​        决定参数a和b后，就可以在椭圆曲线上定义出一个有限加法群，这个加法与一般的加法不同，它的几何概念时令其加法单位元素为一无穷远的点O，且O=-O，并且此加法单位元素要满足：若椭圆曲线上某三点共线的话，其和就等于O。</p>
-<p>​        椭圆曲线的加法运算是将椭圆曲线上两个坐标点相加，依坐标点的位置不同共有共有以下几种情况，其加法的过程都要满足3点共线时其和为O的这一项要求。</p>
+        <h1 id="1-JUC（java-util-concurrent）"><a href="#1-JUC（java-util-concurrent）" class="headerlink" title="1.JUC（java.util.concurrent）"></a>1.JUC（java.util.concurrent）</h1><p>高并发、并行问题</p><h2 id="1-1java-util-concurrent-atomic"><a href="#1-1java-util-concurrent-atomic" class="headerlink" title="1.1java.util.concurrent.atomic"></a>1.1java.util.concurrent.atomic</h2><h3 id="1-1-1Class-AtomicIntefger"><a href="#1-1-1Class-AtomicIntefger" class="headerlink" title="1.1.1Class AtomicIntefger"></a>1.1.1Class AtomicIntefger</h3><p>原子引用</p><p>1.你对volatile的理解？</p><ul>
+<li><p>volatile是java虚拟机提供的轻量级的同步机制。有三大特性：</p>
 <ul>
-<li><h3 id="椭圆曲线上的不同坐标点相加"><a href="#椭圆曲线上的不同坐标点相加" class="headerlink" title="椭圆曲线上的不同坐标点相加"></a>椭圆曲线上的不同坐标点相加</h3><p>A、B为椭圆曲线上的不同点，将两个坐标相加，其做法如下：</p>
-<p>&lt;1&gt;.先找出A与B这两点所构成的直线。</p>
-<p>&lt;2&gt;.接着找出这条直线与椭圆曲线的交点R。</p>
-<p>&lt;3&gt;.由于A、B、R这三点共线，根据椭圆曲线加法定义可知A+B+R=O,因此可求得A+B=-R，这里-R表示坐标点R对y=0这条直线的影射，也就是R对称于y轴的坐标点（如下图所示）。</p>
-<p><a href="https://imgchr.com/i/MQLB59" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/11/11/MQLB59.md.png" alt="MQLB59.md.png"></a></p>
+<li><p>保证可见性。</p>
+<p>代码验证：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lcx;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyData</span></span>&#123;</span><br><span class="line">    <span class="comment">//int number = 0;</span></span><br><span class="line">    <span class="comment">//volatile 实现了线程的可见性 及一个线程将拷贝的值修改后刷回修改了主内存的值，对其他线程可见。</span></span><br><span class="line">    <span class="keyword">volatile</span> <span class="keyword">int</span> number = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addTo60</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.number = <span class="number">60</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1. 验证volatile的可见性</span></span><br><span class="line"><span class="comment"> * 1.1 假如 int number = 0；number变量之前没加volatile关键字修饰</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VolatileTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        MyData myData = <span class="keyword">new</span> MyData();<span class="comment">//资源类</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">"\t come in"</span>);</span><br><span class="line">            <span class="comment">//暂停线程</span></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                TimeUnit.SECONDS.sleep(<span class="number">3</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            myData.addTo60();</span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">"\t update number value:"</span>+myData.number);</span><br><span class="line">        &#125;,<span class="string">"AAA"</span>).start();</span><br><span class="line">        <span class="comment">//第二个线程是main线程</span></span><br><span class="line">        <span class="keyword">while</span> (myData.number == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="comment">//main线程等待，直到number值不为0</span></span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread().getName()+<span class="string">"\t mission is over"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><h3 id="椭圆曲线上相同坐标点相加"><a href="#椭圆曲线上相同坐标点相加" class="headerlink" title="椭圆曲线上相同坐标点相加"></a>椭圆曲线上相同坐标点相加</h3><p>若椭圆曲线上的相同点做相加，其做法如下：</p>
-<p>&lt;1&gt;.找出A点在椭圆曲线上的切线。</p>
-<p>&lt;2&gt;.找出这条切线与椭圆曲线的交点R。</p>
-<p>&lt;3&gt;.可以看成A、A、R这三点共线，根据椭圆曲线加法的定义可知A+A+R=O，因此A+A=-R(如下图所示)。</p>
-<p><a href="https://imgchr.com/i/Ml3d1J" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/11/11/Ml3d1J.md.png" alt="Ml3d1J.md.png"></a></p>
-</li>
-<li><h3 id="椭圆曲线上一坐标点与无穷远点相加"><a href="#椭圆曲线上一坐标点与无穷远点相加" class="headerlink" title="椭圆曲线上一坐标点与无穷远点相加"></a>椭圆曲线上一坐标点与无穷远点相加</h3><p>第三种状况是椭圆曲线上一A点与无穷远点做相加，其几何概念如下图所示：</p>
-<p><img src="https://s2.ax1x.com/2019/11/11/MltcSU.png" alt="MltcSU.png"></p>
-<p>把无穷远点视为y轴上一个正向极远的点，依据定义此无穷远的点就是O。此无穷远点与A点所构成的直线，可视为一条垂直线。因此，此垂直线与椭圆曲线会相交于另一点R，因此可求得A+oo=-R，而R与A刚好互为y轴的对称点（A=-R），故A+oo=A。</p>
+<li><p>不保证原子性。</p>
 </li>
 </ul>
+</li>
+</ul><a id="more"></a>
+
+
+
 <ul>
-<li><h3 id="椭圆曲线上两对称点相加"><a href="#椭圆曲线上两对称点相加" class="headerlink" title="椭圆曲线上两对称点相加"></a>椭圆曲线上两对称点相加</h3></li>
+<li>禁止指令重排。</li>
 </ul>
-<h2 id="在有限体内的椭圆曲线运算"><a href="#在有限体内的椭圆曲线运算" class="headerlink" title="在有限体内的椭圆曲线运算"></a>在有限体内的椭圆曲线运算</h2><h2 id="椭圆曲线的公开密钥加密机制"><a href="#椭圆曲线的公开密钥加密机制" class="headerlink" title="椭圆曲线的公开密钥加密机制"></a>椭圆曲线的公开密钥加密机制</h2><h2 id="椭圆曲线的数字签名"><a href="#椭圆曲线的数字签名" class="headerlink" title="椭圆曲线的数字签名"></a>椭圆曲线的数字签名</h2><p>​    </p>
+<ul>
+<li>JVM（java虚拟机）</li>
+</ul>
+<ul>
+<li><p>JMM（java内存模型）</p>
+<p><img src="C:%5CUsers%5C12173%5CDesktop%5Cimage%5CJMM01.png" alt="JMM"></p>
+<p><img src="C:%5CUsers%5C12173%5CDesktop%5Cimage%5CJMM.png" alt="JMM"></p>
+<p>JMM三大特性：可见性、原子性、有序性。</p>
+</li>
+</ul>
 
     </div>
 
@@ -357,7 +352,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://lisongbai.top/2020/02/11/%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E5%AF%86%E7%A0%81%E5%AD%A6%E7%B3%BB%E7%BB%9F/" title="椭圆曲线密码学系统">http://lisongbai.top/2020/02/11/%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E5%AF%86%E7%A0%81%E5%AD%A6%E7%B3%BB%E7%BB%9F/</a>
+    <a href="http://lisongbai.top/2020/02/25/JUC-GC/" title="JUC&#x2F;GC">http://lisongbai.top/2020/02/25/JUC-GC/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -372,17 +367,14 @@
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2020/02/11/Markdown%E8%BF%9B%E9%98%B6%E8%AF%AD%E6%B3%95/" rel="next" title="Markdown进阶语法">
-                  <i class="fa fa-chevron-left"></i> Markdown进阶语法
+                <a href="/2020/02/24/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4%E8%AF%BE%E5%90%8E%E4%BD%9C%E4%B8%9A/" rel="next" title="网络管理与维护课后作业">
+                  <i class="fa fa-chevron-left"></i> 网络管理与维护课后作业
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2020/02/11/%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%89%91%E6%8C%87/" rel="prev" title="牛客在线编程之剑指">
-                  牛客在线编程之剑指 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -461,7 +453,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#椭圆曲线密码系统"><span class="nav-number">1.</span> <span class="nav-text">椭圆曲线密码系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一个简单的RAS算法"><span class="nav-number">1.1.</span> <span class="nav-text">一个简单的RAS算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#椭圆曲线的加法概念"><span class="nav-number">1.2.</span> <span class="nav-text">椭圆曲线的加法概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#椭圆曲线上的不同坐标点相加"><span class="nav-number">1.2.1.</span> <span class="nav-text">椭圆曲线上的不同坐标点相加</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#椭圆曲线上相同坐标点相加"><span class="nav-number">1.2.2.</span> <span class="nav-text">椭圆曲线上相同坐标点相加</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#椭圆曲线上一坐标点与无穷远点相加"><span class="nav-number">1.2.3.</span> <span class="nav-text">椭圆曲线上一坐标点与无穷远点相加</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#椭圆曲线上两对称点相加"><span class="nav-number">1.2.4.</span> <span class="nav-text">椭圆曲线上两对称点相加</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在有限体内的椭圆曲线运算"><span class="nav-number">1.3.</span> <span class="nav-text">在有限体内的椭圆曲线运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#椭圆曲线的公开密钥加密机制"><span class="nav-number">1.4.</span> <span class="nav-text">椭圆曲线的公开密钥加密机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#椭圆曲线的数字签名"><span class="nav-number">1.5.</span> <span class="nav-text">椭圆曲线的数字签名</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-JUC（java-util-concurrent）"><span class="nav-number">1.</span> <span class="nav-text">1.JUC（java.util.concurrent）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1java-util-concurrent-atomic"><span class="nav-number">1.1.</span> <span class="nav-text">1.1java.util.concurrent.atomic</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1Class-AtomicIntefger"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.1Class AtomicIntefger</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -723,9 +715,9 @@
       DISQUS.reset({
         reload: true,
         config: {page: {
-            url: "http://lisongbai.top/2020/02/11/%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E5%AF%86%E7%A0%81%E5%AD%A6%E7%B3%BB%E7%BB%9F/",
-            identifier: "2020/02/11/椭圆曲线密码学系统/",
-            title: "椭圆曲线密码学系统"
+            url: "http://lisongbai.top/2020/02/25/JUC-GC/",
+            identifier: "2020/02/25/JUC-GC/",
+            title: "JUC/GC"
           }
         }
       });

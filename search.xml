@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>JUC/GC</title>
+    <url>/2020/02/25/JUC-GC/</url>
+    <content><![CDATA[<h1 id="1-JUC（java-util-concurrent）"><a href="#1-JUC（java-util-concurrent）" class="headerlink" title="1.JUC（java.util.concurrent）"></a>1.JUC（java.util.concurrent）</h1><p>高并发、并行问题</p><h2 id="1-1java-util-concurrent-atomic"><a href="#1-1java-util-concurrent-atomic" class="headerlink" title="1.1java.util.concurrent.atomic"></a>1.1java.util.concurrent.atomic</h2><h3 id="1-1-1Class-AtomicIntefger"><a href="#1-1-1Class-AtomicIntefger" class="headerlink" title="1.1.1Class AtomicIntefger"></a>1.1.1Class AtomicIntefger</h3><p>原子引用</p><p>1.你对volatile的理解？</p><ul>
+<li><p>volatile是java虚拟机提供的轻量级的同步机制。有三大特性：</p>
+<ul>
+<li><p>保证可见性。</p>
+<p>代码验证：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lcx;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyData</span></span>&#123;</span><br><span class="line">    <span class="comment">//int number = 0;</span></span><br><span class="line">    <span class="comment">//volatile 实现了线程的可见性 及一个线程将拷贝的值修改后刷回修改了主内存的值，对其他线程可见。</span></span><br><span class="line">    <span class="keyword">volatile</span> <span class="keyword">int</span> number = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addTo60</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.number = <span class="number">60</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1. 验证volatile的可见性</span></span><br><span class="line"><span class="comment"> * 1.1 假如 int number = 0；number变量之前没加volatile关键字修饰</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VolatileTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        MyData myData = <span class="keyword">new</span> MyData();<span class="comment">//资源类</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">"\t come in"</span>);</span><br><span class="line">            <span class="comment">//暂停线程</span></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                TimeUnit.SECONDS.sleep(<span class="number">3</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            myData.addTo60();</span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">"\t update number value:"</span>+myData.number);</span><br><span class="line">        &#125;,<span class="string">"AAA"</span>).start();</span><br><span class="line">        <span class="comment">//第二个线程是main线程</span></span><br><span class="line">        <span class="keyword">while</span> (myData.number == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="comment">//main线程等待，直到number值不为0</span></span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread().getName()+<span class="string">"\t mission is over"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>不保证原子性。</p>
+</li>
+</ul>
+</li>
+</ul><a id="more"></a>
+
+
+
+<ul>
+<li>禁止指令重排。</li>
+</ul>
+<ul>
+<li>JVM（java虚拟机）</li>
+</ul>
+<ul>
+<li><p>JMM（java内存模型）</p>
+<p><img src="C:%5CUsers%5C12173%5CDesktop%5Cimage%5CJMM01.png" alt="JMM"></p>
+<p><img src="C:%5CUsers%5C12173%5CDesktop%5Cimage%5CJMM.png" alt="JMM"></p>
+<p>JMM三大特性：可见性、原子性、有序性。</p>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>网络管理与维护课后作业</title>
     <url>/2020/02/24/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4%E8%AF%BE%E5%90%8E%E4%BD%9C%E4%B8%9A/</url>
     <content><![CDATA[<h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><p><strong>2.网络管理的对象有哪些？举例说明。</strong></p><p>网络管理对象典型地分为以下 2 类： </p><p>⑴ 网络上的结点设备。</p><p>如计算机网络中 的主机、网关、路由器、交换机、服务器、存储设备，提供电话业务的交换</p><p>机、提供移动电 话业务的移动交换机、提供卫星通信业务的转发器等</p><p>⑵ 网络中的软件、服务以及事件。</p><p>软件资源主要包括操作系统、应用软件和通信软件等。</p><a id="more"></a>
@@ -158,6 +191,150 @@
 
 <p>运行结果如下：</p>
 <p><img src="https://s2.ax1x.com/2020/02/23/3188K0.png" alt="3188K0.png"></p>
+<p>注：<strong>从3.3以后的操作都在项目工程的app目录下进行</strong></p>
+<h1 id="4-以太坊宠物商店‘"><a href="#4-以太坊宠物商店‘" class="headerlink" title="4. 以太坊宠物商店‘"></a>4. 以太坊宠物商店‘</h1><h2 id="4-1初始化项目（truffle-unbox-pet-shop）"><a href="#4-1初始化项目（truffle-unbox-pet-shop）" class="headerlink" title="4.1初始化项目（truffle unbox pet-shop）"></a>4.1初始化项目（truffle unbox pet-shop）</h2><p>在指定目录下执行<strong>truffle unbox pet-shop</strong>命令初始化项目。生成目录如下：</p>
+<p><img src="https://s2.ax1x.com/2020/02/26/3NA3DS.png" alt="pet-shop.png"></p>
+<h2 id="4-2编写智能合约"><a href="#4-2编写智能合约" class="headerlink" title="4.2编写智能合约"></a>4.2编写智能合约</h2><p>在contracts目录下创建新合约文件<strong>Adoption.sol</strong>内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pragma solidity &gt;=0.4.21 &lt;0.7.0;</span><br><span class="line"></span><br><span class="line">contract Adoption &#123;</span><br><span class="line">	//定义变量 数组类型的 adopters   保存领养者地址</span><br><span class="line">	address[16] public adopters;</span><br><span class="line">	</span><br><span class="line">	// 定义方法  </span><br><span class="line">	//Adopting a pet 领养宠物</span><br><span class="line">	function adopt(uint petId) public returns (uint) &#123;</span><br><span class="line">		require(petId &gt;= 0 &amp;&amp; petId &lt;= 15);</span><br><span class="line"></span><br><span class="line">		adopters[petId] = msg.sender;</span><br><span class="line"></span><br><span class="line">	return petId;</span><br><span class="line">	&#125;</span><br><span class="line">	// Retrieving the adopters  检索领养者</span><br><span class="line">	function getAdopters() public view returns (address[16] memory) &#123;</span><br><span class="line">		return adopters;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-3编译和迁移智能合约"><a href="#4-3编译和迁移智能合约" class="headerlink" title="4.3编译和迁移智能合约"></a>4.3编译和迁移智能合约</h2><h3 id="4-3-1汇编"><a href="#4-3-1汇编" class="headerlink" title="4.3.1汇编"></a>4.3.1汇编</h3><p>Solidity是一种编译语言，这意味着我们需要将Solidity编译为字节代码，以供以太坊虚拟机（EVM）执行。将其视为将人类可读的Solidity转换为EVM可以理解的东西。</p>
+<ol>
+<li><p>在项目根目录下执行<strong>truffle compile</strong></p>
+<p>可以看到如下输出：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> truffle compile</span></span><br><span class="line"></span><br><span class="line">Compiling your contracts...</span><br><span class="line">===========================</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Compiling .\contracts\Adoption.sol</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Compiling .\contracts\Migrations.sol</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Artifacts written to E:\Dapp\guide-pet-shop\build\contracts</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Compiled successfully using:</span></span><br><span class="line">   - solc: 0.5.16+commit.9c3226ce.Emscripten.clang</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="4-3-2迁移"><a href="#4-3-2迁移" class="headerlink" title="4.3.2迁移"></a>4.3.2迁移</h3><p>在成功编译合约后，需将合约迁移到区块链上。</p>
+<p> <strong>迁移是一种部署脚本，旨在更改应用程序合同的状态</strong>，将其从一种状态转移到另一种状态。对于第一次迁移，您可能只是在部署新代码，但是随着时间的推移，其他迁移可能会移动数据或用新合同替换合同。 </p>
+<p>您将在<code>migrations/</code>目录中看到一个JavaScript文件：<code>1_initial_migration.js</code>。这将处理部署<code>Migrations.sol</code>合同以观察后续的智能合同迁移，并确保我们将来不会重复迁移未更改的合同。</p>
+<p>现在，我们准备创建自己的迁移脚本。</p>
+<ol>
+<li><p>在<code>migrations/</code>目录中创建一个新的js文件命名为 <strong>2_deploy_contracts.js</strong> 。 </p>
+</li>
+<li><p>添加如下内容：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> Adoption = artifacts.require(<span class="string">"Adoption"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">deployer</span>) </span>&#123;</span><br><span class="line">  deployer.deploy(Adoption);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在将合同迁移到区块链之前，我们需要运行一个区块链。在此我使用的是ganache</p>
+<p>运行ganache</p>
+<p><img src="https://s2.ax1x.com/2020/02/26/3Nu4W4.png" alt="3Nu4W4.png"></p>
+</li>
+</ol>
+<ol start="4">
+<li>回到我们的终端，将合同迁移到区块链(truffle migrate)。 </li>
+</ol>
+<pre><code>在打开的 Ganache 里可以看到区块链状态的变化，现在产生了 4 个区块。 </code></pre><p>   <img src="https://s2.ax1x.com/2020/02/26/3NKuXn.png" alt="3NKuXn.png"></p>
+<h2 id="4-4测试智能合约"><a href="#4-4测试智能合约" class="headerlink" title="4.4测试智能合约"></a>4.4测试智能合约</h2><p> Truffle在智能合约测试方面非常灵活，因为测试可以用JavaScript或Solidity编写。在此，我们将使用Solidity编写测试。 </p>
+<ol>
+<li><p>在<code>test/</code>目录中创建一个新文件 <code>TestAdoption.sol</code>。 </p>
+</li>
+<li><p>写入内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.5.16;</span><br><span class="line"></span><br><span class="line">import &quot;truffle/Assert.sol&quot;;   // 引入的断言</span><br><span class="line">import &quot;truffle/DeployedAddresses.sol&quot;;  // 用来获取被测试合约的地址</span><br><span class="line">import &quot;../contracts/Adoption.sol&quot;;      // 被测试合约</span><br><span class="line"></span><br><span class="line">contract TestAdoption &#123;</span><br><span class="line">  Adoption adoption = Adoption(DeployedAddresses.Adoption());</span><br><span class="line"></span><br><span class="line">  // 领养测试用例</span><br><span class="line">  function testUserCanAdoptPet() public &#123;</span><br><span class="line">    uint returnedId = adoption.adopt(8);</span><br><span class="line"></span><br><span class="line">    uint expected = 8;</span><br><span class="line">    Assert.equal(returnedId, expected, &quot;Adoption of pet ID 8 should be recorded.&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // 宠物所有者测试用例</span><br><span class="line">  function testGetAdopterAddressByPetId() public &#123;</span><br><span class="line">    // 期望领养者的地址就是本合约地址，因为交易是由测试合约发起交易，</span><br><span class="line">    address expected = this;</span><br><span class="line">    address adopter = adoption.adopters(8);</span><br><span class="line">    Assert.equal(adopter, expected, &quot;Owner of pet ID 8 should be recorded.&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">    // 测试所有领养者</span><br><span class="line">  function testGetAdopterAddressByPetIdInArray() public &#123;</span><br><span class="line">  // 领养者的地址就是本合约地址</span><br><span class="line">    address expected = this;</span><br><span class="line">    address[16] memory adopters = adoption.getAdopters();</span><br><span class="line">    Assert.equal(adopters[8], expected, &quot;Owner of pet ID 8 should be recorded.&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试结果如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> truffle <span class="built_in">test</span></span></span><br><span class="line">Using network 'development'.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Compiling your contracts...</span><br><span class="line">===========================</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Compiling .\contracts\Adoption.sol</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Compiling .\contracts\Migrations.sol</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Compiling .\<span class="built_in">test</span>\TestAdoption.sol</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Artifacts written to C:\Users\12173\AppData\Local\Temp\<span class="built_in">test</span>-2020126-25536-1azqqoo.mstk</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Compiled successfully using:</span></span><br><span class="line">   - solc: 0.5.16+commit.9c3226ce.Emscripten.clang</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  TestAdoption</span><br><span class="line">    1) "before all" hook: prepare suite</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  0 passing (320ms)</span><br><span class="line">  1 failing</span><br><span class="line"></span><br><span class="line">  1) TestAdoption</span><br><span class="line">       "before all" hook: prepare suite:</span><br><span class="line">     TypeError: Error parsing E:/Dapp/guide-pet-shop/contracts/Adoption.sol: Cannot destructure property `body` of 'undefined' or 'null'.</span><br><span class="line">      at getImports (C:\Users\12173\AppData\Roaming\npm\node_modules\truffle\build\webpack:\packages\compile-solidity\profiler\getImports.js:5:1)</span><br><span class="line">      at C:\Users\12173\AppData\Roaming\npm\node_modules\truffle\build\webpack:\packages\compile-solidity\profiler\index.js:145:1</span><br></pre></td></tr></table></figure>
+
+<p><strong>Cannot destructure property <code>body</code> of ‘undefined’ or ‘null’</strong></p>
+<p>暂无解决方案。无法进行智能合约测试，但不影响正常使用。</p>
+</li>
+</ol>
+<h2 id="4-5创建用户界面以与智能合约进行交互"><a href="#4-5创建用户界面以与智能合约进行交互" class="headerlink" title="4.5创建用户界面以与智能合约进行交互"></a>4.5创建用户界面以与智能合约进行交互</h2><p>现在我们已经创建了智能合约，并将其部署到本地测试区块链中，并确认我们可以通过控制台与之交互，是时候创建一个UI，以便Pete可以在他的宠物店中使用它了！</p>
+<p><code>pet-shop</code>truffle盒中包含该应用程序前端的代码。该代码存在于<code>src/</code>目录中。</p>
+<h3 id="4-5-1实例化web3"><a href="#4-5-1实例化web3" class="headerlink" title="4.5.1实例化web3"></a>4.5.1实例化web3</h3><ol>
+<li><code>/src/js/app.js</code>在文本编辑器中打开。</li>
+<li>检查文件。请注意，存在一个全局<code>App</code>对象来管理我们的应用程序，将数据加载到其中<code>init()</code>，然后调用函数<code>initWeb3()</code>。该<a href="https://github.com/ethereum/web3.js/" target="_blank" rel="noopener">WEB3 JavaScript库</a>交互与复仇blockchain。它可以检索用户帐户，发送交易，与智能合约进行交互等等。</li>
+<li>从内部删除多行注释，<code>initWeb3</code>并将其替换为以下内容：</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.ethereum) &#123;</span><br><span class="line">  App.web3Provider = <span class="built_in">window</span>.ethereum;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// Request account access</span></span><br><span class="line">    <span class="keyword">await</span> <span class="built_in">window</span>.ethereum.enable();</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="comment">// User denied account access...</span></span><br><span class="line">    <span class="built_in">console</span>.error(<span class="string">"User denied account access"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Legacy dapp browsers...</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.web3) &#123;</span><br><span class="line">  App.web3Provider = <span class="built_in">window</span>.web3.currentProvider;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// If no injected web3 instance is detected, fall back to Ganache</span></span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">  App.web3Provider = <span class="keyword">new</span> Web3.providers.HttpProvider(<span class="string">'http://localhost:7545'</span>);</span><br><span class="line">&#125;</span><br><span class="line">web3 = <span class="keyword">new</span> Web3(App.web3Provider);</span><br></pre></td></tr></table></figure>
+
+<p>注意事项：</p>
+<ul>
+<li>首先，我们检查，如果我们使用现代DAPP浏览器或更近的版本<a href="https://github.com/MetaMask" target="_blank" rel="noopener">MetaMask</a>其中一个<code>ethereum</code>供应商被注入<code>window</code>对象。如果是这样，我们将使用它来创建我们的web3对象，但是我们还需要通过显式请求访问帐户<code>ethereum.enable()</code>。</li>
+<li>如果<code>ethereum</code>对象不存在，则检查注入的<code>web3</code>实例。如果存在，则表明我们使用的是较旧的dapp浏览器（如<a href="https://github.com/ethereum/mist" target="_blank" rel="noopener">Mist</a>或较旧的MetaMask版本）。如果是这样，我们将获得其提供程序并使用它来创建我们的web3对象。</li>
+<li>如果不存在注入的web3实例，我们将基于本地提供程序创建web3对象。（这种后备方式适用于开发环境，但不安全且不适合生产。）</li>
+</ul>
+<h3 id="4-5-2实例化合同"><a href="#4-5-2实例化合同" class="headerlink" title="4.5.2实例化合同"></a>4.5.2实例化合同</h3><p> 现在我们可以通过web3与以太坊进行交互，我们需要实例化我们的智能合约，以便web3知道在哪里可以找到它以及它是如何工作的。truffle有一个名为的库来帮助您解决此问题<code>truffle-contract</code>。它使有关合同的信息与迁移保持同步，因此您无需手动更改合同的部署地址。 </p>
+<ol>
+<li><p>仍在中<code>/src/js/app.js</code>，从内部删除多行注释，<code>initContract</code>并将其替换为以下内容： </p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$.getJSON(<span class="string">'Adoption.json'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Get the necessary contract artifact file and instantiate it with truffle-contract</span></span><br><span class="line">  <span class="keyword">var</span> AdoptionArtifact = data;</span><br><span class="line">  App.contracts.Adoption = TruffleContract(AdoptionArtifact);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Set the provider for our contract</span></span><br><span class="line">  App.contracts.Adoption.setProvider(App.web3Provider);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Use our contract to retrieve and mark the adopted pets</span></span><br><span class="line">  <span class="keyword">return</span> App.markAdopted();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>注意事项：</p>
+<ul>
+<li>我们首先检索智能合约的工件文件。<strong>工件是有关我们合同的信息，例如其部署地址和应用程序二进制接口（ABI）</strong>。<strong>ABI是一个JavaScript对象，定义了如何与合同进行交互，包括其变量，函数及其参数。</strong></li>
+<li>回调中包含工件后，便将它们传递给<code>TruffleContract()</code>。这将创建一个我们可以与之交互的合同实例。</li>
+<li>实例化合同后，我们使用<code>App.web3Provider</code>设置web3时存储的值来设置其web3提供程序。</li>
+<li>然后<code>markAdopted()</code>，如果以前访问过任何宠物，我们都会调用该应用程序的功能。我们将其封装在一个单独的函数中，因为每次更改智能合约的数据时都需要更新UI。</li>
+</ul>
+<h3 id="4-5-3获取被收养的宠物并更新UI"><a href="#4-5-3获取被收养的宠物并更新UI" class="headerlink" title="4.5.3获取被收养的宠物并更新UI"></a>4.5.3获取被收养的宠物并更新UI</h3><ol>
+<li><p>仍在中<code>/src/js/app.js</code>，从中删除多行注释，<code>markAdopted</code>并将其替换为以下内容：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> adoptionInstance;</span><br><span class="line"></span><br><span class="line">App.contracts.Adoption.deployed().then(<span class="function"><span class="keyword">function</span>(<span class="params">instance</span>) </span>&#123;</span><br><span class="line">  adoptionInstance = instance;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> adoptionInstance.getAdopters.call();</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">adopters</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; adopters.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (adopters[i] !== <span class="string">'0x0000000000000000000000000000000000000000'</span>) &#123;</span><br><span class="line">      $(<span class="string">'.panel-pet'</span>).eq(i).find(<span class="string">'button'</span>).text(<span class="string">'Success'</span>).attr(<span class="string">'disabled'</span>, <span class="literal">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(err.message);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>注意事项：</p>
+<ul>
+<li>我们访问已部署的<code>Adoption</code>合同，然后调用<code>getAdopters()</code>该实例。</li>
+<li>我们首先<code>adoptionInstance</code>在智能合约调用之外声明变量，以便在最初检索实例后可以访问该实例。</li>
+<li>使用<strong>call（）</strong>允许我们从区块链读取数据，而不必发送完整的交易，这意味着我们不必花费任何以太币。</li>
+<li>致电后<code>getAdopters()</code>，我们将遍历所有这些对象，检查是否为每个宠物存储了地址。由于数组包含地址类型，因此以太坊使用16个空地址初始化数组。这就是为什么我们检查一个空的地址字符串而不是null或其他虚假值的原因。</li>
+<li>一旦<code>petId</code>找到具有相应地址的，我们将禁用其采用按钮，并将按钮文本更改为“成功”，以便用户获得一些反馈。</li>
+<li>任何错误都会记录到控制台。</li>
+</ul>
+<h3 id="4-5-4处理take（）函数"><a href="#4-5-4处理take（）函数" class="headerlink" title="4.5.4处理take（）函数"></a>4.5.4处理take（）函数</h3><ol>
+<li><p>仍在中<code>/src/js/app.js</code>，从中删除多行注释，<code>handleAdopt</code>并将其替换为以下内容：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> adoptionInstance;</span><br><span class="line"></span><br><span class="line">web3.eth.getAccounts(<span class="function"><span class="keyword">function</span>(<span class="params">error, accounts</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (error) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> account = accounts[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">  App.contracts.Adoption.deployed().then(<span class="function"><span class="keyword">function</span>(<span class="params">instance</span>) </span>&#123;</span><br><span class="line">    adoptionInstance = instance;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Execute adopt as a transaction by sending account</span></span><br><span class="line">    <span class="keyword">return</span> adoptionInstance.adopt(petId, &#123;<span class="attr">from</span>: account&#125;);</span><br><span class="line">  &#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> App.markAdopted();</span><br><span class="line">  &#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err.message);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>注意事项：</p>
+<ul>
+<li>我们使用web3获取用户的帐户。在错误检查后的回调中，我们选择第一个帐户。</li>
+<li>从那里，我们像上面一样获得已部署的合同，并将实例存储在中<code>adoptionInstance</code>。不过这次，我们将发送<strong>交易</strong>而不是致电。交易需要一个“发件人”地址，并具有相关的成本。这种以醚支付的费用称为<strong>煤气</strong>。气体成本是在智能合约中执行计算和/或存储数据的费用。我们通过<code>adopt()</code>同时使用宠物ID和包含帐户地址的对象执行该函数来发送交易，该地址先前存储在中<code>account</code>。</li>
+<li>发送交易的结果是交易对象。如果没有错误，我们将继续调用<code>markAdopted()</code>函数以将UI与新存储的数据同步。</li>
+</ul>
+<h3 id="4-5-5dapp与浏览器中的交互"><a href="#4-5-5dapp与浏览器中的交互" class="headerlink" title="4.5.5dapp与浏览器中的交互"></a>4.5.5dapp与浏览器中的交互</h3><ul>
+<li><p><strong>安装和配置MetaMask</strong></p>
+</li>
+<li><p><strong>安装和配置Lite服务器</strong></p>
+<p>现在，我们可以启动本地Web服务器并使用dapp。我们正在使用该<code>lite-server</code>库来提供我们的静态文件。这是<code>pet-shop</code>松露盒随附的，但让我们看一下它是如何工作的。</p>
+<ol>
+<li><p><code>bs-config.json</code>在文本编辑器（在项目的根目录中）中打开并检查内容：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"server"</span>: &#123;</span><br><span class="line">    <span class="string">"baseDir"</span>: [<span class="string">"./src"</span>, <span class="string">"./build/contracts"</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这告诉<code>lite-server</code>哪些文件要包含在我们的基本目录中。我们<code>./src</code>为网站文件添加目录，<code>./build/contracts</code>为合同工件添加目录。</p>
+<p>我们还向项目根目录中文件中的对象添加了<code>dev</code>命令。该对象允许我们将控制台命令别名为单个npm命令。在这种情况下，我们仅执行单个命令，但是可能具有更复杂的配置。这是您的样子：<code>scripts``package.json``scripts</code></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"dev"</span>: <span class="string">"lite-server"</span>,</span><br><span class="line">  <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>这告诉npm 从控制台<code>lite-server</code>执行时运行本地安装<code>npm run dev</code>。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="4-6使用dapp"><a href="#4-6使用dapp" class="headerlink" title="4.6使用dapp"></a>4.6使用dapp</h3><ol>
+<li><p>启动本地Web服务器：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<p>开发服务器将启动并自动打开一个包含您的dapp的新浏览器选项卡。</p>
+<p><img src="https://www.trufflesuite.com/img/tutorials/pet-shop/dapp.png" alt="皮特的宠物店"></p>
+<p>皮特的宠物店</p>
+</li>
+<li><p>应该会出现一个MetaMask弹出窗口，要求您批准，以允许Pete的Pet Shop连接到您的MetaMask钱包。未经明确批准，您将无法与dapp进行交互。单击<strong>连接</strong>。</p>
+<p><img src="https://www.trufflesuite.com/img/tutorials/pet-shop/metamask-transactionconfirm.png" alt="MetaMask批准请求"></p>
+<p>MetaMask批准请求</p>
+</li>
+<li><p>要使用dapp，请在您选择的宠物上单击“ <strong>采用”</strong>按钮。</p>
+</li>
+<li><p>MetaMask将自动提示您批准交易。单击<strong>提交</strong>以批准交易。</p>
+<p><img src="https://www.trufflesuite.com/img/tutorials/pet-shop/metamask-transactionconfirm.png" alt="收养交易审查"></p>
+<p>收养交易审查</p>
+</li>
+<li><p>正如我们指定的那样，您将看到已收养宠物旁边的按钮更改为“成功”并被禁用，因为该宠物现已被收养。</p>
+<p><img src="https://www.trufflesuite.com/img/tutorials/pet-shop/dapp-success.png" alt="收养成功"></p>
+<p>收养成功</p>
+</li>
+</ol>
 ]]></content>
       <tags>
         <tag>truffle</tag>
