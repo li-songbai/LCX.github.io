@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-02-25T11:24:27.952Z</updated>
+  <updated>2020-03-02T03:23:24.378Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vlan划分及vlan间通讯</title>
+    <link href="http://lisongbai.top/2020/03/02/vlan%E5%88%92%E5%88%86%E5%8F%8Avlan%E9%97%B4%E9%80%9A%E8%AE%AF/"/>
+    <id>http://lisongbai.top/2020/03/02/vlan%E5%88%92%E5%88%86%E5%8F%8Avlan%E9%97%B4%E9%80%9A%E8%AE%AF/</id>
+    <published>2020-03-02T03:23:45.588Z</published>
+    <updated>2020-03-02T03:23:24.378Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;1-vlan拓扑图&quot;&gt;&lt;a href=&quot;#1-vlan拓扑图&quot; class=&quot;headerlink&quot; title=&quot;1.vlan拓扑图&quot;&gt;&lt;/a&gt;1.vlan拓扑图&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2020/02/24/3Gqk7Q.png&quot; alt=&quot;3Gqk7Q.png&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;2-划分vlan&quot;&gt;&lt;a href=&quot;#2-划分vlan&quot; class=&quot;headerlink&quot; title=&quot;2.划分vlan&quot;&gt;&lt;/a&gt;2.划分vlan&lt;/h2&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sys&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sysname S1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;interface Ethent&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vlan batch 2 3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&quot;3-配置vlan&quot;&gt;&lt;a href=&quot;#3-配置vlan&quot; class=&quot;headerlink&quot; title=&quot;3.配置vlan&quot;&gt;&lt;/a&gt;3.配置vlan&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2020/02/24/3GTcOe.png&quot; alt=&quot;3GTcOe.png&quot;&gt;&lt;/p&gt;&lt;h4 id=&quot;3-1配置Access接口&quot;&gt;&lt;a href=&quot;#3-1配置Access接口&quot; class=&quot;headerlink&quot; title=&quot;3.1配置Access接口&quot;&gt;&lt;/a&gt;3.1配置Access接口&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;用interface Ethernet 0/0/1 命令配置Ethernet 0/0/3接口 &lt;/li&gt;
+&lt;li&gt;使用port link-type access命令配置接口类型为Access接口 &lt;/li&gt;
+&lt;li&gt;使用port default vlan 2 命令将PC加入VLAN2&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>JUC/GC</title>
@@ -424,28 +445,6 @@
     
     
       <category term="框架学习" scheme="http://lisongbai.top/tags/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ubuntu18.04系统移植过及程序焼写</title>
-    <link href="http://lisongbai.top/2020/01/08/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%A7%BB%E6%A4%8D/"/>
-    <id>http://lisongbai.top/2020/01/08/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%A7%BB%E6%A4%8D/</id>
-    <published>2020-01-08T03:21:01.000Z</published>
-    <updated>2020-01-09T02:29:40.380Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;ubuntu18-04系统移植过及程序焼写&quot;&gt;&lt;a href=&quot;#ubuntu18-04系统移植过及程序焼写&quot; class=&quot;headerlink&quot; title=&quot;ubuntu18.04系统移植过及程序焼写&quot;&gt;&lt;/a&gt;ubuntu18.04系统移植过及程序焼写&lt;/h1&gt;&lt;h2 id=&quot;ubuntu18-04系统移植（目标版为contex-A系列）&quot;&gt;&lt;a href=&quot;#ubuntu18-04系统移植（目标版为contex-A系列）&quot; class=&quot;headerlink&quot; title=&quot;ubuntu18.04系统移植（目标版为contex A系列）&quot;&gt;&lt;/a&gt;ubuntu18.04系统移植（目标版为contex A系列）&lt;/h2&gt;&lt;h3 id=&quot;一、tftp文件服务器&quot;&gt;&lt;a href=&quot;#一、tftp文件服务器&quot; class=&quot;headerlink&quot; title=&quot;一、tftp文件服务器&quot;&gt;&lt;/a&gt;一、tftp文件服务器&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;tftp的作用&lt;/strong&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在嵌入式系统开发中，经常需要从主机上传送映像、文件等到目标机上。实现的方法有很多。如tftp，scp等。&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;TFTP（Trivial File Transfer Protocol）是用来下载远程文件的最简单的网络协议，它基于UDP协议而实现。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;安装tftp-hpa&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="嵌入式系统移植" scheme="http://lisongbai.top/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%A7%BB%E6%A4%8D/"/>
     
   </entry>
   

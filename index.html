@@ -218,6 +218,97 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/03/02/vlan%E5%88%92%E5%88%86%E5%8F%8Avlan%E9%97%B4%E9%80%9A%E8%AE%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李松柏">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小李の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/02/vlan%E5%88%92%E5%88%86%E5%8F%8Avlan%E9%97%B4%E9%80%9A%E8%AE%AF/" class="post-title-link" itemprop="url">vlan划分及vlan间通讯</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-02 11:23:45 / 修改时间：11:23:24" itemprop="dateCreated datePublished" datetime="2020-03-02T11:23:45+08:00">2020-03-02</time>
+            </span>
+
+          
+            <span id="/2020/03/02/vlan%E5%88%92%E5%88%86%E5%8F%8Avlan%E9%97%B4%E9%80%9A%E8%AE%AF/" class="post-meta-item leancloud_visitors" data-flag-title="vlan划分及vlan间通讯" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/03/02/vlan%E5%88%92%E5%88%86%E5%8F%8Avlan%E9%97%B4%E9%80%9A%E8%AE%AF/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/03/02/vlan划分及vlan间通讯/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-vlan拓扑图"><a href="#1-vlan拓扑图" class="headerlink" title="1.vlan拓扑图"></a>1.vlan拓扑图</h2><p><img src="https://s2.ax1x.com/2020/02/24/3Gqk7Q.png" alt="3Gqk7Q.png"></p><h2 id="2-划分vlan"><a href="#2-划分vlan" class="headerlink" title="2.划分vlan"></a>2.划分vlan</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br><span class="line">sysname S1</span><br><span class="line">interface Ethent</span><br><span class="line">vlan batch 2 3</span><br></pre></td></tr></table></figure><h2 id="3-配置vlan"><a href="#3-配置vlan" class="headerlink" title="3.配置vlan"></a>3.配置vlan</h2><p><img src="https://s2.ax1x.com/2020/02/24/3GTcOe.png" alt="3GTcOe.png"></p><h4 id="3-1配置Access接口"><a href="#3-1配置Access接口" class="headerlink" title="3.1配置Access接口"></a>3.1配置Access接口</h4><ul>
+<li>用interface Ethernet 0/0/1 命令配置Ethernet 0/0/3接口 </li>
+<li>使用port link-type access命令配置接口类型为Access接口 </li>
+<li>使用port default vlan 2 命令将PC加入VLAN2</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/02/vlan%E5%88%92%E5%88%86%E5%8F%8Avlan%E9%97%B4%E9%80%9A%E8%AE%AF/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/02/25/JUC-GC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1043,104 +1134,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/02/11/Markdown%E8%BF%9B%E9%98%B6%E8%AF%AD%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="李松柏">
-      <meta itemprop="description" content="记录学习的技能和遇到的问题">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小李の博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/11/Markdown%E8%BF%9B%E9%98%B6%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">Markdown进阶语法</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-11 16:58:36" itemprop="dateCreated datePublished" datetime="2020-02-11T16:58:36+08:00">2020-02-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-02 14:33:01" itemprop="dateModified" datetime="2019-11-02T14:33:01+08:00">2019-11-02</time>
-              </span>
-
-          
-            <span id="/2020/02/11/Markdown%E8%BF%9B%E9%98%B6%E8%AF%AD%E6%B3%95/" class="post-meta-item leancloud_visitors" data-flag-title="Markdown进阶语法" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2020/02/11/Markdown%E8%BF%9B%E9%98%B6%E8%AF%AD%E6%B3%95/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/02/11/Markdown进阶语法/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>[TOC]</p><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>写博客需要用到Markdown语法，于是产生了整理Markdown笔记的想法。</p><p>这篇文章是基于<a href="[https://lisongbai.top/2019/10/31/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/](https://lisongbai.top/2019/10/31/Markdown基本语法学习笔记-1/)">Markdown基本语法</a>的进阶语法。</p><h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="1-内容目录"><a href="#1-内容目录" class="headerlink" title="1.内容目录"></a>1.内容目录</h3><p>在文章的最开始使用[TOC]引用目录，例如本文目录：</p><h3 id="2-加强代码块"><a href="#2-加强代码块" class="headerlink" title="2.加强代码块"></a>2.加强代码块</h3><p>使用”```”+”语言名”进行标记。例如：</p><ul>
-<li><p>java示例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">public class TreeNode &#123;</span></span><br><span class="line"><span class="comment">    int val = 0;</span></span><br><span class="line"><span class="comment">    TreeNode left = null;</span></span><br><span class="line"><span class="comment">    TreeNode right = null;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    public TreeNode(int val) &#123;</span></span><br><span class="line"><span class="comment">        this.val = val;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Mirror</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root != <span class="keyword">null</span>)&#123;</span><br><span class="line">            TreeNode temp = root.left;</span><br><span class="line">            root.left = root.right;</span><br><span class="line">            root.right = temp;</span><br><span class="line">            Mirror(root.left);</span><br><span class="line">            Mirror(root.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/11/Markdown%E8%BF%9B%E9%98%B6%E8%AF%AD%E6%B3%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1191,7 +1184,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1407,7 +1400,6 @@
 
   
 
-
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -1418,6 +1410,7 @@
   // defer loading until the whole page loading is completed
   window.addEventListener('load', loadCount, false);
 </script>
+
 
  
 </body>
