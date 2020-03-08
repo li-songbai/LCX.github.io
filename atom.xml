@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-03-02T03:15:53.556Z</updated>
+  <updated>2020-03-08T05:51:58.025Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -17,15 +17,32 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>whiter-jotter</title>
+    <link href="http://lisongbai.top/2020/03/08/whiter-jotter/"/>
+    <id>http://lisongbai.top/2020/03/08/whiter-jotter/</id>
+    <published>2020-03-08T05:51:25.000Z</published>
+    <updated>2020-03-08T05:51:58.025Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1-项目概述&quot;&gt;&lt;a href=&quot;#1-项目概述&quot; class=&quot;headerlink&quot; title=&quot;1.项目概述&quot;&gt;&lt;/a&gt;1.项目概述&lt;/h1&gt;&lt;p&gt; 这个项目我把它命名为 &lt;strong&gt;“白卷”&lt;/strong&gt;，因为它随着开发的进展逐渐完善，象征着知识的从无到有，从有到多。另外我还给它起了一个英文名字，叫 &lt;strong&gt;White Jotter&lt;/strong&gt;（白色笔记本），纯粹是为了谐音。 &lt;/p&gt;&lt;p&gt; 我选用 Vue.js + Spring Boot 来开发这个项目 ， 是因为这两种框架当下比较热门，也是实现所谓 &lt;strong&gt;前后端分离&lt;/strong&gt; 的最佳选择之一。 &lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>vlan间通讯</title>
     <link href="http://lisongbai.top/2020/03/02/vlan%E9%97%B4%E9%80%9A%E8%AE%AF/"/>
     <id>http://lisongbai.top/2020/03/02/vlan%E9%97%B4%E9%80%9A%E8%AE%AF/</id>
     <published>2020-03-02T03:29:13.426Z</published>
-    <updated>2020-03-02T03:15:53.556Z</updated>
+    <updated>2020-03-08T04:34:17.535Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;1-vlan拓扑图&quot;&gt;&lt;a href=&quot;#1-vlan拓扑图&quot; class=&quot;headerlink&quot; title=&quot;1.vlan拓扑图&quot;&gt;&lt;/a&gt;1.vlan拓扑图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2020/03/02/3Rmj76.png&quot; alt=&quot;3Rmj76.png&quot;&gt;&lt;/p&gt;&lt;h1 id=&quot;2-配置交换机&quot;&gt;&lt;a href=&quot;#2-配置交换机&quot; class=&quot;headerlink&quot; title=&quot;2.配置交换机&quot;&gt;&lt;/a&gt;2.配置交换机&lt;/h1&gt;&lt;h2 id=&quot;2-1配置S1命令如下-S2同理-：&quot;&gt;&lt;a href=&quot;#2-1配置S1命令如下-S2同理-：&quot; class=&quot;headerlink&quot; title=&quot;2.1配置S1命令如下(S2同理)：&quot;&gt;&lt;/a&gt;2.1配置S1命令如下(S2同理)：&lt;/h2&gt;&lt;figure class=&quot;highlight properties&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;&amp;lt;Huawei&amp;gt;system-view&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;sysname&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;S1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1]vlan&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;batch 2 3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;GigabitEthernet 0/0/1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-GigabitEthernet0/0/1]port&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;link-type access&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-GigabitEthernet0/0/1]port&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;default vlan 2     #将该端口加入到VLAN 2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;GigabitEthernet 0/0/2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-GigabitEthernet0/0/2]port&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;link-type access&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-GigabitEthernet0/0/2]port&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;default vlan 3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;GigabitEthernet 0/0/3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-GigabitEthernet0/0/3]port&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;link-type trunk&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-GigabitEthernet0/0/3]port&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;trunk allow-pass vlan 2 3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;vlanif 2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-Vlanif10]ip&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;address 192.168.2.254 24&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;vlanif 3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-Vlanif20]ip&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;address 192.168.3.254 24&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+      &lt;h1 id=&quot;1-vlan拓扑图&quot;&gt;&lt;a href=&quot;#1-vlan拓扑图&quot; class=&quot;headerlink&quot; title=&quot;1.vlan拓扑图&quot;&gt;&lt;/a&gt;1.vlan拓扑图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2020/03/02/3Rmj76.png&quot; alt=&quot;3Rmj76.png&quot;&gt;&lt;/p&gt;&lt;h1 id=&quot;2-配置交换机&quot;&gt;&lt;a href=&quot;#2-配置交换机&quot; class=&quot;headerlink&quot; title=&quot;2.配置交换机&quot;&gt;&lt;/a&gt;2.配置交换机&lt;/h1&gt;&lt;h2 id=&quot;2-1配置S1命令如下-S2同理-：&quot;&gt;&lt;a href=&quot;#2-1配置S1命令如下-S2同理-：&quot; class=&quot;headerlink&quot; title=&quot;2.1配置S1命令如下(S2同理)：&quot;&gt;&lt;/a&gt;2.1配置S1命令如下(S2同理)：&lt;/h2&gt;&lt;figure class=&quot;highlight properties&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;&amp;lt;Huawei&amp;gt;system-view&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;sysname&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;S1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1]vlan&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;batch 2 3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;GigabitEthernet 0/0/1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-GigabitEthernet0/0/1]port&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;link-type access&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-GigabitEthernet0/0/1]port&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;default vlan 2     #将该端口加入到VLAN 2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;GigabitEthernet 0/0/2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-GigabitEthernet0/0/2]port&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;link-type access&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-GigabitEthernet0/0/2]port&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;default vlan 3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;GigabitEthernet 0/0/3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-GigabitEthernet0/0/3]port&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;link-type trunk&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-GigabitEthernet0/0/3]port&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;trunk allow-pass vlan 2 3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#只在S1中进行配置&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;vlanif 2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-Vlanif10]ip&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;address 192.168.2.254 24&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;vlanif 3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-Vlanif20]ip&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;address 192.168.3.254 24&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
@@ -398,49 +415,6 @@
     
     
       <category term="框架" scheme="http://lisongbai.top/tags/%E6%A1%86%E6%9E%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java框架学习&lt;一&gt;</title>
-    <link href="http://lisongbai.top/2020/01/11/Java%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0-%E4%B8%80/"/>
-    <id>http://lisongbai.top/2020/01/11/Java%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0-%E4%B8%80/</id>
-    <published>2020-01-11T12:16:08.000Z</published>
-    <updated>2020-01-11T12:23:07.062Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一、JavaSE&quot;&gt;&lt;a href=&quot;#一、JavaSE&quot; class=&quot;headerlink&quot; title=&quot;一、JavaSE&quot;&gt;&lt;/a&gt;一、JavaSE&lt;/h1&gt;&lt;h2 id=&quot;遗忘知识回顾&quot;&gt;&lt;a href=&quot;#遗忘知识回顾&quot; class=&quot;headerlink&quot; title=&quot;遗忘知识回顾&quot;&gt;&lt;/a&gt;遗忘知识回顾&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;java基本数据类型：byte、char、short、int、long、float、double、boolean&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;对应包装类：Byte、Character、Short、Integer、Long、Float、Double、Boolean&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;访问修饰符范围从大到小：public、protected、default、private。如下图所示：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2020/01/11/l5ijzt.png&quot; alt=&quot;l5ijzt.png&quot;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;标识接口&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;标识接口是没有任何方法和属性的接口。标识接口不对实现它的类有任何语义上的要求，它仅仅表明实现它的类属于一个特定的类型。&lt;/p&gt;
-&lt;p&gt;　标接口在Java语言中有一些很著名的应用，例如我们常用的ArrayList类，它的类实现接口如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;ArrayList&lt;/span&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;E&lt;/span&gt;&amp;gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;AbstractList&lt;/span&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;E&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;	&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        implements List&amp;lt;E&amp;gt;, RandomAccess, Cloneable, java.io.Serializable&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;p&gt;仔细看 RandomAccess、RandomAccess、Serializable的接口可以看到，内部都是一些空接口，没有定义接口方法&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public interface RandomAccess &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public interface Cloneable &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public interface Serializable &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;p&gt; 标识接口，&lt;strong&gt;当一个类实现了一个标识接口之后就像是给自己打了个标签。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;　　打个比喻，不是很恰当。就像是一个人穿了件名牌衣服（实现了标识接口），别人一看他穿的衣服（标识接口）就知道他的品味、身份（特性）。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;java反射机制&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;注解&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="框架学习" scheme="http://lisongbai.top/tags/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
