@@ -1,6 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>静态路由及默认路由配置</title>
+    <url>/2020/03/09/%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E5%8F%8A%E9%BB%98%E8%AE%A4%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><ul>
+<li><p><strong>静态路由：</strong> 是指用户或网络管理员手工配置的路由信息。当网络拓扑结构或链路状态发生改变时，需要网络管理员手工配置静态路由信息。</p>
+<p><strong>静态路由优缺点：</strong>  相比较动态路由协议，静态路由无需频繁的交换各自的路由表，配置简单，比较适合小型、简单的网络环境。不适合大型和复杂的网络环境的原因是：当网络拓扑结构和链路状态发生改变时，网络管理员需要做大量的调整，工作量繁重，而且无法感知错误发生，不易排错。 </p>
+</li>
+<li><p><strong>默认路由：</strong> 是一种特殊的静态路由，当路由表中与数据包目的地址没有匹配的表项时，数据包将根据默认路由条目进行转发。默认路由在某些时候是非常有效的，例如在末梢网络中，默认路由可以大大简化路由器的配置，减轻网络管理员的工作负担。 </p>
+</li>
+</ul><a id="more"></a>
+<h1 id="2-实验目的"><a href="#2-实验目的" class="headerlink" title="2.实验目的"></a>2.实验目的</h1><ul>
+<li>掌握静态路由的配置方法。</li>
+<li>掌握默认路由的配置方法。</li>
+</ul>
+<h1 id="3-实验拓扑"><a href="#3-实验拓扑" class="headerlink" title="3.实验拓扑"></a>3.实验拓扑</h1><p><img src="https://s2.ax1x.com/2020/03/08/3zg9HS.png" alt="3zg9HS.png"></p>
+<h1 id="4-实验步骤"><a href="#4-实验步骤" class="headerlink" title="4.实验步骤"></a>4.实验步骤</h1><h2 id="4-1根据拓扑进行相应配置"><a href="#4-1根据拓扑进行相应配置" class="headerlink" title="4.1根据拓扑进行相应配置"></a>4.1根据拓扑进行相应配置</h2><h3 id="4-1-1配置PCA、PCB的IP、掩码及网关。"><a href="#4-1-1配置PCA、PCB的IP、掩码及网关。" class="headerlink" title="4.1.1配置PCA、PCB的IP、掩码及网关。"></a>4.1.1配置PCA、PCB的IP、掩码及网关。</h3><p>如拓扑图中所示</p>
+<h3 id="4-1-2在S1交换机上划分vlan配置虚接口"><a href="#4-1-2在S1交换机上划分vlan配置虚接口" class="headerlink" title="4.1.2在S1交换机上划分vlan配置虚接口"></a>4.1.2在S1交换机上划分vlan配置虚接口</h3><p><strong>要求：vlan1包括端口E0/1到E0/22，vlan2包括端口E0/23到E0/24</strong></p>
+<p>配置命令如下：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">&lt;Huawei&gt;system-view</span></span><br><span class="line"><span class="attr">sysname</span> <span class="string">S1</span></span><br><span class="line"><span class="meta">[S1]vlan</span> <span class="string">batch 1 2</span></span><br><span class="line">	</span><br><span class="line"><span class="meta">[S1]interface</span> <span class="string">GigabitEthernet 0/0/23</span></span><br><span class="line"><span class="meta">[S1-GigabitEthernet0/0/23]port</span> <span class="string">link-type trunk</span></span><br><span class="line"><span class="meta">[S1-GigabitEthernet0/0/23]port</span> <span class="string">trunk allow-pass vlan 2</span></span><br><span class="line"></span><br><span class="line"><span class="meta">[S1]interface</span> <span class="string">GigabitEthernet 0/0/24</span></span><br><span class="line"><span class="meta">[S1-GigabitEthernet0/0/24]port</span> <span class="string">link-type trunk</span></span><br><span class="line"><span class="meta">[S1-GigabitEthernet0/0/24]port</span> <span class="string">trunk allow-pass vlan 2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">[S1]interface</span> <span class="string">GigabitEthernet 0/0/1</span></span><br><span class="line"><span class="meta">[S1-GigabitEthernet0/0/1]port</span> <span class="string">link-type access</span></span><br><span class="line"><span class="meta">[S1-GigabitEthernet0/0/1]port</span> <span class="string">default vlan 3</span></span><br><span class="line"></span><br><span class="line"><span class="meta">[S1]interface</span> <span class="string">GigabitEthernet 0/0/2</span></span><br><span class="line"><span class="meta">[S1-GigabitEthernet0/0/2]port</span> <span class="string">link-type access</span></span><br><span class="line"><span class="meta">[S1-GigabitEthernet0/0/2]port</span> <span class="string">default vlan 3</span></span><br><span class="line"></span><br><span class="line"><span class="meta">[S1]interface</span> <span class="string">vlanif 2</span></span><br><span class="line"><span class="meta">[S1-Vlanif</span> <span class="string">2]ip address 192.168.1.1 24</span></span><br><span class="line"></span><br><span class="line"><span class="meta">[S1]interface</span> <span class="string">vlanif 3</span></span><br><span class="line"><span class="meta">[S1-Vlanif</span> <span class="string">2]ip address 192.168.2.1 24</span></span><br></pre></td></tr></table></figure>
+
+<p>配置完成后结果如下：</p>
+<p><img src="https://s2.ax1x.com/2020/03/08/3zgnBT.png" alt="3zgnBT.png"></p>
+<h3 id="4-1-3在R1上配置端口ip和静态路由"><a href="#4-1-3在R1上配置端口ip和静态路由" class="headerlink" title="4.1.3在R1上配置端口ip和静态路由"></a>4.1.3在R1上配置端口ip和静态路由</h3><p>在R1 GE0/0/0端口上配置ip为192.168.1.2/24</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">[R1]interface</span> <span class="string">GigabitEthernet 0/0/0</span></span><br><span class="line"><span class="meta">[R1-GigabitEthernet0/0/0]ip</span> <span class="string">address 192.168.1.2 24</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h4 id="配置静态路由"><a href="#配置静态路由" class="headerlink" title="配置静态路由"></a>配置静态路由</h4></li>
+</ul>
+<p><img src="https://s2.ax1x.com/2020/03/08/3zgQN4.png" alt="3zgQN4.png"></p>
+<p>查看路由表：</p>
+<p><img src="https://s2.ax1x.com/2020/03/08/3zgUHO.png" alt="3zgUHO.png"></p>
+<p>测试：pcApingR1</p>
+<p><img src="https://s2.ax1x.com/2020/03/08/3z2roF.png" alt="3z2roF.png"></p>
+<p>​    在路由器GE0/0/0端口捕获报文如下：</p>
+<p><img src="https://s2.ax1x.com/2020/03/08/3zR4cn.png" alt="3zR4cn.png"></p>
+<ul>
+<li><h4 id="配置默认路由"><a href="#配置默认路由" class="headerlink" title="配置默认路由"></a>配置默认路由</h4><p>删除刚才配置的静态路由：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">undo</span> <span class="string">ip route-static 192.168.2.0 255.255.255.0 192.168.1.1</span></span><br></pre></td></tr></table></figure>
+
+<p>对R1配置缺省路由。</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">[R1]</span> <span class="string">IP route-static 0.0.0.0  0.0.0.0 192.168.1.1</span></span><br></pre></td></tr></table></figure>
+
+<p>查看路由表结果如下：</p>
+<p><img src="https://s2.ax1x.com/2020/03/08/3zWcK1.png" alt="3zWcK1.png"></p>
+</li>
+</ul>
+<p>测试:</p>
+<p>R1pingPCA:</p>
+<p><img src="https://s2.ax1x.com/2020/03/08/3zfAaT.png" alt="3zfAaT.png"></p>
+<p><strong>问题出处：</strong>在拓扑中，S1上GE0/0/24端口选择的是trunk类型，无法ping通。</p>
+<p><strong>解决方案如下：</strong></p>
+<p>将GE0/0/24端口类型换位access。</p>
+<p><strong>原因解释：</strong></p>
+<p>因为R1是路由器。路由器是三层设备，不认识二层的Vlan、Trunk等等。 故在此将路由器当作用户设备端口类型选择为access。</p>
+<p>端口类型更换后测试：</p>
+<p>R1PingPCA：</p>
+<p><img src="https://s2.ax1x.com/2020/03/09/3zxgED.png" alt="3zxgED.png"></p>
+<p>在端口</p>
+<p>GE0/0/0上捕获报文如下：</p>
+<p><img src="https://s2.ax1x.com/2020/03/09/3zxTDf.png" alt="3zxTDf.png"></p>
+]]></content>
+  </entry>
+  <entry>
     <title>whiter-jotter</title>
     <url>/2020/03/08/whiter-jotter/</url>
     <content><![CDATA[<h1 id="1-项目概述"><a href="#1-项目概述" class="headerlink" title="1.项目概述"></a>1.项目概述</h1><p> 这个项目我把它命名为 <strong>“白卷”</strong>，因为它随着开发的进展逐渐完善，象征着知识的从无到有，从有到多。另外我还给它起了一个英文名字，叫 <strong>White Jotter</strong>（白色笔记本），纯粹是为了谐音。 </p><p> 我选用 Vue.js + Spring Boot 来开发这个项目 ， 是因为这两种框架当下比较热门，也是实现所谓 <strong>前后端分离</strong> 的最佳选择之一。 </p><a id="more"></a>
