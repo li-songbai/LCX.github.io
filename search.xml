@@ -2,31 +2,31 @@
 <search>
   <entry>
     <title>静态路由及默认路由配置</title>
-    <url>/2020/03/09/%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E5%8F%8A%E9%BB%98%E8%AE%A4%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><ul>
+    <url>/2020/03/09/%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E5%8F%8A%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h1 id="一、静态路由及默认路由配置"><a href="#一、静态路由及默认路由配置" class="headerlink" title="一、静态路由及默认路由配置"></a>一、静态路由及默认路由配置</h1><h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><ul>
 <li><p><strong>静态路由：</strong> 是指用户或网络管理员手工配置的路由信息。当网络拓扑结构或链路状态发生改变时，需要网络管理员手工配置静态路由信息。</p>
 <p><strong>静态路由优缺点：</strong>  相比较动态路由协议，静态路由无需频繁的交换各自的路由表，配置简单，比较适合小型、简单的网络环境。不适合大型和复杂的网络环境的原因是：当网络拓扑结构和链路状态发生改变时，网络管理员需要做大量的调整，工作量繁重，而且无法感知错误发生，不易排错。 </p>
 </li>
 <li><p><strong>默认路由：</strong> 是一种特殊的静态路由，当路由表中与数据包目的地址没有匹配的表项时，数据包将根据默认路由条目进行转发。默认路由在某些时候是非常有效的，例如在末梢网络中，默认路由可以大大简化路由器的配置，减轻网络管理员的工作负担。 </p>
 </li>
 </ul><a id="more"></a>
-<h1 id="2-实验目的"><a href="#2-实验目的" class="headerlink" title="2.实验目的"></a>2.实验目的</h1><ul>
+<h2 id="2-实验目的"><a href="#2-实验目的" class="headerlink" title="2.实验目的"></a>2.实验目的</h2><ul>
 <li>掌握静态路由的配置方法。</li>
 <li>掌握默认路由的配置方法。</li>
 </ul>
-<h1 id="3-实验拓扑"><a href="#3-实验拓扑" class="headerlink" title="3.实验拓扑"></a>3.实验拓扑</h1><p><img src="https://s2.ax1x.com/2020/03/08/3zg9HS.png" alt="3zg9HS.png"></p>
-<h1 id="4-实验步骤"><a href="#4-实验步骤" class="headerlink" title="4.实验步骤"></a>4.实验步骤</h1><h2 id="4-1根据拓扑进行相应配置"><a href="#4-1根据拓扑进行相应配置" class="headerlink" title="4.1根据拓扑进行相应配置"></a>4.1根据拓扑进行相应配置</h2><h3 id="4-1-1配置PCA、PCB的IP、掩码及网关。"><a href="#4-1-1配置PCA、PCB的IP、掩码及网关。" class="headerlink" title="4.1.1配置PCA、PCB的IP、掩码及网关。"></a>4.1.1配置PCA、PCB的IP、掩码及网关。</h3><p>如拓扑图中所示</p>
-<h3 id="4-1-2在S1交换机上划分vlan配置虚接口"><a href="#4-1-2在S1交换机上划分vlan配置虚接口" class="headerlink" title="4.1.2在S1交换机上划分vlan配置虚接口"></a>4.1.2在S1交换机上划分vlan配置虚接口</h3><p><strong>要求：vlan1包括端口E0/1到E0/22，vlan2包括端口E0/23到E0/24</strong></p>
+<h2 id="3-实验拓扑"><a href="#3-实验拓扑" class="headerlink" title="3.实验拓扑"></a>3.实验拓扑</h2><p><img src="https://s2.ax1x.com/2020/03/08/3zg9HS.png" alt="3zg9HS.png"></p>
+<h2 id="4-实验步骤"><a href="#4-实验步骤" class="headerlink" title="4.实验步骤"></a>4.实验步骤</h2><h3 id="4-1配置PCA、PCB的IP、掩码及网关。"><a href="#4-1配置PCA、PCB的IP、掩码及网关。" class="headerlink" title="4.1配置PCA、PCB的IP、掩码及网关。"></a>4.1配置PCA、PCB的IP、掩码及网关。</h3><p>如拓扑图中所示</p>
+<h3 id="4-2在S1交换机上划分vlan配置虚接口"><a href="#4-2在S1交换机上划分vlan配置虚接口" class="headerlink" title="4.2在S1交换机上划分vlan配置虚接口"></a>4.2在S1交换机上划分vlan配置虚接口</h3><p><strong>要求：vlan1包括端口E0/1到E0/22，vlan2包括端口E0/23到E0/24</strong></p>
 <p>配置命令如下：</p>
 <figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">&lt;Huawei&gt;system-view</span></span><br><span class="line"><span class="attr">sysname</span> <span class="string">S1</span></span><br><span class="line"><span class="meta">[S1]vlan</span> <span class="string">batch 1 2</span></span><br><span class="line">	</span><br><span class="line"><span class="meta">[S1]interface</span> <span class="string">GigabitEthernet 0/0/23</span></span><br><span class="line"><span class="meta">[S1-GigabitEthernet0/0/23]port</span> <span class="string">link-type trunk</span></span><br><span class="line"><span class="meta">[S1-GigabitEthernet0/0/23]port</span> <span class="string">trunk allow-pass vlan 2</span></span><br><span class="line"></span><br><span class="line"><span class="meta">[S1]interface</span> <span class="string">GigabitEthernet 0/0/24</span></span><br><span class="line"><span class="meta">[S1-GigabitEthernet0/0/24]port</span> <span class="string">link-type trunk</span></span><br><span class="line"><span class="meta">[S1-GigabitEthernet0/0/24]port</span> <span class="string">trunk allow-pass vlan 2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">[S1]interface</span> <span class="string">GigabitEthernet 0/0/1</span></span><br><span class="line"><span class="meta">[S1-GigabitEthernet0/0/1]port</span> <span class="string">link-type access</span></span><br><span class="line"><span class="meta">[S1-GigabitEthernet0/0/1]port</span> <span class="string">default vlan 3</span></span><br><span class="line"></span><br><span class="line"><span class="meta">[S1]interface</span> <span class="string">GigabitEthernet 0/0/2</span></span><br><span class="line"><span class="meta">[S1-GigabitEthernet0/0/2]port</span> <span class="string">link-type access</span></span><br><span class="line"><span class="meta">[S1-GigabitEthernet0/0/2]port</span> <span class="string">default vlan 3</span></span><br><span class="line"></span><br><span class="line"><span class="meta">[S1]interface</span> <span class="string">vlanif 2</span></span><br><span class="line"><span class="meta">[S1-Vlanif</span> <span class="string">2]ip address 192.168.1.1 24</span></span><br><span class="line"></span><br><span class="line"><span class="meta">[S1]interface</span> <span class="string">vlanif 3</span></span><br><span class="line"><span class="meta">[S1-Vlanif</span> <span class="string">2]ip address 192.168.2.1 24</span></span><br></pre></td></tr></table></figure>
 
 <p>配置完成后结果如下：</p>
 <p><img src="https://s2.ax1x.com/2020/03/08/3zgnBT.png" alt="3zgnBT.png"></p>
-<h3 id="4-1-3在R1上配置端口ip和静态路由"><a href="#4-1-3在R1上配置端口ip和静态路由" class="headerlink" title="4.1.3在R1上配置端口ip和静态路由"></a>4.1.3在R1上配置端口ip和静态路由</h3><p>在R1 GE0/0/0端口上配置ip为192.168.1.2/24</p>
+<h3 id="4-3在R1上配置端口ip和静态路由"><a href="#4-3在R1上配置端口ip和静态路由" class="headerlink" title="4.3在R1上配置端口ip和静态路由"></a>4.3在R1上配置端口ip和静态路由</h3><p>在R1 GE0/0/0端口上配置ip为192.168.1.2/24</p>
 <figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">[R1]interface</span> <span class="string">GigabitEthernet 0/0/0</span></span><br><span class="line"><span class="meta">[R1-GigabitEthernet0/0/0]ip</span> <span class="string">address 192.168.1.2 24</span></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><h4 id="配置静态路由"><a href="#配置静态路由" class="headerlink" title="配置静态路由"></a>配置静态路由</h4></li>
+<li><h5 id="配置静态路由"><a href="#配置静态路由" class="headerlink" title="配置静态路由"></a>配置静态路由</h5></li>
 </ul>
 <p><img src="https://s2.ax1x.com/2020/03/08/3zgQN4.png" alt="3zgQN4.png"></p>
 <p>查看路由表：</p>
@@ -36,7 +36,7 @@
 <p>​    在路由器GE0/0/0端口捕获报文如下：</p>
 <p><img src="https://s2.ax1x.com/2020/03/08/3zR4cn.png" alt="3zR4cn.png"></p>
 <ul>
-<li><h4 id="配置默认路由"><a href="#配置默认路由" class="headerlink" title="配置默认路由"></a>配置默认路由</h4><p>删除刚才配置的静态路由：</p>
+<li><h5 id="配置默认路由"><a href="#配置默认路由" class="headerlink" title="配置默认路由"></a>配置默认路由</h5><p>删除刚才配置的静态路由：</p>
 <figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">undo</span> <span class="string">ip route-static 192.168.2.0 255.255.255.0 192.168.1.1</span></span><br></pre></td></tr></table></figure>
 
 <p>对R1配置缺省路由。</p>
@@ -60,6 +60,66 @@
 <p>在端口</p>
 <p>GE0/0/0上捕获报文如下：</p>
 <p><img src="https://s2.ax1x.com/2020/03/09/3zxTDf.png" alt="3zxTDf.png"></p>
+<h1 id="二、RIP配置及RIPv1报文结构分析"><a href="#二、RIP配置及RIPv1报文结构分析" class="headerlink" title="二、RIP配置及RIPv1报文结构分析"></a>二、RIP配置及RIPv1报文结构分析</h1><h2 id="1-概述-1"><a href="#1-概述-1" class="headerlink" title="1.概述"></a>1.概述</h2><p> RIP(Routing Information Protocol,路由信息协议）是一种<a href="https://baike.baidu.com/item/内部网关协议" target="_blank" rel="noopener">内部网关协议</a>（IGP），是一种<a href="https://baike.baidu.com/item/动态路由选择/1250467" target="_blank" rel="noopener">动态路由选择</a>协议，用于自治系统（AS）内的路由信息的传递。RIP协议基于距离矢量算法（DistanceVectorAlgorithms），使用“跳数”(即metric)来衡量到达目标地址的路由距离。这种协议的<a href="https://baike.baidu.com/item/路由器/108294" target="_blank" rel="noopener">路由器</a>只关心自己周围的<a href="https://baike.baidu.com/item/世界/24458" target="_blank" rel="noopener">世界</a>，只与自己相邻的路由器交换信息，范围限制在15跳(15度)之内，再远，它就不关心了。RIP应用于网络七层模型的应用层。 </p>
+<h2 id="2-实验目的-1"><a href="#2-实验目的-1" class="headerlink" title="2.实验目的"></a>2.实验目的</h2><ul>
+<li>掌握RIP的配置方法。</li>
+<li>理解RIPv1报文的结构。</li>
+</ul>
+<h2 id="3-实验拓扑-1"><a href="#3-实验拓扑-1" class="headerlink" title="3.实验拓扑"></a>3.实验拓扑</h2><p><img src="https://s2.ax1x.com/2020/03/08/3zg9HS.png" alt="3zg9HS.png"></p>
+<h2 id="4-实验步骤-1"><a href="#4-实验步骤-1" class="headerlink" title="4.实验步骤"></a>4.实验步骤</h2><p>在静态路由的实验基础上完成RIP的配置。</p>
+<h3 id="4-1对静态路由配置进行修改"><a href="#4-1对静态路由配置进行修改" class="headerlink" title="4.1对静态路由配置进行修改"></a>4.1对静态路由配置进行修改</h3><p>删除静态路由条目或者缺省路由条目。</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">undo</span> <span class="string">ip route-static 192.168.2.0 255.255.255.0 192.168.1.1</span></span><br><span class="line"><span class="comment">#or</span></span><br><span class="line"><span class="attr">undo</span> <span class="string">ip route-static 0.0.0.0 0.0.0.0 192.168.1.1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2在S1、R1上分别配置RIP协议"><a href="#4-2在S1、R1上分别配置RIP协议" class="headerlink" title="4.2在S1、R1上分别配置RIP协议"></a>4.2在S1、R1上分别配置RIP协议</h3><p>命令如下：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在交换机S1上的配置信息如下：</span></span><br><span class="line"><span class="attr">[S1]rip</span></span><br><span class="line"><span class="meta">[S1-rip-1]network</span> <span class="string">192.168.1.0</span></span><br><span class="line"><span class="meta">[S1-rip-1]network</span> <span class="string">192.168.2.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在路由器R1上的配置信息如下：</span></span><br><span class="line"><span class="attr">[R4]rip</span></span><br><span class="line"><span class="meta">[R4-rip-1]network</span> <span class="string">192.168.1.0</span></span><br></pre></td></tr></table></figure>
+
+<p>查看R1的路由表信息：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">[R1]display</span> <span class="string">ip routing-table</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.ax1x.com/2020/03/09/8Sh4Mj.png" alt="8Sh4Mj.png"></p>
+<p>可以看到RIP的路由条目：</p>
+<ul>
+<li><p>目的IP为：192.168.2.0</p>
+</li>
+<li><p>子网掩码为：255.255.255.0（24）</p>
+</li>
+<li><p>下一跳IP为：192.168.1.1</p>
+</li>
+</ul>
+<p>测试：</p>
+<p>R1PingPCA：</p>
+<p><img src="https://s2.ax1x.com/2020/03/09/8S5pcQ.png" alt="8S5pcQ.png"></p>
+<p>在端口GE0/0/0处捕获报文信息如下：</p>
+<p><img src="https://s2.ax1x.com/2020/03/09/8SIaGT.png" alt="8SIaGT.png"></p>
+<p>发现RIPv1的报文。</p>
+<h3 id="4-3RIPv1报文结构分析"><a href="#4-3RIPv1报文结构分析" class="headerlink" title="4.3RIPv1报文结构分析"></a>4.3RIPv1报文结构分析</h3><p>具体报文内容如下图所示：</p>
+<p><img src="https://s2.ax1x.com/2020/03/09/8STfDH.png" alt="8STfDH.png"></p>
+<p>在此只研究RIP报文结构，对其他层不做展开描述。</p>
+<p>会话层数据概况 （该文使用RIP协议：Routing Information Protocol）</p>
+<ul>
+<li><p>*<em>Command: *</em></p>
+<p>Response (2)  #命令：</p>
+<ul>
+<li><p>1为RIP请求信息；</p>
+<p>交换机刚启动RIP时，发送request请求报文；<br>此后，没有request报文，只有response应答报文</p>
+</li>
+<li><p>2为RIP响应信息；</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Version：</strong></p>
+<p>RIPv1 (1)  #版本，使用RIPv1版本</p>
+</li>
+<li><p><strong>Address Family:</strong></p>
+<p>IP (2) #协议簇，该字段长度为4字节。对于TCP/IP协议簇，该字段的取值为2 </p>
+</li>
+<li><p><strong>IP Address:</strong> </p>
+<p>192.168.1.0  #路由项的目的网络地址 </p>
+</li>
+<li><p><strong>Metric:</strong></p>
+<p>1 #跳数 </p>
+</li>
+</ul>
 ]]></content>
   </entry>
   <entry>
