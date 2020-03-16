@@ -73,8 +73,8 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2020&#x2F;03&#x2F;09&#x2F;8Sh4Mj.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2020&#x2F;03&#x2F;09&#x2F;8S5pcQ.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2020&#x2F;03&#x2F;09&#x2F;8SIaGT.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2020&#x2F;03&#x2F;09&#x2F;8STfDH.png">
-<meta property="og:updated_time" content="2020-03-09T04:28:44.017Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;12&#x2F;8VvUiR.png">
+<meta property="og:updated_time" content="2020-03-12T03:36:50.408Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2020&#x2F;03&#x2F;08&#x2F;3zg9HS.png">
 
@@ -257,10 +257,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-03-09 00:20:31 / 修改时间：12:28:44" itemprop="dateCreated datePublished" datetime="2020-03-09T00:20:31+08:00">2020-03-09</time>
+              <time title="创建时间：2020-03-09 00:20:31" itemprop="dateCreated datePublished" datetime="2020-03-09T00:20:31+08:00">2020-03-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-12 11:36:50" itemprop="dateModified" datetime="2020-03-12T11:36:50+08:00">2020-03-12</time>
+              </span>
 
           
             <span id="/2020/03/09/%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E5%8F%8A%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE%E5%88%86%E6%9E%90/" class="post-meta-item leancloud_visitors" data-flag-title="静态路由及默认路由配置" title="阅读次数">
@@ -349,11 +355,11 @@
 <p><img src="https://s2.ax1x.com/2020/03/08/3zfAaT.png" alt="3zfAaT.png"></p>
 <p><strong>问题出处：</strong>在拓扑中，S1上GE0/0/24端口选择的是trunk类型，无法ping通。</p>
 <p><strong>解决方案如下：</strong></p>
-<p>将GE0/0/24端口类型换位access。</p>
+<p>将GE0/0/24端口类型换为access。</p>
 <p><strong>原因解释：</strong></p>
 <p>因为R1是路由器。路由器是三层设备，不认识二层的Vlan、Trunk等等。 故在此将路由器当作用户设备端口类型选择为access。</p>
 <p>端口类型更换后测试：</p>
-<p>R1PingPCA：</p>
+<p>R1 Ping PCA：</p>
 <p><img src="https://s2.ax1x.com/2020/03/09/3zxgED.png" alt="3zxgED.png"></p>
 <p>在端口</p>
 <p>GE0/0/0上捕获报文如下：</p>
@@ -385,18 +391,17 @@
 </li>
 </ul>
 <p>测试：</p>
-<p>R1PingPCA：</p>
+<p>R1 Ping PCA：</p>
 <p><img src="https://s2.ax1x.com/2020/03/09/8S5pcQ.png" alt="8S5pcQ.png"></p>
 <p>在端口GE0/0/0处捕获报文信息如下：</p>
 <p><img src="https://s2.ax1x.com/2020/03/09/8SIaGT.png" alt="8SIaGT.png"></p>
 <p>发现RIPv1的报文。</p>
 <h3 id="4-3RIPv1报文结构分析"><a href="#4-3RIPv1报文结构分析" class="headerlink" title="4.3RIPv1报文结构分析"></a>4.3RIPv1报文结构分析</h3><p>具体报文内容如下图所示：</p>
-<p><img src="https://s2.ax1x.com/2020/03/09/8STfDH.png" alt="8STfDH.png"></p>
+<p><img src="https://s1.ax1x.com/2020/03/12/8VvUiR.png" alt="8VvUiR.png"></p>
 <p>在此只研究RIP报文结构，对其他层不做展开描述。</p>
 <p>会话层数据概况 （该文使用RIP协议：Routing Information Protocol）</p>
 <ul>
-<li><p>*<em>Command: *</em></p>
-<p>Response (2)  #命令：</p>
+<li><p><strong>Command Response (2)  #命令</strong></p>
 <ul>
 <li><p>1为RIP请求信息；</p>
 <p>交换机刚启动RIP时，发送request请求报文；<br>此后，没有request报文，只有response应答报文</p>
@@ -405,17 +410,17 @@
 </li>
 </ul>
 </li>
-<li><p><strong>Version：</strong></p>
-<p>RIPv1 (1)  #版本，使用RIPv1版本</p>
+<li><p><strong>Version  RIPv1 (1)  #版本</strong></p>
+<p>使用RIPv1版本</p>
 </li>
-<li><p><strong>Address Family:</strong></p>
-<p>IP (2) #协议簇，该字段长度为4字节。对于TCP/IP协议簇，该字段的取值为2 </p>
+<li><p><strong>Address Family IP (2) #协议簇</strong></p>
+<p>该字段长度为4字节。对于TCP/IP协议簇，该字段的取值为2 </p>
 </li>
-<li><p><strong>IP Address:</strong> </p>
-<p>192.168.1.0  #路由项的目的网络地址 </p>
+<li><p><strong>IP Address 192.168.1.0   #路由项的目的网络地址</strong> </p>
+<p> 表示路由器的目的网络地址为 192.168.1.0</p>
 </li>
-<li><p><strong>Metric:</strong></p>
-<p>1 #跳数 </p>
+<li><p><strong>Metric  16 #跳数:</strong></p>
+<p>表示跳数为16</p>
 </li>
 </ul>
 
@@ -477,6 +482,9 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+                <a href="/2020/03/16/RIPv2%E6%8A%A5%E6%96%87%E5%88%86%E6%9E%90/" rel="prev" title="RIPv2报文分析">
+                  RIPv2报文分析 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
       </footer>
@@ -571,7 +579,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
