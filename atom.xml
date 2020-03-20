@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-03-12T03:36:50.408Z</updated>
+  <updated>2020-03-20T11:35:03.559Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>排序算法总结归纳</title>
+    <link href="http://lisongbai.top/2020/03/20/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E5%BD%92%E7%BA%B3/"/>
+    <id>http://lisongbai.top/2020/03/20/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E5%BD%92%E7%BA%B3/</id>
+    <published>2020-03-20T05:29:17.000Z</published>
+    <updated>2020-03-20T11:35:03.559Z</updated>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;&lt;h1 id=&quot;1、排序的定义&quot;&gt;&lt;a href=&quot;#1、排序的定义&quot; class=&quot;headerlink&quot; title=&quot;1、排序的定义&quot;&gt;&lt;/a&gt;1、排序的定义&lt;/h1&gt;&lt;p&gt; 对一序列对象根据某个关键字进行排序。 &lt;/p&gt;&lt;h1 id=&quot;2、排序算法表&quot;&gt;&lt;a href=&quot;#2、排序算法表&quot; class=&quot;headerlink&quot; title=&quot;2、排序算法表&quot;&gt;&lt;/a&gt;2、排序算法表&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://s1.ax1x.com/2020/03/20/8cBdkn.jpg&quot; alt=&quot;8cBdkn.jpg&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;图片名词解释：&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;n: 数据规模&lt;/li&gt;
+&lt;li&gt;k: “桶”的个数&lt;/li&gt;
+&lt;li&gt;In-place: 占用常数内存，不占用额外内存&lt;/li&gt;
+&lt;li&gt;Out-place: 占用额外内存&lt;/li&gt;
+&lt;/ul&gt;&lt;h1 id=&quot;3、术语说明&quot;&gt;&lt;a href=&quot;#3、术语说明&quot; class=&quot;headerlink&quot; title=&quot;3、术语说明&quot;&gt;&lt;/a&gt;3、术语说明&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;稳定&lt;/strong&gt;：如果a原本在b前面，而a=b，排序之后a仍然在b的前面； &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;不稳定&lt;/strong&gt;：如果a原本在b的前面，而a=b，排序之后a可能会出现在b的后面； &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;内排序&lt;/strong&gt;：所有排序操作都在内存中完成； &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;外排序&lt;/strong&gt;：由于数据太大，因此把数据放在磁盘中，而排序通过磁盘和内存的数据传输才能进行； &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;时间复杂度：&lt;/strong&gt; 一个算法执行所耗费的时间。 &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;空间复杂度&lt;/strong&gt;：运行完一个程序所需内存的大小。 &lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>静态路由及默认路由配置</title>
@@ -396,29 +425,6 @@
     </summary>
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>mySql中的事务</title>
-    <link href="http://lisongbai.top/2020/01/15/mySql%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1/"/>
-    <id>http://lisongbai.top/2020/01/15/mySql%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1/</id>
-    <published>2020-01-15T03:15:47.000Z</published>
-    <updated>2020-01-15T04:35:14.451Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一、MySql中的事务&quot;&gt;&lt;a href=&quot;#一、MySql中的事务&quot; class=&quot;headerlink&quot; title=&quot;一、MySql中的事务&quot;&gt;&lt;/a&gt;一、MySql中的事务&lt;/h1&gt;&lt;p&gt;MySQL 事务主要用于处理操作量大，复杂度高的数据。比如说，在人员管理系统中，你删除一个人员，你既需要删除人员的基本资料，也要删除和该人员相关的信息，如信箱，文章等等，这样，这些数据库操作语句就构成一个事务！&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;在 MySQL 中只有使用了 Innodb 数据库引擎的数据库或表才支持事务。&lt;/li&gt;
-&lt;li&gt;事务处理可以用来维护数据库的完整性，保证成批的 SQL 语句要么全部执行，要么全部不执行。&lt;/li&gt;
-&lt;li&gt;事务用来管理 insert,update,delete 语句&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="mysql事务" scheme="http://lisongbai.top/tags/mysql%E4%BA%8B%E5%8A%A1/"/>
     
   </entry>
   
