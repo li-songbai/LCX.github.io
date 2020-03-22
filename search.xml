@@ -1,6 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>ospf组网实验</title>
+    <url>/2020/03/22/ospf%E7%BB%84%E7%BD%91%E5%AE%9E%E9%AA%8C/</url>
+    <content><![CDATA[<h1 id="1、网络拓扑图"><a href="#1、网络拓扑图" class="headerlink" title="1、网络拓扑图"></a>1、网络拓扑图</h1><p><img src="https://s1.ax1x.com/2020/03/22/85DWGD.png" alt="85DWGD.png"></p><h1 id="2、实验目的"><a href="#2、实验目的" class="headerlink" title="2、实验目的"></a>2、实验目的</h1><ul>
+<li>OSPF的基本配置（静态路由及动态路由）</li>
+<li>OSPF协议报文交互过程</li>
+<li>区域划分</li>
+</ul><h1 id="3、实验步骤"><a href="#3、实验步骤" class="headerlink" title="3、实验步骤"></a>3、实验步骤</h1><h2 id="3-1-连接拓扑并配置PC机的IP及网关"><a href="#3-1-连接拓扑并配置PC机的IP及网关" class="headerlink" title="3.1 连接拓扑并配置PC机的IP及网关"></a>3.1 连接拓扑并配置PC机的IP及网关</h2><p>PC1配置如下：（其他PC同理）</p><p><img src="https://s1.ax1x.com/2020/03/22/85shDA.png" alt="PC1"></p><h2 id="3-2-配置路由器的各个端口"><a href="#3-2-配置路由器的各个端口" class="headerlink" title="3.2 配置路由器的各个端口"></a>3.2 配置路由器的各个端口</h2><h3 id="3-2-1-AR3端口配置"><a href="#3-2-1-AR3端口配置" class="headerlink" title="3.2.1 AR3端口配置"></a>3.2.1 AR3端口配置</h3><figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">&lt;Huawei&gt;sys</span></span><br><span class="line"><span class="attr">Enter</span> <span class="string">system view, return user view with Ctrl+Z.</span></span><br><span class="line"><span class="meta">[Huawei]sysname</span> <span class="string">R3</span></span><br><span class="line"><span class="meta">[R3]interface</span> <span class="string">GigabitEthernet 0/0/0</span></span><br><span class="line"><span class="meta">[R3-GigabitEthernet0/0/0]ip</span> <span class="string">address 192.168.4.254 24</span></span><br><span class="line"><span class="attr">[R3-GigabitEthernet0/0/0]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:23:11-08:00 R3 %%01IFNET/4/LINK_STATE(l)[0]:The line protocol IP </span></span><br><span class="line"><span class="attr">on</span> <span class="string">the interface GigabitEthernet0/0/0 has entered the UP state. </span></span><br><span class="line"><span class="meta">[R3-GigabitEthernet0/0/0]quit</span>	<span class="string"></span></span><br><span class="line"><span class="meta">[R3]interface</span> <span class="string">GigabitEthernet 0/0/1</span></span><br><span class="line"><span class="meta">[R3-GigabitEthernet0/0/1]ip</span> <span class="string">address 192.168.34.4 24</span></span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+
+<h3 id="3-2-2-AR4端口配置"><a href="#3-2-2-AR4端口配置" class="headerlink" title="3.2.2 AR4端口配置"></a>3.2.2 AR4端口配置</h3><figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">&lt;Huawei&gt;sys</span></span><br><span class="line"><span class="attr">Enter</span> <span class="string">system view, return user view with Ctrl+Z.</span></span><br><span class="line"><span class="meta">[Huawei]sysname</span> <span class="string">R4</span></span><br><span class="line"><span class="meta">[R4]interface</span> <span class="string">GigabitEthernet 0/0/0</span></span><br><span class="line"><span class="meta">[R4-GigabitEthernet0/0/0]ip</span> <span class="string">address 192.168.34.3 24</span></span><br><span class="line"><span class="attr">[R4-GigabitEthernet0/0/0]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:24:31-08:00 R4 %%01IFNET/4/LINK_STATE(l)[0]:The line protocol IP </span></span><br><span class="line"><span class="attr">on</span> <span class="string">the interface GigabitEthernet0/0/0 has entered the UP state. </span></span><br><span class="line"><span class="attr">[R4-GigabitEthernet0/0/0]quit</span></span><br><span class="line"><span class="meta">[R4]interface</span> <span class="string">GigabitEthernet 0/0/1</span></span><br><span class="line"><span class="meta">[R4-GigabitEthernet0/0/1]ip</span> <span class="string">address 192.168.13.2 24</span></span><br><span class="line"><span class="attr">[R4-GigabitEthernet0/0/1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:24:52-08:00 R4 %%01IFNET/4/LINK_STATE(l)[1]:The line protocol IP </span></span><br><span class="line"><span class="attr">on</span> <span class="string">the interface GigabitEthernet0/0/1 has entered the UP state. </span></span><br><span class="line"><span class="attr">[R4-GigabitEthernet0/0/1]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-3-AR5端口配置"><a href="#3-2-3-AR5端口配置" class="headerlink" title="3.2.3 AR5端口配置"></a>3.2.3 AR5端口配置</h3><figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;Huawei&gt;sys</span>	<span class="string"></span></span><br><span class="line"><span class="attr">Enter</span> <span class="string">system view, return user view with Ctrl+Z.	</span></span><br><span class="line"><span class="meta">[Huawei]sysname</span> <span class="string">R5</span></span><br><span class="line"><span class="meta">[R5]interface</span> <span class="string">GigabitEthernet 0/0/0</span></span><br><span class="line"><span class="meta">[R5-GigabitEthernet0/0/0]ip</span> <span class="string">address 192.168.13.1 24</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:25:55-08:00 R5 %%01IFNET/4/LINK_STATE(l)[0]:The line protocol IP </span></span><br><span class="line"><span class="attr">on</span> <span class="string">the interface GigabitEthernet0/0/0 has entered the UP state. </span></span><br><span class="line"><span class="meta">[R5-GigabitEthernet0/0/0]quit</span>	<span class="string"></span></span><br><span class="line"><span class="meta">[R5]interface</span>  <span class="string">GigabitEthernet 0/0/1</span></span><br><span class="line"><span class="meta">[R5-GigabitEthernet0/0/1]ip</span> <span class="string">address 192.168.12.1 24</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:26:19-08:00 R5 %%01IFNET/4/LINK_STATE(l)[1]:The line protocol IP </span></span><br><span class="line"><span class="attr">on</span> <span class="string">the interface GigabitEthernet0/0/1 has entered the UP state. </span></span><br><span class="line"><span class="attr">[R5-GigabitEthernet0/0/1]quit</span></span><br><span class="line"><span class="meta">[R5]interface</span> <span class="string">GigabitEthernet 0/0/2</span></span><br><span class="line"><span class="meta">[R5-GigabitEthernet0/0/2]ip</span> <span class="string">address 192.168.11.1 24</span></span><br><span class="line"><span class="attr">[R5-GigabitEthernet0/0/2]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:26:53-08:00 R5 %%01IFNET/4/LINK_STATE(l)[2]:The line protocol IP </span></span><br><span class="line"><span class="attr">on</span> <span class="string">the interface GigabitEthernet0/0/2 has entered the UP state. </span></span><br><span class="line"><span class="attr">[R5-GigabitEthernet0/0/2]quit</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-4-AR6端口配置"><a href="#3-2-4-AR6端口配置" class="headerlink" title="3.2.4 AR6端口配置"></a>3.2.4 AR6端口配置</h3><figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">&lt;Huawei&gt;sys</span></span><br><span class="line"><span class="attr">Enter</span> <span class="string">system view, return user view with Ctrl+Z.</span></span><br><span class="line"><span class="meta">[Huawei]sysname</span> <span class="string">R6</span></span><br><span class="line"><span class="meta">[R6]interface</span> <span class="string">GigabitEthernet 0/0/0</span></span><br><span class="line"><span class="meta">[R6-GigabitEthernet0/0/0]ip</span> <span class="string">address 192.168.12.2 24</span></span><br><span class="line"><span class="attr">[R6-GigabitEthernet0/0/0]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:28:20-08:00 R6 %%01IFNET/4/LINK_STATE(l)[0]:The line protocol IP </span></span><br><span class="line"><span class="attr">on</span> <span class="string">the interface GigabitEthernet0/0/0 has entered the UP state. </span></span><br><span class="line"><span class="meta">[R6-GigabitEthernet0/0/0]quit</span>	<span class="string"></span></span><br><span class="line"><span class="meta">[R6]interface</span> <span class="string">GigabitEthernet 0/0/1</span></span><br><span class="line"><span class="meta">[R6-GigabitEthernet0/0/1]ip</span> <span class="string">address 192.168.2.254 24</span></span><br><span class="line"><span class="attr">[R6-GigabitEthernet0/0/1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:28:47-08:00 R6 %%01IFNET/4/LINK_STATE(l)[1]:The line protocol IP </span></span><br><span class="line"><span class="attr">on</span> <span class="string">the interface GigabitEthernet0/0/1 has entered the UP state. </span></span><br><span class="line"><span class="attr">[R6-GigabitEthernet0/0/1]quit</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-5-AR7端口配置"><a href="#3-2-5-AR7端口配置" class="headerlink" title="3.2.5 AR7端口配置"></a>3.2.5 AR7端口配置</h3><figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">&lt;Huawei&gt;sys</span></span><br><span class="line"><span class="attr">Enter</span> <span class="string">system view, return user view with Ctrl+Z.</span></span><br><span class="line"><span class="meta">[Huawei]sysname</span> <span class="string">R7</span></span><br><span class="line"><span class="meta">[R7]interface</span> <span class="string">GigabitEthernet 0/0/0</span></span><br><span class="line"><span class="meta">[R7-GigabitEthernet0/0/0]ip</span> <span class="string">address 192.168.11.2 24</span></span><br><span class="line"><span class="attr">[R7-GigabitEthernet0/0/0]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:29:26-08:00 R7 %%01IFNET/4/LINK_STATE(l)[0]:The line protocol IP </span></span><br><span class="line"><span class="attr">on</span> <span class="string">the interface GigabitEthernet0/0/0 has entered the UP state. </span></span><br><span class="line"><span class="attr">[R7-GigabitEthernet0/0/0]quit</span></span><br><span class="line"><span class="meta">[R7]interface</span> <span class="string">GigabitEthernet 0/0/1</span></span><br><span class="line"><span class="meta">[R7-GigabitEthernet0/0/1]ip</span> <span class="string">address 1.1.1.254 24</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:29:54-08:00 R7 %%01IFNET/4/LINK_STATE(l)[1]:The line protocol IP </span></span><br><span class="line"><span class="attr">on</span> <span class="string">the interface GigabitEthernet0/0/1 has entered the UP state. </span></span><br><span class="line"><span class="attr">[R7-GigabitEthernet0/0/1]quit</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-3-配置OSPF区域"><a href="#3-3-配置OSPF区域" class="headerlink" title="3.3 配置OSPF区域"></a>3.3 配置OSPF区域</h2><h3 id="3-3-1-在AR5上进行如下配置"><a href="#3-3-1-在AR5上进行如下配置" class="headerlink" title="3.3.1 在AR5上进行如下配置"></a>3.3.1 在AR5上进行如下配置</h3><figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">[R5]ospf</span> <span class="string">router-id 1.1.1.1  //指定AR7在OSPF中的ID</span></span><br><span class="line"><span class="meta">[R5-ospf-1]area</span> <span class="string">0 //进入骨干区域area 0</span></span><br><span class="line"><span class="meta">[R5-ospf-1-area-0.0.0.0]network</span> <span class="string">192.168.12.0 0.0.0.255 //宣告网络192.168.12.0</span></span><br><span class="line"><span class="meta">[R5-ospf-1-area-0.0.0.0]quit</span>  <span class="string">//返回上一级</span></span><br><span class="line"><span class="meta">[R5-ospf-1]area</span> <span class="string">1 //进入非骨干区域area 1</span></span><br><span class="line"><span class="meta">[R5-ospf-1-area-0.0.0.1]network</span> <span class="string">192.168.13.0 0.0.0.255 //宣告网络192.168.13.0</span></span><br><span class="line"><span class="attr">[R5-ospf-1-area-0.0.0.1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:34:59-08:00 R5 %%01OSPF/4/NBR_CHANGE_E(l)[3]:Neighbor changes eve</span></span><br><span class="line"><span class="attr">nt</span>: <span class="string">neighbor status changed. (ProcessId=256, NeighborAddress=2.12.168.192, Neigh</span></span><br><span class="line"><span class="attr">borEvent</span>=<span class="string">HelloReceived, NeighborPreviousState=Down, NeighborCurrentState=Init) </span></span><br><span class="line"><span class="attr">[R5-ospf-1-area-0.0.0.1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:35:07-08:00 R5 %%01OSPF/4/NBR_CHANGE_E(l)[4]:Neighbor changes eve</span></span><br><span class="line"><span class="attr">nt</span>: <span class="string">neighbor status changed. (ProcessId=256, NeighborAddress=2.12.168.192, Neigh</span></span><br><span class="line"><span class="attr">borEvent</span>=<span class="string">2WayReceived, NeighborPreviousState=Init, NeighborCurrentState=ExStart)</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">[R5-ospf-1-area-0.0.0.1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:35:07-08:00 R5 %%01OSPF/4/NBR_CHANGE_E(l)[5]:Neighbor changes eve</span></span><br><span class="line"><span class="attr">nt</span>: <span class="string">neighbor status changed. (ProcessId=256, NeighborAddress=2.12.168.192, Neigh</span></span><br><span class="line"><span class="attr">borEvent</span>=<span class="string">NegotiationDone, NeighborPreviousState=ExStart, NeighborCurrentState=Ex</span></span><br><span class="line"><span class="meta">change)</span> <span class="string"></span></span><br><span class="line"><span class="attr">[R5-ospf-1-area-0.0.0.1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:35:07-08:00 R5 %%01OSPF/4/NBR_CHANGE_E(l)[6]:Neighbor changes eve</span></span><br><span class="line"><span class="attr">nt</span>: <span class="string">neighbor status changed. (ProcessId=256, NeighborAddress=2.12.168.192, Neigh</span></span><br><span class="line"><span class="attr">borEvent</span>=<span class="string">ExchangeDone, NeighborPreviousState=Exchange, NeighborCurrentState=Load</span></span><br><span class="line"><span class="meta">ing)</span> <span class="string"></span></span><br><span class="line"><span class="attr">[R5-ospf-1-area-0.0.0.1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:35:08-08:00 R5 %%01OSPF/4/NBR_CHANGE_E(l)[7]:Neighbor changes eve</span></span><br><span class="line"><span class="attr">nt</span>: <span class="string">neighbor status changed. (ProcessId=256, NeighborAddress=2.12.168.192, Neigh</span></span><br><span class="line"><span class="attr">borEvent</span>=<span class="string">LoadingDone, NeighborPreviousState=Loading, NeighborCurrentState=Full) </span></span><br><span class="line"></span><br><span class="line"><span class="attr">[R5-ospf-1-area-0.0.0.1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:35:59-08:00 R5 %%01OSPF/4/NBR_CHANGE_E(l)[8]:Neighbor changes eve</span></span><br><span class="line"><span class="attr">nt</span>: <span class="string">neighbor status changed. (ProcessId=256, NeighborAddress=2.13.168.192, Neigh</span></span><br><span class="line"><span class="attr">borEvent</span>=<span class="string">HelloReceived, NeighborPreviousState=Down, NeighborCurrentState=Init) </span></span><br><span class="line"><span class="attr">[R5-ospf-1-area-0.0.0.1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:36:04-08:00 R5 %%01OSPF/4/NBR_CHANGE_E(l)[9]:Neighbor changes eve</span></span><br><span class="line"><span class="attr">nt</span>: <span class="string">neighbor status changed. (ProcessId=256, NeighborAddress=2.13.168.192, Neigh</span></span><br><span class="line"><span class="attr">borEvent</span>=<span class="string">2WayReceived, NeighborPreviousState=Init, NeighborCurrentState=ExStart)</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">[R5-ospf-1-area-0.0.0.1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:36:04-08:00 R5 %%01OSPF/4/NBR_CHANGE_E(l)[10]:Neighbor changes ev</span></span><br><span class="line"><span class="attr">ent</span>: <span class="string">neighbor status changed. (ProcessId=256, NeighborAddress=2.13.168.192, Neig</span></span><br><span class="line"><span class="attr">hborEvent</span>=<span class="string">NegotiationDone, NeighborPreviousState=ExStart, NeighborCurrentState=E</span></span><br><span class="line"><span class="meta">xchange)</span> <span class="string"></span></span><br><span class="line"><span class="attr">[R5-ospf-1-area-0.0.0.1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:36:05-08:00 R5 %%01OSPF/4/NBR_CHANGE_E(l)[11]:Neighbor changes ev</span></span><br><span class="line"><span class="attr">ent</span>: <span class="string">neighbor status changed. (ProcessId=256, NeighborAddress=2.13.168.192, Neig</span></span><br><span class="line"><span class="attr">hborEvent</span>=<span class="string">ExchangeDone, NeighborPreviousState=Exchange, NeighborCurrentState=Loa</span></span><br><span class="line"><span class="meta">ding)</span> <span class="string"></span></span><br><span class="line"><span class="attr">[R5-ospf-1-area-0.0.0.1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:36:05-08:00 R5 %%01OSPF/4/NBR_CHANGE_E(l)[12]:Neighbor changes ev</span></span><br><span class="line"><span class="attr">ent</span>: <span class="string">neighbor status changed. (ProcessId=256, NeighborAddress=2.13.168.192, Neig</span></span><br><span class="line"><span class="attr">hborEvent</span>=<span class="string">LoadingDone, NeighborPreviousState=Loading, NeighborCurrentState=Full)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-2-在AR4上进行如下配置"><a href="#3-3-2-在AR4上进行如下配置" class="headerlink" title="3.3.2 在AR4上进行如下配置"></a>3.3.2 在AR4上进行如下配置</h3><figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">[R4]osp</span>	<span class="string"></span></span><br><span class="line"><span class="meta">[R4]ospf</span> <span class="string">router-id 3.3.3.3</span></span><br><span class="line"><span class="meta">[R4-ospf-1]area</span> <span class="string">1</span></span><br><span class="line"><span class="meta">[R4-ospf-1-area-0.0.0.1]network</span> <span class="string">192.168.13.0 0.0.0.255</span></span><br><span class="line"><span class="attr">[R4-ospf-1-area-0.0.0.1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:36:06-08:00 R4 %%01OSPF/4/NBR_CHANGE_E(l)[0]:Neighbor changes eve</span></span><br><span class="line"><span class="attr">nt</span>: <span class="string">neighbor status changed. (ProcessId=256, NeighborAddress=1.13.168.192, Neigh</span></span><br><span class="line"><span class="attr">borEvent</span>=<span class="string">HelloReceived, NeighborPreviousState=Down, NeighborCurrentState=Init) </span></span><br><span class="line"><span class="attr">[R4-ospf-1-area-0.0.0.1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:36:06-08:00 R4 %%01OSPF/4/NBR_CHANGE_E(l)[1]:Neighbor changes eve</span></span><br><span class="line"><span class="attr">nt</span>: <span class="string">neighbor status changed. (ProcessId=256, NeighborAddress=1.13.168.192, Neigh</span></span><br><span class="line"><span class="attr">borEvent</span>=<span class="string">2WayReceived, NeighborPreviousState=Init, NeighborCurrentState=2Way) </span></span><br><span class="line"><span class="attr">[R4-ospf-1-area-0.0.0.1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:36:06-08:00 R4 %%01OSPF/4/NBR_CHANGE_E(l)[2]:Neighbor changes eve</span></span><br><span class="line"><span class="attr">nt</span>: <span class="string">neighbor status changed. (ProcessId=256, NeighborAddress=1.13.168.192, Neigh</span></span><br><span class="line"><span class="attr">borEvent</span>=<span class="string">AdjOk?, NeighborPreviousState=2Way, NeighborCurrentState=ExStart) </span></span><br><span class="line"><span class="attr">[R4-ospf-1-area-0.0.0.1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:36:06-08:00 R4 %%01OSPF/4/NBR_CHANGE_E(l)[3]:Neighbor changes eve</span></span><br><span class="line"><span class="attr">nt</span>: <span class="string">neighbor status changed. (ProcessId=256, NeighborAddress=1.13.168.192, Neigh</span></span><br><span class="line"><span class="attr">borEvent</span>=<span class="string">NegotiationDone, NeighborPreviousState=ExStart, NeighborCurrentState=Ex</span></span><br><span class="line"><span class="meta">change)</span> <span class="string"></span></span><br><span class="line"><span class="attr">[R4-ospf-1-area-0.0.0.1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:36:06-08:00 R4 %%01OSPF/4/NBR_CHANGE_E(l)[4]:Neighbor changes eve</span></span><br><span class="line"><span class="attr">nt</span>: <span class="string">neighbor status changed. (ProcessId=256, NeighborAddress=1.13.168.192, Neigh</span></span><br><span class="line"><span class="attr">borEvent</span>=<span class="string">ExchangeDone, NeighborPreviousState=Exchange, NeighborCurrentState=Load</span></span><br><span class="line"><span class="meta">ing)</span> <span class="string"></span></span><br><span class="line"><span class="attr">[R4-ospf-1-area-0.0.0.1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:36:06-08:00 R4 %%01OSPF/4/NBR_CHANGE_E(l)[5]:Neighbor changes eve</span></span><br><span class="line"><span class="attr">nt</span>: <span class="string">neighbor status changed. (ProcessId=256, NeighborAddress=1.13.168.192, Neigh</span></span><br><span class="line"><span class="attr">borEvent</span>=<span class="string">LoadingDone, NeighborPreviousState=Loading, NeighborCurrentState=Full)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-3-在AR6上进行如下配置"><a href="#3-3-3-在AR6上进行如下配置" class="headerlink" title="3.3.3 在AR6上进行如下配置"></a>3.3.3 在AR6上进行如下配置</h3><figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">[R6]ospf</span>	<span class="string"></span></span><br><span class="line"><span class="meta">[R6]ospf</span> <span class="string">router-id 2.2.2.2</span></span><br><span class="line"><span class="meta">[R6-ospf-1]area</span> <span class="string">0</span></span><br><span class="line"><span class="meta">[R6-ospf-1-area-0.0.0.0]network</span> <span class="string">192.168.12.0 0.0.0.255</span></span><br><span class="line"><span class="attr">[R6-ospf-1-area-0.0.0.0]quit</span></span><br><span class="line"><span class="attr">[R6-ospf-1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:35:08-08:00 R6 %%01OSPF/4/NBR_CHANGE_E(l)[0]:Neighbor changes eve</span></span><br><span class="line"><span class="attr">nt</span>: <span class="string">neighbor status changed. (ProcessId=256, NeighborAddress=1.12.168.192, Neigh</span></span><br><span class="line"><span class="attr">borEvent</span>=<span class="string">HelloReceived, NeighborPreviousState=Down, NeighborCurrentState=Init) </span></span><br><span class="line"><span class="attr">[R6-ospf-1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:35:08-08:00 R6 %%01OSPF/4/NBR_CHANGE_E(l)[1]:Neighbor changes eve</span></span><br><span class="line"><span class="attr">nt</span>: <span class="string">neighbor status changed. (ProcessId=256, NeighborAddress=1.12.168.192, Neigh</span></span><br><span class="line"><span class="attr">borEvent</span>=<span class="string">2WayReceived, NeighborPreviousState=Init, NeighborCurrentState=2Way) </span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:35:08-08:00 R6 %%01OSPF/4/NBR_CHANGE_E(l)[2]:Neighbor changes eve</span></span><br><span class="line"><span class="attr">nt</span>: <span class="string">neighbor status changed. (ProcessId=256, NeighborAddress=1.12.168.192, Neigh</span></span><br><span class="line"><span class="attr">borEvent</span>=<span class="string">AdjOk?, NeighborPreviousState=2Way, NeighborCurrentState=ExStart) </span></span><br><span class="line"><span class="attr">[R6-ospf-1]</span></span><br><span class="line"><span class="attr">[R6-ospf-1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:35:09-08:00 R6 %%01OSPF/4/NBR_CHANGE_E(l)[3]:Neighbor changes eve</span></span><br><span class="line"><span class="attr">nt</span>: <span class="string">neighbor status changed. (ProcessId=256, NeighborAddress=1.12.168.192, Neigh</span></span><br><span class="line"><span class="attr">borEvent</span>=<span class="string">NegotiationDone, NeighborPreviousState=ExStart, NeighborCurrentState=Ex</span></span><br><span class="line"><span class="meta">change)</span> <span class="string"></span></span><br><span class="line"><span class="attr">[R6-ospf-1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:35:09-08:00 R6 %%01OSPF/4/NBR_CHANGE_E(l)[4]:Neighbor changes eve</span></span><br><span class="line"><span class="attr">nt</span>: <span class="string">neighbor status changed. (ProcessId=256, NeighborAddress=1.12.168.192, Neigh</span></span><br><span class="line"><span class="attr">borEvent</span>=<span class="string">ExchangeDone, NeighborPreviousState=Exchange, NeighborCurrentState=Load</span></span><br><span class="line"><span class="meta">ing)</span> <span class="string"></span></span><br><span class="line"><span class="attr">[R6-ospf-1]</span></span><br><span class="line"><span class="attr">Mar</span> <span class="string">22 2020 14:35:09-08:00 R6 %%01OSPF/4/NBR_CHANGE_E(l)[5]:Neighbor changes eve</span></span><br><span class="line"><span class="attr">nt</span>: <span class="string">neighbor status changed. (ProcessId=256, NeighborAddress=1.12.168.192, Neigh</span></span><br><span class="line"><span class="attr">borEvent</span>=<span class="string">LoadingDone, NeighborPreviousState=Loading, NeighborCurrentState=Full) </span></span><br><span class="line"></span><br><span class="line"><span class="attr">[R6-ospf-1]quit</span></span><br></pre></td></tr></table></figure>
+
+<p>验证：</p>
+<p>使用<strong>display ospf brief</strong>命令用来查看OSPF的概要信息。</p>
+<p>AR5的概要如下图：</p>
+<p><img src="https://s1.ax1x.com/2020/03/22/85xqRf.png" alt="85xqRf.png"></p>
+<p>AR4的概要如下图：</p>
+<p> <img src="https://s1.ax1x.com/2020/03/22/85zFzT.png" alt="85zFzT.png"></p>
+<p>AR6的概要如下图：</p>
+<p><img src="https://s1.ax1x.com/2020/03/22/85zmw9.png" alt="85zmw9.png"></p>
+<p> 由上图可知，AR5为ABR路由器，AR4因为连接了外部路由所以为ASBR路由器。 </p>
+<h2 id="3-4-验证area-0与-area-1之间的路由是否实现区域内互通"><a href="#3-4-验证area-0与-area-1之间的路由是否实现区域内互通" class="headerlink" title="3.4  验证area 0与 area 1之间的路由是否实现区域内互通"></a>3.4  验证area 0与 area 1之间的路由是否实现区域内互通</h2><p>使用display ip routing-table查看AR4的路由表信息如下：</p>
+<p><img src="https://s1.ax1x.com/2020/03/22/8Iri4K.png" alt="8Iri4K.png"></p>
+<p>使用display ip routing-table查看AR6的路由表信息如下：</p>
+<p><img src="https://s1.ax1x.com/2020/03/22/8IrVjH.png" alt="8IrVjH.png"></p>
+<p> 由上图可知，AR4与AR6都有一条去往对方的ospf路由条目。所以area 0与area 1之间的路由，都是可以ping通的。 </p>
+<h2 id="3-5-默认路由、静态路由及直连路由的配置"><a href="#3-5-默认路由、静态路由及直连路由的配置" class="headerlink" title="3.5 默认路由、静态路由及直连路由的配置"></a>3.5 默认路由、静态路由及直连路由的配置</h2><p> 由于AR5去往外网，需要配置一条默认路由，并且需要在进程ospf 1中进行默认路由注入<br>同样AR4连接了外部路由，也需要在进程ospf 1中注入静态路由，AR6则需要注入直连路由<br>配置命令如下 </p>
+<h3 id="3-5-1-在AR5上配置默认路由并注入ospf中"><a href="#3-5-1-在AR5上配置默认路由并注入ospf中" class="headerlink" title="3.5.1 在AR5上配置默认路由并注入ospf中"></a>3.5.1 在AR5上配置默认路由并注入ospf中</h3><p>命令如下：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">[R5]ip</span> <span class="string">route-static 0.0.0.0 0.0.0.0 192.168.11.2</span></span><br><span class="line"><span class="meta">[R5]ospf</span> <span class="string">1</span></span><br><span class="line"><span class="meta">[R5-ospf-1]default-route-advertise</span> <span class="string">always cost 200 type 1</span></span><br><span class="line"><span class="attr">[R5-ospf-1]quit</span></span><br><span class="line"><span class="attr">[R5]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-5-2-在AR4上配置静态路由并注入ospf中"><a href="#3-5-2-在AR4上配置静态路由并注入ospf中" class="headerlink" title="3.5.2 在AR4上配置静态路由并注入ospf中"></a>3.5.2 在AR4上配置静态路由并注入ospf中</h3><figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">&lt;R4&gt;sys</span></span><br><span class="line"><span class="attr">Enter</span> <span class="string">system view, return user view with Ctrl+Z.</span></span><br><span class="line"><span class="meta">[R4]ip</span> <span class="string">route-static 192.168.4.0 24 192.168.34.4	</span></span><br><span class="line"><span class="meta">[R4]ospf</span> <span class="string">1</span></span><br><span class="line"><span class="meta">[R4-ospf-1]import-route</span> <span class="string">static cost 150 type 2</span></span><br><span class="line"><span class="attr">[R4-ospf-1]quit</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-5-3-在AR6上注入直连路由"><a href="#3-5-3-在AR6上注入直连路由" class="headerlink" title="3.5.3 在AR6上注入直连路由"></a>3.5.3 在AR6上注入直连路由</h3><figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">&lt;R6&gt;sys</span></span><br><span class="line"><span class="attr">Enter</span> <span class="string">system view, return user view with Ctrl+Z.</span></span><br><span class="line"><span class="meta">[R6]</span>	<span class="string"></span></span><br><span class="line"><span class="meta">[R6]ospf</span> <span class="string">1</span></span><br><span class="line"><span class="meta">[R6-ospf-1]import-route</span>  <span class="string">direct cost 50 type 2</span></span><br><span class="line"><span class="attr">[R6-ospf-1]quit</span></span><br></pre></td></tr></table></figure>
+
+<p>命令解释：</p>
+<p>命令格式如下：</p>
+<p><strong>import-route</strong> <em>protocol</em> [ <em>process-id</em>  ] [ <strong>cost</strong> <em>cost</em> |  <strong>type</strong> <em>type</em> |  <strong>tag</strong> <em>tag</em> |  <strong>route-policy</strong> <em>route-policy-name</em> ] </p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+<th>取值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>protocol</em></td>
+<td>可引入的源路由协议。</td>
+<td>目前可为<strong>direct</strong>、<strong>bgp</strong>、<strong>unr</strong>、<strong>static</strong>、<strong>ripng</strong>、<strong>isis</strong>或<strong>ospfv3</strong>。</td>
+</tr>
+<tr>
+<td><em>process-id</em></td>
+<td>引入的源路由协议进程号，当引入路由协议为<strong>ripng</strong>、<strong>isis</strong>或<strong>ospfv3</strong>时，需要指定该值。</td>
+<td>整数形式，取值范围是1～65535。</td>
+</tr>
+<tr>
+<td><strong>cost</strong> <em>cost</em></td>
+<td>引入路由的开销值。</td>
+<td>整数形式，取值范围是1～16777214。</td>
+</tr>
+<tr>
+<td><strong>type</strong> <em>type</em></td>
+<td>引入路由的类型。</td>
+<td>取值是1或2。缺省值是2。</td>
+</tr>
+<tr>
+<td><strong>tag</strong> <em>tag</em></td>
+<td>标识引入路由的tag值。</td>
+<td>整数形式，取值范围是0～4294967295。缺省值是1。</td>
+</tr>
+<tr>
+<td><strong>route-policy</strong> <em>route-policy-name</em></td>
+<td>指定路由策略名称，只有满足指定匹配条件的路由才被引入。</td>
+<td>字符串形式，长度范围是1～40个字符。</td>
+</tr>
+</tbody></table>
+<p>命令格式如下：</p>
+<p><strong>default-route-advertise</strong> [  <strong>always</strong> | <strong>cost</strong> <em>cost</em> | <strong>type</strong> <em>type</em> | <strong>tag</strong> <em>tag</em> | <strong>route-policy</strong> <em>route-policy-name</em> ] </p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+<th>取值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>always</strong></td>
+<td>无论本机是否存在激活的非OSPFv3缺省路由，都会产生并发布一个描述缺省路由的LSA。配置了<strong>always</strong>参数的交换机不再计算来自其他交换机的缺省路由。如果没有指定该关键字，本机路由表中必须有激活的非OSPFv3缺省路由时才生成缺省路由的LSA。</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>cost</strong> <em>cost</em></td>
+<td>指定该ASE LSA的度量值。</td>
+<td>整数形式，取值范围是1～16777214。</td>
+</tr>
+<tr>
+<td><strong>type</strong> <em>type</em></td>
+<td>指定该ASE LSA的类型。  Type-1：第一类外部路由，到第一类外部路由的开销=本交换机到相应的ASBR的开销+ASBR到该路由目的地址的开销。 Type-2：第二类外部路由，到第二类外部路由的开销=ASBR到该路由目的地址的开销。</td>
+<td>整数形式，取值范围是1～2。缺省值是2。</td>
+</tr>
+<tr>
+<td><strong>tag</strong> <em>tag</em></td>
+<td>标识VPN引入路由的tag值。</td>
+<td>整数形式，取值范围是0～4294967295。缺省值是1。</td>
+</tr>
+<tr>
+<td><strong>route-policy</strong> <em>route-policy-name</em></td>
+<td>通过路由策略，实现在路由表中有匹配的非OSPFv3产生的缺省路由表项时，按路由策略所配置的参数发布缺省路由。</td>
+<td>字符串形式，取值范围是1～40。</td>
+</tr>
+</tbody></table>
+<p>验证：</p>
+<p>使用<strong>display ospf routing</strong>命令用来显示OSPF路由表的信息。。</p>
+<p>AR4的路由表信息如下:</p>
+<p><img src="https://s1.ax1x.com/2020/03/22/8IpZ5R.png" alt="8IpZ5R.png"></p>
+<p>AR6的路由表信息如下:</p>
+<p><img src="https://s1.ax1x.com/2020/03/22/8oC6Qx.png" alt="8oC6Qx.png"></p>
+<p>AR5的路由表信息如下:</p>
+<p><img src="https://s1.ax1x.com/2020/03/22/8oCGzq.png" alt="8oCGzq.png"></p>
+<p>由上图可知，AR5学到了192.168.2.0和192.168.4.0的路由<br>                       AR6学到了0.0.0.0/0和192.168.4.0的路由<br>                       AR4学到了0.0.0.0/0和192.168.2.0的路由<br> 综上，路由注入成功。</p>
+<h2 id="3-6-验证抓包"><a href="#3-6-验证抓包" class="headerlink" title="3.6 验证抓包"></a>3.6 验证抓包</h2><p>PC1 Ping PC2 并在AR5的GE0/0/0端口抓包 结果如下：</p>
+<p><img src="https://s1.ax1x.com/2020/03/22/8oipUe.png" alt="8oipUe.png"></p>
+<p>分析原因及解决方案：</p>
+<p>路由虽然注入成功，但是PC1仍然ping不通PC2，因为PC2知道了去往192.168.4.0网段的路由，但是AR3是外部路由，它并不知道如何去往ospf 内部，所以需要在AR3上配置一条默认路由，下一跳为192.168.34.3</p>
+<p>在AR3上配置如下命令：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">&lt;R3&gt;sys</span></span><br><span class="line"><span class="attr">Enter</span> <span class="string">system view, return user view with Ctrl+Z.</span></span><br><span class="line"><span class="meta">[R3]ip</span> <span class="string">route-static 0.0.0.0 0 192.168.34.3</span></span><br></pre></td></tr></table></figure>
+
+<p>再次进行Ping操作并在AR5的GE0/0/0端口抓包结果如下：</p>
+<p><img src="https://s1.ax1x.com/2020/03/22/8okVAS.png" alt="8okVAS.png"></p>
+<p>发现可以Ping通，并发现如下几种类型的OSPF报文：</p>
+<p><img src="https://s1.ax1x.com/2020/03/22/8ok0nx.png" alt="8ok0nx.png"></p>
+<p>三种报文的具体内容如下：</p>
+<ol>
+<li>hello</li>
+</ol>
+<p><a href="https://imgchr.com/i/8oEJSJ" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/22/8oEJSJ.md.png" alt="8oEJSJ.md.png"></a></p>
+<ol start="2">
+<li>update</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2020/03/22/8oE5tS.png" alt="8oE5tS.png"></p>
+<ol start="3">
+<li>Acknowledge</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2020/03/22/8oVehD.png" alt="8oVehD.png"></p>
+]]></content>
+  </entry>
+  <entry>
     <title>排序算法总结归纳</title>
     <url>/2020/03/20/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E5%BD%92%E7%BA%B3/</url>
     <content><![CDATA[<hr><h1 id="1、排序的定义"><a href="#1、排序的定义" class="headerlink" title="1、排序的定义"></a>1、排序的定义</h1><p> 对一序列对象根据某个关键字进行排序。 </p><h1 id="2、排序算法表"><a href="#2、排序算法表" class="headerlink" title="2、排序算法表"></a>2、排序算法表</h1><p><img src="https://s1.ax1x.com/2020/03/20/8cBdkn.jpg" alt="8cBdkn.jpg"></p><p><strong>图片名词解释：</strong></p><ul>
@@ -146,6 +308,75 @@
 
 <h3 id="6-8-5-算法分析"><a href="#6-8-5-算法分析" class="headerlink" title="6.8.5 算法分析"></a>6.8.5 算法分析</h3><p>当输入的元素是n 个0到k之间的整数时，它的运行时间是 O(n + k)。计数排序不是比较排序，排序的速度快于任何比较排序算法。由于用来计数的数组C的长度取决于待排序数组中数据的范围（等于待排序数组的最大值与最小值的差加上1），这使得计数排序对于数据范围很大的数组，需要大量时间和内存。 </p>
 <p> ==<strong>最佳情况：T(n) = O(n+k)  最差情况：T(n) = O(n+k)  平均情况：T(n) = O(n+k)</strong>== </p>
+]]></content>
+  </entry>
+  <entry>
+    <title>RIPv2报文分析</title>
+    <url>/2020/03/16/RIPv2%E6%8A%A5%E6%96%87%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h1 id="1-拓扑图"><a href="#1-拓扑图" class="headerlink" title="1.拓扑图"></a>1.拓扑图</h1><p><img src="https://s1.ax1x.com/2020/03/16/8GVlV0.png" alt="8GVlV0.png"></p><h1 id="2-配置思路"><a href="#2-配置思路" class="headerlink" title="2.配置思路"></a>2.配置思路</h1><ol>
+<li>配置各接口IP地址，使网络可达。</li>
+<li>在各路由器上使能RIP，基本实现网络互联。 </li>
+<li>在各路由器上配置RIPv2版本，提升RIP路由扩展性能。</li>
+<li>使AR1接收到的RIP路由的度量值加大5. </li>
+</ol><h1 id="3-操作配置"><a href="#3-操作配置" class="headerlink" title="3.操作配置"></a>3.操作配置</h1><h2 id="3-1-配置AR1-AR2-AR3-AR4-直连接口ip地址和回环ip地址"><a href="#3-1-配置AR1-AR2-AR3-AR4-直连接口ip地址和回环ip地址" class="headerlink" title="3.1 配置AR1,AR2,AR3,AR4,直连接口ip地址和回环ip地址"></a>3.1 配置AR1,AR2,AR3,AR4,直连接口ip地址和回环ip地址</h2><ul>
+<li><h3 id="AR1配置"><a href="#AR1配置" class="headerlink" title="AR1配置"></a>AR1配置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&lt;Huawei&gt;system-view</span><br><span class="line">sysname R1</span><br><span class="line"></span><br><span class="line">[R1]interface GigabitEthernet 0/0/0    //进入g0/0/0接口</span><br><span class="line">[R1-GigabitEthernet0/0/0]ip address 10.1.12.1 24   //配置接口ip</span><br><span class="line">[R1-GigabitEthernet0/0/0]quit</span><br><span class="line">[R1]interface loopback 0 </span><br><span class="line">[R1-loopback0]ip address 10.1.1.1 32   //配置loopback 0 回环ip地址</span><br><span class="line">[R1-loopback0]quit</span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="AR2配置"><a href="#AR2配置" class="headerlink" title="AR2配置"></a>AR2配置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&lt;Huawei&gt;system-view</span><br><span class="line">sysname R2</span><br><span class="line"></span><br><span class="line">[R2]interface GigabitEthernet 0/0/0    //进入g0/0/0接口</span><br><span class="line">[R2-GigabitEthernet0/0/0]ip address 10.1.12.2 24   //配置接口ip</span><br><span class="line">[R2-GigabitEthernet0/0/0]quit</span><br><span class="line">[R2]interface GigabitEthernet 0/0/1    </span><br><span class="line">[R2-GigabitEthernet0/0/1]ip address 10.1.23.2 24  //配置接口ip</span><br><span class="line">[R2-GigabitEthernet0/0/1]quit</span><br><span class="line">[R2]interface GigabitEthernet 0/0/2    </span><br><span class="line">[R2-GigabitEthernet0/0/2]ip address 10.1.24.2 24   //配置接口ip</span><br><span class="line">[R2-GigabitEthernet0/0/2]quit</span><br><span class="line">[R2]interface loopback 0 </span><br><span class="line">[R2-loopback0]ip address 10.1.2.2 32   //配置loopback 0 回环ip地址</span><br><span class="line">[R2-loopback0]quit</span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="AR3配置"><a href="#AR3配置" class="headerlink" title="AR3配置"></a>AR3配置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&lt;Huawei&gt;system-view</span><br><span class="line">sysname R3</span><br><span class="line"></span><br><span class="line">[R3]interface GigabitEthernet 0/0/0    //进入g0/0/0接口</span><br><span class="line">[R3-GigabitEthernet0/0/0]ip address 10.1.23.13 24   //配置接口ip</span><br><span class="line">[R3-GigabitEthernet0/0/0]quit</span><br><span class="line">[R3]interface loopback 0 </span><br><span class="line">[R3-loopback0]ip address 10.1.3.3 32   //配置loopback 0 回环ip地址</span><br><span class="line">[R3-loopback0]quit</span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="AR4配置"><a href="#AR4配置" class="headerlink" title="AR4配置"></a>AR4配置</h3></li>
+</ul><a id="more"></a>
+
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&lt;Huawei&gt;system-view</span><br><span class="line">sysname R4</span><br><span class="line"></span><br><span class="line">[R4]interface GigabitEthernet 0/0/0    //进入g0/0/0接口</span><br><span class="line">[R4-GigabitEthernet0/0/0]ip address 10.1.24.4 24   //配置接口ip</span><br><span class="line">[R4-GigabitEthernet0/0/0]quit</span><br><span class="line">[R4]interface loopback 0 </span><br><span class="line">[R4-loopback0]ip address 10.1.4.4 32   //配置loopback 0 回环ip地址</span><br><span class="line">[R4-loopback0]quit</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-2在AR1-AR2-AR3-AR4-上配置RIP基本功能"><a href="#3-2在AR1-AR2-AR3-AR4-上配置RIP基本功能" class="headerlink" title="3.2在AR1,AR2,AR3,AR4,上配置RIP基本功能"></a>3.2在AR1,AR2,AR3,AR4,上配置RIP基本功能</h2><ul>
+<li><h3 id="AR1配置-1"><a href="#AR1配置-1" class="headerlink" title="AR1配置"></a>AR1配置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[R1]rip    //进入RIP进程</span><br><span class="line">[R1-rip-1]version 2     //指定RIPv2</span><br><span class="line">[R1-rip-1]network 10.0.0.0     //指定网段接口使能RIP路由</span><br><span class="line">[R1-rip-1]quit</span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="AR2配置-1"><a href="#AR2配置-1" class="headerlink" title="AR2配置"></a>AR2配置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[R2]rip    //进入RIP进程</span><br><span class="line">[R2-rip-1]version 2     //指定RIPv2</span><br><span class="line">[R2-rip-1]network 10.0.0.0     //指定网段接口使能RIP路由</span><br><span class="line">[R2-rip-1]quit</span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="AR3配置-1"><a href="#AR3配置-1" class="headerlink" title="AR3配置"></a>AR3配置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[R3]rip    //进入RIP进程</span><br><span class="line">[R3-rip-1]version 2     //指定RIPv2</span><br><span class="line">[R3-rip-1]network 10.0.0.0     //指定网段接口使能RIP路由</span><br><span class="line">[R3-rip-1]quit</span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="AR4配置-1"><a href="#AR4配置-1" class="headerlink" title="AR4配置"></a>AR4配置</h3></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[R4]rip    //进入RIP进程</span><br><span class="line">[R4-rip-1]version 2     //指定RIPv2</span><br><span class="line">[R4-rip-1]network 10.0.0.0     //指定网段接口使能RIP路由</span><br><span class="line">[R4-rip-1]quit</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-3查看路由表"><a href="#3-3查看路由表" class="headerlink" title="3.3查看路由表"></a>3.3查看路由表</h2><ol>
+<li><p>在AR1上查看路由表信息</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">display rip 1 route</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s1.ax1x.com/2020/03/16/8GtF61.png" alt="8GtF61.png"></p>
+</li>
+<li><p>修改度量值</p>
+<p>使AR1接受到的RIP路由度量值增大5，命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">interface gigabitrthernet 0/0/0</span><br><span class="line">rip metricin 5</span><br><span class="line">quit</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>再次查看路由表信息</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">display rip 1 route</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s1.ax1x.com/2020/03/16/8GNEgs.png" alt="8GNEgs.png"></p>
+</li>
+</ol>
+<h2 id="3-4Ripv2报文分析"><a href="#3-4Ripv2报文分析" class="headerlink" title="3.4Ripv2报文分析"></a>3.4Ripv2报文分析</h2><p>R1 Ping R4在AR4的GE0/0/0端口捕获报文如下：</p>
+<p><img src="C:%5CUsers%5C12173%5CDesktop%5Cimage%5CRipv2.png" alt="Ripv2"></p>
+<p>具体报文内容如下图所示：</p>
+<p><img src="https://s1.ax1x.com/2020/03/16/8GwjmR.png" alt="8GwjmR.png"></p>
+<p>command字段：占1个字节，取值为2时表示该报文是一个回应报文。其中包含路由信息。</p>
+<p>version字段：占1个字节，取值为2时表示RIPv2。</p>
+<p>address Family字段：占2个字节，ipv4取值为2。</p>
+<p>route tag字段：占2个字节，标记外部重分发进RIPv2中的路由</p>
+<p>ip address字段：占4个字节，表示路由的目的地址，该地址是网络地址。</p>
+<p>netmask字段：占4个字节，是子网掩码，RIPv2是有类别的，所以有这个字段。</p>
+<p>next hop字段：占4个字节，它表示一个比通告路由器的地址更好的下一跳。如果这个字段设置为0.0.0.0说明通告路由器的地址就是最优的下一跳。</p>
+<p>metric字段：占4个字节，指度量值，在RIP中就是跳数。</p>
+<h2 id="3-5Ripv2和Ripv1的区别"><a href="#3-5Ripv2和Ripv1的区别" class="headerlink" title="3.5Ripv2和Ripv1的区别"></a>3.5Ripv2和Ripv1的区别</h2><p> <strong>区别一：</strong>RIP1是一个有类路由协议，即所有的更新包中不含子网掩码，不支持VLSM， 所以就要求网络中所有设备必须使用相同的子网掩码，否则就会出错，而RIP2是一个无类的路由协议，它使用子网掩码。<br><strong>区别二：</strong>第二个不同的地方是RIP1<em>是发送更新包的时候使用的是*</em>广播包<strong>，而RIP2默认使用的是</strong>组播<strong>224.0.0.9，也支持广播发送，这样相对于RIP1来说就节省了一部分网络带宽。<br>**区别三：</strong>第三个就是RIP2支持明文或者是 MD5验证，要求两台路由器在同步路由表的时候必须进行验证，通过才可以进行路由同步，这样可以加强安全性。 </p>
+<p><strong>补充</strong></p>
+<h2 id="3-6Ripv2配置MD5验证"><a href="#3-6Ripv2配置MD5验证" class="headerlink" title="3.6Ripv2配置MD5验证"></a>3.6Ripv2配置MD5验证</h2><p>在各个路由器的相应端口上配置如下命令：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rip authentication-mode md5 usual abc</span><br></pre></td></tr></table></figure>
+
+<p>AR3 Ping AR4时在AR2的GE0/0/2端口捕获报文如下：</p>
+<p><img src="https://s1.ax1x.com/2020/03/16/8G74Ff.png" alt="8G74Ff.png"></p>
 ]]></content>
   </entry>
   <entry>
