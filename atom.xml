@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-03-30T03:44:40.049Z</updated>
+  <updated>2020-04-13T10:43:20.592Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -17,11 +17,31 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>DHCP跨路由转发</title>
+    <link href="http://lisongbai.top/2020/04/13/DHCP%E8%B7%A8%E8%B7%AF%E7%94%B1%E8%BD%AC%E5%8F%91/"/>
+    <id>http://lisongbai.top/2020/04/13/DHCP%E8%B7%A8%E8%B7%AF%E7%94%B1%E8%BD%AC%E5%8F%91/</id>
+    <published>2020-04-13T10:36:43.000Z</published>
+    <updated>2020-04-13T10:43:20.592Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1-拓扑图&quot;&gt;&lt;a href=&quot;#1-拓扑图&quot; class=&quot;headerlink&quot; title=&quot;1.拓扑图&quot;&gt;&lt;/a&gt;1.拓扑图&lt;/h1&gt;&lt;img src=&quot;/2020/04/13/DHCP%E8%B7%A8%E8%B7%AF%E7%94%B1%E8%BD%AC%E5%8F%91/11.png&quot; class&gt;&lt;h1 id=&quot;2-实验目的&quot;&gt;&lt;a href=&quot;#2-实验目的&quot; class=&quot;headerlink&quot; title=&quot;2.实验目的&quot;&gt;&lt;/a&gt;2.实验目的&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;DHCP协议工作过程配置&lt;/li&gt;
+&lt;li&gt;DHCP协议报文格式&lt;/li&gt;
+&lt;/ul&gt;&lt;h1 id=&quot;3-实验原理&quot;&gt;&lt;a href=&quot;#3-实验原理&quot; class=&quot;headerlink&quot; title=&quot;3.实验原理&quot;&gt;&lt;/a&gt;3.实验原理&lt;/h1&gt;&lt;h2 id=&quot;3-1DHCP概述&quot;&gt;&lt;a href=&quot;#3-1DHCP概述&quot; class=&quot;headerlink&quot; title=&quot;3.1DHCP概述&quot;&gt;&lt;/a&gt;3.1DHCP概述&lt;/h2&gt;&lt;p&gt; DHCP，动态主机配置协议，前身是BOOTP协议，是一个局域网的网络协议，使用UDP协议工作，常用的2个端口：67(DHCP server),68(DHCP client)。DHCP通常被用于局域网环境，主要作用是集中的管理、分配IP地址，使client动态的获得IP地址、Gateway地址、DNS服务器地址等信息，并能够提升地址的使用率。简单来说，DHCP就是一个不需要账号密码登录的、自动给内网机器分配IP地址等信息的协议。 &lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>ospf组网实验</title>
     <link href="http://lisongbai.top/2020/03/22/ospf%E7%BB%84%E7%BD%91%E5%AE%9E%E9%AA%8C/"/>
     <id>http://lisongbai.top/2020/03/22/ospf%E7%BB%84%E7%BD%91%E5%AE%9E%E9%AA%8C/</id>
     <published>2020-03-22T07:27:34.000Z</published>
-    <updated>2020-03-30T03:44:40.049Z</updated>
+    <updated>2020-03-30T06:23:31.385Z</updated>
     
     <summary type="html">
     
@@ -406,25 +426,6 @@
     </summary>
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>SpringMVC</title>
-    <link href="http://lisongbai.top/2020/01/29/SpringMVC/"/>
-    <id>http://lisongbai.top/2020/01/29/SpringMVC/</id>
-    <published>2020-01-29T06:03:30.000Z</published>
-    <updated>2020-02-02T15:46:20.761Z</updated>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;&lt;hr&gt;&lt;h1 id=&quot;一、SpringMVC是什么&quot;&gt;&lt;a href=&quot;#一、SpringMVC是什么&quot; class=&quot;headerlink&quot; title=&quot;一、SpringMVC是什么?&quot;&gt;&lt;/a&gt;一、SpringMVC是什么?&lt;/h1&gt;&lt;p&gt;Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web Flow里面。Spring 框架提供了构建 Web 应用程序的全功能 MVC 模块。使用 Spring 可插入的 MVC 架构，从而在使用Spring进行WEB开发时，可以选择使用Spring的Spring MVC框架或集成其他MVC开发框架，如Struts1(现在一般不用)，Struts 2(一般老项目使用)等。&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="SSM" scheme="http://lisongbai.top/tags/SSM/"/>
     
   </entry>
   
