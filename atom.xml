@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-04-13T10:43:20.592Z</updated>
+  <updated>2020-04-30T03:07:12.426Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -17,11 +17,28 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>力扣每日一题之快乐数</title>
+    <link href="http://lisongbai.top/2020/04/30/%E5%8A%9B%E6%89%A3%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E4%B9%8B%E5%BF%AB%E4%B9%90%E6%95%B0/"/>
+    <id>http://lisongbai.top/2020/04/30/%E5%8A%9B%E6%89%A3%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E4%B9%8B%E5%BF%AB%E4%B9%90%E6%95%B0/</id>
+    <published>2020-04-30T02:39:33.000Z</published>
+    <updated>2020-04-30T03:07:12.426Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1、题目描述&quot;&gt;&lt;a href=&quot;#1、题目描述&quot; class=&quot;headerlink&quot; title=&quot;1、题目描述&quot;&gt;&lt;/a&gt;1、题目描述&lt;/h1&gt;&lt;p&gt;编写一个算法来判断一个数 n 是不是快乐数。&lt;/p&gt;&lt;p&gt;「快乐数」定义为：对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和，然后重复这个过程直到这个数变为 1，也可能是 无限循环 但始终变不到 1。如果 可以变为  1，那么这个数就是快乐数。&lt;/p&gt;&lt;p&gt;如果 n 是快乐数就返回 True ；不是，则返回 False 。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>DHCP跨路由转发</title>
     <link href="http://lisongbai.top/2020/04/13/DHCP%E8%B7%A8%E8%B7%AF%E7%94%B1%E8%BD%AC%E5%8F%91/"/>
     <id>http://lisongbai.top/2020/04/13/DHCP%E8%B7%A8%E8%B7%AF%E7%94%B1%E8%BD%AC%E5%8F%91/</id>
     <published>2020-04-13T10:36:43.000Z</published>
-    <updated>2020-04-13T10:43:20.592Z</updated>
+    <updated>2020-04-13T10:44:58.511Z</updated>
     
     <summary type="html">
     
@@ -405,23 +422,6 @@
     <summary type="html">
     
       &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>DES加解密算法浅析</title>
-    <link href="http://lisongbai.top/2020/02/11/DES%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95%E6%B5%85%E6%9E%90/"/>
-    <id>http://lisongbai.top/2020/02/11/DES%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95%E6%B5%85%E6%9E%90/</id>
-    <published>2020-02-11T08:58:36.037Z</published>
-    <updated>2020-03-15T06:41:25.521Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;DES加解密算法浅析&quot;&gt;&lt;a href=&quot;#DES加解密算法浅析&quot; class=&quot;headerlink&quot; title=&quot;DES加解密算法浅析&quot;&gt;&lt;/a&gt;DES加解密算法浅析&lt;/h1&gt;&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;DES是一个分组加密算法，它以64位为分组对数据加密。同时DES也是一个对称算法：加密和解密用的是同一个算法。DES是一个包含16个阶段的“替换–置换”的分组加密算法，64位的分组明文序列作为加密算法的输入，经过16轮加密得到64位的密文序列。&lt;/p&gt;&lt;p&gt;算法原理看下图：&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/11/09/MmQzp6.png&quot; alt=&quot;MmQzp6.png&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;原理浅析&quot;&gt;&lt;a href=&quot;#原理浅析&quot; class=&quot;headerlink&quot; title=&quot;原理浅析&quot;&gt;&lt;/a&gt;原理浅析&lt;/h2&gt;&lt;p&gt;DES算法主要分为3部分：加解密运算、f函数的处理、轮子密钥的生成，从右往左分别简单介绍一下。&lt;/p&gt;
     
     </summary>
     
