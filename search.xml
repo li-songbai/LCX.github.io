@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>truffle unbox 模块错误解决方法</title>
+    <url>/2020/05/04/truffle%20unbox%20%E6%A8%A1%E5%9D%97%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>错误详情：</p><p><img src="https://s1.ax1x.com/2020/05/04/Y9XoOP.png" alt="Y9XoOP.png"></p><p>原因：无法连接改域名下的网站。</p><p><a href="https://site.ip138.com/raw.githubusercontent.com/" target="_blank" rel="noopener">查询域名对应的ip网站</a></p>]]></content>
+  </entry>
+  <entry>
     <title>力扣每日一题之快乐数</title>
     <url>/2020/04/30/%E5%8A%9B%E6%89%A3%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E4%B9%8B%E5%BF%AB%E4%B9%90%E6%95%B0/</url>
     <content><![CDATA[<h1 id="1、题目描述"><a href="#1、题目描述" class="headerlink" title="1、题目描述"></a>1、题目描述</h1><p>编写一个算法来判断一个数 n 是不是快乐数。</p><p>「快乐数」定义为：对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和，然后重复这个过程直到这个数变为 1，也可能是 无限循环 但始终变不到 1。如果 可以变为  1，那么这个数就是快乐数。</p><p>如果 n 是快乐数就返回 True ；不是，则返回 False 。</p><a id="more"></a>

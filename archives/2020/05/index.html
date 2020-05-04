@@ -54,15 +54,14 @@
 
   <meta name="description" content="记录学习的技能和遇到的问题">
 <meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;tags&#x2F;index.html">
+<meta property="og:title" content="小李の博客">
+<meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;archives&#x2F;2020&#x2F;05&#x2F;index.html">
 <meta property="og:site_name" content="小李の博客">
 <meta property="og:description" content="记录学习的技能和遇到的问题">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-30T12:37:53.399Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://lisongbai.top/tags/">
+<link rel="canonical" href="http://lisongbai.top/archives/2020/05/">
 
 
 <script id="page-configurations">
@@ -71,13 +70,12 @@
     sidebar: "",
     isHome: false,
     isPost: false,
-    isPage: true,
-    isArchive: false
+    isPage: false,
+    isArchive: true
   };
 </script>
 
-  <title>标签 | 小李の博客
-  </title>
+  <title>归档 | 小李の博客</title>
   
 
 
@@ -211,89 +209,58 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
           <div class="content">
             
 
-  <div class="posts-expand">
-    
-    
-    
-    <div class="post-block" lang="zh-CN">
-      <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        
+        <span class="collection-header">还行! 目前共计 36 篇日志。 继续努力。</span>
+      </div>
 
-<h1 class="post-title" itemprop="name headline">标签
-</h1>
+      
+    <div class="collection-year">
+      <h1 class="collection-header">2020</h1>
+    </div>
 
-<div class="post-meta">
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2020-05-04T14:54:00+08:00"
+              content="2020-05-04">
+          05-04
+        </time>
+      </div>
+
+      <h2 class="post-title">
+          <a class="post-title-link" href="/2020/05/04/truffle%20unbox%20%E6%A8%A1%E5%9D%97%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" itemprop="url">
+            <span itemprop="name">truffle unbox 模块错误解决方法</span>
+          </a>
+      </h2>
+
+    </header>
+  </article>
+
+
+    </div>
+  </div>
+  
+  
   
 
-</div>
+  
 
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
-  </div>
 
 
           </div>
           
-      <div class="tabs tabs-comment">
-        <ul class="nav-tabs">
-            <li class="tab"><a href="#comment-livere">livere</a></li>
-            <li class="tab"><a href="#comment-disqus">disqus</a></li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane livere" id="comment-livere">
-              
-  <div class="comments" id="comments">
-    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzY2MC8yNDE1OA=="></div>
-  </div>
-  
-            </div>
-            <div class="tab-pane disqus" id="comment-disqus">
-              
-  <div class="comments" id="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-    </div>
-  </div>
-  
-            </div>
-        </div>
-      </div>
-      <script>
-        window.addEventListener('tabs:register', () => {
-          let activeClass = '';
-            activeClass = localStorage.getItem('comments_active') || activeClass;
-          if (activeClass) {
-            let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-            if (activeTab) {
-              activeTab.click();
-            }
-          }
-        });
-        window.addEventListener('tabs:click', event => {
-          let commentClass = event.target.classList[1];
-          localStorage.setItem('comments_active', commentClass);
-        });
-      </script>
 
         </div>
           
@@ -549,19 +516,6 @@
 
   
 
-<script>
-  window.livereOptions = {
-    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
-  };
-  (function(d, s) {
-    var j, e = d.getElementsByTagName(s)[0];
-    if (typeof LivereTower === 'function') { return; }
-    j = d.createElement(s);
-    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-    j.async = true;
-    e.parentNode.insertBefore(j, e);
-  })(document, 'script');
-</script>
 
 <script>
   function loadCount() {
@@ -572,27 +526,6 @@
   }
   // defer loading until the whole page loading is completed
   window.addEventListener('load', loadCount, false);
-</script>
-<script>
-  function loadComments() {
-    if (window.DISQUS) {
-      DISQUS.reset({
-        reload: true,
-        config: {page: {
-            url: "http://lisongbai.top/tags/index.html",
-            identifier: "tags/index.html",
-            title: "标签"
-          }
-        }
-      });
-    } else {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://visitor.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', '' + +new Date());
-      (d.head || d.body).appendChild(s);
-    }
-  }
-    window.addEventListener('load', loadComments, false);
 </script>
 
  
