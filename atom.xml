@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-05-04T06:53:17.202Z</updated>
+  <updated>2020-05-11T14:37:42.432Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,43 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>边界网关协议实验（BGP）《一》</title>
+    <link href="http://lisongbai.top/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/"/>
+    <id>http://lisongbai.top/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/</id>
+    <published>2020-05-11T14:39:22.653Z</published>
+    <updated>2020-05-11T14:37:42.432Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1-拓扑图&quot;&gt;&lt;a href=&quot;#1-拓扑图&quot; class=&quot;headerlink&quot; title=&quot;1.拓扑图&quot;&gt;&lt;/a&gt;1.拓扑图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://s1.ax1x.com/2020/05/11/YYn0l8.png&quot; alt=&quot;YYn0l8.png&quot;&gt;&lt;/p&gt;&lt;h1 id=&quot;2-实验目的&quot;&gt;&lt;a href=&quot;#2-实验目的&quot; class=&quot;headerlink&quot; title=&quot;2.实验目的&quot;&gt;&lt;/a&gt;2.实验目的&lt;/h1&gt;&lt;p&gt;了解边界网管协议（BGP）&lt;/p&gt;&lt;p&gt;实现两个域间的通讯。&lt;/p&gt;&lt;h1 id=&quot;3-实验步骤&quot;&gt;&lt;a href=&quot;#3-实验步骤&quot; class=&quot;headerlink&quot; title=&quot;3.实验步骤&quot;&gt;&lt;/a&gt;3.实验步骤&lt;/h1&gt;&lt;h2 id=&quot;3-1网关ip配置&quot;&gt;&lt;a href=&quot;#3-1网关ip配置&quot; class=&quot;headerlink&quot; title=&quot;3.1网关ip配置&quot;&gt;&lt;/a&gt;3.1网关ip配置&lt;/h2&gt;&lt;p&gt;AR1配置，其他同理。&lt;/p&gt;&lt;figure class=&quot;highlight properties&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;&amp;lt;Huawei&amp;gt;sys&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[Huawei]un&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;in en&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;Info&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;Information center is disabled.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[Huawei]sysname&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;AR1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR1]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;GigabitEthernet0/0/0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR1-GigabitEthernet0/0/0]ip&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;add 192.168.6.1 24&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR1-GigabitEthernet0/0/0]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;GigabitEthernet0/0/1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR1-GigabitEthernet0/0/1]ip&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;add 192.168.5.2 24&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>边界网关协议实验（BGP）《二》</title>
+    <link href="http://lisongbai.top/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%BA%8C%E3%80%8B/"/>
+    <id>http://lisongbai.top/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%BA%8C%E3%80%8B/</id>
+    <published>2020-05-11T14:39:22.650Z</published>
+    <updated>2020-05-11T14:30:59.314Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1、拓扑图&quot;&gt;&lt;a href=&quot;#1、拓扑图&quot; class=&quot;headerlink&quot; title=&quot;1、拓扑图&quot;&gt;&lt;/a&gt;1、拓扑图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://s1.ax1x.com/2020/05/11/YYpH2R.png&quot; alt=&quot;YYpH2R.png&quot;&gt;&lt;/p&gt;&lt;h1 id=&quot;2-实验目的&quot;&gt;&lt;a href=&quot;#2-实验目的&quot; class=&quot;headerlink&quot; title=&quot;2.实验目的&quot;&gt;&lt;/a&gt;2.实验目的&lt;/h1&gt;&lt;p&gt;实现控制选路：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;AR1-&amp;gt;AR4  经过AR2&lt;/li&gt;
+&lt;li&gt;AR4-&amp;gt;AR1  经过AR3&lt;/li&gt;
+&lt;/ul&gt;&lt;h1 id=&quot;3-实验步骤&quot;&gt;&lt;a href=&quot;#3-实验步骤&quot; class=&quot;headerlink&quot; title=&quot;3.实验步骤&quot;&gt;&lt;/a&gt;3.实验步骤&lt;/h1&gt;&lt;h2 id=&quot;3-1基础配置&quot;&gt;&lt;a href=&quot;#3-1基础配置&quot; class=&quot;headerlink&quot; title=&quot;3.1基础配置&quot;&gt;&lt;/a&gt;3.1基础配置&lt;/h2&gt;&lt;p&gt;根据拓扑所示，配置各个路由器ip。&lt;/p&gt;&lt;h2 id=&quot;3-2配置域内路由协议（OSPF）&quot;&gt;&lt;a href=&quot;#3-2配置域内路由协议（OSPF）&quot; class=&quot;headerlink&quot; title=&quot;3.2配置域内路由协议（OSPF）&quot;&gt;&lt;/a&gt;3.2配置域内路由协议（OSPF）&lt;/h2&gt;&lt;p&gt;AR2配置如下：&lt;/p&gt;&lt;figure class=&quot;highlight properties&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;R2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR2]ospf&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR2-ospf-1]area&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR2-ospf-1-area-0.0.0.0]network&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;19.0.24.0 0.0.0.255&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR2-ospf-1-area-0.0.0.0]network&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;2.2.2.2 0.0.0.0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;[AR2-ospf-1-area-0.0.0.0]quit&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;[AR2-ospf-1]quit&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>truffle unbox 模块错误解决方法</title>
@@ -386,45 +423,6 @@
     <summary type="html">
     
       &lt;h1 id=&quot;椭圆曲线密码系统&quot;&gt;&lt;a href=&quot;#椭圆曲线密码系统&quot; class=&quot;headerlink&quot; title=&quot;椭圆曲线密码系统&quot;&gt;&lt;/a&gt;椭圆曲线密码系统&lt;/h1&gt;&lt;h2 id=&quot;一个简单的RAS算法&quot;&gt;&lt;a href=&quot;#一个简单的RAS算法&quot; class=&quot;headerlink&quot; title=&quot;一个简单的RAS算法&quot;&gt;&lt;/a&gt;一个简单的RAS算法&lt;/h2&gt;&lt;p&gt;​        RAS密码系统最让人头疼的问题就是，在加解密或者签名的时候需要庞大的运算量，所需较长的运算时间。对于一些处理器不强大的设备，比如手机、PDA（Personal Digital Assistant）或者及时响应的系统不友好。因此有了椭圆曲线密码系统（ECC）。ECC运算量较少，因此能提高效率。&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Markdown进阶语法</title>
-    <link href="http://lisongbai.top/2020/02/11/Markdown%E8%BF%9B%E9%98%B6%E8%AF%AD%E6%B3%95/"/>
-    <id>http://lisongbai.top/2020/02/11/Markdown%E8%BF%9B%E9%98%B6%E8%AF%AD%E6%B3%95/</id>
-    <published>2020-02-11T08:58:36.227Z</published>
-    <updated>2019-11-02T06:33:01.718Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;[TOC]&lt;/p&gt;&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;写博客需要用到Markdown语法，于是产生了整理Markdown笔记的想法。&lt;/p&gt;&lt;p&gt;这篇文章是基于&lt;a href=&quot;[https://lisongbai.top/2019/10/31/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/](https://lisongbai.top/2019/10/31/Markdown基本语法学习笔记-1/)&quot;&gt;Markdown基本语法&lt;/a&gt;的进阶语法。&lt;/p&gt;&lt;h2 id=&quot;正文&quot;&gt;&lt;a href=&quot;#正文&quot; class=&quot;headerlink&quot; title=&quot;正文&quot;&gt;&lt;/a&gt;正文&lt;/h2&gt;&lt;h3 id=&quot;1-内容目录&quot;&gt;&lt;a href=&quot;#1-内容目录&quot; class=&quot;headerlink&quot; title=&quot;1.内容目录&quot;&gt;&lt;/a&gt;1.内容目录&lt;/h3&gt;&lt;p&gt;在文章的最开始使用[TOC]引用目录，例如本文目录：&lt;/p&gt;&lt;h3 id=&quot;2-加强代码块&quot;&gt;&lt;a href=&quot;#2-加强代码块&quot; class=&quot;headerlink&quot; title=&quot;2.加强代码块&quot;&gt;&lt;/a&gt;2.加强代码块&lt;/h3&gt;&lt;p&gt;使用”```”+”语言名”进行标记。例如：&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;java示例：&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/**&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;public class TreeNode &amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;    int val = 0;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;    TreeNode left = null;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;    TreeNode right = null;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;    public TreeNode(int val) &amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;        this.val = val;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;*/&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Solution&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Mirror&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(TreeNode root)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(root != &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            TreeNode temp = root.left;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            root.left = root.right;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            root.right = temp;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            Mirror(root.left);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            Mirror(root.right);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>html学习笔记&lt;一&gt;</title>
-    <link href="http://lisongbai.top/2020/02/11/html%E4%B8%8Ecss%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"/>
-    <id>http://lisongbai.top/2020/02/11/html%E4%B8%8Ecss%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</id>
-    <published>2020-02-11T08:58:36.072Z</published>
-    <updated>2019-10-31T11:15:46.884Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1-一个完整的网页&quot;&gt;&lt;a href=&quot;#1-一个完整的网页&quot; class=&quot;headerlink&quot; title=&quot;1. 一个完整的网页&quot;&gt;&lt;/a&gt;1. 一个完整的网页&lt;/h1&gt;&lt;p&gt;​    网页的内容 + 网页的样式 + 网页的动作&lt;/p&gt;&lt;h1 id=&quot;2-万维网联盟-W3C&quot;&gt;&lt;a href=&quot;#2-万维网联盟-W3C&quot; class=&quot;headerlink&quot; title=&quot;2. 万维网联盟(W3C)&quot;&gt;&lt;/a&gt;2. 万维网联盟(W3C)&lt;/h1&gt;&lt;p&gt;由蒂姆·伯纳斯-李于1994年10月在麻省理工学院（MIT）计算机科学实验室成立&lt;br&gt;是Web技术领域最具权威和影响力的国际中立性技术标准机构&lt;br&gt;为Web技术的互相兼容，互联网技术的发展和应用起到了基础性和根本性的支撑作用&lt;/p&gt;
     
     </summary>
     

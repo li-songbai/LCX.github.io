@@ -1,6 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>边界网关协议实验（BGP）《一》</title>
+    <url>/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/</url>
+    <content><![CDATA[<h1 id="1-拓扑图"><a href="#1-拓扑图" class="headerlink" title="1.拓扑图"></a>1.拓扑图</h1><p><img src="https://s1.ax1x.com/2020/05/11/YYn0l8.png" alt="YYn0l8.png"></p><h1 id="2-实验目的"><a href="#2-实验目的" class="headerlink" title="2.实验目的"></a>2.实验目的</h1><p>了解边界网管协议（BGP）</p><p>实现两个域间的通讯。</p><h1 id="3-实验步骤"><a href="#3-实验步骤" class="headerlink" title="3.实验步骤"></a>3.实验步骤</h1><h2 id="3-1网关ip配置"><a href="#3-1网关ip配置" class="headerlink" title="3.1网关ip配置"></a>3.1网关ip配置</h2><p>AR1配置，其他同理。</p><figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">&lt;Huawei&gt;sys</span></span><br><span class="line"><span class="meta">[Huawei]un</span> <span class="string">in en</span></span><br><span class="line"><span class="attr">Info</span>: <span class="string">Information center is disabled.</span></span><br><span class="line"><span class="meta">[Huawei]sysname</span> <span class="string">AR1</span></span><br><span class="line"><span class="meta">[AR1]interface</span> <span class="string">GigabitEthernet0/0/0</span></span><br><span class="line"><span class="meta">[AR1-GigabitEthernet0/0/0]ip</span> <span class="string">add 192.168.6.1 24</span></span><br><span class="line"><span class="meta">[AR1-GigabitEthernet0/0/0]interface</span> <span class="string">GigabitEthernet0/0/1</span></span><br><span class="line"><span class="meta">[AR1-GigabitEthernet0/0/1]ip</span> <span class="string">add 192.168.5.2 24</span></span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+
+<h2 id="3-2AS1配置RIP协议"><a href="#3-2AS1配置RIP协议" class="headerlink" title="3.2AS1配置RIP协议"></a>3.2AS1配置RIP协议</h2><p>AR1配置：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">[AR1]rip</span></span><br><span class="line"><span class="meta">[AR1-rip-1]net</span> <span class="string">192.168.6.0</span></span><br><span class="line"><span class="meta">[AR1-rip-1]net</span> <span class="string">192.168.5.0</span></span><br></pre></td></tr></table></figure>
+
+<p>AR7配置同理。</p>
+<h2 id="3-3AS2配置OSPF"><a href="#3-3AS2配置OSPF" class="headerlink" title="3.3AS2配置OSPF"></a>3.3AS2配置OSPF</h2><p>AR2配置：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">[AR2]ospf</span></span><br><span class="line"><span class="meta">[AR2-ospf-1]area</span> <span class="string">0</span></span><br><span class="line"><span class="meta">[AR2-ospf-1-area-0.0.0.0]net</span> <span class="string">192.168.5.0 0.0.0.255</span></span><br><span class="line"><span class="meta">[AR2-ospf-1-area-0.0.0.0]net</span> <span class="string">192.168.1.0 0.0.0.255</span></span><br></pre></td></tr></table></figure>
+
+<p>AR3~5同理。</p>
+<h2 id="3-4配置BGP"><a href="#3-4配置BGP" class="headerlink" title="3.4配置BGP"></a>3.4配置BGP</h2><p>AR1配置：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">[AR1]bgp</span> <span class="string">1</span></span><br><span class="line"><span class="meta">[AR1-bgp]peer</span> <span class="string">192.168.5.1 as-number 2</span></span><br></pre></td></tr></table></figure>
+
+<p>AR2配置：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">[AR2]bgp</span> <span class="string">2</span></span><br><span class="line"><span class="meta">[AR2-bgp]peer</span> <span class="string">192.168.5.2 as-number 1</span></span><br></pre></td></tr></table></figure>
+
+<p>查看BGP邻居关系（display bgp peer）</p>
+<p>AR1:</p>
+<p><img src="https://s1.ax1x.com/2020/05/11/YYnom4.png" alt="YYnom4.png"></p>
+<p>AR2:</p>
+<p><img src="https://s1.ax1x.com/2020/05/11/YYn779.png" alt="YYn779.png"></p>
+<p>再查看路由表（display bgp routing-table），由于没有引入路由表为空,</p>
+<p>引入：</p>
+<ul>
+<li><p>AR1：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">[AR1-bgp]import-route</span> <span class="string">rip 1	</span></span><br><span class="line"><span class="meta">[AR1-bgp]import-route</span> <span class="string">direct</span></span><br></pre></td></tr></table></figure>
+
+<p>再次查看路由表，如下图所示：<img src="https://s1.ax1x.com/2020/05/11/YYnqt1.png" alt="YYnqt1.png"></p>
+</li>
+<li><p>AR2:</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">[AR2-bgp]import-route</span> <span class="string">direct 	</span></span><br><span class="line"><span class="meta">[AR2-bgp]import-route</span> <span class="string">ospf 1</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s1.ax1x.com/2020/05/11/YYu97d.png" alt="YYu97d.png"></p>
+</li>
+</ul>
+<h2 id="3-5测试"><a href="#3-5测试" class="headerlink" title="3.5测试"></a>3.5测试</h2><p>AR5 GE0/0/0 Ping AR7 GE0/0/0  在AR2 GE0/0/0端口抓包结果如下：</p>
+<p><img src="https://s1.ax1x.com/2020/05/11/YYuPAA.png" alt="YYuPAA.png"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>边界网关协议实验（BGP）《二》</title>
+    <url>/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%BA%8C%E3%80%8B/</url>
+    <content><![CDATA[<h1 id="1、拓扑图"><a href="#1、拓扑图" class="headerlink" title="1、拓扑图"></a>1、拓扑图</h1><p><img src="https://s1.ax1x.com/2020/05/11/YYpH2R.png" alt="YYpH2R.png"></p><h1 id="2-实验目的"><a href="#2-实验目的" class="headerlink" title="2.实验目的"></a>2.实验目的</h1><p>实现控制选路：</p><ul>
+<li>AR1-&gt;AR4  经过AR2</li>
+<li>AR4-&gt;AR1  经过AR3</li>
+</ul><h1 id="3-实验步骤"><a href="#3-实验步骤" class="headerlink" title="3.实验步骤"></a>3.实验步骤</h1><h2 id="3-1基础配置"><a href="#3-1基础配置" class="headerlink" title="3.1基础配置"></a>3.1基础配置</h2><p>根据拓扑所示，配置各个路由器ip。</p><h2 id="3-2配置域内路由协议（OSPF）"><a href="#3-2配置域内路由协议（OSPF）" class="headerlink" title="3.2配置域内路由协议（OSPF）"></a>3.2配置域内路由协议（OSPF）</h2><p>AR2配置如下：</p><figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">R2</span></span><br><span class="line"><span class="meta">[AR2]ospf</span> <span class="string">1</span></span><br><span class="line"><span class="meta">[AR2-ospf-1]area</span> <span class="string">0</span></span><br><span class="line"><span class="meta">[AR2-ospf-1-area-0.0.0.0]network</span> <span class="string">19.0.24.0 0.0.0.255</span></span><br><span class="line"><span class="meta">[AR2-ospf-1-area-0.0.0.0]network</span> <span class="string">2.2.2.2 0.0.0.0</span></span><br><span class="line"><span class="attr">[AR2-ospf-1-area-0.0.0.0]quit</span></span><br><span class="line"><span class="attr">[AR2-ospf-1]quit</span></span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+
+
+<p>AR3，AR4路由器配置命令类似。</p>
+<p>测试：</p>
+<p> AR2、AR3、AR4互相ping以下他们的loopback地址，看ospf是否能ping通</p>
+<p>结果如下图所示：</p>
+<p><img src="https://s1.ax1x.com/2020/05/11/YYPWrt.png" alt="YYPWrt.png"></p>
+<h2 id="3-3域间路由协议（边界网关协议BGP）"><a href="#3-3域间路由协议（边界网关协议BGP）" class="headerlink" title="3.3域间路由协议（边界网关协议BGP）"></a>3.3域间路由协议（边界网关协议BGP）</h2><p> 配置AR1和AR2、AR1和AR3之间的邻接关系，使他们之间能通过==EBGP==相互传递路由，在AR2、AR3和AR4上配置IBGP邻接关系，使AR2、AR3、AR4之间可以通过==IBGP==互相传递路由。 </p>
+<ul>
+<li>EBGP邻居:AS之间的BGP邻居关系。</li>
+<li>IBGP邻居:同一个AS内部的BGP邻居关系。</li>
+</ul>
+<h3 id="AR1配置："><a href="#AR1配置：" class="headerlink" title="AR1配置："></a>AR1配置：</h3><figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">&lt;AR1&gt;sys</span></span><br><span class="line"><span class="meta">[AR1]bgp</span> <span class="string">100</span></span><br><span class="line"><span class="meta">[AR1-bgp]router-id</span> <span class="string">1.1.1.1</span></span><br><span class="line"><span class="meta">[AR1-bgp]peer</span> <span class="string">19.0.12.2 as-number 200</span></span><br><span class="line"><span class="meta">[AR1-bgp]peer</span> <span class="string">19.0.13.2 as-number 200</span></span><br><span class="line"><span class="meta">[AR1-bgp]network</span> <span class="string">1.1.1.1 32</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="AR2配置："><a href="#AR2配置：" class="headerlink" title="AR2配置："></a>AR2配置：</h3><figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">[AR2]bgp</span> <span class="string">200</span></span><br><span class="line"><span class="meta">[AR2-bgp]router-id</span> <span class="string">2.2.2.2</span></span><br><span class="line"><span class="meta">[AR2-bgp]peer</span> <span class="string">19.0.12.1 as-number 100</span></span><br><span class="line"><span class="meta">[AR2-bgp]peer</span> <span class="string">19.0.24.2 as-number 200</span></span><br><span class="line"><span class="meta">[AR2-bgp]peer</span> <span class="string">19.0.24.2 next-hop-local</span></span><br><span class="line"><span class="meta">[AR2-bgp]import-route</span> <span class="string">ospf 1</span></span><br></pre></td></tr></table></figure>
+
+<p>AR3、AR4与AR2类似。</p>
+<h2 id="3-4查看BGP路由"><a href="#3-4查看BGP路由" class="headerlink" title="3.4查看BGP路由"></a>3.4查看BGP路由</h2><h3 id="AR1路由表："><a href="#AR1路由表：" class="headerlink" title="AR1路由表："></a>AR1路由表：</h3><p><img src="https://s1.ax1x.com/2020/05/11/YYFD9e.png" alt="YYFD9e.png"></p>
+<h3 id="AR4路由表："><a href="#AR4路由表：" class="headerlink" title="AR4路由表："></a>AR4路由表：</h3><p><img src="https://s1.ax1x.com/2020/05/11/YYkiHx.png" alt="YYkiHx.png"></p>
+<p> 从路由表可以看出，AR4到AR1之间的通信是通过AR2来传递的。</p>
+<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><p>AR4 Ping AR1 在AR2的GE0/0/0端口、AR3的GE0/0/1端口分别进行报文捕获，结果如下：</p>
+<p>AR2的GE0/0/0端口:</p>
+<p><img src="https://s1.ax1x.com/2020/05/11/YYk5a6.png" alt="YYk5a6.png"></p>
+<p>AR3的GE0/0/1:</p>
+<p><img src="https://s1.ax1x.com/2020/05/11/YYkOsA.png" alt="YYkOsA.png"></p>
+<p>在AR2的GE0/0/0端口捕获到ICMP报文，验证了路由传递路径为AR4-&gt;AR2-&gt;AR1。</p>
+<h2 id="3-5-BGP各种属性控制选路"><a href="#3-5-BGP各种属性控制选路" class="headerlink" title="3.5 BGP各种属性控制选路"></a>3.5 BGP各种属性控制选路</h2><h3 id="3-5-1-通过MED属性控制选路，使得AR1到AR4的通信是通过AR2来传递的"><a href="#3-5-1-通过MED属性控制选路，使得AR1到AR4的通信是通过AR2来传递的" class="headerlink" title="3.5.1 通过MED属性控制选路，使得AR1到AR4的通信是通过AR2来传递的"></a>3.5.1 通过MED属性控制选路，使得AR1到AR4的通信是通过AR2来传递的</h3><p>==MED值越大，优先级越低。==</p>
+<ol>
+<li><p>修改MED属性，增加AR3路由器的MED值</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">[AR3]route-policy</span> <span class="string">med permit node 10</span></span><br><span class="line"><span class="meta">[AR3-route-policy]apply</span> <span class="string">cost + 500</span></span><br><span class="line"><span class="attr">[AR3-route-policy]quit</span></span><br><span class="line"><span class="meta">[AR3]bgp</span> <span class="string">200</span></span><br><span class="line"><span class="meta">[AR3-bgp]peer</span> <span class="string">19.0.12.1 route-policy med export</span></span><br><span class="line"><span class="attr">[AR3-bgp]quit</span></span><br><span class="line"><span class="attr">[AR3]quit</span></span><br><span class="line"><span class="meta">&lt;AR3&gt;reset</span> <span class="string">bgp all</span></span><br><span class="line"><span class="attr">&lt;AR3&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在AR1上查看路由表 </p>
+<p><img src="https://s1.ax1x.com/2020/05/11/YYEr3F.png" alt="YYEr3F.png"></p>
+<p>可以看到去往AR3的MED值明显大于AR2。故路由传递路径为AR1-&gt;AR2-&gt;AR4。</p>
+</li>
+</ol>
+<h3 id="3-5-2-修改优先级参数，使AR4到AR1的通信通过AR3来传递"><a href="#3-5-2-修改优先级参数，使AR4到AR1的通信通过AR3来传递" class="headerlink" title="3.5.2 修改优先级参数，使AR4到AR1的通信通过AR3来传递"></a>3.5.2 修改优先级参数，使AR4到AR1的通信通过AR3来传递</h3><p> 本地优先级（local-preference属性）的默认值为100，越大越有先，取值范围0-4294967295<br>想走谁，就将谁的local-preference值设置的大些 </p>
+<ol>
+<li><p>在AR3上修改优先级 </p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">[AR3]route-policy</span> <span class="string">lop permit node 10</span></span><br><span class="line"><span class="meta">[AR3-route-policy]apply</span> <span class="string">local-preference 222</span></span><br><span class="line"><span class="attr">[AR3-route-policy]quit</span></span><br><span class="line"><span class="meta">[AR3]bgp</span> <span class="string">200</span></span><br><span class="line"><span class="meta">[AR3-bgp]peer</span> <span class="string">19.0.34.2 route-policy lop export</span></span><br><span class="line"><span class="attr">[AR3-bgp]quit</span></span><br><span class="line"><span class="attr">[AR3]quit</span></span><br><span class="line"><span class="meta">&lt;AR3&gt;reset</span> <span class="string">bgp all</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在AR4上查看路由表<br><img src="https://s1.ax1x.com/2020/05/11/YYZbkt.png" alt="YYZbkt.png"></p>
+<p>AR3的local-preference值大于AR2，路由路径应为AR4-&gt;AR3-&gt;AR1。</p>
+</li>
+</ol>
+<h3 id="验证-1"><a href="#验证-1" class="headerlink" title="验证"></a>验证</h3><p>AR4 Ping AR1 在AR3的GE0/0/0端口进行报文捕获，捕获报文内容如下图所示：</p>
+<p><img src="https://s1.ax1x.com/2020/05/11/YYm85q.png" alt="YYm85q.png"></p>
+]]></content>
+  </entry>
+  <entry>
     <title>truffle unbox 模块错误解决方法</title>
     <url>/2020/05/04/truffle%20unbox%20%E6%A8%A1%E5%9D%97%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<p>错误详情：</p><p><img src="https://s1.ax1x.com/2020/05/04/Y9XoOP.png" alt="Y9XoOP.png"></p><p>原因：无法连接改域名下的网站。</p><p><a href="https://site.ip138.com/raw.githubusercontent.com/" target="_blank" rel="noopener">查询域名对应的ip网站</a></p>]]></content>
