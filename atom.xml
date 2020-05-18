@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-05-11T14:37:42.432Z</updated>
+  <updated>2020-05-18T10:56:59.189Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>边界网关协议实验（BGP）《三》</title>
+    <link href="http://lisongbai.top/2020/05/18/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%89%E3%80%8B/"/>
+    <id>http://lisongbai.top/2020/05/18/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%89%E3%80%8B/</id>
+    <published>2020-05-18T11:00:42.531Z</published>
+    <updated>2020-05-18T10:56:59.189Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1-拓扑图&quot;&gt;&lt;a href=&quot;#1-拓扑图&quot; class=&quot;headerlink&quot; title=&quot;1.拓扑图&quot;&gt;&lt;/a&gt;1.拓扑图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://s1.ax1x.com/2020/05/18/Yhp0fK.png&quot; alt=&quot;Yhp0fK.png&quot;&gt;、&lt;/p&gt;&lt;h1 id=&quot;2-实验目的&quot;&gt;&lt;a href=&quot;#2-实验目的&quot; class=&quot;headerlink&quot; title=&quot;2.实验目的&quot;&gt;&lt;/a&gt;2.实验目的&lt;/h1&gt;&lt;p&gt;利用AS-path属性实现路由策略，使得AR2不向AR1通告AS300内的任何路由。&lt;/p&gt;&lt;h1 id=&quot;3-实验步骤&quot;&gt;&lt;a href=&quot;#3-实验步骤&quot; class=&quot;headerlink&quot; title=&quot;3.实验步骤&quot;&gt;&lt;/a&gt;3.实验步骤&lt;/h1&gt;&lt;h2 id=&quot;3-1配置AR1-AR4路由器的网关ip&quot;&gt;&lt;a href=&quot;#3-1配置AR1-AR4路由器的网关ip&quot; class=&quot;headerlink&quot; title=&quot;3.1配置AR1~AR4路由器的网关ip&quot;&gt;&lt;/a&gt;3.1配置AR1~AR4路由器的网关ip&lt;/h2&gt;&lt;h2 id=&quot;3-2配置域间路由协议（BGP）&quot;&gt;&lt;a href=&quot;#3-2配置域间路由协议（BGP）&quot; class=&quot;headerlink&quot; title=&quot;3.2配置域间路由协议（BGP）&quot;&gt;&lt;/a&gt;3.2配置域间路由协议（BGP）&lt;/h2&gt;&lt;p&gt;AR1配置如下：&lt;/p&gt;&lt;figure class=&quot;highlight properties&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR1]bgp&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;100&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR1-bgp]peer&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;11.2.1.2 as-number 200&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR1-bgp]import-route&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;direct&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>边界网关协议实验（BGP）《一》</title>
@@ -406,23 +423,6 @@
     <summary type="html">
     
       &lt;h1 id=&quot;一、栈的压入、弹出序列&quot;&gt;&lt;a href=&quot;#一、栈的压入、弹出序列&quot; class=&quot;headerlink&quot; title=&quot;一、栈的压入、弹出序列&quot;&gt;&lt;/a&gt;一、栈的压入、弹出序列&lt;/h1&gt;&lt;h5 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h5&gt;&lt;p&gt;​        输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的）&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>椭圆曲线密码学系统</title>
-    <link href="http://lisongbai.top/2020/02/11/%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E5%AF%86%E7%A0%81%E5%AD%A6%E7%B3%BB%E7%BB%9F/"/>
-    <id>http://lisongbai.top/2020/02/11/%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E5%AF%86%E7%A0%81%E5%AD%A6%E7%B3%BB%E7%BB%9F/</id>
-    <published>2020-02-11T08:58:36.430Z</published>
-    <updated>2019-11-11T14:40:40.076Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;椭圆曲线密码系统&quot;&gt;&lt;a href=&quot;#椭圆曲线密码系统&quot; class=&quot;headerlink&quot; title=&quot;椭圆曲线密码系统&quot;&gt;&lt;/a&gt;椭圆曲线密码系统&lt;/h1&gt;&lt;h2 id=&quot;一个简单的RAS算法&quot;&gt;&lt;a href=&quot;#一个简单的RAS算法&quot; class=&quot;headerlink&quot; title=&quot;一个简单的RAS算法&quot;&gt;&lt;/a&gt;一个简单的RAS算法&lt;/h2&gt;&lt;p&gt;​        RAS密码系统最让人头疼的问题就是，在加解密或者签名的时候需要庞大的运算量，所需较长的运算时间。对于一些处理器不强大的设备，比如手机、PDA（Personal Digital Assistant）或者及时响应的系统不友好。因此有了椭圆曲线密码系统（ECC）。ECC运算量较少，因此能提高效率。&lt;/p&gt;
     
     </summary>
     

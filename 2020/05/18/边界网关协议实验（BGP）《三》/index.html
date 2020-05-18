@@ -52,24 +52,22 @@
   };
 </script>
 
-  <meta name="description" content="1.拓扑图2.配置思路 配置各接口IP地址，使网络可达。 在各路由器上使能RIP，基本实现网络互联。  在各路由器上配置RIPv2版本，提升RIP路由扩展性能。 使AR1接收到的RIP路由的度量值加大5.  3.操作配置3.1 配置AR1,AR2,AR3,AR4,直连接口ip地址和回环ip地址 AR1配置123456789&amp;lt;Huawei&amp;gt;system-viewsysname R1[R1">
+  <meta name="description" content="1.拓扑图、2.实验目的利用AS-path属性实现路由策略，使得AR2不向AR1通告AS300内的任何路由。3.实验步骤3.1配置AR1~AR4路由器的网关ip3.2配置域间路由协议（BGP）AR1配置如下：123[AR1]bgp 100[AR1-bgp]peer 11.2.1.2 as-number 200[AR1-bgp]import-route direct">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RIPv2报文分析">
-<meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2020&#x2F;03&#x2F;16&#x2F;RIPv2%E6%8A%A5%E6%96%87%E5%88%86%E6%9E%90&#x2F;index.html">
+<meta property="og:title" content="边界网关协议实验（BGP）《三》">
+<meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2020&#x2F;05&#x2F;18&#x2F;%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%89%E3%80%8B&#x2F;index.html">
 <meta property="og:site_name" content="小李の博客">
-<meta property="og:description" content="1.拓扑图2.配置思路 配置各接口IP地址，使网络可达。 在各路由器上使能RIP，基本实现网络互联。  在各路由器上配置RIPv2版本，提升RIP路由扩展性能。 使AR1接收到的RIP路由的度量值加大5.  3.操作配置3.1 配置AR1,AR2,AR3,AR4,直连接口ip地址和回环ip地址 AR1配置123456789&amp;lt;Huawei&amp;gt;system-viewsysname R1[R1">
+<meta property="og:description" content="1.拓扑图、2.实验目的利用AS-path属性实现路由策略，使得AR2不向AR1通告AS300内的任何路由。3.实验步骤3.1配置AR1~AR4路由器的网关ip3.2配置域间路由协议（BGP）AR1配置如下：123[AR1]bgp 100[AR1-bgp]peer 11.2.1.2 as-number 200[AR1-bgp]import-route direct">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;16&#x2F;8GVlV0.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;16&#x2F;8GtF61.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;16&#x2F;8GNEgs.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2020&#x2F;03&#x2F;16&#x2F;RIPv2%E6%8A%A5%E6%96%87%E5%88%86%E6%9E%90&#x2F;C:%5CUsers%5C12173%5CDesktop%5Cimage%5CRipv2.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;16&#x2F;8GwjmR.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;16&#x2F;8G74Ff.png">
-<meta property="og:updated_time" content="2020-03-16T10:33:25.653Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;18&#x2F;Yhp0fK.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;18&#x2F;YhFydJ.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;18&#x2F;Yhm3pd.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;18&#x2F;Yhn85F.png">
+<meta property="og:updated_time" content="2020-05-18T10:56:59.189Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;16&#x2F;8GVlV0.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;18&#x2F;Yhp0fK.png">
 
-<link rel="canonical" href="http://lisongbai.top/2020/03/16/RIPv2%E6%8A%A5%E6%96%87%E5%88%86%E6%9E%90/">
+<link rel="canonical" href="http://lisongbai.top/2020/05/18/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%89%E3%80%8B/">
 
 
 <script id="page-configurations">
@@ -83,7 +81,7 @@
   };
 </script>
 
-  <title>RIPv2报文分析 | 小李の博客</title>
+  <title>边界网关协议实验（BGP）《三》 | 小李の博客</title>
   
 
 
@@ -226,7 +224,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/03/16/RIPv2%E6%8A%A5%E6%96%87%E5%88%86%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/05/18/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%89%E3%80%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -239,7 +237,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          RIPv2报文分析
+          边界网关协议实验（BGP）《三》
         </h1>
 
         <div class="post-meta">
@@ -250,11 +248,11 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-03-16 18:33:04 / 修改时间：18:33:25" itemprop="dateCreated datePublished" datetime="2020-03-16T18:33:04+08:00">2020-03-16</time>
+              <time title="创建时间：2020-05-18 19:00:42 / 修改时间：18:56:59" itemprop="dateCreated datePublished" datetime="2020-05-18T19:00:42+08:00">2020-05-18</time>
             </span>
 
           
-            <span id="/2020/03/16/RIPv2%E6%8A%A5%E6%96%87%E5%88%86%E6%9E%90/" class="post-meta-item leancloud_visitors" data-flag-title="RIPv2报文分析" title="阅读次数">
+            <span id="/2020/05/18/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%89%E3%80%8B/" class="post-meta-item leancloud_visitors" data-flag-title="边界网关协议实验（BGP）《三》" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -276,8 +274,8 @@
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/2020/03/16/RIPv2%E6%8A%A5%E6%96%87%E5%88%86%E6%9E%90/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/03/16/RIPv2报文分析/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2020/05/18/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%89%E3%80%8B/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/18/边界网关协议实验（BGP）《三》/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -292,70 +290,44 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="1-拓扑图"><a href="#1-拓扑图" class="headerlink" title="1.拓扑图"></a>1.拓扑图</h1><p><img src="https://s1.ax1x.com/2020/03/16/8GVlV0.png" alt="8GVlV0.png"></p><h1 id="2-配置思路"><a href="#2-配置思路" class="headerlink" title="2.配置思路"></a>2.配置思路</h1><ol>
-<li>配置各接口IP地址，使网络可达。</li>
-<li>在各路由器上使能RIP，基本实现网络互联。 </li>
-<li>在各路由器上配置RIPv2版本，提升RIP路由扩展性能。</li>
-<li>使AR1接收到的RIP路由的度量值加大5. </li>
-</ol><h1 id="3-操作配置"><a href="#3-操作配置" class="headerlink" title="3.操作配置"></a>3.操作配置</h1><h2 id="3-1-配置AR1-AR2-AR3-AR4-直连接口ip地址和回环ip地址"><a href="#3-1-配置AR1-AR2-AR3-AR4-直连接口ip地址和回环ip地址" class="headerlink" title="3.1 配置AR1,AR2,AR3,AR4,直连接口ip地址和回环ip地址"></a>3.1 配置AR1,AR2,AR3,AR4,直连接口ip地址和回环ip地址</h2><ul>
-<li><h3 id="AR1配置"><a href="#AR1配置" class="headerlink" title="AR1配置"></a>AR1配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;Huawei&gt;system-view</span><br><span class="line">sysname R1</span><br><span class="line"></span><br><span class="line">[R1]interface GigabitEthernet 0/0/0    //进入g0/0/0接口</span><br><span class="line">[R1-GigabitEthernet0/0/0]ip address 10.1.12.1 24   //配置接口ip</span><br><span class="line">[R1-GigabitEthernet0/0/0]quit</span><br><span class="line">[R1]interface loopback 0 </span><br><span class="line">[R1-loopback0]ip address 10.1.1.1 32   //配置loopback 0 回环ip地址</span><br><span class="line">[R1-loopback0]quit</span><br></pre></td></tr></table></figure>
-</li>
-<li><h3 id="AR2配置"><a href="#AR2配置" class="headerlink" title="AR2配置"></a>AR2配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;Huawei&gt;system-view</span><br><span class="line">sysname R2</span><br><span class="line"></span><br><span class="line">[R2]interface GigabitEthernet 0/0/0    //进入g0/0/0接口</span><br><span class="line">[R2-GigabitEthernet0/0/0]ip address 10.1.12.2 24   //配置接口ip</span><br><span class="line">[R2-GigabitEthernet0/0/0]quit</span><br><span class="line">[R2]interface GigabitEthernet 0/0/1    </span><br><span class="line">[R2-GigabitEthernet0/0/1]ip address 10.1.23.2 24  //配置接口ip</span><br><span class="line">[R2-GigabitEthernet0/0/1]quit</span><br><span class="line">[R2]interface GigabitEthernet 0/0/2    </span><br><span class="line">[R2-GigabitEthernet0/0/2]ip address 10.1.24.2 24   //配置接口ip</span><br><span class="line">[R2-GigabitEthernet0/0/2]quit</span><br><span class="line">[R2]interface loopback 0 </span><br><span class="line">[R2-loopback0]ip address 10.1.2.2 32   //配置loopback 0 回环ip地址</span><br><span class="line">[R2-loopback0]quit</span><br></pre></td></tr></table></figure>
-</li>
-<li><h3 id="AR3配置"><a href="#AR3配置" class="headerlink" title="AR3配置"></a>AR3配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;Huawei&gt;system-view</span><br><span class="line">sysname R3</span><br><span class="line"></span><br><span class="line">[R3]interface GigabitEthernet 0/0/0    //进入g0/0/0接口</span><br><span class="line">[R3-GigabitEthernet0/0/0]ip address 10.1.23.13 24   //配置接口ip</span><br><span class="line">[R3-GigabitEthernet0/0/0]quit</span><br><span class="line">[R3]interface loopback 0 </span><br><span class="line">[R3-loopback0]ip address 10.1.3.3 32   //配置loopback 0 回环ip地址</span><br><span class="line">[R3-loopback0]quit</span><br></pre></td></tr></table></figure>
-</li>
-<li><h3 id="AR4配置"><a href="#AR4配置" class="headerlink" title="AR4配置"></a>AR4配置</h3></li>
-</ul><a id="more"></a>
+        <h1 id="1-拓扑图"><a href="#1-拓扑图" class="headerlink" title="1.拓扑图"></a>1.拓扑图</h1><p><img src="https://s1.ax1x.com/2020/05/18/Yhp0fK.png" alt="Yhp0fK.png">、</p><h1 id="2-实验目的"><a href="#2-实验目的" class="headerlink" title="2.实验目的"></a>2.实验目的</h1><p>利用AS-path属性实现路由策略，使得AR2不向AR1通告AS300内的任何路由。</p><h1 id="3-实验步骤"><a href="#3-实验步骤" class="headerlink" title="3.实验步骤"></a>3.实验步骤</h1><h2 id="3-1配置AR1-AR4路由器的网关ip"><a href="#3-1配置AR1-AR4路由器的网关ip" class="headerlink" title="3.1配置AR1~AR4路由器的网关ip"></a>3.1配置AR1~AR4路由器的网关ip</h2><h2 id="3-2配置域间路由协议（BGP）"><a href="#3-2配置域间路由协议（BGP）" class="headerlink" title="3.2配置域间路由协议（BGP）"></a>3.2配置域间路由协议（BGP）</h2><p>AR1配置如下：</p><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[AR1]bgp</span> <span class="string">100</span></span><br><span class="line"><span class="meta">[AR1-bgp]peer</span> <span class="string">11.2.1.2 as-number 200</span></span><br><span class="line"><span class="meta">[AR1-bgp]import-route</span> <span class="string">direct</span></span><br></pre></td></tr></table></figure><a id="more"></a>
 
 
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;Huawei&gt;system-view</span><br><span class="line">sysname R4</span><br><span class="line"></span><br><span class="line">[R4]interface GigabitEthernet 0/0/0    //进入g0/0/0接口</span><br><span class="line">[R4-GigabitEthernet0/0/0]ip address 10.1.24.4 24   //配置接口ip</span><br><span class="line">[R4-GigabitEthernet0/0/0]quit</span><br><span class="line">[R4]interface loopback 0 </span><br><span class="line">[R4-loopback0]ip address 10.1.4.4 32   //配置loopback 0 回环ip地址</span><br><span class="line">[R4-loopback0]quit</span><br></pre></td></tr></table></figure>
 
-<h2 id="3-2在AR1-AR2-AR3-AR4-上配置RIP基本功能"><a href="#3-2在AR1-AR2-AR3-AR4-上配置RIP基本功能" class="headerlink" title="3.2在AR1,AR2,AR3,AR4,上配置RIP基本功能"></a>3.2在AR1,AR2,AR3,AR4,上配置RIP基本功能</h2><ul>
-<li><h3 id="AR1配置-1"><a href="#AR1配置-1" class="headerlink" title="AR1配置"></a>AR1配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[R1]rip    //进入RIP进程</span><br><span class="line">[R1-rip-1]version 2     //指定RIPv2</span><br><span class="line">[R1-rip-1]network 10.0.0.0     //指定网段接口使能RIP路由</span><br><span class="line">[R1-rip-1]quit</span><br></pre></td></tr></table></figure>
+
+<p>其他路由器同理。</p>
+<h2 id="3-3配置AS-PATH属性实现路由过滤"><a href="#3-3配置AS-PATH属性实现路由过滤" class="headerlink" title="3.3配置AS-PATH属性实现路由过滤"></a>3.3配置AS-PATH属性实现路由过滤</h2><h3 id="3-3-1-AS-PATH属性概述"><a href="#3-3-1-AS-PATH属性概述" class="headerlink" title="3.3.1 AS-PATH属性概述"></a>3.3.1 AS-PATH属性概述</h3><ul>
+<li><p><strong>概念</strong></p>
+<p> AS-PATH是公认必遵属性，该属性用一串AS号来描述去往的指定目的地AS间路径或路由，当BGP speaker发气一条路由，将在AS_Path中增加自己的AS号。也就是说，这条路由每经过一个AS区域，就会加上一个AS号，用来标示路径的优先级。</p>
 </li>
-<li><h3 id="AR2配置-1"><a href="#AR2配置-1" class="headerlink" title="AR2配置"></a>AR2配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[R2]rip    //进入RIP进程</span><br><span class="line">[R2-rip-1]version 2     //指定RIPv2</span><br><span class="line">[R2-rip-1]network 10.0.0.0     //指定网段接口使能RIP路由</span><br><span class="line">[R2-rip-1]quit</span><br></pre></td></tr></table></figure>
+<li><p><strong>作用</strong></p>
+<p>用来标识路由经过的AS路径。</p>
+<p>当一个路由器收到两条相同目的地的路由，它将选择<strong>AS路径最短</strong>的路由。 </p>
+<p> 在真实的网络环境中，不一定AS号越少的链路质量越高。而AS-PATH这个功能又是根据AS号来判断路由的优先的，AS号越少越优先。那么这个时候我们可能会用到AS-path的一个功能，来增加AS号的长度,从而实现选路的功能：</p>
+<p><img src="https://s1.ax1x.com/2020/05/18/YhFydJ.jpg" alt="YhFydJ.jpg"></p>
+<p>在这个图中，本来左边的路径是：500,200,100,右边的路径是300,100,现在在右边的路径上面多加几个相同的AS号，最后右边的路径就变成了：300,100,100,100,比左边路径的AS号要多。最后左边的路径为主要工作路径。</p>
 </li>
-<li><h3 id="AR3配置-1"><a href="#AR3配置-1" class="headerlink" title="AR3配置"></a>AR3配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[R3]rip    //进入RIP进程</span><br><span class="line">[R3-rip-1]version 2     //指定RIPv2</span><br><span class="line">[R3-rip-1]network 10.0.0.0     //指定网段接口使能RIP路由</span><br><span class="line">[R3-rip-1]quit</span><br></pre></td></tr></table></figure>
-</li>
-<li><h3 id="AR4配置-1"><a href="#AR4配置-1" class="headerlink" title="AR4配置"></a>AR4配置</h3></li>
+<li><p><strong>总结</strong></p>
+<ul>
+<li><strong>一个路由的AS号附加得越多，路由的优先级越低。</strong> </li>
+<li><strong>AS-path属性可以防止环路。</strong> </li>
+<li><strong>可以修改AS的附加，称为path-prepending。</strong> </li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[R4]rip    //进入RIP进程</span><br><span class="line">[R4-rip-1]version 2     //指定RIPv2</span><br><span class="line">[R4-rip-1]network 10.0.0.0     //指定网段接口使能RIP路由</span><br><span class="line">[R4-rip-1]quit</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-3查看路由表"><a href="#3-3查看路由表" class="headerlink" title="3.3查看路由表"></a>3.3查看路由表</h2><ol>
-<li><p>在AR1上查看路由表信息</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">display rip 1 route</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s1.ax1x.com/2020/03/16/8GtF61.png" alt="8GtF61.png"></p>
 </li>
-<li><p>修改度量值</p>
-<p>使AR1接受到的RIP路由度量值增大5，命令如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface gigabitrthernet 0/0/0</span><br><span class="line">rip metricin 5</span><br><span class="line">quit</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>再次查看路由表信息</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">display rip 1 route</span><br></pre></td></tr></table></figure>
+</ul>
+<h3 id="3-3-2-AS-PATH属性配置"><a href="#3-3-2-AS-PATH属性配置" class="headerlink" title="3.3.2 AS-PATH属性配置"></a>3.3.2 AS-PATH属性配置</h3><p>在AS2上配置，创建编号为1的AS-PATH过滤器，拒绝包含AS号300的路由通过。</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[AR2]ip</span> <span class="string">as-path-filter path-filter1 deny _300_	</span></span><br><span class="line"><span class="meta">[AR2]ip</span> <span class="string">as-path-filter path-filter1 permit .*</span></span><br><span class="line"><span class="meta">[AR2]bgp</span> <span class="string">200</span></span><br><span class="line"><span class="meta">[AR2-bgp]peer</span> <span class="string">11.2.1.1 as-path-filter path-filter1 export </span></span><br><span class="line"><span class="attr">[AR2-bgp]quit</span></span><br><span class="line"><span class="meta">[AR2]reset</span> <span class="string">bgp all</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://s1.ax1x.com/2020/03/16/8GNEgs.png" alt="8GNEgs.png"></p>
+<h3 id="3-3-3-测试"><a href="#3-3-3-测试" class="headerlink" title="3.3.3 测试"></a>3.3.3 测试</h3><ol>
+<li><p>查看AR1路由表：</p>
+<p><img src="https://s1.ax1x.com/2020/05/18/Yhm3pd.png" alt="Yhm3pd.png"></p>
+<p>在AR1的路由表中没看到AS300中的任何路由条目，及实现了通过配置AS-PATH属性实现了AR2不向AR1通告AS300内的任何路由。</p>
+</li>
+<li><p>AR1和AR3互Ping环回地址，结果如下图所示：</p>
+<p><img src="https://s1.ax1x.com/2020/05/18/Yhn85F.png" alt="Yhn85F.png"></p>
+<p>从上图可以看出AR1 Ping AR3 请求超时，AR3 Ping AR1 可以Ping通，也能说明在AR2中通过配置AS-PATH属性实现了路由过滤。</p>
 </li>
 </ol>
-<h2 id="3-4Ripv2报文分析"><a href="#3-4Ripv2报文分析" class="headerlink" title="3.4Ripv2报文分析"></a>3.4Ripv2报文分析</h2><p>R1 Ping R4在AR4的GE0/0/0端口捕获报文如下：</p>
-<p><img src="/2020/03/16/RIPv2%E6%8A%A5%E6%96%87%E5%88%86%E6%9E%90/C:%5CUsers%5C12173%5CDesktop%5Cimage%5CRipv2.png" alt="Ripv2"></p>
-<p>具体报文内容如下图所示：</p>
-<p><img src="https://s1.ax1x.com/2020/03/16/8GwjmR.png" alt="8GwjmR.png"></p>
-<p>command字段：占1个字节，取值为2时表示该报文是一个回应报文。其中包含路由信息。</p>
-<p>version字段：占1个字节，取值为2时表示RIPv2。</p>
-<p>address Family字段：占2个字节，ipv4取值为2。</p>
-<p>route tag字段：占2个字节，标记外部重分发进RIPv2中的路由</p>
-<p>ip address字段：占4个字节，表示路由的目的地址，该地址是网络地址。</p>
-<p>netmask字段：占4个字节，是子网掩码，RIPv2是有类别的，所以有这个字段。</p>
-<p>next hop字段：占4个字节，它表示一个比通告路由器的地址更好的下一跳。如果这个字段设置为0.0.0.0说明通告路由器的地址就是最优的下一跳。</p>
-<p>metric字段：占4个字节，指度量值，在RIP中就是跳数。</p>
-<h2 id="3-5Ripv2和Ripv1的区别"><a href="#3-5Ripv2和Ripv1的区别" class="headerlink" title="3.5Ripv2和Ripv1的区别"></a>3.5Ripv2和Ripv1的区别</h2><p> <strong>区别一：</strong>RIP1是一个有类路由协议，即所有的更新包中不含子网掩码，不支持VLSM， 所以就要求网络中所有设备必须使用相同的子网掩码，否则就会出错，而RIP2是一个无类的路由协议，它使用子网掩码。<br><strong>区别二：</strong>第二个不同的地方是RIP1<em>是发送更新包的时候使用的是*</em>广播包<strong>，而RIP2默认使用的是</strong>组播<strong>224.0.0.9，也支持广播发送，这样相对于RIP1来说就节省了一部分网络带宽。<br>**区别三：</strong>第三个就是RIP2支持明文或者是 MD5验证，要求两台路由器在同步路由表的时候必须进行验证，通过才可以进行路由同步，这样可以加强安全性。 </p>
-<p><strong>补充</strong></p>
-<h2 id="3-6Ripv2配置MD5验证"><a href="#3-6Ripv2配置MD5验证" class="headerlink" title="3.6Ripv2配置MD5验证"></a>3.6Ripv2配置MD5验证</h2><p>在各个路由器的相应端口上配置如下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rip authentication-mode md5 usual abc</span><br></pre></td></tr></table></figure>
-
-<p>AR3 Ping AR4时在AR2的GE0/0/2端口捕获报文如下：</p>
-<p><img src="https://s1.ax1x.com/2020/03/16/8G74Ff.png" alt="8G74Ff.png"></p>
 
     </div>
 
@@ -392,7 +364,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://lisongbai.top/2020/03/16/RIPv2%E6%8A%A5%E6%96%87%E5%88%86%E6%9E%90/" title="RIPv2报文分析">http://lisongbai.top/2020/03/16/RIPv2%E6%8A%A5%E6%96%87%E5%88%86%E6%9E%90/</a>
+    <a href="http://lisongbai.top/2020/05/18/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%89%E3%80%8B/" title="边界网关协议实验（BGP）《三》">http://lisongbai.top/2020/05/18/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%89%E3%80%8B/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -407,17 +379,14 @@
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2020/03/09/%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E5%8F%8A%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE%E5%88%86%E6%9E%90/" rel="next" title="静态路由及默认路由配置">
-                  <i class="fa fa-chevron-left"></i> 静态路由及默认路由配置
+                <a href="/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/" rel="next" title="边界网关协议实验（BGP）《一》">
+                  <i class="fa fa-chevron-left"></i> 边界网关协议实验（BGP）《一》
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2020/03/20/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E5%BD%92%E7%BA%B3/" rel="prev" title="排序算法总结归纳">
-                  排序算法总结归纳 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -496,7 +465,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-拓扑图"><span class="nav-number">1.</span> <span class="nav-text">1.拓扑图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-配置思路"><span class="nav-number">2.</span> <span class="nav-text">2.配置思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-操作配置"><span class="nav-number">3.</span> <span class="nav-text">3.操作配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-配置AR1-AR2-AR3-AR4-直连接口ip地址和回环ip地址"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 配置AR1,AR2,AR3,AR4,直连接口ip地址和回环ip地址</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AR1配置"><span class="nav-number">3.1.1.</span> <span class="nav-text">AR1配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AR2配置"><span class="nav-number">3.1.2.</span> <span class="nav-text">AR2配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AR3配置"><span class="nav-number">3.1.3.</span> <span class="nav-text">AR3配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AR4配置"><span class="nav-number">3.1.4.</span> <span class="nav-text">AR4配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2在AR1-AR2-AR3-AR4-上配置RIP基本功能"><span class="nav-number">3.2.</span> <span class="nav-text">3.2在AR1,AR2,AR3,AR4,上配置RIP基本功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AR1配置-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">AR1配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AR2配置-1"><span class="nav-number">3.2.2.</span> <span class="nav-text">AR2配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AR3配置-1"><span class="nav-number">3.2.3.</span> <span class="nav-text">AR3配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AR4配置-1"><span class="nav-number">3.2.4.</span> <span class="nav-text">AR4配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3查看路由表"><span class="nav-number">3.3.</span> <span class="nav-text">3.3查看路由表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4Ripv2报文分析"><span class="nav-number">3.4.</span> <span class="nav-text">3.4Ripv2报文分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5Ripv2和Ripv1的区别"><span class="nav-number">3.5.</span> <span class="nav-text">3.5Ripv2和Ripv1的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6Ripv2配置MD5验证"><span class="nav-number">3.6.</span> <span class="nav-text">3.6Ripv2配置MD5验证</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-拓扑图"><span class="nav-number">1.</span> <span class="nav-text">1.拓扑图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-实验目的"><span class="nav-number">2.</span> <span class="nav-text">2.实验目的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-实验步骤"><span class="nav-number">3.</span> <span class="nav-text">3.实验步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1配置AR1-AR4路由器的网关ip"><span class="nav-number">3.1.</span> <span class="nav-text">3.1配置AR1~AR4路由器的网关ip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2配置域间路由协议（BGP）"><span class="nav-number">3.2.</span> <span class="nav-text">3.2配置域间路由协议（BGP）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3配置AS-PATH属性实现路由过滤"><span class="nav-number">3.3.</span> <span class="nav-text">3.3配置AS-PATH属性实现路由过滤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-AS-PATH属性概述"><span class="nav-number">3.3.1.</span> <span class="nav-text">3.3.1 AS-PATH属性概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-AS-PATH属性配置"><span class="nav-number">3.3.2.</span> <span class="nav-text">3.3.2 AS-PATH属性配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-3-测试"><span class="nav-number">3.3.3.</span> <span class="nav-text">3.3.3 测试</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -744,9 +713,9 @@
       DISQUS.reset({
         reload: true,
         config: {page: {
-            url: "http://lisongbai.top/2020/03/16/RIPv2%E6%8A%A5%E6%96%87%E5%88%86%E6%9E%90/",
-            identifier: "2020/03/16/RIPv2报文分析/",
-            title: "RIPv2报文分析"
+            url: "http://lisongbai.top/2020/05/18/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%89%E3%80%8B/",
+            identifier: "2020/05/18/边界网关协议实验（BGP）《三》/",
+            title: "边界网关协议实验（BGP）《三》"
           }
         }
       });
