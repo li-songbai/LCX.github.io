@@ -1,6 +1,291 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>snmp</title>
+    <url>/2020/05/24/snmp/</url>
+    <content><![CDATA[<h1 id="1、实验拓扑"><a href="#1、实验拓扑" class="headerlink" title="1、实验拓扑"></a>1、实验拓扑</h1><p><a href="https://imgchr.com/i/tCOoR0" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/26/tCOoR0.png" alt="tCOoR0.png"></a></p><h1 id="2、实验要求"><a href="#2、实验要求" class="headerlink" title="2、实验要求"></a>2、实验要求</h1><ol>
+<li>通过eNSP里的“云”，可以使得虚拟环境中的设备访问“本机”。在本机中运行MIB Browser，访问eNSP虚拟环境中设备的MIB库。 </li>
+<li>浏览设备MIB树的各个节点 。</li>
+<li>还要捕获分组 ，分析协议交互过程。</li>
+<li>自己手工编码/解码分组中的数据。也就是ASN.1 TLV编码解码过程。 </li>
+</ol><a id="more"></a>
+
+<h1 id="3、实验步骤"><a href="#3、实验步骤" class="headerlink" title="3、实验步骤"></a>3、实验步骤</h1><h2 id="3-1连通性"><a href="#3-1连通性" class="headerlink" title="3.1连通性"></a>3.1连通性</h2><p>将VMware下win7操作系统中的ensp云下的路由器与主机连通。</p>
+<ul>
+<li><p>关闭本机和VMware下win7下的防火墙。</p>
+</li>
+<li><p>将VMware的网络连接模式设置为桥接模式。</p>
+</li>
+<li><p>查看本机ip。</p>
+</li>
+<li><p>云设置：</p>
+<p><img src="https://s1.ax1x.com/2020/05/26/tCOOZ4.png" alt="tCOOZ4.png"></p>
+<p>选择本地连接（及win7的ip地址选项）。</p>
+</li>
+<li><p>路由器设置：</p>
+<p>配置GE0/0/0端口ip为：192.168.10.222 掩码为：255.255.255.0。</p>
+</li>
+<li><p>测试连通性：</p>
+<p>主机和云下的路由器互Ping对方IP地址，结果入下：</p>
+<p><img src="https://s1.ax1x.com/2020/05/26/tCOXdJ.png" alt="tCOXdJ.png"></p>
+<p>云内网设备可以互通。</p>
+</li>
+</ul>
+<h2 id="3-2-SNMP工作机制"><a href="#3-2-SNMP工作机制" class="headerlink" title="3.2 SNMP工作机制"></a>3.2 SNMP工作机制</h2><p>SNMP分为NMS和Agent两部分：</p>
+<ul>
+<li><p>NMS （Network Management Station,网络管理站）是运行客户端程序的工作站，目前常用的网管平台有Qidviwv. Sun NotManer和IBM NetvieI。</p>
+</li>
+<li><p>Agent 是运行在网络设备(如交换机)上的服务器端软件。 </p>
+<p>​        NMS可以向Agent发出GetRequest、GetNextRequest和SetRequest报文, Agent 接收到NMS 的这些请求报文后，根据报文类型对管理对象(MIB, Management Information Base， 管理信息库)进行Read或Write操作，生成Response报文, 并将报文返回给NMS。</p>
+<p>​       Agent在设备发生异常情况或状态改变时(如设备重新启动)，也会主动向NMS 发送Trap报文，向NMS汇报所发生的事件。  </p>
+</li>
+</ul>
+<p><strong>注意：</strong>在此使用的是MIB  Browser 不是SNMP管理站，不能接收Trap报文,故在Agent中不用配置允许设备向管理站发送Trap报文的命令。</p>
+<h2 id="3-3SNMP-Agent配置"><a href="#3-3SNMP-Agent配置" class="headerlink" title="3.3SNMP-Agent配置"></a>3.3SNMP-Agent配置</h2><p>对云下的路由器进行如下配置：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">[Huawei]snmp-agent</span> <span class="string"></span></span><br><span class="line"><span class="meta">[Huawei]snmp-agent</span> <span class="string">sys-info version all</span></span><br><span class="line"><span class="meta">[Huawei]snmp-agent</span> <span class="string">community read public</span></span><br><span class="line"><span class="meta">[Huawei]snmp-agent</span> <span class="string">community write public</span></span><br><span class="line"><span class="meta">[Huawei]</span> <span class="string">snmp-agent sys-info contact LiSongBai-Tel:152********</span></span><br><span class="line"><span class="meta">[Huawei]</span> <span class="string">snmp-agent sys-info location ShanXi-Xi an</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-4MIB-Browser使用"><a href="#3-4MIB-Browser使用" class="headerlink" title="3.4MIB-Browser使用"></a>3.4MIB-Browser使用</h2><p><img src="https://s1.ax1x.com/2020/05/26/tCXSRx.png" alt="tCXSRx.png"></p>
+<ol>
+<li><p>选择Agent中配置的snmp版本。</p>
+</li>
+<li><p>输入ensp中云下的路由器网关ip。</p>
+</li>
+<li><p>连接，成功如下图所示：</p>
+<p><img src="https://s1.ax1x.com/2020/05/26/tCXPsO.png" alt="tCXPsO.png"></p>
+</li>
+<li><p>通过GetRequest/GetNextRequest请求获取Agent的相关信息</p>
+<p>通过GetRequest请求获取：</p>
+<ul>
+<li>获取设备名：</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/05/26/tCXQOS.png" alt="tCXQOS.png"></p>
+<ul>
+<li><p>获取设备位置：</p>
+<p><img src="https://s1.ax1x.com/2020/05/26/tCXBmF.png" alt="tCXBmF.png"></p>
+</li>
+</ul>
+<p>通过GetNextRequest请求获取：</p>
+<ul>
+<li><p>获取设备的管理员信息：</p>
+<p><img src="https://s1.ax1x.com/2020/05/26/tCX6YR.png" alt="tCX6YR.png"></p>
+<p>在sysUpTime上通过GetNextRequest请求获取sysContact的信息，结果如下：</p>
+<p><a href="https://imgchr.com/i/tCXcf1" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/26/tCXcf1.png" alt="tCXcf1.png"></a></p>
+</li>
+</ul>
+</li>
+<li><p>通过SetRequest请求修改设备的相关信息。</p>
+<p>如：修改设备名：</p>
+<p><img src="https://s1.ax1x.com/2020/05/26/tCXfOO.png" alt="tCXfOO.png"></p>
+<p><img src="https://s1.ax1x.com/2020/05/26/tCXvnS.png" alt="tCXvnS.png"></p>
+<p>在ensp中查看路由器设备名，结果如下：</p>
+<p><img src="https://s1.ax1x.com/2020/05/26/tCjipq.png" alt="tCjipq.png"></p>
+<p>可见，修改成功。</p>
+</li>
+</ol>
+<h2 id="3-4报文分析"><a href="#3-4报文分析" class="headerlink" title="3.4报文分析"></a>3.4报文分析</h2><p>对sysName(sysName的下一项为sysLocation)进行Get/GetNext/Set在路由器GE0/0/0端口捕获报文信息如下：</p>
+<p><img src="https://s1.ax1x.com/2020/05/26/tCjnAJ.png" alt="tCjnAJ.png"></p>
+<ul>
+<li><p>Get-request</p>
+<p><img src="https://s1.ax1x.com/2020/05/26/tCjBgP.png" alt="tCjBgP.png"></p>
+<p>从报文中可以看出SNMP协议底层采用UDP实现的，且Agent方的默认端口号为161，从报文中可以看出采用的SNMP版本是v2c ，社团名为public，请求id为38，值为null。</p>
+</li>
+<li><p>Get-response</p>
+<p><img src="https://s1.ax1x.com/2020/05/26/tCjQ91.png" alt="tCjQ91.png"></p>
+<p>其他同上，响应值为415232，表示AR2。</p>
+</li>
+<li><p>Get-next-request</p>
+<p><a href="https://imgchr.com/i/tCjsu8" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/26/tCjsu8.png" alt="tCjsu8.png"></a></p>
+</li>
+<li><p>Get-response</p>
+<p><img src="https://s1.ax1x.com/2020/05/26/tCvpDO.png" alt="tCvpDO.png"></p>
+</li>
+<li><p>Set-request</p>
+<p><img src="https://s1.ax1x.com/2020/05/26/tCvPVe.png" alt="tCvPVe.png"></p>
+</li>
+<li><p>Get-response</p>
+<p><img src="https://s1.ax1x.com/2020/05/26/tCviUH.png" alt="tCviUH.png"></p>
+</li>
+</ul>
+<h2 id="3-5ASN-1编码值对应的解释"><a href="#3-5ASN-1编码值对应的解释" class="headerlink" title="3.5ASN.1编码值对应的解释"></a>3.5ASN.1编码值对应的解释</h2><p>用3.4中的get-next-request和对应的response作分析。</p>
+<ul>
+<li><p>get-next-request</p>
+<p><img src="https://s1.ax1x.com/2020/05/26/tCvF5d.png" alt="tCvF5d.png"></p>
+<table>
+<thead>
+<tr>
+<th>十六进制数据</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>30</td>
+<td>表示SNMP协议报文(整个报文是一个SEQUENCE)</td>
+</tr>
+<tr>
+<td>26</td>
+<td>消息长度38字节(表示后面还有38个字节的内容)</td>
+</tr>
+<tr>
+<td>02 01 01</td>
+<td>协议版本(2c)(前两个字节02表示INTEGER类型01是指1个字节长度，最后的01是值01)</td>
+</tr>
+<tr>
+<td>04</td>
+<td>参数类型(OCTSTR)</td>
+</tr>
+<tr>
+<td>06</td>
+<td>群体(community)名长度</td>
+</tr>
+<tr>
+<td>70 75 62 6c 69 63</td>
+<td>群体名public的assic码值</td>
+</tr>
+<tr>
+<td>a1</td>
+<td>PUD类型get-next-request</td>
+</tr>
+<tr>
+<td>19</td>
+<td>snmp pdu的长度为25个OctStr(后面的内容25字节)</td>
+</tr>
+<tr>
+<td>02 01 27</td>
+<td>请求标识符Request ID</td>
+</tr>
+<tr>
+<td>02 01 00</td>
+<td>表示error-state为0</td>
+</tr>
+<tr>
+<td>02 01 00</td>
+<td>表示error-index为0</td>
+</tr>
+<tr>
+<td>30 0e</td>
+<td>表示后面变量绑定是SEQUENCE类型14个字节长度</td>
+</tr>
+<tr>
+<td>30 0c</td>
+<td>表示(变量名1item)</td>
+</tr>
+<tr>
+<td>06</td>
+<td>表示该字段是OID类型</td>
+</tr>
+<tr>
+<td>08</td>
+<td>OID长度8字节</td>
+</tr>
+<tr>
+<td>2b 06 01 02 01</td>
+<td>1.3.6.1.2.1(标识1.3被合并为2B)</td>
+</tr>
+<tr>
+<td>01 05 00</td>
+<td>1.5.0</td>
+</tr>
+<tr>
+<td>05 00</td>
+<td>表示NULL</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>get-response</p>
+<p><img src="https://s1.ax1x.com/2020/05/26/tCvMVg.png" alt="tCvMVg.png"></p>
+<table>
+<thead>
+<tr>
+<th>十六进制数据</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>30</td>
+<td>表示SNMP协议报文(整个报文是一个SEQUENCE)</td>
+</tr>
+<tr>
+<td>32</td>
+<td>消息长度50字节(表示后面还有50个字节的内容)</td>
+</tr>
+<tr>
+<td>02 01 01</td>
+<td>协议版本(2c)(前两个字节02 01 表示INTEGER类型)</td>
+</tr>
+<tr>
+<td>04</td>
+<td>参数类型(OCTSTR)</td>
+</tr>
+<tr>
+<td>06</td>
+<td>群体(community)名长度</td>
+</tr>
+<tr>
+<td>70 75 62 6c 69 63</td>
+<td>群体名public的assic码值</td>
+</tr>
+<tr>
+<td>a2</td>
+<td>PUD类型get-response</td>
+</tr>
+<tr>
+<td>25</td>
+<td>snmp pdu的长度为37个OctStr(后面的内容37字节)</td>
+</tr>
+<tr>
+<td>02 01 27</td>
+<td>请求标识符Request ID</td>
+</tr>
+<tr>
+<td>02 01 00</td>
+<td>表示error-state为0</td>
+</tr>
+<tr>
+<td>02 01 00</td>
+<td>表示error-index为0</td>
+</tr>
+<tr>
+<td>30 1a</td>
+<td>表示后面变量绑定是SEQUENCE类型26个字节长度</td>
+</tr>
+<tr>
+<td>30 18</td>
+<td>表示(变量名1 item)</td>
+</tr>
+<tr>
+<td>06</td>
+<td>表示该字段是OID类型</td>
+</tr>
+<tr>
+<td>08</td>
+<td>OID长度8字节</td>
+</tr>
+<tr>
+<td>2b 06 01 02 01</td>
+<td>1.3.6.1.2.1(标识1.3被合并为2B)</td>
+</tr>
+<tr>
+<td>01 06 00</td>
+<td>1.6.0</td>
+</tr>
+<tr>
+<td>04</td>
+<td>表示这是一个字符串</td>
+</tr>
+<tr>
+<td>0c</td>
+<td>表示字符串长度为12</td>
+</tr>
+<tr>
+<td>53 68 61 6e 58 69 2d 58 69 20 61 6e</td>
+<td>表示字符串内容为“ShanXi-Xi an”</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>边界网关协议实验（BGP）《三》</title>
     <url>/2020/05/18/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%89%E3%80%8B/</url>
     <content><![CDATA[<h1 id="1-拓扑图"><a href="#1-拓扑图" class="headerlink" title="1.拓扑图"></a>1.拓扑图</h1><p><img src="https://s1.ax1x.com/2020/05/18/Yhp0fK.png" alt="Yhp0fK.png">、</p><h1 id="2-实验目的"><a href="#2-实验目的" class="headerlink" title="2.实验目的"></a>2.实验目的</h1><p>利用AS-path属性实现路由策略，使得AR2不向AR1通告AS300内的任何路由。</p><h1 id="3-实验步骤"><a href="#3-实验步骤" class="headerlink" title="3.实验步骤"></a>3.实验步骤</h1><h2 id="3-1配置AR1-AR4路由器的网关ip"><a href="#3-1配置AR1-AR4路由器的网关ip" class="headerlink" title="3.1配置AR1~AR4路由器的网关ip"></a>3.1配置AR1~AR4路由器的网关ip</h2><h2 id="3-2配置域间路由协议（BGP）"><a href="#3-2配置域间路由协议（BGP）" class="headerlink" title="3.2配置域间路由协议（BGP）"></a>3.2配置域间路由协议（BGP）</h2><p>AR1配置如下：</p><figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">[AR1]bgp</span> <span class="string">100</span></span><br><span class="line"><span class="meta">[AR1-bgp]peer</span> <span class="string">11.2.1.2 as-number 200</span></span><br><span class="line"><span class="meta">[AR1-bgp]import-route</span> <span class="string">direct</span></span><br></pre></td></tr></table></figure><a id="more"></a>

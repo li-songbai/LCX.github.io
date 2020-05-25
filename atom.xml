@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-05-18T10:56:59.189Z</updated>
+  <updated>2020-05-25T16:17:07.367Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>snmp</title>
+    <link href="http://lisongbai.top/2020/05/24/snmp/"/>
+    <id>http://lisongbai.top/2020/05/24/snmp/</id>
+    <published>2020-05-24T08:36:29.127Z</published>
+    <updated>2020-05-25T16:17:07.367Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1、实验拓扑&quot;&gt;&lt;a href=&quot;#1、实验拓扑&quot; class=&quot;headerlink&quot; title=&quot;1、实验拓扑&quot;&gt;&lt;/a&gt;1、实验拓扑&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://imgchr.com/i/tCOoR0&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;img src=&quot;https://s1.ax1x.com/2020/05/26/tCOoR0.png&quot; alt=&quot;tCOoR0.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;h1 id=&quot;2、实验要求&quot;&gt;&lt;a href=&quot;#2、实验要求&quot; class=&quot;headerlink&quot; title=&quot;2、实验要求&quot;&gt;&lt;/a&gt;2、实验要求&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;通过eNSP里的“云”，可以使得虚拟环境中的设备访问“本机”。在本机中运行MIB Browser，访问eNSP虚拟环境中设备的MIB库。 &lt;/li&gt;
+&lt;li&gt;浏览设备MIB树的各个节点 。&lt;/li&gt;
+&lt;li&gt;还要捕获分组 ，分析协议交互过程。&lt;/li&gt;
+&lt;li&gt;自己手工编码/解码分组中的数据。也就是ASN.1 TLV编码解码过程。 &lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>边界网关协议实验（BGP）《三》</title>
@@ -410,23 +432,6 @@
     
     
       <category term="SSM" scheme="http://lisongbai.top/tags/SSM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>牛客在线编程之剑指</title>
-    <link href="http://lisongbai.top/2020/02/11/%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%89%91%E6%8C%87/"/>
-    <id>http://lisongbai.top/2020/02/11/%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%89%91%E6%8C%87/</id>
-    <published>2020-02-11T08:58:36.461Z</published>
-    <updated>2019-11-30T06:29:14.295Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一、栈的压入、弹出序列&quot;&gt;&lt;a href=&quot;#一、栈的压入、弹出序列&quot; class=&quot;headerlink&quot; title=&quot;一、栈的压入、弹出序列&quot;&gt;&lt;/a&gt;一、栈的压入、弹出序列&lt;/h1&gt;&lt;h5 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h5&gt;&lt;p&gt;​        输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的）&lt;/p&gt;
-    
-    </summary>
-    
-    
     
   </entry>
   
