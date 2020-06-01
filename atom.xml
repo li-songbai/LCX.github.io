@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-05-25T16:17:07.367Z</updated>
+  <updated>2020-06-01T14:02:16.895Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网络安全综合实验篇</title>
+    <link href="http://lisongbai.top/2020/05/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%BB%BC%E5%90%88%E5%AE%9E%E9%AA%8C%E7%AF%87/"/>
+    <id>http://lisongbai.top/2020/05/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%BB%BC%E5%90%88%E5%AE%9E%E9%AA%8C%E7%AF%87/</id>
+    <published>2020-05-31T09:02:50.589Z</published>
+    <updated>2020-06-01T14:02:16.895Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;网络安全综合实验篇&quot;&gt;&lt;a href=&quot;#网络安全综合实验篇&quot; class=&quot;headerlink&quot; title=&quot;网络安全综合实验篇&quot;&gt;&lt;/a&gt;网络安全综合实验篇&lt;/h1&gt;&lt;h2 id=&quot;1、实验要求&quot;&gt;&lt;a href=&quot;#1、实验要求&quot; class=&quot;headerlink&quot; title=&quot;1、实验要求&quot;&gt;&lt;/a&gt;1、实验要求&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;配置ACL，过滤具有某种特点的分组。&lt;/li&gt;
+&lt;li&gt;配置NAT。在企业内部结构化分层使用NAT地址。&lt;/li&gt;
+&lt;li&gt;实验测试一种网络攻击，比如SYN_Flood、MAC泛洪攻击或ARP攻击。&lt;/li&gt;
+&lt;li&gt;配置防火墙，禁止某种网络服务（防火墙在企业内网与外网之间）。&lt;/li&gt;
+&lt;li&gt;配置VPN。企业内网与外网之间可能有防火墙，也可能有NAT。从企业外部，用户不能直接访问企业内部。企业员工外出，或跨地区、跨国家企业都有跨越公众互联网，访问企业内部网络的需求。配置NAT某种VPN，比如L2TP VPN 或SSL VPN。&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>snmp</title>
@@ -411,27 +434,6 @@
     </summary>
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>SpringMVC02</title>
-    <link href="http://lisongbai.top/2020/02/12/SpringMVC02/"/>
-    <id>http://lisongbai.top/2020/02/12/SpringMVC02/</id>
-    <published>2020-02-12T15:24:13.000Z</published>
-    <updated>2020-02-12T15:25:19.735Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一、lombok注解开发&quot;&gt;&lt;a href=&quot;#一、lombok注解开发&quot; class=&quot;headerlink&quot; title=&quot;一、lombok注解开发&quot;&gt;&lt;/a&gt;一、lombok注解开发&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;p&gt;大部分项目中都必不可少的包含数据库实体(Entity)、数据载体(dto,dataObject),而这两部分都包含着大量的没有业务逻辑的setter、getter、空参构造，同时我们一般要复写类的toString(),equals(),hashCode()方法(贫血模型)。这些工作都是重复性的工作，作为程序员，懒是必备素质之一，这些工作肯定已经有大牛封装好了处理方法,这就是lombok。 &lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="SSM" scheme="http://lisongbai.top/tags/SSM/"/>
     
   </entry>
   

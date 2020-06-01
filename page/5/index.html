@@ -52,38 +52,30 @@
   };
 </script>
 
-  <meta name="description" content="1.拓扑图2.实验目的了解边界网管协议（BGP）实现两个域间的通讯。3.实验步骤3.1网关ip配置AR1配置，其他同理。12345678&amp;lt;Huawei&amp;gt;sys[Huawei]un in enInfo: Information center is disabled.[Huawei]sysname AR1[AR1]interface GigabitEthernet0&#x2F;0&#x2F;0[AR1-Gig">
-<meta property="og:type" content="article">
-<meta property="og:title" content="边界网关协议实验（BGP）《一》">
-<meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2020&#x2F;05&#x2F;11&#x2F;%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B&#x2F;index.html">
+  <meta name="description" content="记录学习的技能和遇到的问题">
+<meta property="og:type" content="website">
+<meta property="og:title" content="小李の博客">
+<meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;page&#x2F;5&#x2F;index.html">
 <meta property="og:site_name" content="小李の博客">
-<meta property="og:description" content="1.拓扑图2.实验目的了解边界网管协议（BGP）实现两个域间的通讯。3.实验步骤3.1网关ip配置AR1配置，其他同理。12345678&amp;lt;Huawei&amp;gt;sys[Huawei]un in enInfo: Information center is disabled.[Huawei]sysname AR1[AR1]interface GigabitEthernet0&#x2F;0&#x2F;0[AR1-Gig">
+<meta property="og:description" content="记录学习的技能和遇到的问题">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;11&#x2F;YYn0l8.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;11&#x2F;YYnom4.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;11&#x2F;YYn779.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;11&#x2F;YYnqt1.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;11&#x2F;YYu97d.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;11&#x2F;YYuPAA.png">
-<meta property="og:updated_time" content="2020-05-11T14:37:42.432Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;11&#x2F;YYn0l8.png">
 
-<link rel="canonical" href="http://lisongbai.top/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/">
+<link rel="canonical" href="http://lisongbai.top/page/5/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
+    isHome: true,
+    isPost: false,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>边界网关协议实验（BGP）《一》 | 小李の博客</title>
+  <title>小李の博客</title>
   
 
 
@@ -222,11 +214,11 @@
             
 
   <div class="posts-expand">
-      
+        
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2019/10/31/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -239,7 +231,8 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          边界网关协议实验（BGP）《一》
+          
+            <a href="/2019/10/31/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">Markdown基本语法学习笔记</a>
         </h1>
 
         <div class="post-meta">
@@ -248,25 +241,24 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-05-11 22:39:22 / 修改时间：22:37:42" itemprop="dateCreated datePublished" datetime="2020-05-11T22:39:22+08:00">2020-05-11</time>
+              <time title="创建时间：2019-10-31 21:28:03" itemprop="dateCreated datePublished" datetime="2019-10-31T21:28:03+08:00">2019-10-31</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-02 14:23:24" itemprop="dateModified" datetime="2019-11-02T14:23:24+08:00">2019-11-02</time>
+              </span>
 
           
-            <span id="/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/" class="post-meta-item leancloud_visitors" data-flag-title="边界网关协议实验（BGP）《一》" title="阅读次数">
+            <span id="/2019/10/31/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" class="post-meta-item leancloud_visitors" data-flag-title="Markdown基本语法学习笔记" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
               <span class="post-meta-item-text">阅读次数：</span>
               <span class="leancloud-visitors-count"></span>
-            </span>
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
             </span>
   
   <span class="post-meta-item">
@@ -276,8 +268,8 @@
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/11/边界网关协议实验（BGP）《一》/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2019/10/31/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/31/Markdown基本语法/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -292,113 +284,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="1-拓扑图"><a href="#1-拓扑图" class="headerlink" title="1.拓扑图"></a>1.拓扑图</h1><p><img src="https://s1.ax1x.com/2020/05/11/YYn0l8.png" alt="YYn0l8.png"></p><h1 id="2-实验目的"><a href="#2-实验目的" class="headerlink" title="2.实验目的"></a>2.实验目的</h1><p>了解边界网管协议（BGP）</p><p>实现两个域间的通讯。</p><h1 id="3-实验步骤"><a href="#3-实验步骤" class="headerlink" title="3.实验步骤"></a>3.实验步骤</h1><h2 id="3-1网关ip配置"><a href="#3-1网关ip配置" class="headerlink" title="3.1网关ip配置"></a>3.1网关ip配置</h2><p>AR1配置，其他同理。</p><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&lt;Huawei&gt;sys</span></span><br><span class="line"><span class="meta">[Huawei]un</span> <span class="string">in en</span></span><br><span class="line"><span class="attr">Info</span>: <span class="string">Information center is disabled.</span></span><br><span class="line"><span class="meta">[Huawei]sysname</span> <span class="string">AR1</span></span><br><span class="line"><span class="meta">[AR1]interface</span> <span class="string">GigabitEthernet0/0/0</span></span><br><span class="line"><span class="meta">[AR1-GigabitEthernet0/0/0]ip</span> <span class="string">add 192.168.6.1 24</span></span><br><span class="line"><span class="meta">[AR1-GigabitEthernet0/0/0]interface</span> <span class="string">GigabitEthernet0/0/1</span></span><br><span class="line"><span class="meta">[AR1-GigabitEthernet0/0/1]ip</span> <span class="string">add 192.168.5.2 24</span></span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
-
-
-<h2 id="3-2AS1配置RIP协议"><a href="#3-2AS1配置RIP协议" class="headerlink" title="3.2AS1配置RIP协议"></a>3.2AS1配置RIP协议</h2><p>AR1配置：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">[AR1]rip</span></span><br><span class="line"><span class="meta">[AR1-rip-1]net</span> <span class="string">192.168.6.0</span></span><br><span class="line"><span class="meta">[AR1-rip-1]net</span> <span class="string">192.168.5.0</span></span><br></pre></td></tr></table></figure>
-
-<p>AR7配置同理。</p>
-<h2 id="3-3AS2配置OSPF"><a href="#3-3AS2配置OSPF" class="headerlink" title="3.3AS2配置OSPF"></a>3.3AS2配置OSPF</h2><p>AR2配置：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">[AR2]ospf</span></span><br><span class="line"><span class="meta">[AR2-ospf-1]area</span> <span class="string">0</span></span><br><span class="line"><span class="meta">[AR2-ospf-1-area-0.0.0.0]net</span> <span class="string">192.168.5.0 0.0.0.255</span></span><br><span class="line"><span class="meta">[AR2-ospf-1-area-0.0.0.0]net</span> <span class="string">192.168.1.0 0.0.0.255</span></span><br></pre></td></tr></table></figure>
-
-<p>AR3~5同理。</p>
-<h2 id="3-4配置BGP"><a href="#3-4配置BGP" class="headerlink" title="3.4配置BGP"></a>3.4配置BGP</h2><p>AR1配置：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[AR1]bgp</span> <span class="string">1</span></span><br><span class="line"><span class="meta">[AR1-bgp]peer</span> <span class="string">192.168.5.1 as-number 2</span></span><br></pre></td></tr></table></figure>
-
-<p>AR2配置：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[AR2]bgp</span> <span class="string">2</span></span><br><span class="line"><span class="meta">[AR2-bgp]peer</span> <span class="string">192.168.5.2 as-number 1</span></span><br></pre></td></tr></table></figure>
-
-<p>查看BGP邻居关系（display bgp peer）</p>
-<p>AR1:</p>
-<p><img src="https://s1.ax1x.com/2020/05/11/YYnom4.png" alt="YYnom4.png"></p>
-<p>AR2:</p>
-<p><img src="https://s1.ax1x.com/2020/05/11/YYn779.png" alt="YYn779.png"></p>
-<p>再查看路由表（display bgp routing-table），由于没有引入路由表为空,</p>
-<p>引入：</p>
-<ul>
-<li><p>AR1：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[AR1-bgp]import-route</span> <span class="string">rip 1	</span></span><br><span class="line"><span class="meta">[AR1-bgp]import-route</span> <span class="string">direct</span></span><br></pre></td></tr></table></figure>
-
-<p>再次查看路由表，如下图所示：<img src="https://s1.ax1x.com/2020/05/11/YYnqt1.png" alt="YYnqt1.png"></p>
-</li>
-<li><p>AR2:</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[AR2-bgp]import-route</span> <span class="string">direct 	</span></span><br><span class="line"><span class="meta">[AR2-bgp]import-route</span> <span class="string">ospf 1</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s1.ax1x.com/2020/05/11/YYu97d.png" alt="YYu97d.png"></p>
-</li>
-</ul>
-<h2 id="3-5测试"><a href="#3-5测试" class="headerlink" title="3.5测试"></a>3.5测试</h2><p>AR5 GE0/0/0 Ping AR7 GE0/0/0  在AR2 GE0/0/0端口抓包结果如下：</p>
-<p><img src="https://s1.ax1x.com/2020/05/11/YYuPAA.png" alt="YYuPAA.png"></p>
-
+          <p>[TOC]</p><h1 id="一、标题"><a href="#一、标题" class="headerlink" title="一、标题"></a>一、标题</h1><p>一个#是一级标题，二个#是二级标题，以此类推。最多到六级标题。</p><p>注：标准语法一般在#后面跟空格再写标题，有的地方可以不加空格（比如：简书上写Markdown）。</p><p>实例：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这是一级标题</span></span><br><span class="line"><span class="comment">## 这是二级标题</span></span><br><span class="line"><span class="comment">### 这是三级标题</span></span><br><span class="line">...</span><br><span class="line"><span class="comment">###### 这是六级标题</span></span><br></pre></td></tr></table></figure><p>效果如下：</p><h1 id="这是一级标题"><a href="#这是一级标题" class="headerlink" title="这是一级标题"></a>这是一级标题</h1><h2 id="这是二级标题"><a href="#这是二级标题" class="headerlink" title="这是二级标题"></a>这是二级标题</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/31/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
     </div>
 
     
     
     
-      
-        <div class="reward-container">
-  <div>您的支持是我继续创作的动力</div>
-  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    打赏
-  </button>
-  <div id="qr" style="display: none;">
-      
-      <div style="display: inline-block;">
-        <img src="/images/wechatpay.png" alt="李松柏 微信支付">
-        <p>微信支付</p>
-      </div>
-      
-      <div style="display: inline-block;">
-        <img src="/images/alipay.png" alt="李松柏 支付宝">
-        <p>支付宝</p>
-      </div>
-
-  </div>
-</div>
-
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>李松柏
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://lisongbai.top/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/" title="边界网关协议实验（BGP）《一》">http://lisongbai.top/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
-
       <footer class="post-footer">
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-                <a href="/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%BA%8C%E3%80%8B/" rel="next" title="边界网关协议实验（BGP）《二》">
-                  <i class="fa fa-chevron-left"></i> 边界网关协议实验（BGP）《二》
-                </a>
-            </div>
-
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-                <a href="/2020/05/18/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%89%E3%80%8B/" rel="prev" title="边界网关协议实验（BGP）《三》">
-                  边界网关协议实验（BGP）《三》 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        <div class="post-eof"></div>
       </footer>
-    
   </article>
   
   
@@ -406,49 +309,15 @@
 
   </div>
 
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+  </nav>
+
+
 
           </div>
           
-      <div class="tabs tabs-comment">
-        <ul class="nav-tabs">
-            <li class="tab"><a href="#comment-disqus">disqus</a></li>
-            <li class="tab"><a href="#comment-livere">livere</a></li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane disqus" id="comment-disqus">
-              
-  <div class="comments" id="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-    </div>
-  </div>
-  
-            </div>
-            <div class="tab-pane livere" id="comment-livere">
-              
-  <div class="comments" id="comments">
-    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzY2MC8yNDE1OA=="></div>
-  </div>
-  
-            </div>
-        </div>
-      </div>
-      <script>
-        window.addEventListener('tabs:register', () => {
-          let activeClass = '';
-            activeClass = localStorage.getItem('comments_active') || activeClass;
-          if (activeClass) {
-            let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-            if (activeTab) {
-              activeTab.click();
-            }
-          }
-        });
-        window.addEventListener('tabs:click', event => {
-          let commentClass = event.target.classList[1];
-          localStorage.setItem('comments_active', commentClass);
-        });
-      </script>
 
         </div>
           
@@ -473,7 +342,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-拓扑图"><span class="nav-number">1.</span> <span class="nav-text">1.拓扑图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-实验目的"><span class="nav-number">2.</span> <span class="nav-text">2.实验目的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-实验步骤"><span class="nav-number">3.</span> <span class="nav-text">3.实验步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1网关ip配置"><span class="nav-number">3.1.</span> <span class="nav-text">3.1网关ip配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2AS1配置RIP协议"><span class="nav-number">3.2.</span> <span class="nav-text">3.2AS1配置RIP协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3AS2配置OSPF"><span class="nav-number">3.3.</span> <span class="nav-text">3.3AS2配置OSPF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4配置BGP"><span class="nav-number">3.4.</span> <span class="nav-text">3.4配置BGP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5测试"><span class="nav-number">3.5.</span> <span class="nav-text">3.5测试</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -715,41 +583,7 @@
   // defer loading until the whole page loading is completed
   window.addEventListener('load', loadCount, false);
 </script>
-<script>
-  function loadComments() {
-    if (window.DISQUS) {
-      DISQUS.reset({
-        reload: true,
-        config: {page: {
-            url: "http://lisongbai.top/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/",
-            identifier: "2020/05/11/边界网关协议实验（BGP）《一》/",
-            title: "边界网关协议实验（BGP）《一》"
-          }
-        }
-      });
-    } else {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://visitor.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', '' + +new Date());
-      (d.head || d.body).appendChild(s);
-    }
-  }
-    window.addEventListener('load', loadComments, false);
-</script>
 
-<script>
-  window.livereOptions = {
-    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
-  };
-  (function(d, s) {
-    var j, e = d.getElementsByTagName(s)[0];
-    if (typeof LivereTower === 'function') { return; }
-    j = d.createElement(s);
-    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-    j.async = true;
-    e.parentNode.insertBefore(j, e);
-  })(document, 'script');
-</script>
 
  
 </body>

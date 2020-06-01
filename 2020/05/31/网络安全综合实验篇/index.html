@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="网络安全综合实验篇1、实验要求 配置ACL，过滤具有某种特点的分组。 配置NAT。在企业内部结构化分层使用NAT地址。 实验测试一种网络攻击，比如SYN_Flood、MAC泛洪攻击或ARP攻击。 配置防火墙，禁止某种网络服务（防火墙在企业内网与外网之间）。 配置VPN。企业内网与外网之间可能有防火墙，也可能有NAT。从企业外部，用户不能直接访问企业内部。企业员工外出，或跨地区、跨国家企业都有跨越公">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络安全综合实验篇">
+<meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2020&#x2F;05&#x2F;31&#x2F;%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%BB%BC%E5%90%88%E5%AE%9E%E9%AA%8C%E7%AF%87&#x2F;index.html">
+<meta property="og:site_name" content="小李の博客">
+<meta property="og:description" content="网络安全综合实验篇1、实验要求 配置ACL，过滤具有某种特点的分组。 配置NAT。在企业内部结构化分层使用NAT地址。 实验测试一种网络攻击，比如SYN_Flood、MAC泛洪攻击或ARP攻击。 配置防火墙，禁止某种网络服务（防火墙在企业内网与外网之间）。 配置VPN。企业内网与外网之间可能有防火墙，也可能有NAT。从企业外部，用户不能直接访问企业内部。企业员工外出，或跨地区、跨国家企业都有跨越公">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJ1IHA.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJ1q9f.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJ39Nq.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJ3iCV.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJ39Nq.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJ3iCV.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJ3K4x.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJ33vD.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJ3NVA.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJ3yrQ.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJ35xU.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJ37qJ.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJ3XPx.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJ8UL4.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJJkgf.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJJuUs.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJJQCq.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJJGKU.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJJyrD.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJJfPI.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJJvR0.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJYuLD.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJY3FA.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJYUOS.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJY6S0.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJYHl6.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJt9pt.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJtthR.png">
+<meta property="og:updated_time" content="2020-06-01T14:02:16.895Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;tJ1IHA.png">
+
+<link rel="canonical" href="http://lisongbai.top/2020/05/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%BB%BC%E5%90%88%E5%AE%9E%E9%AA%8C%E7%AF%87/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>网络安全综合实验篇 | 小李の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="小李の博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小李の博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">我有一壶酒，足以慰平生。</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/yym08090809" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/05/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%BB%BC%E5%90%88%E5%AE%9E%E9%AA%8C%E7%AF%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李松柏">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小李の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          网络安全综合实验篇
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-31 17:02:50" itemprop="dateCreated datePublished" datetime="2020-05-31T17:02:50+08:00">2020-05-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-01 22:02:16" itemprop="dateModified" datetime="2020-06-01T22:02:16+08:00">2020-06-01</time>
+              </span>
+
+          
+            <span id="/2020/05/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%BB%BC%E5%90%88%E5%AE%9E%E9%AA%8C%E7%AF%87/" class="post-meta-item leancloud_visitors" data-flag-title="网络安全综合实验篇" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/05/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%BB%BC%E5%90%88%E5%AE%9E%E9%AA%8C%E7%AF%87/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/31/网络安全综合实验篇/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="网络安全综合实验篇"><a href="#网络安全综合实验篇" class="headerlink" title="网络安全综合实验篇"></a>网络安全综合实验篇</h1><h2 id="1、实验要求"><a href="#1、实验要求" class="headerlink" title="1、实验要求"></a>1、实验要求</h2><ol>
+<li>配置ACL，过滤具有某种特点的分组。</li>
+<li>配置NAT。在企业内部结构化分层使用NAT地址。</li>
+<li>实验测试一种网络攻击，比如SYN_Flood、MAC泛洪攻击或ARP攻击。</li>
+<li>配置防火墙，禁止某种网络服务（防火墙在企业内网与外网之间）。</li>
+<li>配置VPN。企业内网与外网之间可能有防火墙，也可能有NAT。从企业外部，用户不能直接访问企业内部。企业员工外出，或跨地区、跨国家企业都有跨越公众互联网，访问企业内部网络的需求。配置NAT某种VPN，比如L2TP VPN 或SSL VPN。</li>
+</ol><a id="more"></a>
+<h2 id="2、配置ACL，过滤具有某种特点的分组。"><a href="#2、配置ACL，过滤具有某种特点的分组。" class="headerlink" title="2、配置ACL，过滤具有某种特点的分组。"></a>2、配置ACL，过滤具有某种特点的分组。</h2><h3 id="2-1实验拓扑"><a href="#2-1实验拓扑" class="headerlink" title="2.1实验拓扑"></a>2.1实验拓扑</h3><p><img src="https://s1.ax1x.com/2020/06/01/tJ1IHA.png" alt="tJ1IHA.png"></p>
+<h3 id="2-2实验步骤"><a href="#2-2实验步骤" class="headerlink" title="2.2实验步骤"></a>2.2实验步骤</h3><h4 id="2-2-1根据拓扑配置路由器、PC的ip及掩码，然后在各个路由器上配置RIP协议实现全网互通。"><a href="#2-2-1根据拓扑配置路由器、PC的ip及掩码，然后在各个路由器上配置RIP协议实现全网互通。" class="headerlink" title="2.2.1根据拓扑配置路由器、PC的ip及掩码，然后在各个路由器上配置RIP协议实现全网互通。"></a>2.2.1根据拓扑配置路由器、PC的ip及掩码，然后在各个路由器上配置RIP协议实现全网互通。</h4><h4 id="2-2-2测试全网是否互通，PC间互Ping结果如下："><a href="#2-2-2测试全网是否互通，PC间互Ping结果如下：" class="headerlink" title="2.2.2测试全网是否互通，PC间互Ping结果如下："></a>2.2.2测试全网是否互通，PC间互Ping结果如下：</h4><p><img src="https://s1.ax1x.com/2020/06/01/tJ1q9f.png" alt="tJ1q9f.png"></p>
+<h4 id="2-2-3通过ACL的配置使得PC1和PC2可以正常通信，但PC1不能和PC3通信"><a href="#2-2-3通过ACL的配置使得PC1和PC2可以正常通信，但PC1不能和PC3通信" class="headerlink" title="2.2.3通过ACL的配置使得PC1和PC2可以正常通信，但PC1不能和PC3通信"></a>2.2.3通过ACL的配置使得PC1和PC2可以正常通信，但PC1不能和PC3通信</h4><h4 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h4><p> <strong>在AR3的g0/0/1接口拒绝PC1的访问</strong> ，配置如下：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[AR3]acl</span> <span class="string">2000</span></span><br><span class="line"><span class="meta">[AR3-acl-basic-2000]rule</span> <span class="string">deny source 192.168.10.2 0</span></span><br><span class="line"><span class="attr">[AR3-acl-basic-2000]quit</span></span><br><span class="line"><span class="meta">[AR3]interface</span> <span class="string">GigabitEthernet0/0/1</span></span><br><span class="line"><span class="comment"># 在GigabitEthernet0/0/1接口调用</span></span><br><span class="line"><span class="meta">[AR3-GigabitEthernet0/0/1]traffic-filter</span> <span class="string">outbound acl 2000</span></span><br><span class="line"><span class="attr">[AR3-GigabitEthernet0/0/1]quit</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>结果：</strong></p>
+<p><strong>PC1 Ping PC3：</strong></p>
+<p><img src="https://s1.ax1x.com/2020/06/01/tJ39Nq.png" alt="tJ39Nq.png"></p>
+<p><strong>PC2 Ping PC3：</strong></p>
+<p><img src="https://s1.ax1x.com/2020/06/01/tJ3iCV.png" alt="tJ3iCV.png"></p>
+<h4 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h4><p> <strong>在AR3上只允许PC2拒绝PC1</strong>，配置如下：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除法一配置</span></span><br><span class="line"><span class="meta">[AR3]undo</span> <span class="string">acl 200</span></span><br><span class="line"><span class="comment"># 允许PC2访问 拒绝PC1</span></span><br><span class="line"><span class="meta">[AR3]acl</span> <span class="string">2000</span></span><br><span class="line"><span class="meta">[AR3-acl-basic-2000]rule</span> <span class="string">permit source 192.168.20.2 0</span></span><br><span class="line"><span class="meta">[AR3-acl-basic-2000]rule</span> <span class="string">deny source any</span></span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p><strong>PC1 Ping PC3：</strong></p>
+<p><img src="https://s1.ax1x.com/2020/06/01/tJ39Nq.png" alt="tJ39Nq.png"></p>
+<p><strong>PC2 Ping PC3：</strong></p>
+<p><img src="https://s1.ax1x.com/2020/06/01/tJ3iCV.png" alt="tJ3iCV.png"></p>
+<h4 id="2-2-4-AR1远程登录到AR3，但两者不能ping通，PC1，PC2仍能正常通信"><a href="#2-2-4-AR1远程登录到AR3，但两者不能ping通，PC1，PC2仍能正常通信" class="headerlink" title="2.2.4 AR1远程登录到AR3，但两者不能ping通，PC1，PC2仍能正常通信"></a>2.2.4 AR1远程登录到AR3，但两者不能ping通，PC1，PC2仍能正常通信</h4><ol>
+<li><p>首先在AR3中设置telnet远程登陆，配置如下:</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删掉原来的配置</span></span><br><span class="line"><span class="meta">[AR3]undo</span> <span class="string">acl 2000 </span></span><br><span class="line"><span class="comment"># 设置远程登陆</span></span><br><span class="line"><span class="meta">[AR3]user-interface</span> <span class="string">vty 0 4</span></span><br><span class="line"><span class="meta">[AR3-ui-vty0-4]authentication-mode</span> <span class="string">password</span></span><br><span class="line"><span class="attr">Please</span> <span class="string">configure the login password (maximum length 16):admin</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试远程登陆配置是否正确。</p>
+<p>AR1中远程登陆AR3，结果如下：</p>
+<p><img src="https://s1.ax1x.com/2020/06/01/tJ3K4x.png" alt="tJ3K4x.png"></p>
+<p>可见，能够登陆。</p>
+</li>
+<li><p>通过ACL配置实现AR1-&gt;AR3拒绝ping，但是可以远程登陆。</p>
+<p>在AR2中做如下配置：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[AR2]acl</span> <span class="string">3000</span></span><br><span class="line"><span class="meta">[AR2-acl-adv-3000]rule</span> <span class="string">deny icmp source 12.1.1.1 0 destination 24.1.1.2 0</span></span><br><span class="line"><span class="attr">[AR2-acl-adv-3000]quit</span></span><br><span class="line"><span class="meta">[AR2]interface</span> <span class="string">GigabitEthernet0/0/0</span></span><br><span class="line"><span class="meta">[AR2-GigabitEthernet0/0/0]traffic-filter</span> <span class="string">inbound acl 3000</span></span><br><span class="line"><span class="attr">[AR2-GigabitEthernet0/0/0]quit</span></span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="https://s1.ax1x.com/2020/06/01/tJ33vD.png" alt="tJ33vD.png"></p>
+<p><img src="https://s1.ax1x.com/2020/06/01/tJ3NVA.png" alt="tJ3NVA.png"></p>
+</li>
+</ol>
+<h2 id="3、配置NAT。在企业内部结构化分层使用NAT地址。配置防火墙，禁止某种网络服务（防火墙在企业内网与外网之间）。"><a href="#3、配置NAT。在企业内部结构化分层使用NAT地址。配置防火墙，禁止某种网络服务（防火墙在企业内网与外网之间）。" class="headerlink" title="3、配置NAT。在企业内部结构化分层使用NAT地址。配置防火墙，禁止某种网络服务（防火墙在企业内网与外网之间）。"></a>3、配置NAT。在企业内部结构化分层使用NAT地址。配置防火墙，禁止某种网络服务（防火墙在企业内网与外网之间）。</h2><h2 id="防火墙NAT配置"><a href="#防火墙NAT配置" class="headerlink" title="防火墙NAT配置"></a>防火墙NAT配置</h2><h3 id="3-1实验拓扑"><a href="#3-1实验拓扑" class="headerlink" title="3.1实验拓扑"></a>3.1实验拓扑</h3><p><img src="https://s1.ax1x.com/2020/06/01/tJ3yrQ.png" alt="tJ3yrQ.png"></p>
+<h3 id="3-2实验步骤"><a href="#3-2实验步骤" class="headerlink" title="3.2实验步骤"></a>3.2实验步骤</h3><h4 id="3-2-1根据拓扑配置路由器、防火墙、PC的ip及掩码。"><a href="#3-2-1根据拓扑配置路由器、防火墙、PC的ip及掩码。" class="headerlink" title="3.2.1根据拓扑配置路由器、防火墙、PC的ip及掩码。"></a>3.2.1根据拓扑配置路由器、防火墙、PC的ip及掩码。</h4><h4 id="3-2-2在AR1中配置一条去往防火墙GE端口的默认路由。"><a href="#3-2-2在AR1中配置一条去往防火墙GE端口的默认路由。" class="headerlink" title="3.2.2在AR1中配置一条去往防火墙GE端口的默认路由。"></a>3.2.2在AR1中配置一条去往防火墙GE端口的默认路由。</h4><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[AR1]ip</span> <span class="string">route-static 0.0.0.0 0.0.0.0 11.0.0.1</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-3在防火墙中将端口加入对应的trust、dmz、untrust域中"><a href="#3-2-3在防火墙中将端口加入对应的trust、dmz、untrust域中" class="headerlink" title="3.2.3在防火墙中将端口加入对应的trust、dmz、untrust域中"></a>3.2.3在防火墙中将端口加入对应的trust、dmz、untrust域中</h4><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[SRG]firewall</span> <span class="string">zone trust</span></span><br><span class="line"><span class="meta">[SRG-zone-trust]add</span> <span class="string">interface g0/0/1 将接口加入trust区域（默认安全级别85）</span></span><br><span class="line"></span><br><span class="line"><span class="meta">[SRG]firewall</span> <span class="string">zone trust</span></span><br><span class="line"><span class="meta">[SRG-zone-trust]add</span> <span class="string">interface g0/0/3将接口加入dmz</span></span><br><span class="line"></span><br><span class="line"><span class="meta">[SRG]firewall</span> <span class="string">zone untrust</span></span><br><span class="line"><span class="meta">[SRG-zone-untrust]add</span> <span class="string">interface g0/0/2将接口键入untrust区域（安全级别5）</span></span><br><span class="line"><span class="meta">[SRG]ip</span> <span class="string">route-static 192.168.10.0 24 11.0.0.2</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-4静态NAT：一对一"><a href="#3-2-4静态NAT：一对一" class="headerlink" title="3.2.4静态NAT：一对一"></a>3.2.4静态NAT：一对一</h4><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#配置将内网地址192.168.10.10 映射到12.0.0.10地址</span></span><br><span class="line"><span class="meta">SRG]nat</span> <span class="string">server global 12.0.0.10 inside 192.168.10.10</span></span><br><span class="line"><span class="meta">[SRG]policy</span> <span class="string">interzone trust untrust outbound  </span></span><br><span class="line"><span class="comment">#进入trust到untrust出口方向策略</span></span><br><span class="line"><span class="meta">[SRG-policy-interzone-trust-untrust-outbound]policy</span> <span class="string">1 创建一个策略</span></span><br><span class="line"><span class="meta">[SRG-policy-interzone-trust-untrust-outbound-1]policy</span> <span class="string">service service-set icmp 服务为ICMP协议</span></span><br><span class="line"><span class="meta">[SRG-policy-interzone-trust-untrust-outbound-1]action</span> <span class="string"> permit</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>测试：</strong></p>
+<p>PC1 Ping AR2 GE0/0/0端口</p>
+<p><img src="https://s1.ax1x.com/2020/06/01/tJ35xU.png" alt="tJ35xU.png"></p>
+<p>AR2 GE0/0/0端口捕获报文如下：</p>
+<p><img src="https://s1.ax1x.com/2020/06/01/tJ37qJ.png" alt="tJ37qJ.png"></p>
+<p>发现PC1的ip地址为12.0.0.10，将内网ip192.168.10.10映射为公网ip12.0.0.10。</p>
+<h4 id="3-2-5动态NAT：多对多（服务器）"><a href="#3-2-5动态NAT：多对多（服务器）" class="headerlink" title="3.2.5动态NAT：多对多（服务器）"></a>3.2.5动态NAT：多对多（服务器）</h4><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除静态NAT</span></span><br><span class="line"><span class="meta">[SRG]undo</span> <span class="string">nat server gloabl 12.0.0.10 inside 192.168.10.10</span></span><br><span class="line"><span class="comment"># 创建nat地址池</span></span><br><span class="line"><span class="meta">[SRG]nat</span> <span class="string">address-group 1 12.0.0.20 12.0.0.50  </span></span><br><span class="line"><span class="meta">[SRG]nat-policy</span> <span class="string">interzone trust untrust outbound</span></span><br><span class="line"><span class="meta">[SRG-nat-policy-interzone-trust-untrust-outbound]policy</span> <span class="string">1</span></span><br><span class="line"><span class="comment"># 配置源IP地址</span></span><br><span class="line"><span class="meta">[SRG-nat-policy-interzone-trust-untrust-outbound-1]policy</span> <span class="string">source 192.168.10.0 mask 24 </span></span><br><span class="line"><span class="comment"># 配置动作为源IP进行nat</span></span><br><span class="line"><span class="meta">[SRG-nat-policy-interzone-trust-untrust-outbound-1]action</span> <span class="string">source-nat </span></span><br><span class="line"><span class="comment"># 关联nat地址池</span></span><br><span class="line"><span class="meta">[SRG-nat-policy-interzone-trust-untrust-outbound-1]address-group 1</span> <span class="string">no-pat</span></span><br></pre></td></tr></table></figure>
+
+<p>测试：PC1 Ping AR2 GE0/0/0端口，并在AR2 GE0/0/0端口捕获报文：</p>
+<p><img src="https://s1.ax1x.com/2020/06/01/tJ3XPx.png" alt="tJ3XPx.png"></p>
+<p>将内网ip192.168.10.10映射为公网ip12.0.0.20。</p>
+<p>修改PC1 ip地址为192.168.10.11，在进行测试结果如下：</p>
+<p><img src="https://s1.ax1x.com/2020/06/01/tJ8UL4.png" alt="tJ8UL4.png"></p>
+<p>将内网ip192.168.10.11映射为公网ip12.0.0.21。</p>
+<h4 id="3-2-6动态NAT：一对多（最常用）"><a href="#3-2-6动态NAT：一对多（最常用）" class="headerlink" title="3.2.6动态NAT：一对多（最常用）"></a>3.2.6动态NAT：一对多（最常用）</h4><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[SRG]nat-policy</span> <span class="string">interzone trust untrust outbound</span></span><br><span class="line"><span class="comment"># 删除nat多对多配置</span></span><br><span class="line"><span class="meta">[SRG-nat-policy-interzone-trust-untrust-outbound]undo</span> <span class="string">policy 1</span></span><br><span class="line"><span class="comment"># 配置一对多</span></span><br><span class="line"><span class="meta">[SRG-nat-policy-interzone-trust-untrust-outbound]policy</span> <span class="string">2</span></span><br><span class="line"><span class="comment"># 配置源IP地址</span></span><br><span class="line"><span class="meta">[SRG-nat-policy-interzone-trust-untrust-outbound-2]policy</span> <span class="string">source 192.168.10.0 mask 24 </span></span><br><span class="line"><span class="comment"># 配置动作为源IP进行nat</span></span><br><span class="line"><span class="meta">[SRG-nat-policy-interzone-trust-untrust-outbound-2]action</span> <span class="string">source-nat  </span></span><br><span class="line"><span class="comment"># 配置要转换的地址为g/0/1</span></span><br><span class="line"><span class="meta">[SRG-nat-policy-interzone-trust-untrust-outbound-2]easy-ip GigabitEthernet</span> <span class="string">0/0/1</span></span><br></pre></td></tr></table></figure>
+
+<p>测试：</p>
+<p>PC1 Ping AR2 GE0/0/0端口，并在AR2 GE0/0/0端口捕获报文：</p>
+<p><img src="https://s1.ax1x.com/2020/06/01/tJJkgf.png" alt="tJJkgf.png"></p>
+<p>将内网ip192.168.10.11映射为公网ip12.0.0.1。</p>
+<p>修改PC1 ip地址为192.168.10.13，在进行测试结果如下：</p>
+<p><img src="https://s1.ax1x.com/2020/06/01/tJJuUs.png" alt="tJJuUs.png"></p>
+<p>将内网ip192.168.10.13映射为公网ip12.0.0.1。</p>
+<p>实现将多个内网ip映射到同一公网ip下。</p>
+<h2 id="4、实验测试一种网络攻击，比如SYN-Flood、MAC泛洪攻击或ARP攻击。"><a href="#4、实验测试一种网络攻击，比如SYN-Flood、MAC泛洪攻击或ARP攻击。" class="headerlink" title="4、实验测试一种网络攻击，比如SYN_Flood、MAC泛洪攻击或ARP攻击。"></a>4、实验测试一种网络攻击，比如SYN_Flood、MAC泛洪攻击或ARP攻击。</h2><h2 id="选择：MAC地址欺骗与MAC地址泛洪攻击"><a href="#选择：MAC地址欺骗与MAC地址泛洪攻击" class="headerlink" title="选择：MAC地址欺骗与MAC地址泛洪攻击"></a>选择：MAC地址欺骗与MAC地址泛洪攻击</h2><h3 id="4-1实验拓扑"><a href="#4-1实验拓扑" class="headerlink" title="4.1实验拓扑"></a>4.1实验拓扑</h3><p><img src="https://s1.ax1x.com/2020/06/01/tJJQCq.png" alt="tJJQCq.png"></p>
+<p>各个设备ip、MAC均为真实存在的，没有造假嫌疑，如下所示：</p>
+<ul>
+<li><strong>网关：</strong></li>
+</ul>
+<p><a href="https://imgchr.com/i/tJJGKU" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/06/01/tJJGKU.png" alt="tJJGKU.png"></a></p>
+<ul>
+<li><p><strong>Win10：</strong></p>
+<p><img src="https://s1.ax1x.com/2020/06/01/tJJyrD.png" alt="tJJyrD.png"></p>
+</li>
+<li><p><strong>Win7：</strong></p>
+<p><img src="https://s1.ax1x.com/2020/06/01/tJJfPI.png" alt="tJJfPI.png"></p>
+</li>
+</ul>
+<h3 id="4-2实验步骤"><a href="#4-2实验步骤" class="headerlink" title="4.2实验步骤"></a>4.2实验步骤</h3><h4 id="4-2-1MAC诈骗"><a href="#4-2-1MAC诈骗" class="headerlink" title="4.2.1MAC诈骗"></a>4.2.1MAC诈骗</h4><ol>
+<li><p>攻击原理：</p>
+<p> MAC地址欺骗是数据链路层攻击，它是利用<strong>交换机端口学习的漏洞</strong>，通过客户端向交换机发送欺骗报文、攻击交换机的CAM表的方式，使交换机CAM表的记录与真实的主机对应MAC地址不一致，从而使交换机将报文错误转发给攻击者。 </p>
+</li>
+<li><p>提出两个问题，交换机的端口学习是如何进行的？有什么漏洞？思考一下…</p>
+<ul>
+<li><p>首先，清空并查看交换机LSW1的CAM表，命令如下：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#清空</span></span><br><span class="line"><span class="meta">[Huawei]undo</span> <span class="string">mac-address all</span></span><br><span class="line"><span class="comment">#查看</span></span><br><span class="line"><span class="meta">【Huawei】display</span> <span class="string">mac-address</span></span><br><span class="line"><span class="attr">[Huawei]</span></span><br></pre></td></tr></table></figure>
+
+<p>可见CAM表已被清空。</p>
+</li>
+<li><p>我们从PC1上向PC2发一个构造的udp包，如下图所示：</p>
+<p><img src="https://s1.ax1x.com/2020/06/01/tJJvR0.png" alt="tJJvR0.png"></p>
+</li>
+<li><p>在交换机上查询CAM表，结果如下：</p>
+<p><img src="https://s1.ax1x.com/2020/06/01/tJYuLD.png" alt="tJYuLD.png"></p>
+<p>发现已经学习到一条记录，MAC地址以及对应的端口号。</p>
+</li>
+<li><p>再构造一个数据包，由PC1发给PC2，将源MAC地址改位Win10的MAC地址。</p>
+<p><img src="https://s1.ax1x.com/2020/06/01/tJY3FA.png" alt="tJY3FA.png"></p>
+</li>
+<li><p>再次查看CAM表。</p>
+<p><img src="https://s1.ax1x.com/2020/06/01/tJYUOS.png" alt="tJYUOS.png"></p>
+<p>发现多了两天记录分别是Win10的MAC地址和网关的MAC地址及对应端口号。在此本应该只是学到Win10的MAC地址及对应端口号，关于学到网管记录的猜测是，在此期间交换机与网管进行某种数据交换。从而交换机学到了关于网关的记录。</p>
+</li>
+</ul>
+</li>
+<li><p>明白了交换机端口学习的原理，现在来伪造数据包，造成MAC地址欺骗，同时准备以下三个条件：</p>
+<ol>
+<li>在PC1上伪造源MAC为Win10的MAC地址，不停的发UDP包给PC2。</li>
+<li>在LSW1的 Ehternet 0/0/1和Ethenet 0/0/3端口同时抓包 。</li>
+<li>在PC2构造PC2到Win10的数据包。</li>
+</ol>
+<p>抓包结果如下：</p>
+<p><strong>Ehternet 0/0/1:</strong></p>
+<p><img src="https://s1.ax1x.com/2020/06/01/tJY6S0.png" alt="tJY6S0.png"></p>
+<p><strong>Ehternet 0/0/3:</strong></p>
+<p><img src="https://s1.ax1x.com/2020/06/01/tJYHl6.png" alt="tJYHl6.png"></p>
+<p>由此可见，原本由PC2发给Win10的数据包，被PC1欺骗交换机后，交换机将报文转发给了PC1，这样PC1成功完成了MAC地址欺骗攻击。 </p>
+</li>
+</ol>
+<h4 id="4-2-2MAC地址洪泛攻击"><a href="#4-2-2MAC地址洪泛攻击" class="headerlink" title="4.2.2MAC地址洪泛攻击"></a>4.2.2MAC地址洪泛攻击</h4><ol>
+<li><p>1、漏洞原理<br>每台交换机的CAM表都有最大记录条数，当交换机端口学习得到的记录大于交换机CAM表条数上限时，交换机收到一个网络帧，只要其目的站的MAC地址不存在于该交换机CAM表中，那么该帧会以广播的方式发向交换机的每一个端口，此时的交换机就相当于一个集线器HUB，我们就可以监听网络中的所有通讯报文。</p>
+</li>
+<li><p>攻击过程<br>以kali为攻击机，使用macof命令向网络中发送大量网络不存在的源mac地址，堵塞交换机的CAM表。 </p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">lcx@kali</span>:<span class="string">~$apt-get install dsniff	#安装macof</span></span><br><span class="line"><span class="meta">lcx@kali</span>:<span class="string">~$ macof</span></span><br><span class="line"><span class="attr">de</span>:<span class="string">f0:1b:1c:6f:8e ba:8d:41:6:3d:7a 0.0.0.0.25215 &gt; 0.0.0.0.49125: S 475078686:475078686(0) win 512</span></span><br><span class="line"><span class="attr">ea</span>:<span class="string">38:be:33:e5:aa 4d:ce:29:60:3c:2f 0.0.0.0.39934 &gt; 0.0.0.0.238: S 1559529363:1559529363(0) win 512</span></span><br><span class="line"><span class="attr">b5</span>:<span class="string">ea:9a:4:2d:1c 3:33:5f:73:fa:d2 0.0.0.0.58068 &gt; 0.0.0.0.18986: S 697518561:697518561(0) win 512</span></span><br><span class="line"><span class="attr">31</span>:<span class="string">1f:6c:72:6f:80 7c:a8:df:55:99:25 0.0.0.0.29320 &gt; 0.0.0.0.56619: S 444895901:444895901(0) win 512</span></span><br><span class="line"><span class="attr">2</span>:<span class="string">47:e7:37:ca:19 a9:73:33:66:61:2d 0.0.0.0.54528 &gt; 0.0.0.0.25861: S 993143653:993143653(0) win 512</span></span><br><span class="line"><span class="attr">3b</span>:<span class="string">75:bd:54:e7:55 4d:d1:68:4:5a:f0 0.0.0.0.28814 &gt; 0.0.0.0.35766: S 1430997091:1430997091(0) win 512</span></span><br><span class="line"><span class="attr">e7</span>:<span class="string">81:bb:79:4b:af df:ed:92:76:fe:79 0.0.0.0.59194 &gt; 0.0.0.0.18284: S 1586191808:1586191808(0) win 512</span></span><br><span class="line"><span class="attr">9b</span>:<span class="string">28:c8:4d:35:bb 4c:d2:d9:5b:3f:d0 0.0.0.0.46568 &gt; 0.0.0.0.15767: S 1249153469:1249153469(0) win 512</span></span><br><span class="line"><span class="attr">13</span>:<span class="string">6:d:71:2a:26 5f:82:7:70:d6:4c 0.0.0.0.41050 &gt; 0.0.0.0.34579: S 1375163656:1375163656(0) win 512</span></span><br><span class="line"><span class="attr">94</span>:<span class="string">cb:82:1f:a2:22 2e:4:26:69:88:cf 0.0.0.0.44712 &gt; 0.0.0.0.33754: S 1652107051:1652107051(0) win 512</span></span><br><span class="line"><span class="attr">3f</span>:<span class="string">7c:f7:1b:7:80 13:53:17:53:5c:c6 0.0.0.0.48520 &gt; 0.0.0.0.34351: S 585705839:585705839(0) win 512</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>此时在交换机查看CAM表。</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[Huawei]display</span> <span class="string">mac-address</span></span><br><span class="line"><span class="attr">MAC</span> <span class="string">address table of slot 0:</span></span><br><span class="line"><span class="attr">-----------------------------------------------------------------</span></span><br><span class="line"><span class="attr">MAC</span> <span class="string">Address    VLAN/       PEVLAN CEVLAN Port            Type      LSP/LSR-ID  </span></span><br><span class="line">               <span class="meta">VSI/SI</span>                                              <span class="string">MAC-Tunnel  </span></span><br><span class="line"><span class="attr">-----------------------------------------------------------------</span></span><br><span class="line"><span class="meta">000c-290f-5de0</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">5489-984f-5035</span> <span class="string">1           -      -      Eth0/0/2        dynamic   0/-         </span></span><br><span class="line"><span class="meta">000c-2926-219e</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">f4ee-141d-58de</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">7c67-a298-eb12</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">000c-291b-7e0d</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">0050-56ef-dc6d</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">000c-296c-fc6e</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">feef-5464-ecad</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">eaaa-9473-1926</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">22a6-7027-c5f4</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">7019-0f73-c876</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">2eef-313b-f53f</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">5682-5743-45c8</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">7670-c168-505e</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">8aaa-ba4f-489d</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">a6a8-2d2a-73a7</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">120c-2355-b4b5</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">5833-be1f-0aa6</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">f438-0117-c0dc</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">dee0-7b40-1207</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">4af0-244c-25d9</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">f4d0-e92b-4fd5</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">2859-7003-3924</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">86ea-0825-52a2</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line"><span class="meta">a4fd-c13a-8c3c</span> <span class="string">1           -      -      Eth0/0/3        dynamic   0/-         </span></span><br><span class="line">  <span class="meta">----</span> <span class="string">More ----</span></span><br></pre></td></tr></table></figure>
+
+<p>发现表中大量陌生MAC地址记录，同时根据端口绑定可以看到绑定来自Ethernet0/0/3，说明这个攻击来自这接口。 </p>
+</li>
+</ol>
+<h2 id="5、配置VPN。企业内网与外网之间可能有防火墙，也可能有NAT。从企业外部，用户不能直接访问企业内部。企业员工外出，或跨地区、跨国家企业都有跨越公众互联网，访问企业内部网络的需求。配置NAT某种VPN，比如L2TP-VPN-或SSL-VPN。"><a href="#5、配置VPN。企业内网与外网之间可能有防火墙，也可能有NAT。从企业外部，用户不能直接访问企业内部。企业员工外出，或跨地区、跨国家企业都有跨越公众互联网，访问企业内部网络的需求。配置NAT某种VPN，比如L2TP-VPN-或SSL-VPN。" class="headerlink" title="5、配置VPN。企业内网与外网之间可能有防火墙，也可能有NAT。从企业外部，用户不能直接访问企业内部。企业员工外出，或跨地区、跨国家企业都有跨越公众互联网，访问企业内部网络的需求。配置NAT某种VPN，比如L2TP VPN 或SSL VPN。"></a>5、配置VPN。企业内网与外网之间可能有防火墙，也可能有NAT。从企业外部，用户不能直接访问企业内部。企业员工外出，或跨地区、跨国家企业都有跨越公众互联网，访问企业内部网络的需求。配置NAT某种VPN，比如L2TP VPN 或SSL VPN。</h2><p>采用了IPSec vpn技术、NAT等技术，搭建了一个简单的总公司与分公司的网络环境，实现总公司与分公司的正常访问 。</p>
+<h3 id="5-1实验拓扑"><a href="#5-1实验拓扑" class="headerlink" title="5.1实验拓扑"></a>5.1实验拓扑</h3><p><img src="https://s1.ax1x.com/2020/06/01/tJt9pt.png" alt="tJt9pt.png"></p>
+<h3 id="5-2实验目的"><a href="#5-2实验目的" class="headerlink" title="5.2实验目的"></a>5.2实验目的</h3><p>  FW1和FW2模拟企业边缘设备，分别在2台设备上配置NAT和IPsec vpn实现2边私网可以通过vpn互相通信 </p>
+<h3 id="5-3实验步骤"><a href="#5-3实验步骤" class="headerlink" title="5.3实验步骤"></a>5.3实验步骤</h3><h4 id="5-3-1AR4配置"><a href="#5-3-1AR4配置" class="headerlink" title="5.3.1AR4配置"></a>5.3.1AR4配置</h4><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[AR4]int</span> <span class="string">g0/0/0</span></span><br><span class="line"><span class="meta">[AR4-GigabitEthernet0/0/1]ip</span> <span class="string">add 100.0.0.2 30</span></span><br><span class="line"><span class="meta">[AR4-GigabitEthernet0/0/1]int</span> <span class="string">g0/0/1</span></span><br><span class="line"><span class="meta">[AR4-GigabitEthernet0/0/0]ip</span> <span class="string">add 200.0.0.2 30</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-2-FW1配置"><a href="#5-3-2-FW1配置" class="headerlink" title="5.3.2 FW1配置"></a>5.3.2 FW1配置</h4><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[FW1]firewall</span> <span class="string">zone trust          //配置trust区域</span></span><br><span class="line"><span class="meta">[FW1-zone-trust]add</span> <span class="string">interface g0/0/0    //将接口加入trust区域</span></span><br><span class="line"><span class="attr">[FW1-zone-trust]quit</span></span><br><span class="line"><span class="meta">[FW1]firewall</span> <span class="string">zone untrust           //配置untrust区域</span></span><br><span class="line"><span class="meta">[FW1-zone-untrust]add</span> <span class="string">int g0/0/1          //将接口加入untrust区域</span></span><br><span class="line"><span class="attr">[FW1-zone-untrust]quit</span></span><br><span class="line"><span class="meta">[FW1]int</span> <span class="string">g0/0/0</span></span><br><span class="line"><span class="meta">[FW1-GigabitEthernet0/0/0]ip</span> <span class="string">add 10.0.0.254 8</span></span><br><span class="line"><span class="meta">[FW1-GigabitEthernet0/0/0]int</span> <span class="string">g0/0/1</span></span><br><span class="line"><span class="meta">[FW1-GigabitEthernet0/0/1]ip</span> <span class="string">add 100.0.0.1 30</span></span><br><span class="line"><span class="attr">[FW1-GigabitEthernet0/0/1]quit</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#配置NAT</span></span><br><span class="line"><span class="meta">[FW1]ip</span> <span class="string">route-static 0.0.0.0 0.0.0.0 10.0.0.2   //配置默认路由上公网</span></span><br><span class="line"><span class="meta">[FW1]nat-policy</span> <span class="string">interzone trust untrust outbound </span></span><br><span class="line"><span class="attr">//进入trust到untrust区域out方向的策略视图</span></span><br><span class="line"><span class="meta">[FW1-nat-policy-interzone-trust-untrust-outbound]policy</span> <span class="string">1     //创建一个策略</span></span><br><span class="line"><span class="meta">[FW1-nat-policy-interzone-trust-untrust-outbound-1]policy</span> <span class="string">source 10.0.0.0 0.255.255.255</span></span><br><span class="line"><span class="meta">[FW1-nat-policy-interzone-trust-untrust-outbound-1]policy</span> <span class="string">destination 192.168.1.0 0.0.0.255</span></span><br><span class="line"><span class="meta">[FW1-nat-policy-interzone-trust-untrust-outbound-1]action</span> <span class="string">no-nat </span></span><br><span class="line"><span class="attr">//以上三条命令意思是不允许将源为10.0.0.0/8网段目标为192.168.1.0/24网段的数据包进行NAT</span></span><br><span class="line"></span><br><span class="line"><span class="attr">[FW1-nat-policy-interzone-trust-untrust-outbound-1]quit</span></span><br><span class="line"><span class="meta">[FW1-nat-policy-interzone-trust-untrust-outbound]policy</span> <span class="string">2  //创建策略2</span></span><br><span class="line"><span class="meta">[FW1-nat-policy-interzone-trust-untrust-outbound-2]action</span> <span class="string">source-nat</span></span><br><span class="line"><span class="attr">//允许对源IP进行NAT</span></span><br><span class="line"><span class="meta">[FW1-nat-policy-interzone-trust-untrust-outbound-2]easy-ip</span> <span class="string">g0/0/1</span></span><br><span class="line"><span class="attr">//对接口G0/0/1地址复用</span></span><br><span class="line"><span class="attr">[FW1-nat-policy-interzone-trust-untrust-outbound-2]quit</span></span><br><span class="line"><span class="attr">[FW1-nat-policy-interzone-trust-untrust-outbound]quit</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#配置IPSec ×××</span></span><br><span class="line"><span class="attr">阶段一</span></span><br><span class="line"><span class="meta">[FW1]ike</span> <span class="string">proposal 1     //配置一个安全提议</span></span><br><span class="line"><span class="meta">[FW1-ike-proposal-1]authentication-method</span> <span class="string">pre-share   //配置IKE认证方式为预共享密钥</span></span><br><span class="line"><span class="meta">[FW-ike-proposal-1]authentication-algorithm</span> <span class="string">sha1   //配置IKE认证算法为sha1</span></span><br><span class="line"><span class="meta">[FW1-ike-proposal-1]integrity-algorithm</span> <span class="string">aes-xcbc-96  //配置IKE完整性算法</span></span><br><span class="line"><span class="meta">[FW1-ike-proposal-1]dh</span> <span class="string">group2  //配置IKE密钥协商DH组</span></span><br><span class="line"><span class="attr">[FW1-ike-proposal-1]quit</span></span><br><span class="line"><span class="meta">[FW]ike</span> <span class="string">peer FW2             //创建一个IKE对等体名字为FW2</span></span><br><span class="line"><span class="meta">[FW1-ike-peer-usg-2]pre-shared-key</span> <span class="string">123.abc    //配置预共享密钥</span></span><br><span class="line"><span class="meta">[FW1-ike-peer-usg-2]remote-address</span> <span class="string">200.0.0.1  //配置对等体IP地址</span></span><br><span class="line"><span class="meta">[FW1-ike-peer-usg-2]ike-proposal</span> <span class="string">1       //调用ike安全提议</span></span><br><span class="line"><span class="attr">[FW1-ike-peer-usg-2]quit</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attr">阶段二</span></span><br><span class="line"><span class="meta">[FW1]ipsec</span> <span class="string">proposal test        //配置一个ipsec安全提议</span></span><br><span class="line"><span class="meta">[FW1-ipsec-proposal-test]encapsulation-mode</span> <span class="string">tunnel    //封装方式采用隧道</span></span><br><span class="line"><span class="meta">[FW1-ipsec-proposal-test]transform</span> <span class="string">esp    //配置IPSEC安全协议为ESP</span></span><br><span class="line"><span class="meta">[FW1-ipsec-proposal-test]esp</span> <span class="string">encryption-algorithm aes   //配置ESP协议加密算法为aes</span></span><br><span class="line"><span class="meta">[FW1-ipsec-proposal-test]esp</span> <span class="string">authentication-algorithm sha1  //配置ESP协议认证算法</span></span><br><span class="line"><span class="attr">[FW1-ipsec-proposal-test]quit</span></span><br><span class="line"><span class="meta">[FW1]acl</span> <span class="string">3000         //创建一个ACL定义感兴趣流</span></span><br><span class="line"><span class="meta">[FW1-acl-adv-3000]rule</span> <span class="string">permit ip source 10.0.0.0 0.255.255.255 destination 192.168.1.0 0.0.0.255</span></span><br><span class="line"></span><br><span class="line"><span class="meta">[FW1]ipsec</span> <span class="string">policy map 1 isakmp    //创建一个安全策略，名称为map</span></span><br><span class="line"><span class="meta">[FW1-ipsec-policy-isakmp-map-1]ike-peer</span> <span class="string">FW2    //调用ike对等体</span></span><br><span class="line"><span class="meta">[FW1-ipsec-policy-isakmp-map-1]proposal</span> <span class="string">test     //调用IPsec安全提议</span></span><br><span class="line"><span class="meta">[FW1-ipsec-policy-isakmp-map-1]security</span> <span class="string">acl 3000   //配置感兴趣流</span></span><br><span class="line"><span class="attr">[FW1-ipsec-policy-isakmp-map-1]quit</span></span><br><span class="line"><span class="meta">[FW1]int</span> <span class="string">g0/0/1</span></span><br><span class="line"><span class="meta">[FW1-GigabitEthernet0/0/1]ipsec</span> <span class="string">policy map     //在外网口上调用安全策略</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#区域间策略配置</span></span><br><span class="line"><span class="meta">[FW1]policy</span> <span class="string">interzone trust untrust outbound .</span></span><br><span class="line"><span class="attr">//进入trust到untrust区域out方向策略视图</span></span><br><span class="line"><span class="meta">[FW1-policy-interzone-trust-untrust-outbound]policy</span> <span class="string">1    //创建策略</span></span><br><span class="line"><span class="meta">[FW1-policy-interzone-trust-untrust-outbound-1]action</span> <span class="string">permit  </span></span><br><span class="line"><span class="meta">//允许trust区域所有主机访问untrust区域</span> <span class="string"></span></span><br><span class="line"><span class="attr">[FW1-policy-interzone-trust-untrust-outbound-1]quit</span></span><br><span class="line"><span class="attr">[FW1-policy-interzone-trust-untrust-outbound]quit</span></span><br><span class="line"><span class="meta">[FW1]policy</span> <span class="string">interzone trust untrust inbound </span></span><br><span class="line"><span class="attr">//进入trust区域到untrust区域的in方向策略视图</span></span><br><span class="line"><span class="meta">[FW1-policy-interzone-trust-untrust-inbound]policy</span> <span class="string">1</span></span><br><span class="line"><span class="meta">[FW1-policy-interzone-trust-untrust-inbound-1]policy</span> <span class="string">source 192.168.1.0 0.0.0.255</span></span><br><span class="line"><span class="meta">[FW1-policy-interzone-trust-untrust-inbound-1]policy</span> <span class="string">destination 10.0.0.0 0.255.255.255</span></span><br><span class="line"><span class="meta">[FW1-policy-interzone-trust-untrust-inbound-1]action</span> <span class="string">permit </span></span><br><span class="line"><span class="attr">//以上命令为允许数据包源地址为192.168.1.0/24网段和目标地址为10.0.0.0/8网段的流量过</span></span><br><span class="line"><span class="attr">[FW1-policy-interzone-trust-untrust-inbound-1]quit</span></span><br><span class="line"><span class="attr">[FW1-policy-interzone-trust-untrust-inbound]quit</span></span><br><span class="line"><span class="meta">[FW1]policy</span> <span class="string">interzone local untrust inbound</span></span><br><span class="line"><span class="attr">//进入local区域到untrust区域的in方向策略视图</span></span><br><span class="line"><span class="meta">[FW1-policy-interzone-local-untrust-inbound]policy</span> <span class="string">1</span></span><br><span class="line"><span class="meta">[FW1-policy-interzone-local-untrust-inbound-1]policy</span> <span class="string">source 200.0.0.1 0</span></span><br><span class="line"><span class="meta">[FW1-policy-interzone-local-untrust-inbound-1]policy</span> <span class="string">destination 100.0.0.1 0</span></span><br><span class="line"><span class="meta">[FW1-policy-interzone-local-untrust-inbound-1]action</span> <span class="string">permit </span></span><br><span class="line"><span class="attr">//允许源地址是200.0.0.1目标地址是100.0.0.1的数据包访问</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-3FW2配置"><a href="#5-3-3FW2配置" class="headerlink" title="5.3.3FW2配置"></a>5.3.3FW2配置</h4><p> <strong>FW2配置和FW1相同，只需调整源IP和目标IP即可</strong>。 </p>
+<h4 id="5-3-4测试"><a href="#5-3-4测试" class="headerlink" title="5.3.4测试"></a>5.3.4测试</h4><p>总公司PC Ping 分公司PC 结果如下：ping</p>
+<p><img src="https://s1.ax1x.com/2020/06/01/tJtthR.png" alt="tJtthR.png"></p>
+
+    </div>
+
+    
+    
+    
+      
+        <div class="reward-container">
+  <div>您的支持是我继续创作的动力</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="李松柏 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="李松柏 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>李松柏
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lisongbai.top/2020/05/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%BB%BC%E5%90%88%E5%AE%9E%E9%AA%8C%E7%AF%87/" title="网络安全综合实验篇">http://lisongbai.top/2020/05/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%BB%BC%E5%90%88%E5%AE%9E%E9%AA%8C%E7%AF%87/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/05/24/snmp/" rel="next" title="snmp">
+                  <i class="fa fa-chevron-left"></i> snmp
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-disqus">disqus</a></li>
+            <li class="tab"><a href="#comment-livere">livere</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane disqus" id="comment-disqus">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+            <div class="tab-pane livere" id="comment-livere">
+              
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzY2MC8yNDE1OA=="></div>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+      <script>
+        window.addEventListener('tabs:register', () => {
+          let activeClass = '';
+            activeClass = localStorage.getItem('comments_active') || activeClass;
+          if (activeClass) {
+            let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+            if (activeTab) {
+              activeTab.click();
+            }
+          }
+        });
+        window.addEventListener('tabs:click', event => {
+          let commentClass = event.target.classList[1];
+          localStorage.setItem('comments_active', commentClass);
+        });
+      </script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网络安全综合实验篇"><span class="nav-number">1.</span> <span class="nav-text">网络安全综合实验篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、实验要求"><span class="nav-number">1.1.</span> <span class="nav-text">1、实验要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、配置ACL，过滤具有某种特点的分组。"><span class="nav-number">1.2.</span> <span class="nav-text">2、配置ACL，过滤具有某种特点的分组。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1实验拓扑"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1实验拓扑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2实验步骤"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2实验步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1根据拓扑配置路由器、PC的ip及掩码，然后在各个路由器上配置RIP协议实现全网互通。"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">2.2.1根据拓扑配置路由器、PC的ip及掩码，然后在各个路由器上配置RIP协议实现全网互通。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2测试全网是否互通，PC间互Ping结果如下："><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2.2.2测试全网是否互通，PC间互Ping结果如下：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3通过ACL的配置使得PC1和PC2可以正常通信，但PC1不能和PC3通信"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">2.2.3通过ACL的配置使得PC1和PC2可以正常通信，但PC1不能和PC3通信</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法1"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">方法1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法2"><span class="nav-number">1.2.2.5.</span> <span class="nav-text">方法2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-4-AR1远程登录到AR3，但两者不能ping通，PC1，PC2仍能正常通信"><span class="nav-number">1.2.2.6.</span> <span class="nav-text">2.2.4 AR1远程登录到AR3，但两者不能ping通，PC1，PC2仍能正常通信</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、配置NAT。在企业内部结构化分层使用NAT地址。配置防火墙，禁止某种网络服务（防火墙在企业内网与外网之间）。"><span class="nav-number">1.3.</span> <span class="nav-text">3、配置NAT。在企业内部结构化分层使用NAT地址。配置防火墙，禁止某种网络服务（防火墙在企业内网与外网之间）。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防火墙NAT配置"><span class="nav-number">1.4.</span> <span class="nav-text">防火墙NAT配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1实验拓扑"><span class="nav-number">1.4.1.</span> <span class="nav-text">3.1实验拓扑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2实验步骤"><span class="nav-number">1.4.2.</span> <span class="nav-text">3.2实验步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-1根据拓扑配置路由器、防火墙、PC的ip及掩码。"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">3.2.1根据拓扑配置路由器、防火墙、PC的ip及掩码。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-2在AR1中配置一条去往防火墙GE端口的默认路由。"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">3.2.2在AR1中配置一条去往防火墙GE端口的默认路由。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-3在防火墙中将端口加入对应的trust、dmz、untrust域中"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">3.2.3在防火墙中将端口加入对应的trust、dmz、untrust域中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-4静态NAT：一对一"><span class="nav-number">1.4.2.4.</span> <span class="nav-text">3.2.4静态NAT：一对一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-5动态NAT：多对多（服务器）"><span class="nav-number">1.4.2.5.</span> <span class="nav-text">3.2.5动态NAT：多对多（服务器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-6动态NAT：一对多（最常用）"><span class="nav-number">1.4.2.6.</span> <span class="nav-text">3.2.6动态NAT：一对多（最常用）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、实验测试一种网络攻击，比如SYN-Flood、MAC泛洪攻击或ARP攻击。"><span class="nav-number">1.5.</span> <span class="nav-text">4、实验测试一种网络攻击，比如SYN_Flood、MAC泛洪攻击或ARP攻击。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择：MAC地址欺骗与MAC地址泛洪攻击"><span class="nav-number">1.6.</span> <span class="nav-text">选择：MAC地址欺骗与MAC地址泛洪攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1实验拓扑"><span class="nav-number">1.6.1.</span> <span class="nav-text">4.1实验拓扑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2实验步骤"><span class="nav-number">1.6.2.</span> <span class="nav-text">4.2实验步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-1MAC诈骗"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">4.2.1MAC诈骗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-2MAC地址洪泛攻击"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">4.2.2MAC地址洪泛攻击</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、配置VPN。企业内网与外网之间可能有防火墙，也可能有NAT。从企业外部，用户不能直接访问企业内部。企业员工外出，或跨地区、跨国家企业都有跨越公众互联网，访问企业内部网络的需求。配置NAT某种VPN，比如L2TP-VPN-或SSL-VPN。"><span class="nav-number">1.7.</span> <span class="nav-text">5、配置VPN。企业内网与外网之间可能有防火墙，也可能有NAT。从企业外部，用户不能直接访问企业内部。企业员工外出，或跨地区、跨国家企业都有跨越公众互联网，访问企业内部网络的需求。配置NAT某种VPN，比如L2TP VPN 或SSL VPN。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1实验拓扑"><span class="nav-number">1.7.1.</span> <span class="nav-text">5.1实验拓扑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2实验目的"><span class="nav-number">1.7.2.</span> <span class="nav-text">5.2实验目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3实验步骤"><span class="nav-number">1.7.3.</span> <span class="nav-text">5.3实验步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-1AR4配置"><span class="nav-number">1.7.3.1.</span> <span class="nav-text">5.3.1AR4配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-2-FW1配置"><span class="nav-number">1.7.3.2.</span> <span class="nav-text">5.3.2 FW1配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-3FW2配置"><span class="nav-number">1.7.3.3.</span> <span class="nav-text">5.3.3FW2配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-4测试"><span class="nav-number">1.7.3.4.</span> <span class="nav-text">5.3.4测试</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="李松柏"
+    src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">李松柏</p>
+  <div class="site-description" itemprop="description">记录学习的技能和遇到的问题</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yym08090809" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;yym08090809" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:songbai0112@163.com" title="E-Mail &amp;rarr; mailto:songbai0112@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李松柏</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.2
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': '',
+            'X-LC-Key': '',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+        if (localhost.test(document.URL)) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://visitor.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "http://lisongbai.top/2020/05/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%BB%BC%E5%90%88%E5%AE%9E%E9%AA%8C%E7%AF%87/",
+            identifier: "2020/05/31/网络安全综合实验篇/",
+            title: "网络安全综合实验篇"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://visitor.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
+
+<script>
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+ 
+</body>
+</html>
