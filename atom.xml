@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-06-13T08:36:54.558Z</updated>
+  <updated>2020-06-13T13:44:06.503Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -17,28 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>网络管理与维护大作业</title>
-    <link href="http://lisongbai.top/2020/06/13/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4%E5%A4%A7%E4%BD%9C%E4%B8%9A/"/>
-    <id>http://lisongbai.top/2020/06/13/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4%E5%A4%A7%E4%BD%9C%E4%B8%9A/</id>
-    <published>2020-06-13T11:20:54.786Z</published>
-    <updated>2020-06-13T08:36:54.558Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一、SNMPv3工作原理&quot;&gt;&lt;a href=&quot;#一、SNMPv3工作原理&quot; class=&quot;headerlink&quot; title=&quot;一、SNMPv3工作原理&quot;&gt;&lt;/a&gt;一、SNMPv3工作原理&lt;/h1&gt;&lt;h2 id=&quot;1-1-SNMP的组成&quot;&gt;&lt;a href=&quot;#1-1-SNMP的组成&quot; class=&quot;headerlink&quot; title=&quot;1.1 SNMP的组成&quot;&gt;&lt;/a&gt;1.1 SNMP的组成&lt;/h2&gt;&lt;p&gt;​        SNMP被设计为工作在TCP/IP协议族上，采用UDP进行数据传输。SNMP采用了Client/Server模型的特殊形式：代理/管理站模型。对网络的管理与维护是通过管理工作站与SNMP代理间的交互工作完成的。每个SNMP从代理负责回答SNMP管理工作站（主代理）关于MIB定义信息的各种查询。&lt;br&gt;简单来说，就是需要一个服务器程序（代理，agent）和一个客户机（管理器，manager）。而与直观上不同的是，SNMP的服务器端代表被管理的事物，而客户机端才是管理者。客户机从简单的命令行实用程序，如net-snmp提供的snmpwalk，到专门的管理软件、工作站都有。&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>网络安全综合实验篇</title>
-    <link href="http://lisongbai.top/2020/05/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%BB%BC%E5%90%88%E5%AE%9E%E9%AA%8C%E7%AF%87/"/>
-    <id>http://lisongbai.top/2020/05/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%BB%BC%E5%90%88%E5%AE%9E%E9%AA%8C%E7%AF%87/</id>
-    <published>2020-05-31T09:02:50.589Z</published>
-    <updated>2020-06-01T14:02:16.895Z</updated>
+    <link href="http://lisongbai.top/2020/06/01/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%BB%BC%E5%90%88%E5%AE%9E%E9%AA%8C%E7%AF%87/"/>
+    <id>http://lisongbai.top/2020/06/01/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%BB%BC%E5%90%88%E5%AE%9E%E9%AA%8C%E7%AF%87/</id>
+    <published>2020-06-01T07:27:34.000Z</published>
+    <updated>2020-06-13T13:44:06.503Z</updated>
     
     <summary type="html">
     
@@ -53,15 +36,21 @@
     </summary>
     
     
+      <category term="网络工程设计" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
+    
+      <category term="网络安全实验" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E9%AA%8C/"/>
+    
+    
+      <category term="网络工程设计" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
     
   </entry>
   
   <entry>
-    <title>snmp</title>
+    <title>SNMP实验</title>
     <link href="http://lisongbai.top/2020/05/24/snmp/"/>
     <id>http://lisongbai.top/2020/05/24/snmp/</id>
-    <published>2020-05-24T08:36:29.127Z</published>
-    <updated>2020-06-13T07:41:21.781Z</updated>
+    <published>2020-05-24T07:27:34.000Z</published>
+    <updated>2020-06-13T13:36:42.257Z</updated>
     
     <summary type="html">
     
@@ -75,6 +64,12 @@
     </summary>
     
     
+      <category term="网络工程设计" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
+    
+      <category term="SNMP实验" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/SNMP%E5%AE%9E%E9%AA%8C/"/>
+    
+    
+      <category term="网络工程设计" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
     
   </entry>
   
@@ -82,8 +77,8 @@
     <title>边界网关协议实验（BGP）《三》</title>
     <link href="http://lisongbai.top/2020/05/18/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%89%E3%80%8B/"/>
     <id>http://lisongbai.top/2020/05/18/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%89%E3%80%8B/</id>
-    <published>2020-05-18T11:00:42.531Z</published>
-    <updated>2020-05-18T10:56:59.189Z</updated>
+    <published>2020-05-18T07:27:34.000Z</published>
+    <updated>2020-06-13T13:41:19.606Z</updated>
     
     <summary type="html">
     
@@ -92,32 +87,21 @@
     </summary>
     
     
+      <category term="网络工程设计" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
     
-  </entry>
-  
-  <entry>
-    <title>边界网关协议实验（BGP）《一》</title>
-    <link href="http://lisongbai.top/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/"/>
-    <id>http://lisongbai.top/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/</id>
-    <published>2020-05-11T14:39:22.653Z</published>
-    <updated>2020-05-11T14:37:42.432Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1-拓扑图&quot;&gt;&lt;a href=&quot;#1-拓扑图&quot; class=&quot;headerlink&quot; title=&quot;1.拓扑图&quot;&gt;&lt;/a&gt;1.拓扑图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://s1.ax1x.com/2020/05/11/YYn0l8.png&quot; alt=&quot;YYn0l8.png&quot;&gt;&lt;/p&gt;&lt;h1 id=&quot;2-实验目的&quot;&gt;&lt;a href=&quot;#2-实验目的&quot; class=&quot;headerlink&quot; title=&quot;2.实验目的&quot;&gt;&lt;/a&gt;2.实验目的&lt;/h1&gt;&lt;p&gt;了解边界网管协议（BGP）&lt;/p&gt;&lt;p&gt;实现两个域间的通讯。&lt;/p&gt;&lt;h1 id=&quot;3-实验步骤&quot;&gt;&lt;a href=&quot;#3-实验步骤&quot; class=&quot;headerlink&quot; title=&quot;3.实验步骤&quot;&gt;&lt;/a&gt;3.实验步骤&lt;/h1&gt;&lt;h2 id=&quot;3-1网关ip配置&quot;&gt;&lt;a href=&quot;#3-1网关ip配置&quot; class=&quot;headerlink&quot; title=&quot;3.1网关ip配置&quot;&gt;&lt;/a&gt;3.1网关ip配置&lt;/h2&gt;&lt;p&gt;AR1配置，其他同理。&lt;/p&gt;&lt;figure class=&quot;highlight properties&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;&amp;lt;Huawei&amp;gt;sys&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[Huawei]un&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;in en&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;Info&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;Information center is disabled.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[Huawei]sysname&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;AR1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR1]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;GigabitEthernet0/0/0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR1-GigabitEthernet0/0/0]ip&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;add 192.168.6.1 24&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR1-GigabitEthernet0/0/0]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;GigabitEthernet0/0/1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR1-GigabitEthernet0/0/1]ip&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;add 192.168.5.2 24&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
+      <category term="BGP实验" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/BGP%E5%AE%9E%E9%AA%8C/"/>
     
     
+      <category term="网络工程设计" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
     
   </entry>
   
   <entry>
     <title>边界网关协议实验（BGP）《二》</title>
-    <link href="http://lisongbai.top/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%BA%8C%E3%80%8B/"/>
-    <id>http://lisongbai.top/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%BA%8C%E3%80%8B/</id>
-    <published>2020-05-11T14:39:22.650Z</published>
-    <updated>2020-05-11T14:30:59.314Z</updated>
+    <link href="http://lisongbai.top/2020/05/13/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%BA%8C%E3%80%8B/"/>
+    <id>http://lisongbai.top/2020/05/13/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%BA%8C%E3%80%8B/</id>
+    <published>2020-05-13T07:27:34.000Z</published>
+    <updated>2020-06-13T13:40:54.792Z</updated>
     
     <summary type="html">
     
@@ -129,29 +113,35 @@
     </summary>
     
     
+      <category term="网络工程设计" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
+    
+      <category term="BGP实验" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/BGP%E5%AE%9E%E9%AA%8C/"/>
+    
+    
+      <category term="网络工程设计" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
     
   </entry>
   
   <entry>
-    <title>truffle unbox 模块错误解决方法</title>
-    <link href="http://lisongbai.top/2020/05/04/truffle%20unbox%20%E6%A8%A1%E5%9D%97%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
-    <id>http://lisongbai.top/2020/05/04/truffle%20unbox%20%E6%A8%A1%E5%9D%97%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</id>
-    <published>2020-05-04T06:54:00.649Z</published>
-    <updated>2020-05-04T06:53:17.202Z</updated>
+    <title>边界网关协议实验（BGP）《一》</title>
+    <link href="http://lisongbai.top/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/"/>
+    <id>http://lisongbai.top/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/</id>
+    <published>2020-05-11T07:27:34.000Z</published>
+    <updated>2020-06-13T13:41:51.272Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;错误详情：&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://s1.ax1x.com/2020/05/04/Y9XoOP.png&quot; alt=&quot;Y9XoOP.png&quot;&gt;&lt;/p&gt;&lt;p&gt;原因：无法连接改域名下的网站。&lt;/p&gt;&lt;p&gt;&lt;a
-        
-      
+      &lt;h1 id=&quot;1-拓扑图&quot;&gt;&lt;a href=&quot;#1-拓扑图&quot; class=&quot;headerlink&quot; title=&quot;1.拓扑图&quot;&gt;&lt;/a&gt;1.拓扑图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://s1.ax1x.com/2020/05/11/YYn0l8.png&quot; alt=&quot;YYn0l8.png&quot;&gt;&lt;/p&gt;&lt;h1 id=&quot;2-实验目的&quot;&gt;&lt;a href=&quot;#2-实验目的&quot; class=&quot;headerlink&quot; title=&quot;2.实验目的&quot;&gt;&lt;/a&gt;2.实验目的&lt;/h1&gt;&lt;p&gt;了解边界网管协议（BGP）&lt;/p&gt;&lt;p&gt;实现两个域间的通讯。&lt;/p&gt;&lt;h1 id=&quot;3-实验步骤&quot;&gt;&lt;a href=&quot;#3-实验步骤&quot; class=&quot;headerlink&quot; title=&quot;3.实验步骤&quot;&gt;&lt;/a&gt;3.实验步骤&lt;/h1&gt;&lt;h2 id=&quot;3-1网关ip配置&quot;&gt;&lt;a href=&quot;#3-1网关ip配置&quot; class=&quot;headerlink&quot; title=&quot;3.1网关ip配置&quot;&gt;&lt;/a&gt;3.1网关ip配置&lt;/h2&gt;&lt;p&gt;AR1配置，其他同理。&lt;/p&gt;&lt;figure class=&quot;highlight properties&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;&amp;lt;Huawei&amp;gt;sys&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[Huawei]un&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;in en&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;Info&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;Information center is disabled.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[Huawei]sysname&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;AR1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR1]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;GigabitEthernet0/0/0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR1-GigabitEthernet0/0/0]ip&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;add 192.168.6.1 24&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR1-GigabitEthernet0/0/0]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;GigabitEthernet0/0/1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR1-GigabitEthernet0/0/1]ip&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;add 192.168.5.2 24&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
     
+      <category term="网络工程设计" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
+    
+      <category term="BGP实验" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/BGP%E5%AE%9E%E9%AA%8C/"/>
+    
+    
+      <category term="网络工程设计" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
     
   </entry>
   
@@ -160,7 +150,7 @@
     <link href="http://lisongbai.top/2020/04/30/%E5%8A%9B%E6%89%A3%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E4%B9%8B%E5%BF%AB%E4%B9%90%E6%95%B0/"/>
     <id>http://lisongbai.top/2020/04/30/%E5%8A%9B%E6%89%A3%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E4%B9%8B%E5%BF%AB%E4%B9%90%E6%95%B0/</id>
     <published>2020-04-30T02:39:33.000Z</published>
-    <updated>2020-04-30T03:18:19.587Z</updated>
+    <updated>2020-06-13T13:58:01.319Z</updated>
     
     <summary type="html">
     
@@ -169,6 +159,12 @@
     </summary>
     
     
+      <category term="java" scheme="http://lisongbai.top/categories/java/"/>
+    
+      <category term="编程" scheme="http://lisongbai.top/categories/java/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="力扣" scheme="http://lisongbai.top/tags/%E5%8A%9B%E6%89%A3/"/>
     
   </entry>
   
@@ -197,7 +193,7 @@
     <link href="http://lisongbai.top/2020/03/22/ospf%E7%BB%84%E7%BD%91%E5%AE%9E%E9%AA%8C/"/>
     <id>http://lisongbai.top/2020/03/22/ospf%E7%BB%84%E7%BD%91%E5%AE%9E%E9%AA%8C/</id>
     <published>2020-03-22T07:27:34.000Z</published>
-    <updated>2020-03-30T06:23:31.385Z</updated>
+    <updated>2020-06-13T13:33:35.450Z</updated>
     
     <summary type="html">
     
@@ -210,6 +206,12 @@
     </summary>
     
     
+      <category term="网络工程设计" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
+    
+      <category term="OSPF实验" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/OSPF%E5%AE%9E%E9%AA%8C/"/>
+    
+    
+      <category term="网络工程设计" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
     
   </entry>
   
@@ -218,7 +220,7 @@
     <link href="http://lisongbai.top/2020/03/20/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E5%BD%92%E7%BA%B3/"/>
     <id>http://lisongbai.top/2020/03/20/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E5%BD%92%E7%BA%B3/</id>
     <published>2020-03-20T05:29:17.000Z</published>
-    <updated>2020-03-23T11:09:43.956Z</updated>
+    <updated>2020-06-13T13:57:48.106Z</updated>
     
     <summary type="html">
     
@@ -239,6 +241,12 @@
     </summary>
     
     
+      <category term="java" scheme="http://lisongbai.top/categories/java/"/>
+    
+      <category term="排序算法总结" scheme="http://lisongbai.top/categories/java/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    
+    
+      <category term="排序算法" scheme="http://lisongbai.top/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -247,7 +255,7 @@
     <link href="http://lisongbai.top/2020/03/16/RIPv2%E6%8A%A5%E6%96%87%E5%88%86%E6%9E%90/"/>
     <id>http://lisongbai.top/2020/03/16/RIPv2%E6%8A%A5%E6%96%87%E5%88%86%E6%9E%90/</id>
     <published>2020-03-16T10:33:04.000Z</published>
-    <updated>2020-03-16T10:33:25.653Z</updated>
+    <updated>2020-06-13T13:34:14.160Z</updated>
     
     <summary type="html">
     
@@ -269,6 +277,12 @@
     </summary>
     
     
+      <category term="网络工程设计" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
+    
+      <category term="RIPv2报文分析" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/RIPv2%E6%8A%A5%E6%96%87%E5%88%86%E6%9E%90/"/>
+    
+    
+      <category term="网络工程设计" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
     
   </entry>
   
@@ -277,7 +291,7 @@
     <link href="http://lisongbai.top/2020/03/09/%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E5%8F%8A%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE%E5%88%86%E6%9E%90/"/>
     <id>http://lisongbai.top/2020/03/09/%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E5%8F%8A%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE%E5%88%86%E6%9E%90/</id>
     <published>2020-03-08T16:20:31.000Z</published>
-    <updated>2020-03-12T03:36:50.408Z</updated>
+    <updated>2020-06-13T13:43:03.698Z</updated>
     
     <summary type="html">
     
@@ -292,32 +306,21 @@
     </summary>
     
     
+      <category term="网络工程设计" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
     
-  </entry>
-  
-  <entry>
-    <title>whiter-jotter</title>
-    <link href="http://lisongbai.top/2020/03/08/whiter-jotter/"/>
-    <id>http://lisongbai.top/2020/03/08/whiter-jotter/</id>
-    <published>2020-03-08T05:51:25.000Z</published>
-    <updated>2020-03-08T05:51:58.025Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1-项目概述&quot;&gt;&lt;a href=&quot;#1-项目概述&quot; class=&quot;headerlink&quot; title=&quot;1.项目概述&quot;&gt;&lt;/a&gt;1.项目概述&lt;/h1&gt;&lt;p&gt; 这个项目我把它命名为 &lt;strong&gt;“白卷”&lt;/strong&gt;，因为它随着开发的进展逐渐完善，象征着知识的从无到有，从有到多。另外我还给它起了一个英文名字，叫 &lt;strong&gt;White Jotter&lt;/strong&gt;（白色笔记本），纯粹是为了谐音。 &lt;/p&gt;&lt;p&gt; 我选用 Vue.js + Spring Boot 来开发这个项目 ， 是因为这两种框架当下比较热门，也是实现所谓 &lt;strong&gt;前后端分离&lt;/strong&gt; 的最佳选择之一。 &lt;/p&gt;
-    
-    </summary>
+      <category term="路由实验" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E5%AE%9E%E9%AA%8C/"/>
     
     
+      <category term="网络工程设计" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
     
   </entry>
   
   <entry>
     <title>vlan间通讯</title>
-    <link href="http://lisongbai.top/2020/03/02/vlan%E9%97%B4%E9%80%9A%E8%AE%AF/"/>
-    <id>http://lisongbai.top/2020/03/02/vlan%E9%97%B4%E9%80%9A%E8%AE%AF/</id>
-    <published>2020-03-02T03:29:13.426Z</published>
-    <updated>2020-03-08T04:34:17.535Z</updated>
+    <link href="http://lisongbai.top/2020/03/08/vlan%E9%97%B4%E9%80%9A%E8%AE%AF/"/>
+    <id>http://lisongbai.top/2020/03/08/vlan%E9%97%B4%E9%80%9A%E8%AE%AF/</id>
+    <published>2020-03-08T07:27:34.000Z</published>
+    <updated>2020-06-13T13:42:49.633Z</updated>
     
     <summary type="html">
     
@@ -326,6 +329,35 @@
     </summary>
     
     
+      <category term="网络工程设计" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
+    
+      <category term="vlan间通讯" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/vlan%E9%97%B4%E9%80%9A%E8%AE%AF/"/>
+    
+    
+      <category term="网络工程设计" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>whiter-jotter</title>
+    <link href="http://lisongbai.top/2020/03/08/whiter-jotter/"/>
+    <id>http://lisongbai.top/2020/03/08/whiter-jotter/</id>
+    <published>2020-03-08T05:51:25.000Z</published>
+    <updated>2020-06-13T13:39:03.978Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1-项目概述&quot;&gt;&lt;a href=&quot;#1-项目概述&quot; class=&quot;headerlink&quot; title=&quot;1.项目概述&quot;&gt;&lt;/a&gt;1.项目概述&lt;/h1&gt;&lt;p&gt; 这个项目我把它命名为 &lt;strong&gt;“白卷”&lt;/strong&gt;，因为它随着开发的进展逐渐完善，象征着知识的从无到有，从有到多。另外我还给它起了一个英文名字，叫 &lt;strong&gt;White Jotter&lt;/strong&gt;（白色笔记本），纯粹是为了谐音。 &lt;/p&gt;&lt;p&gt; 我选用 Vue.js + Spring Boot 来开发这个项目 ， 是因为这两种框架当下比较热门，也是实现所谓 &lt;strong&gt;前后端分离&lt;/strong&gt; 的最佳选择之一。 &lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://lisongbai.top/categories/java/"/>
+    
+      <category term="项目" scheme="http://lisongbai.top/categories/java/%E9%A1%B9%E7%9B%AE/"/>
+    
+    
+      <category term="java" scheme="http://lisongbai.top/tags/java/"/>
     
   </entry>
   
@@ -334,7 +366,7 @@
     <link href="http://lisongbai.top/2020/02/25/JUC-GC/"/>
     <id>http://lisongbai.top/2020/02/25/JUC-GC/</id>
     <published>2020-02-25T07:07:17.000Z</published>
-    <updated>2020-02-25T11:24:27.952Z</updated>
+    <updated>2020-06-13T13:25:19.073Z</updated>
     
     <summary type="html">
     
@@ -354,6 +386,33 @@
     </summary>
     
     
+      <category term="java" scheme="http://lisongbai.top/categories/java/"/>
+    
+      <category term="JUC" scheme="http://lisongbai.top/categories/java/JUC/"/>
+    
+    
+      <category term="java" scheme="http://lisongbai.top/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>网络管理与维护大作业</title>
+    <link href="http://lisongbai.top/2020/02/24/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4%E5%A4%A7%E4%BD%9C%E4%B8%9A/"/>
+    <id>http://lisongbai.top/2020/02/24/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4%E5%A4%A7%E4%BD%9C%E4%B8%9A/</id>
+    <published>2020-02-24T08:44:09.000Z</published>
+    <updated>2020-06-13T12:18:21.090Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一、SNMPv3工作原理&quot;&gt;&lt;a href=&quot;#一、SNMPv3工作原理&quot; class=&quot;headerlink&quot; title=&quot;一、SNMPv3工作原理&quot;&gt;&lt;/a&gt;一、SNMPv3工作原理&lt;/h1&gt;&lt;h2 id=&quot;1-1-SNMP的组成&quot;&gt;&lt;a href=&quot;#1-1-SNMP的组成&quot; class=&quot;headerlink&quot; title=&quot;1.1 SNMP的组成&quot;&gt;&lt;/a&gt;1.1 SNMP的组成&lt;/h2&gt;&lt;p&gt;​        SNMP被设计为工作在TCP/IP协议族上，采用UDP进行数据传输。SNMP采用了Client/Server模型的特殊形式：代理/管理站模型。对网络的管理与维护是通过管理工作站与SNMP代理间的交互工作完成的。每个SNMP从代理负责回答SNMP管理工作站（主代理）关于MIB定义信息的各种查询。&lt;br&gt;简单来说，就是需要一个服务器程序（代理，agent）和一个客户机（管理器，manager）。而与直观上不同的是，SNMP的服务器端代表被管理的事物，而客户机端才是管理者。客户机从简单的命令行实用程序，如net-snmp提供的snmpwalk，到专门的管理软件、工作站都有。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="网络管理与维护" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4/"/>
+    
+    
+      <category term="网络管理与维护" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4/"/>
     
   </entry>
   
@@ -362,7 +421,7 @@
     <link href="http://lisongbai.top/2020/02/24/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4%E8%AF%BE%E5%90%8E%E4%BD%9C%E4%B8%9A/"/>
     <id>http://lisongbai.top/2020/02/24/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4%E8%AF%BE%E5%90%8E%E4%BD%9C%E4%B8%9A/</id>
     <published>2020-02-24T08:44:09.000Z</published>
-    <updated>2020-02-24T08:46:49.394Z</updated>
+    <updated>2020-06-13T12:15:31.564Z</updated>
     
     <summary type="html">
     
@@ -371,8 +430,60 @@
     </summary>
     
     
+      <category term="网络管理与维护" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4/"/>
+    
     
       <category term="网络管理与维护" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Postman</title>
+    <link href="http://lisongbai.top/2020/02/23/postman/"/>
+    <id>http://lisongbai.top/2020/02/23/postman/</id>
+    <published>2020-02-23T12:16:08.000Z</published>
+    <updated>2020-06-13T13:48:24.296Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一、Postman&quot;&gt;&lt;a href=&quot;#一、Postman&quot; class=&quot;headerlink&quot; title=&quot;一、Postman&quot;&gt;&lt;/a&gt;一、Postman&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;h2 id=&quot;postman简介&quot;&gt;&lt;a href=&quot;#postman简介&quot; class=&quot;headerlink&quot; title=&quot;postman简介&quot;&gt;&lt;/a&gt;postman简介&lt;/h2&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;用户在开发或者调试网络程序或者是网页B/S模式的程序的时候是需要一些方法来跟踪网页请求的，用户可以使用一些网络的监视工具比如著名的Firebug等网页调试工具。今天给大家介绍的这款网页调试工具不仅可以调试简单的css、html、脚本等简单的网页基本信息，它还可以发送几乎所有类型的HTTP请求！Postman在发送网络HTTP请求方面可以说是Chrome插件类产品中的代表产品之一。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://lisongbai.top/categories/java/"/>
+    
+      <category term="工具" scheme="http://lisongbai.top/categories/java/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="Postman" scheme="http://lisongbai.top/categories/java/%E5%B7%A5%E5%85%B7/Postman/"/>
+    
+    
+      <category term="java" scheme="http://lisongbai.top/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DES加解密算法浅析</title>
+    <link href="http://lisongbai.top/2020/02/23/DES%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95%E6%B5%85%E6%9E%90/"/>
+    <id>http://lisongbai.top/2020/02/23/DES%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95%E6%B5%85%E6%9E%90/</id>
+    <published>2020-02-23T10:56:18.000Z</published>
+    <updated>2020-06-13T12:23:18.719Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;DES加解密算法浅析&quot;&gt;&lt;a href=&quot;#DES加解密算法浅析&quot; class=&quot;headerlink&quot; title=&quot;DES加解密算法浅析&quot;&gt;&lt;/a&gt;DES加解密算法浅析&lt;/h1&gt;&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;DES是一个分组加密算法，它以64位为分组对数据加密。同时DES也是一个对称算法：加密和解密用的是同一个算法。DES是一个包含16个阶段的“替换–置换”的分组加密算法，64位的分组明文序列作为加密算法的输入，经过16轮加密得到64位的密文序列。&lt;/p&gt;&lt;p&gt;算法原理看下图：&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/11/09/MmQzp6.png&quot; alt=&quot;MmQzp6.png&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;原理浅析&quot;&gt;&lt;a href=&quot;#原理浅析&quot; class=&quot;headerlink&quot; title=&quot;原理浅析&quot;&gt;&lt;/a&gt;原理浅析&lt;/h2&gt;&lt;p&gt;DES算法主要分为3部分：加解密运算、f函数的处理、轮子密钥的生成，从右往左分别简单介绍一下。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="加密算法" scheme="http://lisongbai.top/categories/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="DES" scheme="http://lisongbai.top/categories/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/DES/"/>
+    
+    
+      <category term="网络信息安全" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
@@ -381,7 +492,7 @@
     <link href="http://lisongbai.top/2020/02/23/windows10%E6%90%AD%E5%BB%BAtruffle%E5%8F%8A%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
     <id>http://lisongbai.top/2020/02/23/windows10%E6%90%AD%E5%BB%BAtruffle%E5%8F%8A%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</id>
     <published>2020-02-23T10:56:18.000Z</published>
-    <updated>2020-02-26T08:12:47.100Z</updated>
+    <updated>2020-06-13T12:19:37.865Z</updated>
     
     <summary type="html">
     
@@ -389,6 +500,8 @@
     
     </summary>
     
+    
+      <category term="truffle" scheme="http://lisongbai.top/categories/truffle/"/>
     
     
       <category term="truffle" scheme="http://lisongbai.top/tags/truffle/"/>
@@ -400,7 +513,7 @@
     <link href="http://lisongbai.top/2020/02/22/SpringBoot-logging%E9%85%8D%E7%BD%AE/"/>
     <id>http://lisongbai.top/2020/02/22/SpringBoot-logging%E9%85%8D%E7%BD%AE/</id>
     <published>2020-02-22T01:40:01.000Z</published>
-    <updated>2020-02-22T02:48:17.907Z</updated>
+    <updated>2020-06-13T13:47:09.152Z</updated>
     
     <summary type="html">
     
@@ -416,25 +529,12 @@
     </summary>
     
     
+      <category term="java" scheme="http://lisongbai.top/categories/java/"/>
     
-      <category term="SpringBoot" scheme="http://lisongbai.top/tags/SpringBoot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>笔试题总结</title>
-    <link href="http://lisongbai.top/2020/02/21/%E7%AC%94%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/"/>
-    <id>http://lisongbai.top/2020/02/21/%E7%AC%94%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/</id>
-    <published>2020-02-21T06:07:36.000Z</published>
-    <updated>2020-02-21T06:38:28.487Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;1-编程题&quot;&gt;&lt;a href=&quot;#1-编程题&quot; class=&quot;headerlink&quot; title=&quot;1.编程题&quot;&gt;&lt;/a&gt;1.编程题&lt;/h2&gt;&lt;h3 id=&quot;1-1倒序数：&quot;&gt;&lt;a href=&quot;#1-1倒序数：&quot; class=&quot;headerlink&quot; title=&quot;1.1倒序数：&quot;&gt;&lt;/a&gt;1.1倒序数：&lt;/h3&gt;&lt;p&gt;将一个整数中的数字进行颠倒，当颠倒后的整数溢出时，返回 0 (标记为 32 位整数)。&lt;br&gt;给定 x = 123，返回 321 &lt;/p&gt;&lt;p&gt;给定 x = -123，返回 -321&lt;/p&gt;&lt;p&gt;思路；通过取余取得最后一位 然后除以十再取最后一位(相当于往前取一位) ,用一个数保存，每次取得都乘十并加上取得的数字（相当于往前挤一位），&lt;/p&gt;
-    
-    </summary>
+      <category term="框架" scheme="http://lisongbai.top/categories/java/%E6%A1%86%E6%9E%B6/"/>
     
     
+      <category term="java" scheme="http://lisongbai.top/tags/java/"/>
     
   </entry>
   

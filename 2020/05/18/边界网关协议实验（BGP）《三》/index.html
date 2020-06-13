@@ -53,6 +53,7 @@
 </script>
 
   <meta name="description" content="1.拓扑图、2.实验目的利用AS-path属性实现路由策略，使得AR2不向AR1通告AS300内的任何路由。3.实验步骤3.1配置AR1~AR4路由器的网关ip3.2配置域间路由协议（BGP）AR1配置如下：123[AR1]bgp 100[AR1-bgp]peer 11.2.1.2 as-number 200[AR1-bgp]import-route direct">
+<meta name="keywords" content="网络工程设计">
 <meta property="og:type" content="article">
 <meta property="og:title" content="边界网关协议实验（BGP）《三》">
 <meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2020&#x2F;05&#x2F;18&#x2F;%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%89%E3%80%8B&#x2F;index.html">
@@ -63,7 +64,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;18&#x2F;YhFydJ.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;18&#x2F;Yhm3pd.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;18&#x2F;Yhn85F.png">
-<meta property="og:updated_time" content="2020-05-18T10:56:59.189Z">
+<meta property="og:updated_time" content="2020-06-13T13:41:19.606Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;18&#x2F;Yhp0fK.png">
 
@@ -246,9 +247,32 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-05-18 19:00:42 / 修改时间：18:56:59" itemprop="dateCreated datePublished" datetime="2020-05-18T19:00:42+08:00">2020-05-18</time>
+              <time title="创建时间：2020-05-18 15:27:34" itemprop="dateCreated datePublished" datetime="2020-05-18T15:27:34+08:00">2020-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-13 21:41:19" itemprop="dateModified" datetime="2020-06-13T21:41:19+08:00">2020-06-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index">
+                    <span itemprop="name">网络工程设计</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/BGP%E5%AE%9E%E9%AA%8C/" itemprop="url" rel="index">
+                    <span itemprop="name">BGP实验</span>
+                  </a>
+                </span>
             </span>
 
           
@@ -374,21 +398,24 @@
 
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/" rel="tag"># 网络工程设计</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/" rel="next" title="边界网关协议实验（BGP）《一》">
-                  <i class="fa fa-chevron-left"></i> 边界网关协议实验（BGP）《一》
+                <a href="/2020/05/13/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%BA%8C%E3%80%8B/" rel="next" title="边界网关协议实验（BGP）《二》">
+                  <i class="fa fa-chevron-left"></i> 边界网关协议实验（BGP）《二》
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2020/05/24/snmp/" rel="prev" title="snmp">
-                  snmp <i class="fa fa-chevron-right"></i>
+                <a href="/2020/05/24/snmp/" rel="prev" title="SNMP实验">
+                  SNMP实验 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -488,9 +515,17 @@
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">14</span>
-        <span class="site-state-item-name">标签</span>
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
