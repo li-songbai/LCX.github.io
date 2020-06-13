@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-06-01T14:02:16.895Z</updated>
+  <updated>2020-06-13T08:36:54.558Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网络管理与维护大作业</title>
+    <link href="http://lisongbai.top/2020/06/13/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4%E5%A4%A7%E4%BD%9C%E4%B8%9A/"/>
+    <id>http://lisongbai.top/2020/06/13/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4%E5%A4%A7%E4%BD%9C%E4%B8%9A/</id>
+    <published>2020-06-13T11:20:54.786Z</published>
+    <updated>2020-06-13T08:36:54.558Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一、SNMPv3工作原理&quot;&gt;&lt;a href=&quot;#一、SNMPv3工作原理&quot; class=&quot;headerlink&quot; title=&quot;一、SNMPv3工作原理&quot;&gt;&lt;/a&gt;一、SNMPv3工作原理&lt;/h1&gt;&lt;h2 id=&quot;1-1-SNMP的组成&quot;&gt;&lt;a href=&quot;#1-1-SNMP的组成&quot; class=&quot;headerlink&quot; title=&quot;1.1 SNMP的组成&quot;&gt;&lt;/a&gt;1.1 SNMP的组成&lt;/h2&gt;&lt;p&gt;​        SNMP被设计为工作在TCP/IP协议族上，采用UDP进行数据传输。SNMP采用了Client/Server模型的特殊形式：代理/管理站模型。对网络的管理与维护是通过管理工作站与SNMP代理间的交互工作完成的。每个SNMP从代理负责回答SNMP管理工作站（主代理）关于MIB定义信息的各种查询。&lt;br&gt;简单来说，就是需要一个服务器程序（代理，agent）和一个客户机（管理器，manager）。而与直观上不同的是，SNMP的服务器端代表被管理的事物，而客户机端才是管理者。客户机从简单的命令行实用程序，如net-snmp提供的snmpwalk，到专门的管理软件、工作站都有。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>网络安全综合实验篇</title>
@@ -44,7 +61,7 @@
     <link href="http://lisongbai.top/2020/05/24/snmp/"/>
     <id>http://lisongbai.top/2020/05/24/snmp/</id>
     <published>2020-05-24T08:36:29.127Z</published>
-    <updated>2020-05-25T16:17:07.367Z</updated>
+    <updated>2020-06-13T07:41:21.781Z</updated>
     
     <summary type="html">
     
@@ -411,25 +428,6 @@
     <summary type="html">
     
       &lt;h2 id=&quot;1-编程题&quot;&gt;&lt;a href=&quot;#1-编程题&quot; class=&quot;headerlink&quot; title=&quot;1.编程题&quot;&gt;&lt;/a&gt;1.编程题&lt;/h2&gt;&lt;h3 id=&quot;1-1倒序数：&quot;&gt;&lt;a href=&quot;#1-1倒序数：&quot; class=&quot;headerlink&quot; title=&quot;1.1倒序数：&quot;&gt;&lt;/a&gt;1.1倒序数：&lt;/h3&gt;&lt;p&gt;将一个整数中的数字进行颠倒，当颠倒后的整数溢出时，返回 0 (标记为 32 位整数)。&lt;br&gt;给定 x = 123，返回 321 &lt;/p&gt;&lt;p&gt;给定 x = -123，返回 -321&lt;/p&gt;&lt;p&gt;思路；通过取余取得最后一位 然后除以十再取最后一位(相当于往前取一位) ,用一个数保存，每次取得都乘十并加上取得的数字（相当于往前挤一位），&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>postman</title>
-    <link href="http://lisongbai.top/2020/02/13/postman/"/>
-    <id>http://lisongbai.top/2020/02/13/postman/</id>
-    <published>2020-02-13T13:22:50.086Z</published>
-    <updated>2020-02-23T09:06:31.172Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一、Postman&quot;&gt;&lt;a href=&quot;#一、Postman&quot; class=&quot;headerlink&quot; title=&quot;一、Postman&quot;&gt;&lt;/a&gt;一、Postman&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;&lt;h2 id=&quot;postman简介&quot;&gt;&lt;a href=&quot;#postman简介&quot; class=&quot;headerlink&quot; title=&quot;postman简介&quot;&gt;&lt;/a&gt;postman简介&lt;/h2&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;p&gt;用户在开发或者调试网络程序或者是网页B/S模式的程序的时候是需要一些方法来跟踪网页请求的，用户可以使用一些网络的监视工具比如著名的Firebug等网页调试工具。今天给大家介绍的这款网页调试工具不仅可以调试简单的css、html、脚本等简单的网页基本信息，它还可以发送几乎所有类型的HTTP请求！Postman在发送网络HTTP请求方面可以说是Chrome插件类产品中的代表产品之一。&lt;/p&gt;
     
     </summary>
     

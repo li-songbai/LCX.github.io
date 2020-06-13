@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="一、SNMPv3工作原理1.1 SNMP的组成​        SNMP被设计为工作在TCP&#x2F;IP协议族上，采用UDP进行数据传输。SNMP采用了Client&#x2F;Server模型的特殊形式：代理&#x2F;管理站模型。对网络的管理与维护是通过管理工作站与SNMP代理间的交互工作完成的。每个SNMP从代理负责回答SNMP管理工作站（主代理）关于MIB定义信息的各种查询。简单来说，就是需要一个服务器程序（代理，a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络管理与维护大作业">
+<meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2020&#x2F;06&#x2F;13&#x2F;%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4%E5%A4%A7%E4%BD%9C%E4%B8%9A&#x2F;index.html">
+<meta property="og:site_name" content="小李の博客">
+<meta property="og:description" content="一、SNMPv3工作原理1.1 SNMP的组成​        SNMP被设计为工作在TCP&#x2F;IP协议族上，采用UDP进行数据传输。SNMP采用了Client&#x2F;Server模型的特殊形式：代理&#x2F;管理站模型。对网络的管理与维护是通过管理工作站与SNMP代理间的交互工作完成的。每个SNMP从代理负责回答SNMP管理工作站（主代理）关于MIB定义信息的各种查询。简单来说，就是需要一个服务器程序（代理，a">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;12&#x2F;xYv3mJilN7dSqZo.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;12&#x2F;VjPTAF2kwQLhRHX.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;12&#x2F;43TOLNb7sMaVXQ1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;12&#x2F;CzxNwh1sI4v2iOV.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;13&#x2F;BhEaH3PyYUjMISX.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;13&#x2F;GMpf3VkDznSZo2E.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;13&#x2F;3mjMEeig6dNZSht.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;13&#x2F;rhpVedP8By5EQg9.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;13&#x2F;2SieXxfhGp69WTF.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;13&#x2F;jMUAVtpe4XbkLgn.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;13&#x2F;bXRHWgf6uSticlK.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;13&#x2F;XlJqGraw2QEfPxH.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2020&#x2F;06&#x2F;13&#x2F;%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4%E5%A4%A7%E4%BD%9C%E4%B8%9A&#x2F;Users&#x2F;12173&#x2F;Desktop&#x2F;EarNmg38xSoO7nD.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;13&#x2F;hk3zsDKZS4QRtTb.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;13&#x2F;tFgS8UVIcqx4brJ.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;13&#x2F;Qa9lHeAzsD8Oc3W.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;13&#x2F;AatzEOP43LJVksr.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;13&#x2F;TQYoxLc3SKlrRe5.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;13&#x2F;8S7WRcEehGujr2f.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;13&#x2F;9stxUF74ZwmzqPM.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;13&#x2F;ZSoc6Mw5UAsa9jp.png">
+<meta property="og:updated_time" content="2020-06-13T08:36:54.558Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;12&#x2F;xYv3mJilN7dSqZo.png">
+
+<link rel="canonical" href="http://lisongbai.top/2020/06/13/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4%E5%A4%A7%E4%BD%9C%E4%B8%9A/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>网络管理与维护大作业 | 小李の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="小李の博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小李の博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">我有一壶酒，足以慰平生。</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/yym08090809" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/06/13/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4%E5%A4%A7%E4%BD%9C%E4%B8%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李松柏">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小李の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          网络管理与维护大作业
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-13 19:20:54 / 修改时间：16:36:54" itemprop="dateCreated datePublished" datetime="2020-06-13T19:20:54+08:00">2020-06-13</time>
+            </span>
+
+          
+            <span id="/2020/06/13/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4%E5%A4%A7%E4%BD%9C%E4%B8%9A/" class="post-meta-item leancloud_visitors" data-flag-title="网络管理与维护大作业" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/06/13/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4%E5%A4%A7%E4%BD%9C%E4%B8%9A/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/06/13/网络管理与维护大作业/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="一、SNMPv3工作原理"><a href="#一、SNMPv3工作原理" class="headerlink" title="一、SNMPv3工作原理"></a>一、SNMPv3工作原理</h1><h2 id="1-1-SNMP的组成"><a href="#1-1-SNMP的组成" class="headerlink" title="1.1 SNMP的组成"></a>1.1 SNMP的组成</h2><p>​        SNMP被设计为工作在TCP/IP协议族上，采用UDP进行数据传输。SNMP采用了Client/Server模型的特殊形式：代理/管理站模型。对网络的管理与维护是通过管理工作站与SNMP代理间的交互工作完成的。每个SNMP从代理负责回答SNMP管理工作站（主代理）关于MIB定义信息的各种查询。<br>简单来说，就是需要一个服务器程序（代理，agent）和一个客户机（管理器，manager）。而与直观上不同的是，SNMP的服务器端代表被管理的事物，而客户机端才是管理者。客户机从简单的命令行实用程序，如net-snmp提供的snmpwalk，到专门的管理软件、工作站都有。</p><a id="more"></a>
+<h2 id="1-2-SNMP的组织结构"><a href="#1-2-SNMP的组织结构" class="headerlink" title="1.2 SNMP的组织结构"></a>1.2 SNMP的组织结构</h2><p>​        SNMP数据以一种标准化的层次结构进行布置，这种结构的大部分都留给将来扩充，而特定厂商添加的部分则被本地化以避免冲突。命名的层次结构由MIB（Management Information Base，管理信息库）组成，它是描述通过SNMP协议可访问的数据的结构化文本文件。MIB 包括了对特定数据变量的说明，数据变量被称为OID（Object Identifier，对象标识符）。</p>
+<p>​        SNMP 层次结构非常像一个文件系统。不过，它是用点号（.）作为分隔符，每个节点被赋予了一个数字而不是名字。为了易于引用，还可以给节点赋予文字名称，但这种命名其实只是为了高层应用方面而已，而不是层次结构的一项功能。</p>
+<h2 id="1-3-SNMP协议的一些操作"><a href="#1-3-SNMP协议的一些操作" class="headerlink" title="1.3 SNMP协议的一些操作"></a>1.3 SNMP协议的一些操作</h2><p>​        基本的SNMP协议操作只有4种：get（获取）、get_next（获取下一个）、set（设置）和trap（陷阱）。<br>get 和 set 是从节点读取数据和把数据写入节点的基本操作，节点以OID方式说明。<br>get-next 用于在MIB 层次结构上步进。<br>trap 是从服务器（代理程序）到客户机（管理器）的一个主动提供的异步通知，在出现特定的事情或状态时，它会报告。SNMP协议已经定义了若干标准的trap操作，例如“I have just come up”（刚启动），还有报告网络链路故障或已修复，路由或身份认证等的trap，这取决于agent程序的实现。</p>
+<h2 id="1-4-SNMPv3和之前版本的区别"><a href="#1-4-SNMPv3和之前版本的区别" class="headerlink" title="1.4 SNMPv3和之前版本的区别"></a>1.4 SNMPv3和之前版本的区别</h2><p>​        SNMP v3 在前面的版本上增加了安全能力和远程配置能力，SNMPv3结构为消息安全和VACM（View-based Access Control Model）引入了USM（User-based Security Model）。这个结构支持同时使用不同的安全机制，接入控制，消息处理模型。SNMP v3 也引入使用SNMP SET命令动态配置 SNMP agent而不失MIB对象代表agent配置。</p>
+<p><strong>USM（基于用户的安全模型）</strong></p>
+<p>​        USM引入了用户名和组的概念，可以设置认证和加密功能。认证用于验证报文发送方的合法性，避免非法用户的访问；加密则是对NMS和Agent之间传输的报文进行加密，以免被窃听。通过有无认证和有无加密等功能组合，可以为NMS和Agent之间的通信提供更高的安全性。</p>
+<p><strong>VACM（基于视图的访问控制模型）</strong></p>
+<p>​        VACM技术定义了组、安全等级、上下文、MIB视图、访问策略五个元素，这些元素同时决定用户是否具有访问的权限，只有具有了访问权限的用户才能管理操作对象。在同一个SNMP实体上可以定义不同的组，组与MIB视图绑定，组内又可以定义多个用户。当使用某个用户名进行访问的时候，只能访问对应的MIB视图定义的对象。</p>
+<p>有三个可能的安全级别: noAuthNoPriv, authNoPriv, 和 authPriv.</p>
+<p>noAuthNoPriv 级别指明了没有认证或私密性被执行. </p>
+<p>authNoPriv 级别指明了认证被执行但没有私密性被执行. </p>
+<p>authPriv 级别指明了认证和私密性都被执行.</p>
+<p>==auth—认证 支持MD5 or SHA;==</p>
+<p>==priv—加密 支持DES or RSA;==</p>
+<h1 id="二、设计思路"><a href="#二、设计思路" class="headerlink" title="二、设计思路"></a>二、设计思路</h1><p>​        由于Win10对MIB Browser兼容性不太好，故在VMware下建立win7虚拟机在win7环境下运行MIB Browser（客户端程序，manager），再在VMware下建立centos7虚拟机运行net-snmp（服务端程序，agent）。</p>
+<p>​        两虚拟机均采用桥接的方式，并关闭防火墙，使得两台机器在同一子网下且可进行互相通讯。两机器IP地址如下：</p>
+<ul>
+<li><p>win7：</p>
+<p><img src="https://i.loli.net/2020/06/12/xYv3mJilN7dSqZo.png" alt="image-20200612221922868"></p>
+</li>
+<li><p>centos7：</p>
+<p>关闭防火墙命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> snmpd.service</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>  <img src="https://i.loli.net/2020/06/12/VjPTAF2kwQLhRHX.png" alt="image-20200612222021007"></p>
+<ul>
+<li><p>互通测试：</p>
+<p><img src="https://i.loli.net/2020/06/12/43TOLNb7sMaVXQ1.png" alt="image-20200612234549339"></p>
+<p><img src="https://i.loli.net/2020/06/12/CzxNwh1sI4v2iOV.png" alt="image-20200612234637804"></p>
+</li>
+</ul>
+<h1 id="三、网络拓扑结构"><a href="#三、网络拓扑结构" class="headerlink" title="三、网络拓扑结构"></a>三、网络拓扑结构</h1><p><img src="https://i.loli.net/2020/06/13/BhEaH3PyYUjMISX.png" alt="image-20200613002337094"></p>
+<h1 id="四、实验过程"><a href="#四、实验过程" class="headerlink" title="四、实验过程"></a>四、实验过程</h1><h2 id="4-1Centos7-Agent-："><a href="#4-1Centos7-Agent-：" class="headerlink" title="4.1Centos7(Agent)："></a>4.1Centos7(Agent)：</h2><h3 id="4-1-1下载安装net-snmp"><a href="#4-1-1下载安装net-snmp" class="headerlink" title="4.1.1下载安装net-snmp"></a>4.1.1下载安装net-snmp</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lcx@localhost ~]$ sudo yum install -y net-snmp net-snmp-utils</span><br><span class="line">lcx@localhost ~]$ snmpd -v</span><br><span class="line">NET-SNMP version:  5.7.2</span><br><span class="line">Web:               http://www.net-snmp.org/</span><br><span class="line">Email:             net-snmp-coders@lists.sourceforge.net</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-1-2配置SNMPv3用户"><a href="#4-1-2配置SNMPv3用户" class="headerlink" title="4.1.2配置SNMPv3用户"></a>4.1.2配置SNMPv3用户</h3><p>在配置v3用户前，需要停用snmp的服务，具体配置命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#未停止snmp服务，无法创建snmpv3用户</span></span><br><span class="line">lcx@localhost ~]$ net-snmp-create-v3-user </span><br><span class="line">Apparently at least one snmpd demon is already running.</span><br><span class="line">You must stop them <span class="keyword">in</span> order to use this <span class="built_in">command</span>.</span><br><span class="line">[lcx@localhost ~]$ service snmpd stop </span><br><span class="line">Stopping snmpd (via systemctl):                            [  确定  ]</span><br><span class="line">[lcx@localhost ~]$ service snmpd status </span><br><span class="line">● snmpd.service - Simple Network Management Protocol (SNMP) Daemon.</span><br><span class="line">   Loaded: loaded (/usr/lib/systemd/system/snmpd.service; disabled; vendor preset: disabled)</span><br><span class="line">   Active: inactive (dead)</span><br><span class="line"></span><br><span class="line">6月 12 17:09:38 localhost.localdomain systemd[1]: Started Simple Network Man...</span><br><span class="line">6月 13 08:57:25 localhost.localdomain systemd[1]: Stopped Simple Network Man...</span><br><span class="line">Hint: Some lines were ellipsized, use -l to show <span class="keyword">in</span> full.</span><br><span class="line"><span class="comment">#创建名为lcx的snmpv3用户</span></span><br><span class="line">[lcx@localhost ~]$ sudo net-snmp-create-v3-user </span><br><span class="line">[sudo] lcx 的密码：</span><br><span class="line">Enter a SNMPv3 user name to create: </span><br><span class="line">lcx </span><br><span class="line">Enter authentication pass-phrase: </span><br><span class="line">auth-password</span><br><span class="line">Enter encryption pass-phrase: </span><br><span class="line">  [press <span class="built_in">return</span> to reuse the authentication pass-phrase]</span><br><span class="line">encrypt-password</span><br><span class="line">adding the following line to /var/lib/net-snmp/snmpd.conf:</span><br><span class="line">   createUser lcx MD5 <span class="string">"auth-password"</span> DES encrypt-password</span><br><span class="line">adding the following line to /etc/snmp/snmpd.conf:</span><br><span class="line">   rwuser lcx</span><br><span class="line">[lcx@localhost ~]$</span><br></pre></td></tr></table></figure>
+
+<p>​        我创建了一个名叫<strong>lcx</strong>的SNMPv3用户，使用<strong>MD5</strong>进行认证以及使用<strong>DES</strong>进行加密，<strong>auth-password</strong>作为认证密码，<strong>encrypt-password</strong>作为加密密码。</p>
+<p>在配置文件中查看SNMPv3用户是否添加成功。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[lcx@localhost ~]$ sudo vim /etc/snmp/snmpd.conf </span><br><span class="line">[sudo] lcx 的密码：</span><br><span class="line">[lcx@localhost ~]$</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/06/13/GMpf3VkDznSZo2E.png" alt="image-20200613150210380"></p>
+<p>可在配置文件中查看到添加的v3用户。</p>
+<h3 id="4-1-3验证服务"><a href="#4-1-3验证服务" class="headerlink" title="4.1.3验证服务"></a>4.1.3验证服务</h3><p>snmpwalk命令用法：</p>
+<table>
+<thead>
+<tr>
+<th>-v 1|2c|3</th>
+<th>specifies SNMP version to use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-u USER-NAME</td>
+<td>set security name (e.g. bert)</td>
+</tr>
+<tr>
+<td>-l LEVEL</td>
+<td>set security level (noAuthNoPriv|authNoPriv|authPriv)</td>
+</tr>
+<tr>
+<td>-a PROTOCOL</td>
+<td>set authentication protocol (MD5|SHA)</td>
+</tr>
+<tr>
+<td>-A PASSPHRASE</td>
+<td>set authentication protocol pass phrase</td>
+</tr>
+<tr>
+<td>-x PROTOCOL</td>
+<td>set privacy protocol (DES|AES)</td>
+</tr>
+<tr>
+<td>-X PASSPHRASE</td>
+<td>set privacy protocol pass phrase</td>
+</tr>
+<tr>
+<td>-c COMMUNITY</td>
+<td>set the community string (v1/v2c版本)</td>
+</tr>
+</tbody></table>
+<p>在验证前，需开启snmp服务，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[lcx@localhost ~]$  service snmpd start </span><br><span class="line">Starting snmpd (via systemctl):                            [  确定  ]</span><br><span class="line">[lcx@localhost ~]$ service snmpd status </span><br><span class="line">● snmpd.service - Simple Network Management Protocol (SNMP) Daemon.</span><br><span class="line">   Loaded: loaded (/usr/lib/systemd/system/snmpd.service; disabled; vendor preset: disabled)</span><br><span class="line">   Active: active (running) since 六 2020-06-13 09:13:40 CST; 6s ago</span><br><span class="line"> Main PID: 66998 (snmpd)</span><br><span class="line">    Tasks: 1</span><br><span class="line">   Memory: 4.3M</span><br><span class="line">   CGroup: /system.slice/snmpd.service</span><br><span class="line">           └─66998 /usr/sbin/snmpd -LS0-6d -f</span><br><span class="line"></span><br><span class="line">6月 13 09:13:40 localhost.localdomain systemd[1]: Starting Simple Network Ma...</span><br><span class="line">6月 13 09:13:40 localhost.localdomain snmpd[66998]: NET-SNMP version 5.7.2</span><br><span class="line">6月 13 09:13:40 localhost.localdomain systemd[1]: Started Simple Network Man...</span><br><span class="line">Hint: Some lines were ellipsized, use -l to show <span class="keyword">in</span> full.</span><br><span class="line">[lcx@localhost ~]$</span><br></pre></td></tr></table></figure>
+
+<p>在此使用如下命令进行验证：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br></pre></td><td class="code"><pre><span class="line">[lcx@localhost ~]$ snmpwalk -v 3 -u lcx -a MD5 -A auth-password -l authPriv -x DES -X encrypt-password localhost</span><br><span class="line">SNMPv2-MIB::sysDescr.0 = STRING: Linux localhost.localdomain 3.10.0-1062.12.1.el7.x86_64 <span class="comment">#1 SMP Tue Feb 4 23:02:59 UTC 2020 x86_64</span></span><br><span class="line">SNMPv2-MIB::sysObjectID.0 = OID: NET-SNMP-MIB::netSnmpAgentOIDs.10</span><br><span class="line">DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (15262) 0:02:32.62</span><br><span class="line">SNMPv2-MIB::sysContact.0 = STRING: Root &lt;root@localhost&gt; (configure /etc/snmp/snmp.local.conf)</span><br><span class="line">SNMPv2-MIB::sysName.0 = STRING: lcx-centos</span><br><span class="line">SNMPv2-MIB::sysLocation.0 = STRING: Unknown (edit /etc/snmp/snmpd.conf)</span><br><span class="line">SNMPv2-MIB::sysORLastChange.0 = Timeticks: (8) 0:00:00.08</span><br><span class="line">SNMPv2-MIB::sysORID.1 = OID: SNMP-MPD-MIB::snmpMPDCompliance</span><br><span class="line">SNMPv2-MIB::sysORID.2 = OID: SNMP-USER-BASED-SM-MIB::usmMIBCompliance</span><br><span class="line">SNMPv2-MIB::sysORID.3 = OID: SNMP-FRAMEWORK-MIB::snmpFrameworkMIBCompliance</span><br><span class="line">SNMPv2-MIB::sysORID.4 = OID: SNMPv2-MIB::snmpMIB</span><br><span class="line">SNMPv2-MIB::sysORID.5 = OID: TCP-MIB::tcpMIB</span><br><span class="line">SNMPv2-MIB::sysORID.6 = OID: IP-MIB::ip</span><br><span class="line">SNMPv2-MIB::sysORID.7 = OID: UDP-MIB::udpMIB</span><br><span class="line">SNMPv2-MIB::sysORID.8 = OID: SNMP-VIEW-BASED-ACM-MIB::vacmBasicGroup</span><br><span class="line">SNMPv2-MIB::sysORID.9 = OID: SNMP-NOTIFICATION-MIB::snmpNotifyFullCompliance</span><br><span class="line">SNMPv2-MIB::sysORID.10 = OID: NOTIFICATION-LOG-MIB::notificationLogMIB</span><br><span class="line">SNMPv2-MIB::sysORDescr.1 = STRING: The MIB <span class="keyword">for</span> Message Processing and Dispatching.</span><br><span class="line">SNMPv2-MIB::sysORDescr.2 = STRING: The management information definitions <span class="keyword">for</span> the SNMP User-based Security Model.</span><br><span class="line">SNMPv2-MIB::sysORDescr.3 = STRING: The SNMP Management Architecture MIB.</span><br><span class="line">SNMPv2-MIB::sysORDescr.4 = STRING: The MIB module <span class="keyword">for</span> SNMPv2 entities</span><br><span class="line">SNMPv2-MIB::sysORDescr.5 = STRING: The MIB module <span class="keyword">for</span> managing TCP implementations</span><br><span class="line">SNMPv2-MIB::sysORDescr.6 = STRING: The MIB module <span class="keyword">for</span> managing IP and ICMP implementations</span><br><span class="line">SNMPv2-MIB::sysORDescr.7 = STRING: The MIB module <span class="keyword">for</span> managing UDP implementations</span><br><span class="line">SNMPv2-MIB::sysORDescr.8 = STRING: View-based Access Control Model <span class="keyword">for</span> SNMP.</span><br><span class="line">SNMPv2-MIB::sysORDescr.9 = STRING: The MIB modules <span class="keyword">for</span> managing SNMP Notification, plus filtering.</span><br><span class="line">SNMPv2-MIB::sysORDescr.10 = STRING: The MIB module <span class="keyword">for</span> logging SNMP Notifications.</span><br><span class="line">SNMPv2-MIB::sysORUpTime.1 = Timeticks: (8) 0:00:00.08</span><br><span class="line">SNMPv2-MIB::sysORUpTime.2 = Timeticks: (8) 0:00:00.08</span><br><span class="line">SNMPv2-MIB::sysORUpTime.3 = Timeticks: (8) 0:00:00.08</span><br><span class="line">SNMPv2-MIB::sysORUpTime.4 = Timeticks: (8) 0:00:00.08</span><br><span class="line">SNMPv2-MIB::sysORUpTime.5 = Timeticks: (8) 0:00:00.08</span><br><span class="line">SNMPv2-MIB::sysORUpTime.6 = Timeticks: (8) 0:00:00.08</span><br><span class="line">SNMPv2-MIB::sysORUpTime.7 = Timeticks: (8) 0:00:00.08</span><br><span class="line">SNMPv2-MIB::sysORUpTime.8 = Timeticks: (8) 0:00:00.08</span><br><span class="line">SNMPv2-MIB::sysORUpTime.9 = Timeticks: (8) 0:00:00.08</span><br><span class="line">SNMPv2-MIB::sysORUpTime.10 = Timeticks: (8) 0:00:00.08</span><br><span class="line">IF-MIB::ifNumber.0 = INTEGER: 5</span><br><span class="line">IF-MIB::ifIndex.1 = INTEGER: 1</span><br><span class="line">IF-MIB::ifIndex.2 = INTEGER: 2</span><br><span class="line">IF-MIB::ifIndex.3 = INTEGER: 3</span><br><span class="line">IF-MIB::ifIndex.4 = INTEGER: 4</span><br><span class="line">IF-MIB::ifIndex.5 = INTEGER: 5</span><br><span class="line">IF-MIB::ifDescr.1 = STRING: lo</span><br><span class="line">IF-MIB::ifDescr.2 = STRING: ens33</span><br><span class="line">IF-MIB::ifDescr.3 = STRING: virbr0</span><br><span class="line">IF-MIB::ifDescr.4 = STRING: virbr0-nic</span><br><span class="line">IF-MIB::ifDescr.5 = STRING: docker0</span><br><span class="line">IF-MIB::ifType.1 = INTEGER: softwareLoopback(24)</span><br><span class="line">IF-MIB::ifType.2 = INTEGER: ethernetCsmacd(6)</span><br><span class="line">IF-MIB::ifType.3 = INTEGER: ethernetCsmacd(6)</span><br><span class="line">IF-MIB::ifType.4 = INTEGER: ethernetCsmacd(6)</span><br><span class="line">IF-MIB::ifType.5 = INTEGER: ethernetCsmacd(6)</span><br><span class="line">IF-MIB::ifMtu.1 = INTEGER: 65536</span><br><span class="line">IF-MIB::ifMtu.2 = INTEGER: 1500</span><br><span class="line">IF-MIB::ifMtu.3 = INTEGER: 1500</span><br><span class="line">IF-MIB::ifMtu.4 = INTEGER: 1500</span><br><span class="line">IF-MIB::ifMtu.5 = INTEGER: 1500</span><br><span class="line">IF-MIB::ifSpeed.1 = Gauge32: 10000000</span><br><span class="line">IF-MIB::ifSpeed.2 = Gauge32: 1000000000</span><br><span class="line">IF-MIB::ifSpeed.3 = Gauge32: 0</span><br><span class="line">IF-MIB::ifSpeed.4 = Gauge32: 10000000</span><br><span class="line">IF-MIB::ifSpeed.5 = Gauge32: 0</span><br><span class="line">IF-MIB::ifPhysAddress.1 = STRING: </span><br><span class="line">IF-MIB::ifPhysAddress.2 = STRING: 0:c:29:1b:7e:d</span><br><span class="line">IF-MIB::ifPhysAddress.3 = STRING: 52:54:0:25:dc:88</span><br><span class="line">IF-MIB::ifPhysAddress.4 = STRING: 52:54:0:25:dc:88</span><br><span class="line">IF-MIB::ifPhysAddress.5 = STRING: 2:42:b2:34:7a:93</span><br><span class="line">IF-MIB::ifAdminStatus.1 = INTEGER: up(1)</span><br><span class="line">IF-MIB::ifAdminStatus.2 = INTEGER: up(1)</span><br><span class="line">IF-MIB::ifAdminStatus.3 = INTEGER: down(2)</span><br><span class="line">IF-MIB::ifAdminStatus.4 = INTEGER: down(2)</span><br><span class="line">IF-MIB::ifAdminStatus.5 = INTEGER: up(1)</span><br><span class="line">IF-MIB::ifOperStatus.1 = INTEGER: up(1)</span><br><span class="line">IF-MIB::ifOperStatus.2 = INTEGER: up(1)</span><br><span class="line">IF-MIB::ifOperStatus.3 = INTEGER: down(2)</span><br><span class="line">IF-MIB::ifOperStatus.4 = INTEGER: down(2)</span><br><span class="line">IF-MIB::ifOperStatus.5 = INTEGER: down(2)</span><br><span class="line">IF-MIB::ifLastChange.1 = Timeticks: (0) 0:00:00.00</span><br><span class="line">IF-MIB::ifLastChange.2 = Timeticks: (0) 0:00:00.00</span><br><span class="line">IF-MIB::ifLastChange.3 = Timeticks: (0) 0:00:00.00</span><br><span class="line">IF-MIB::ifLastChange.4 = Timeticks: (0) 0:00:00.00</span><br><span class="line">IF-MIB::ifLastChange.5 = Timeticks: (0) 0:00:00.00</span><br><span class="line">IF-MIB::ifInOctets.1 = Counter32: 12538599</span><br><span class="line">IF-MIB::ifInOctets.2 = Counter32: 779843410</span><br><span class="line">IF-MIB::ifInOctets.3 = Counter32: 0</span><br><span class="line">IF-MIB::ifInOctets.4 = Counter32: 0</span><br><span class="line">IF-MIB::ifInOctets.5 = Counter32: 0</span><br><span class="line">IF-MIB::ifInUcastPkts.1 = Counter32: 69333</span><br><span class="line">IF-MIB::ifInUcastPkts.2 = Counter32: 533359</span><br><span class="line">IF-MIB::ifInUcastPkts.3 = Counter32: 0</span><br><span class="line">IF-MIB::ifInUcastPkts.4 = Counter32: 0</span><br><span class="line">IF-MIB::ifInUcastPkts.5 = Counter32: 0</span><br><span class="line">IF-MIB::ifInNUcastPkts.1 = Counter32: 0</span><br><span class="line">IF-MIB::ifInNUcastPkts.2 = Counter32: 0</span><br><span class="line">IF-MIB::ifInNUcastPkts.3 = Counter32: 0</span><br><span class="line">IF-MIB::ifInNUcastPkts.4 = Counter32: 0</span><br><span class="line">IF-MIB::ifInNUcastPkts.5 = Counter32: 0</span><br><span class="line">IF-MIB::ifInDiscards.1 = Counter32: 0</span><br><span class="line">IF-MIB::ifInDiscards.2 = Counter32: 0</span><br><span class="line">IF-MIB::ifInDiscards.3 = Counter32: 0</span><br><span class="line">IF-MIB::ifInDiscards.4 = Counter32: 0</span><br><span class="line">IF-MIB::ifInDiscards.5 = Counter32: 0</span><br><span class="line">IF-MIB::ifInErrors.1 = Counter32: 0</span><br><span class="line">IF-MIB::ifInErrors.2 = Counter32: 0</span><br><span class="line">IF-MIB::ifInErrors.3 = Counter32: 0</span><br><span class="line">IF-MIB::ifInErrors.4 = Counter32: 0</span><br><span class="line">IF-MIB::ifInErrors.5 = Counter32: 0</span><br><span class="line">IF-MIB::ifInUnknownProtos.1 = Counter32: 0</span><br><span class="line">IF-MIB::ifInUnknownProtos.2 = Counter32: 0</span><br><span class="line">IF-MIB::ifInUnknownProtos.3 = Counter32: 0</span><br><span class="line">IF-MIB::ifInUnknownProtos.4 = Counter32: 0</span><br><span class="line">IF-MIB::ifInUnknownProtos.5 = Counter32: 0</span><br><span class="line">IF-MIB::ifOutOctets.1 = Counter32: 12538599</span><br><span class="line">IF-MIB::ifOutOctets.2 = Counter32: 4493350</span><br><span class="line">IF-MIB::ifOutOctets.3 = Counter32: 0</span><br><span class="line">IF-MIB::ifOutOctets.4 = Counter32: 0</span><br><span class="line">IF-MIB::ifOutOctets.5 = Counter32: 0</span><br><span class="line">IF-MIB::ifOutUcastPkts.1 = Counter32: 69333</span><br><span class="line">IF-MIB::ifOutUcastPkts.2 = Counter32: 65738</span><br><span class="line">IF-MIB::ifOutUcastPkts.3 = Counter32: 0</span><br><span class="line">IF-MIB::ifOutUcastPkts.4 = Counter32: 0</span><br><span class="line">IF-MIB::ifOutUcastPkts.5 = Counter32: 0</span><br><span class="line">IF-MIB::ifOutNUcastPkts.1 = Counter32: 0</span><br><span class="line">IF-MIB::ifOutNUcastPkts.2 = Counter32: 0</span><br><span class="line">IF-MIB::ifOutNUcastPkts.3 = Counter32: 0</span><br><span class="line">IF-MIB::ifOutNUcastPkts.4 = Counter32: 0</span><br><span class="line">IF-MIB::ifOutNUcastPkts.5 = Counter32: 0</span><br><span class="line">IF-MIB::ifOutDiscards.1 = Counter32: 0</span><br><span class="line">IF-MIB::ifOutDiscards.2 = Counter32: 0</span><br><span class="line">IF-MIB::ifOutDiscards.3 = Counter32: 0</span><br><span class="line">IF-MIB::ifOutDiscards.4 = Counter32: 0</span><br><span class="line">IF-MIB::ifOutDiscards.5 = Counter32: 0</span><br><span class="line">IF-MIB::ifOutErrors.1 = Counter32: 0</span><br><span class="line">IF-MIB::ifOutErrors.2 = Counter32: 0</span><br><span class="line">IF-MIB::ifOutErrors.3 = Counter32: 0</span><br><span class="line">IF-MIB::ifOutErrors.4 = Counter32: 0</span><br><span class="line">IF-MIB::ifOutErrors.5 = Counter32: 0</span><br><span class="line">IF-MIB::ifOutQLen.1 = Gauge32: 0</span><br><span class="line">IF-MIB::ifOutQLen.2 = Gauge32: 0</span><br><span class="line">IF-MIB::ifOutQLen.3 = Gauge32: 0</span><br><span class="line">IF-MIB::ifOutQLen.4 = Gauge32: 0</span><br><span class="line">IF-MIB::ifOutQLen.5 = Gauge32: 0</span><br><span class="line">IF-MIB::ifSpecific.1 = OID: SNMPv2-SMI::zeroDotZero</span><br><span class="line">IF-MIB::ifSpecific.2 = OID: SNMPv2-SMI::zeroDotZero</span><br><span class="line">IF-MIB::ifSpecific.3 = OID: SNMPv2-SMI::zeroDotZero</span><br><span class="line">IF-MIB::ifSpecific.4 = OID: SNMPv2-SMI::zeroDotZero</span><br><span class="line">IF-MIB::ifSpecific.5 = OID: SNMPv2-SMI::zeroDotZero</span><br><span class="line">SNMPv2-SMI::mib-2.3.1.1.1.2.1.192.168.10.1 = INTEGER: 2</span><br><span class="line">SNMPv2-SMI::mib-2.3.1.1.2.2.1.192.168.10.1 = Hex-STRING: F4 EE 14 1D 58 DE </span><br><span class="line">SNMPv2-SMI::mib-2.3.1.1.3.2.1.192.168.10.1 = IpAddress: 192.168.10.1</span><br><span class="line">IP-MIB::ipForwarding.0 = INTEGER: forwarding(1)</span><br><span class="line">IP-MIB::ipDefaultTTL.0 = INTEGER: 64</span><br><span class="line">IP-MIB::ipInReceives.0 = Counter32: 140948</span><br><span class="line">IP-MIB::ipInHdrErrors.0 = Counter32: 0</span><br><span class="line">IP-MIB::ipInAddrErrors.0 = Counter32: 0</span><br><span class="line">IP-MIB::ipForwDatagrams.0 = Counter32: 0</span><br><span class="line">IP-MIB::ipInUnknownProtos.0 = Counter32: 0</span><br><span class="line">IP-MIB::ipInDiscards.0 = Counter32: 0</span><br><span class="line">IP-MIB::ipInDelivers.0 = Counter32: 140624</span><br><span class="line">IP-MIB::ipOutRequests.0 = Counter32: 135827</span><br><span class="line">IP-MIB::ipOutDiscards.0 = Counter32: 0</span><br><span class="line">IP-MIB::ipOutNoRoutes.0 = Counter32: 0</span><br><span class="line">IP-MIB::ipReasmTimeout.0 = INTEGER: 30 seconds</span><br><span class="line">IP-MIB::ipReasmReqds.0 = Counter32: 0</span><br><span class="line">IP-MIB::ipReasmOKs.0 = Counter32: 0</span><br><span class="line">IP-MIB::ipReasmFails.0 = Counter32: 0</span><br><span class="line">IP-MIB::ipFragOKs.0 = Counter32: 0</span><br><span class="line">IP-MIB::ipFragFails.0 = Counter32: 0</span><br><span class="line">IP-MIB::ipFragCreates.0 = Counter32: 0</span><br><span class="line">IP-MIB::ipAdEntAddr.127.0.0.1 = IpAddress: 127.0.0.1</span><br><span class="line">IP-MIB::ipAdEntAddr.172.17.0.1 = IpAddress: 172.17.0.1</span><br><span class="line">IP-MIB::ipAdEntAddr.192.168.10.113 = IpAddress: 192.168.10.113</span><br><span class="line">IP-MIB::ipAdEntIfIndex.127.0.0.1 = INTEGER: 1</span><br><span class="line">IP-MIB::ipAdEntIfIndex.172.17.0.1 = INTEGER: 5</span><br><span class="line">IP-MIB::ipAdEntIfIndex.192.168.10.113 = INTEGER: 2</span><br><span class="line">IP-MIB::ipAdEntNetMask.127.0.0.1 = IpAddress: 255.0.0.0</span><br><span class="line">IP-MIB::ipAdEntNetMask.172.17.0.1 = IpAddress: 255.255.0.0</span><br><span class="line">IP-MIB::ipAdEntNetMask.192.168.10.113 = IpAddress: 255.255.255.0</span><br><span class="line">IP-MIB::ipAdEntBcastAddr.127.0.0.1 = INTEGER: 0</span><br><span class="line">IP-MIB::ipAdEntBcastAddr.172.17.0.1 = INTEGER: 1</span><br><span class="line">IP-MIB::ipAdEntBcastAddr.192.168.10.113 = INTEGER: 1</span><br><span class="line">IP-MIB::ip.21.1.1.0.0.0.0 = IpAddress: 0.0.0.0</span><br><span class="line">IP-MIB::ip.21.1.1.172.17.0.0 = IpAddress: 172.17.0.0</span><br><span class="line">IP-MIB::ip.21.1.1.192.168.10.0 = IpAddress: 192.168.10.0</span><br><span class="line">IP-MIB::ip.21.1.2.0.0.0.0 = INTEGER: 2</span><br><span class="line">IP-MIB::ip.21.1.2.172.17.0.0 = INTEGER: 5</span><br><span class="line">IP-MIB::ip.21.1.2.192.168.10.0 = INTEGER: 2</span><br><span class="line">IP-MIB::ip.21.1.3.0.0.0.0 = INTEGER: 1</span><br><span class="line">IP-MIB::ip.21.1.3.172.17.0.0 = INTEGER: 0</span><br><span class="line">IP-MIB::ip.21.1.3.192.168.10.0 = INTEGER: 0</span><br><span class="line">IP-MIB::ip.21.1.7.0.0.0.0 = IpAddress: 192.168.10.1</span><br><span class="line">IP-MIB::ip.21.1.7.172.17.0.0 = IpAddress: 0.0.0.0</span><br><span class="line">IP-MIB::ip.21.1.7.192.168.10.0 = IpAddress: 0.0.0.0</span><br><span class="line">IP-MIB::ip.21.1.8.0.0.0.0 = INTEGER: 4</span><br><span class="line">IP-MIB::ip.21.1.8.172.17.0.0 = INTEGER: 3</span><br><span class="line">IP-MIB::ip.21.1.8.192.168.10.0 = INTEGER: 3</span><br><span class="line">IP-MIB::ip.21.1.9.0.0.0.0 = INTEGER: 2</span><br><span class="line">IP-MIB::ip.21.1.9.172.17.0.0 = INTEGER: 2</span><br><span class="line">IP-MIB::ip.21.1.9.192.168.10.0 = INTEGER: 2</span><br><span class="line">IP-MIB::ip.21.1.11.0.0.0.0 = IpAddress: 0.0.0.0</span><br><span class="line">IP-MIB::ip.21.1.11.172.17.0.0 = IpAddress: 255.255.0.0</span><br><span class="line">IP-MIB::ip.21.1.11.192.168.10.0 = IpAddress: 255.255.255.0</span><br><span class="line">IP-MIB::ip.21.1.13.0.0.0.0 = OID: SNMPv2-SMI::zeroDotZero</span><br><span class="line">IP-MIB::ip.21.1.13.172.17.0.0 = OID: SNMPv2-SMI::zeroDotZero</span><br><span class="line">IP-MIB::ip.21.1.13.192.168.10.0 = OID: SNMPv2-SMI::zeroDotZero</span><br><span class="line">IP-MIB::ipNetToMediaIfIndex.2.192.168.10.1 = INTEGER: 2</span><br><span class="line">IP-MIB::ipNetToMediaPhysAddress.2.192.168.10.1 = STRING: f4:ee:14:1d:58:de</span><br><span class="line">IP-MIB::ipNetToMediaNetAddress.2.192.168.10.1 = IpAddress: 192.168.10.1</span><br><span class="line">IP-MIB::ipNetToMediaType.2.192.168.10.1 = INTEGER: dynamic(3)</span><br><span class="line">IP-MIB::ipRoutingDiscards.0 = Counter32: 0</span><br><span class="line">IP-FORWARD-MIB::ipCidrRouteDest.0.0.0.0.0.0.0.0.0.192.168.10.1 = IpAddress: 0.0.0.0</span><br><span class="line">IP-FORWARD-MIB::ipCidrRouteDest.172.17.0.0.255.255.0.0.0.0.0.0.0 = IpAddress: 172.17.0.0</span><br><span class="line">IP-FORWARD-MIB::ipCidrRouteDest.192.168.10.0.255.255.255.0.0.0.0.0.0 = IpAddress: 192.168.10.0</span><br><span class="line">IP-FORWARD-MIB::ipCidrRouteMask.0.0.0.0.0.0.0.0.0.192.168.10.1 = IpAddress: 0.0.0.0</span><br><span class="line">IP-FORWARD-MIB::ipCidrRouteMask.172.17.0.0.255.255.0.0.0.0.0.0.0 = IpAddress: 255.255.0.0</span><br><span class="line">IP-FORWARD-MIB::ipCidrRouteMask.192.168.10.0.255.255.255.0.0.0.0.0.0 = IpAddress: 255.255.255.0</span><br><span class="line">IP-FORWARD-MIB::ipCidrRouteTos.0.0.0.0.0.0.0.0.0.192.168.10.1 = INTEGER: 0</span><br><span class="line">IP-FORWARD-MIB::ipCidrRouteTos.172.17.0.0.255.255.0.0.0.0.0.0.0 = INTEGER: 0</span><br><span class="line">IP-FORWARD-MIB::ipCidrRouteTos.192.168.10.0.255.255.255.0.0.0.0.0.0 = INTEGER: 0</span><br><span class="line">IP-FORWARD-MIB::ipCidrRouteNextHop.0.0.0.0.0.0.0.0.0.192.168.10.1 = IpAddress: 192.168.10.1</span><br><span class="line">IP-FORWARD-MIB::ipCidrRouteNextHop.172.17.0.0.255.255.0.0.0.0.0.0.0 = IpAddress: 0.0.0.0</span><br><span class="line">IP-FORWARD-MIB::ipCidrRouteNextHop.192.168.10.0.255.255.255.0.0.0.0.0.0 = IpAddress: 0.0.0.0</span><br><span class="line">IP-FORWARD-MIB::ipCidrRouteIfIndex.0.0.0.0.0.0.0.0.0.192.168.10.1 = INTEGER: 2</span><br><span class="line">IP-FORWARD-MIB::ipCidrRouteIfIndex.172.17.0.0.255.255.0.0.0.0.0.0.0 = INTEGER: 5</span><br><span class="line">IP-FORWARD-MIB::ipCidrRouteIfIndex.192.168.10.0.255.255.255.0.0.0.0.0.0 = INTEGER: 2</span><br></pre></td></tr></table></figure>
+
+<p>可以看到我们顺利的取到了服务器的snmp数据。</p>
+<h2 id="4-2Win7-Manager"><a href="#4-2Win7-Manager" class="headerlink" title="4.2Win7(Manager):"></a>4.2Win7(Manager):</h2><h3 id="4-2-1MIB-Browser配置"><a href="#4-2-1MIB-Browser配置" class="headerlink" title="4.2.1MIB Browser配置"></a>4.2.1MIB Browser配置</h3><p><img src="https://i.loli.net/2020/06/13/3mjMEeig6dNZSht.png" alt="image-20200613093819436"></p>
+<p>如上图所示：在1中输入agent ip，在2中选择v3并添加v3用户，点击3进行连接。</p>
+<p>2中操作如下：</p>
+<p><img src="https://i.loli.net/2020/06/13/rhpVedP8By5EQg9.png" alt="image-20200613094154210"></p>
+<p>选择SNMP版本为v3后 ，点击AddUser进行添加v3用户界面，具体如下：</p>
+<p><img src="https://i.loli.net/2020/06/13/2SieXxfhGp69WTF.png" alt="image-20200613094334060"></p>
+<p>根据在Centos7中添加的用户信息进行填写，Authentication Protocol中选择MD5，</p>
+<p>Privacy Protocol选择DES。内容分别为auth-password、encrypt-password。</p>
+<h1 id="五、结果展示和分析"><a href="#五、结果展示和分析" class="headerlink" title="五、结果展示和分析"></a>五、结果展示和分析</h1><p>​        ==由于报文捕获分析是在实验完成几天后进行的，win7ip租约到期，路由器dhcp服务器重新对win7进行ip分配，分配结果如下：==</p>
+<p><img src="https://i.loli.net/2020/06/13/jMUAVtpe4XbkLgn.png" alt="image-20200613123132547"></p>
+<p>使用MIB  Browser连接被管理设备（centos7），结果如下图所示：</p>
+<p><img src="https://i.loli.net/2020/06/13/bXRHWgf6uSticlK.png" alt="image-20200613101300359"></p>
+<p>​        可以看到，由MIB发出<strong>Request</strong>，由Centos7返回<strong>Synchronize</strong>和<strong>Response</strong>消息。来回的信息中可以看到Authentication Protocol, Privacy Protocol以及Security Level等相关信息。</p>
+<p>​        连接Centos7的同时，在Win7上进行报文捕获，结果如下：</p>
+<p><img src="https://i.loli.net/2020/06/13/XlJqGraw2QEfPxH.png" alt="img"></p>
+<ul>
+<li><p>对Get-request报文进行分析：</p>
+<img src="/2020/06/13/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4%E5%A4%A7%E4%BD%9C%E4%B8%9A/Users\12173\Desktop\EarNmg38xSoO7nD.png" alt="image-20200613125115379">
+
+<table>
+<thead>
+<tr>
+<th>十六进制数据</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>30</td>
+<td>表示SNMP协议报文(整个报文是一个SEQUENCE)</td>
+</tr>
+<tr>
+<td>38</td>
+<td>消息长度38字节(表示后面还有38个字节的内容)</td>
+</tr>
+<tr>
+<td>02 01 03</td>
+<td>表示这个报文的协议为SNMPv3(02表示integer 01表示长度为1个字节)</td>
+</tr>
+<tr>
+<td>30</td>
+<td>表示msgGlobalData为一个Sequence</td>
+</tr>
+<tr>
+<td>0e</td>
+<td>表示该子报文的长度为14字节</td>
+</tr>
+<tr>
+<td>02 01 59</td>
+<td>表示对应的msgID：32</td>
+</tr>
+<tr>
+<td>02 03 00 ff f0</td>
+<td>表示对应msgMaxSize：65520</td>
+</tr>
+<tr>
+<td>04 01 00</td>
+<td>表示对应的是msgFlags：04</td>
+</tr>
+<tr>
+<td>02 01 03</td>
+<td>表示对应的msgSecurityModel：USM(3)</td>
+</tr>
+<tr>
+<td>04 10</td>
+<td>引擎ID</td>
+</tr>
+<tr>
+<td>30 0e</td>
+<td>表示接下来从msgAuthoritativeEngineID到msgPrivacyParameters为一个Sequence且长度为14字节</td>
+</tr>
+<tr>
+<td>04 00</td>
+<td>表示msgAuthoritativeEngineID长度为0，没有内容</td>
+</tr>
+<tr>
+<td>02 01 00</td>
+<td>表示msgAuthoritativeEngineBoots：0</td>
+</tr>
+<tr>
+<td>02 01 00</td>
+<td>表示msgAuthoritativeEngineTime：0</td>
+</tr>
+<tr>
+<td>04 00</td>
+<td>表示msgUserName为Octect String类型，长度为0，没有内容</td>
+</tr>
+<tr>
+<td>04 00</td>
+<td>表示msgAuthenticationParameters为Octect String类型，长度为0，没有内容</td>
+</tr>
+<tr>
+<td>04 00</td>
+<td>表示msgPrivacyParameters为Octect String类型，长度为0，没有内容</td>
+</tr>
+<tr>
+<td>30 11</td>
+<td>表示接下来的msgData：plaintext为一个Sequence，长度为17字节</td>
+</tr>
+<tr>
+<td>04 00</td>
+<td>表示contextEngineID为Octect String类型，长度为0，没有内容</td>
+</tr>
+<tr>
+<td>04 00</td>
+<td>表示contextName为Octect String类型，长度为0，没有内容</td>
+</tr>
+<tr>
+<td>a0</td>
+<td>表示这个PDU为Get-Request类型</td>
+</tr>
+<tr>
+<td>0b</td>
+<td>表示data的长度为11字节</td>
+</tr>
+<tr>
+<td>02 01 58</td>
+<td>表示request-id：88</td>
+</tr>
+<tr>
+<td>02 01 00</td>
+<td>表示error-status为0</td>
+</tr>
+<tr>
+<td>02 01 00</td>
+<td>表示error-index为0</td>
+</tr>
+<tr>
+<td>30 00</td>
+<td>表示variable-bindings：0 items</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>report报文</p>
+<p>对比上述对GetRequest报文的分析，可以在该报文中看到msgAuthoritativeEngineID等值不再为空，是因为Centos7设备将相关信息发送给了管理软件，如下图所示：</p>
+<p><img src="https://i.loli.net/2020/06/13/hk3zsDKZS4QRtTb.png" alt="image-20200613140623752"></p>
+<p><img src="https://i.loli.net/2020/06/13/tFgS8UVIcqx4brJ.png" alt="image-20200613141147537"></p>
+</li>
+<li><p>encryptedPDU报文内容如下：</p>
+<p><img src="https://i.loli.net/2020/06/13/Qa9lHeAzsD8Oc3W.png" alt="image-20200613134901797"></p>
+<p>表示为已经加密的PDU。</p>
+</li>
+<li><p>get操作获取设备名称</p>
+<p><img src="https://i.loli.net/2020/06/13/AatzEOP43LJVksr.png" alt="image-20200613144611730"></p>
+<p>从图中可以看到设备名为<strong>lcx-VM-centos7</strong>。</p>
+</li>
+<li><p>通过set操作更改设备名称为<strong>lcx-centos7</strong></p>
+<p><img src="https://i.loli.net/2020/06/13/TQYoxLc3SKlrRe5.png" alt="image-20200613144922792"></p>
+<p>从图中可以看到，设备名已被修改为<strong>lcx-centos7</strong></p>
+</li>
+<li><p>通过get bulk操作检索SMMP变量值</p>
+<p>此操作通常被用于检索大数据量，尤其当您的SNMP版本是V2c或V3时，检索大的表就要用到此操作。GETBULK操作会根据最大重试值执行一个连续的GETNEXT操作。非中继值决定要进行GETNEXT操作的变量列表中的变量数，对于剩下的变量，将根据最大重试值进行连续GETNEXT操作。</p>
+<ul>
+<li><p>请求部分：</p>
+<p><img src="https://i.loli.net/2020/06/13/8S7WRcEehGujr2f.png" alt="image-20200613145414187"></p>
+</li>
+<li><p>响应部分：</p>
+<p><img src="https://i.loli.net/2020/06/13/9stxUF74ZwmzqPM.png" alt="image-20200613145550590"></p>
+<p>报文对应操作如下：</p>
+<p><img src="https://i.loli.net/2020/06/13/ZSoc6Mw5UAsa9jp.png" alt="img"></p>
+<p>捕获报文文件如下：</p>
+<p>报文文件已上传至git仓库<a href="https://github.com/yym08090809/Anything/blob/master/snmp%20all.pcapng" target="_blank" rel="noopener">点击可下载</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="六、问题及解决方案"><a href="#六、问题及解决方案" class="headerlink" title="六、问题及解决方案"></a>六、问题及解决方案</h1><h2 id="问题一、两台虚拟机见无法通讯"><a href="#问题一、两台虚拟机见无法通讯" class="headerlink" title="问题一、两台虚拟机见无法通讯"></a>问题一、两台虚拟机见无法通讯</h2><p><strong>解决方案:</strong>将虚拟机网络连接方式设置为桥接模式，并关闭防火墙。使得两台机器在同一个网段的同一子网下。</p>
+<h2 id="问题二、无法添加SNMPv3用户"><a href="#问题二、无法添加SNMPv3用户" class="headerlink" title="问题二、无法添加SNMPv3用户"></a>问题二、无法添加SNMPv3用户</h2><p><strong>解决方案:</strong>根据提示snmpd服务停止后，即可添加snmpv3用户。</p>
+
+    </div>
+
+    
+    
+    
+      
+        <div class="reward-container">
+  <div>您的支持是我继续创作的动力</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="李松柏 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="李松柏 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>李松柏
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lisongbai.top/2020/06/13/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4%E5%A4%A7%E4%BD%9C%E4%B8%9A/" title="网络管理与维护大作业">http://lisongbai.top/2020/06/13/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4%E5%A4%A7%E4%BD%9C%E4%B8%9A/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/05/31/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%BB%BC%E5%90%88%E5%AE%9E%E9%AA%8C%E7%AF%87/" rel="next" title="网络安全综合实验篇">
+                  <i class="fa fa-chevron-left"></i> 网络安全综合实验篇
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-disqus">disqus</a></li>
+            <li class="tab"><a href="#comment-livere">livere</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane disqus" id="comment-disqus">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+            <div class="tab-pane livere" id="comment-livere">
+              
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzY2MC8yNDE1OA=="></div>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+      <script>
+        window.addEventListener('tabs:register', () => {
+          let activeClass = '';
+            activeClass = localStorage.getItem('comments_active') || activeClass;
+          if (activeClass) {
+            let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+            if (activeTab) {
+              activeTab.click();
+            }
+          }
+        });
+        window.addEventListener('tabs:click', event => {
+          let commentClass = event.target.classList[1];
+          localStorage.setItem('comments_active', commentClass);
+        });
+      </script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、SNMPv3工作原理"><span class="nav-number">1.</span> <span class="nav-text">一、SNMPv3工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-SNMP的组成"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 SNMP的组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-SNMP的组织结构"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 SNMP的组织结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-SNMP协议的一些操作"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 SNMP协议的一些操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-SNMPv3和之前版本的区别"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 SNMPv3和之前版本的区别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、设计思路"><span class="nav-number">2.</span> <span class="nav-text">二、设计思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、网络拓扑结构"><span class="nav-number">3.</span> <span class="nav-text">三、网络拓扑结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、实验过程"><span class="nav-number">4.</span> <span class="nav-text">四、实验过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1Centos7-Agent-："><span class="nav-number">4.1.</span> <span class="nav-text">4.1Centos7(Agent)：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1下载安装net-snmp"><span class="nav-number">4.1.1.</span> <span class="nav-text">4.1.1下载安装net-snmp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2配置SNMPv3用户"><span class="nav-number">4.1.2.</span> <span class="nav-text">4.1.2配置SNMPv3用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-3验证服务"><span class="nav-number">4.1.3.</span> <span class="nav-text">4.1.3验证服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2Win7-Manager"><span class="nav-number">4.2.</span> <span class="nav-text">4.2Win7(Manager):</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1MIB-Browser配置"><span class="nav-number">4.2.1.</span> <span class="nav-text">4.2.1MIB Browser配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、结果展示和分析"><span class="nav-number">5.</span> <span class="nav-text">五、结果展示和分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、问题及解决方案"><span class="nav-number">6.</span> <span class="nav-text">六、问题及解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题一、两台虚拟机见无法通讯"><span class="nav-number">6.1.</span> <span class="nav-text">问题一、两台虚拟机见无法通讯</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题二、无法添加SNMPv3用户"><span class="nav-number">6.2.</span> <span class="nav-text">问题二、无法添加SNMPv3用户</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="李松柏"
+    src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">李松柏</p>
+  <div class="site-description" itemprop="description">记录学习的技能和遇到的问题</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yym08090809" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;yym08090809" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:songbai0112@163.com" title="E-Mail &amp;rarr; mailto:songbai0112@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李松柏</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.2
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': '',
+            'X-LC-Key': '',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+        if (localhost.test(document.URL)) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://visitor.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "http://lisongbai.top/2020/06/13/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4%E5%A4%A7%E4%BD%9C%E4%B8%9A/",
+            identifier: "2020/06/13/网络管理与维护大作业/",
+            title: "网络管理与维护大作业"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://visitor.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
+
+<script>
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+ 
+</body>
+</html>
