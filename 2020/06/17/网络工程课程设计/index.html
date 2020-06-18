@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="一、课程设计的目的及任务网络工程课程设计是一门综合性实践课程，其包括网络工程设计和网络管理与维护的实践内容，其目的是：使学生在学习网络工程和网络管理的基础上，学习并掌握企业网及互联网工程设计、实施、管理和维护的基本知识和方法，培养学生综合运用所学的专业基础理论、基本技能和专业知识分析问题和解决工程设计问题的能力，培养学生调查研究，查阅技术文献、资料、手册，进行程序设计及编写技术文件的基本能力。">
+<meta name="keywords" content="网络工程设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络工程课程设计">
+<meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2020&#x2F;06&#x2F;17&#x2F;%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1&#x2F;index.html">
+<meta property="og:site_name" content="小李の博客">
+<meta property="og:description" content="一、课程设计的目的及任务网络工程课程设计是一门综合性实践课程，其包括网络工程设计和网络管理与维护的实践内容，其目的是：使学生在学习网络工程和网络管理的基础上，学习并掌握企业网及互联网工程设计、实施、管理和维护的基本知识和方法，培养学生综合运用所学的专业基础理论、基本技能和专业知识分析问题和解决工程设计问题的能力，培养学生调查研究，查阅技术文献、资料、手册，进行程序设计及编写技术文件的基本能力。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;17&#x2F;MJadei3sjVrgFvu.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;18&#x2F;TypJ2Edg5oMZkKe.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;18&#x2F;djis7S6U52A4k3V.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;18&#x2F;1k5tzXWjI2ohqdU.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;18&#x2F;g3SCahTpGufi1UE.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;18&#x2F;fuhrz5aXW6l4UkK.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;18&#x2F;UaGgh6zsLrFdBZ7.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;18&#x2F;BIDbj7vF2mtXOkr.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;18&#x2F;TypJ2Edg5oMZkKe.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;18&#x2F;neIwyORTNHx5p4Y.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;16&#x2F;eYyRwafv29LzCFJ.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;16&#x2F;7bMz1ApBlfdSEHc.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;16&#x2F;T2oMNG86Xr5wILW.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;16&#x2F;8OU6e1VxjuyDHm7.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;16&#x2F;qAn1YptUaRHFrLP.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;16&#x2F;Y4IUR98sBaWo5Su.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;16&#x2F;DbQxdyCL5vPEltU.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;16&#x2F;NhQq761kTlcia8e.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;16&#x2F;3Ice8vWAhPpoCO2.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;17&#x2F;igebY2qfOFyJ81I.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;17&#x2F;IXBjQ6aAMZSmh9t.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;17&#x2F;Noq3EBz6cGMklhQ.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;17&#x2F;Gsk7SRaUxf6dnJX.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;17&#x2F;SEI5OkULVhHiyjJ.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;17&#x2F;MLXForGbRWD2CgK.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;17&#x2F;2b8jyBToNMIUscR.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;17&#x2F;oij7bdWNUpSvr6g.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;17&#x2F;2l78AzI6rQqgkSM.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;17&#x2F;Ka4FzQTliIydRk1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;16&#x2F;RCn267brXeU4lEv.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;16&#x2F;io7a8QJWSdN2kOj.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;16&#x2F;LwJMf76dZ4t8DyC.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;16&#x2F;8BZLinq6XrVH7QY.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;16&#x2F;kxpV1fbLr6HdZcm.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;16&#x2F;7YbxIvFL9Jg8psr.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;16&#x2F;4PrdZ6DmenCAfg8.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;16&#x2F;9rHSfgCceAbZLaT.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;18&#x2F;WDyibS2oMpT7qBh.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;18&#x2F;2bZDsCMcUwVlHdP.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;18&#x2F;PdvjVaQBgJfDMyU.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;18&#x2F;cvUWfiwxVKg7CJz.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;18&#x2F;syIhcSJEjL6nN4G.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;18&#x2F;MmzUascDEPCFv1W.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;18&#x2F;KueRqPD7r3NIOyv.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;18&#x2F;qRjzYCBQXe4a7fS.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;18&#x2F;6aceNMUOxVp54Eb.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;18&#x2F;638eWfmHNg1CcG7.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;18&#x2F;PFB2OGcXAu79LQx.png">
+<meta property="og:updated_time" content="2020-06-18T06:34:03.019Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;17&#x2F;MJadei3sjVrgFvu.png">
+
+<link rel="canonical" href="http://lisongbai.top/2020/06/17/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>网络工程课程设计 | 小李の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="小李の博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小李の博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">我有一壶酒，足以慰平生。</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/yym08090809" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/06/17/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李松柏">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小李の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          网络工程课程设计
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-17 20:58:06" itemprop="dateCreated datePublished" datetime="2020-06-17T20:58:06+08:00">2020-06-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-18 14:34:03" itemprop="dateModified" datetime="2020-06-18T14:34:03+08:00">2020-06-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index">
+                    <span itemprop="name">网络工程设计</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index">
+                    <span itemprop="name">课程设计</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/06/17/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/" class="post-meta-item leancloud_visitors" data-flag-title="网络工程课程设计" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/06/17/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/06/17/网络工程课程设计/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="一、课程设计的目的及任务"><a href="#一、课程设计的目的及任务" class="headerlink" title="一、课程设计的目的及任务"></a>一、课程设计的目的及任务</h1><p>网络工程课程设计是一门综合性实践课程，其包括网络工程设计和网络管理与维护的实践内容，其目的是：使学生在学习网络工程和网络管理的基础上，学习并掌握企业网及互联网工程设计、实施、管理和维护的基本知识和方法，培养学生综合运用所学的专业基础理论、基本技能和专业知识分析问题和解决工程设计问题的能力，培养学生调查研究，查阅技术文献、资料、手册，进行程序设计及编写技术文件的基本能力。</p><a id="more"></a>
+<h1 id="二、课程设计的基本要求"><a href="#二、课程设计的基本要求" class="headerlink" title="二、课程设计的基本要求"></a>二、课程设计的基本要求</h1><p>要求学生在教师指导下学生独立完成设计任务，通过课程设计能够掌握网络工程和网络管理及维护的基本方法；熟悉二层交换机、三层交换机、路由器、防火墙的使用；熟悉STP（Spanning Tree Protocol）的配置、交换机端口聚合、VLAN设置、跨交换机VLAN的建立与管理、二层交换机管理地址设置、三层交换机虚接口设置、配置静态路由、配置默认路由、特定主机路由、RIP路由协议配置、OSPF路由协议配置；巩固和加深对理论课中知识的理解，综合运用所学知识完成一个小型企业网系统的设计。此外，在Windows或Linux安装基本网络服务，诸如Web、FTP、E-mail、DNS、DHCP、Telnet、AAA服务。能够通过SNMP协议对建立的网络进行管理。熟悉ASN.1编码规则；掌握在网管设备上配置SNMP Agent；SNMP协议工作原理验证与分析；RMON原理与配置；通过网管软件查询、设置MIB对象；配置Windows SNMP服务，通过Windows SNMP服务查询、设置Windows中MIB对象，用网络管理软件管理网络。</p>
+<p><strong>实验部分要求：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">VLAN设置</span><br><span class="line">跨交换机VLAN设置</span><br><span class="line">交换机端口聚合</span><br><span class="line">STP（Spanning Tree Protocol）的配置</span><br><span class="line">交换机端口聚合</span><br><span class="line">三层交换机虚接口设置</span><br><span class="line">配置静态路由、默认路由、特定主机路由</span><br><span class="line">配置动态RIP</span><br><span class="line">配置动态OSPF</span><br><span class="line">配置DHCP中继代理</span><br><span class="line">配置ACL、NAT</span><br><span class="line">配置WiFi网络</span><br><span class="line">配置防火墙</span><br><span class="line">配置Web、FTP、E-mail、DNS、Telnet、DHCP服务器</span><br><span class="line">配置AAA服务器</span><br><span class="line">配置SNMP Agent</span><br><span class="line">查询、设置MIB对象</span><br><span class="line">SNMP协议工作原理验证与分析</span><br><span class="line">RMON原理与配置</span><br><span class="line">配置Windows SNMP服务</span><br><span class="line">查询、设置Windows中MIB对象</span><br><span class="line">用网络管理软件管理网络</span><br></pre></td></tr></table></figure>
+
+<h1 id="三、实验拓扑设计"><a href="#三、实验拓扑设计" class="headerlink" title="三、实验拓扑设计"></a>三、实验拓扑设计</h1><h2 id="3-1设计思路"><a href="#3-1设计思路" class="headerlink" title="3.1设计思路"></a>3.1设计思路</h2><p>对于小型企业系统设计，以防火墙为切入点，防火墙将网络划分为三个区域：Untrust、DMZ、</p>
+<p>Trust。</p>
+<p><strong>untrust(不信任域):</strong>低级安全区域，安全优先级为5通常用来定义Internet等不安全的网</p>
+<p>络，用于网络入口线的接入。</p>
+<p><strong>dmz(隔离区):</strong>中级安全区域，安全优先级为50通常用来定义内部服务器所在网络作用是把WEB,E-</p>
+<p>mail,等允许外部访问的服务器单独接在该区端口，使整个需要保护的内部网络接在信任区端口</p>
+<p>后，不允许任何访问，实现内外网分离，达到用户需求。DMZ可以理解为一个不同于外网或内网</p>
+<p>的特殊网络区域，DMZ内通常放置一些不含机密信息的公用服务器，比如Web、Mail、FTP等。</p>
+<p>这样来自外网的访问者可以访问DMZ中的服务，但不可能接触到存放在内网中的公司机密或私人</p>
+<p>信息等，即使DMZ中服务器受到破坏，也不会对内网中的机密信息造成影响。</p>
+<p><strong>trust(信任域):</strong>高级级安全区域，安全优先级为85通常用来定义内部用户所在的网络，也可以理</p>
+<p>解为应该是防护最严密的地区。</p>
+<p>将企业的入口路由器放置防护墙的Untrust区域中，并在路由器上进行SNMP配置，方便进行管</p>
+<p>理。在DMZ区域，放置企业内网服务器，存放的服务器有FTP服务器、WEB服务器、VPN服务</p>
+<p>器。其中除了FTP服务器是在ensp中实现的外，其他服务均在linux虚拟机中实现，通过云连接至</p>
+<p>linux服务器。linux服务器中又配置了SSH（安全外壳协议）服务，可供管理员通过SSH远程登陆</p>
+<p>服务器进行修改、配置等操作。在Trust区域中，针对企业内部不同的部门 划分出多个模块 首先</p>
+<p>是IP地址的使用，针对内网多个设备的情况下使用企业私网地址，一是可以有效减少对IP地址的</p>
+<p>资金投入，二是针对部门能够有较为合理的分配模式和规划方案。其次，对于企业整体而言，内</p>
+<p>部网络的相互通信是保证企业工作效率的首要条件和要求，针对各类部门工作性质的不同，企业</p>
+<p>中不同子网的通信能力也有所区别。 所以，我们在中间核心部门中配置了DHCP服务来保证员工</p>
+<p>使用每一台设备拥有一个独立的私网IP，并采用OSPF协议使得这些设备能够进行相互通信，确保</p>
+<p>员工即使跨部门工作也不会有太多的麻烦。对于企业内部的机密部门，我们使用了更加可靠的方</p>
+<p>式来让其中的员工和设备进行工作，为保证网络供应稳定性，在拓扑中设计了冗余链路，从而出</p>
+<p>现了环路状况，为解环路所产生的广播风暴问题，在相应得到交换机上配置STP（baiSpanning </p>
+<p>Tree Protocol 生成树协议），因此，这一部分是无法和企业内部的其他部门进行直接通信的。最</p>
+<p>后考虑到企业文化，针对使用移动端工作的员工，内部网络中同样配置了WLAN，使得企业的工</p>
+<p>作形式不完全局限于传统的设备。</p>
+<h2 id="3-2拓扑图"><a href="#3-2拓扑图" class="headerlink" title="3.2拓扑图"></a>3.2拓扑图</h2><p><img src="https://i.loli.net/2020/06/17/MJadei3sjVrgFvu.png" alt="image-20200617220633273"></p>
+<h1 id="四、实验步骤、配置及测试"><a href="#四、实验步骤、配置及测试" class="headerlink" title="四、实验步骤、配置及测试"></a>四、实验步骤、配置及测试</h1><h2 id="4-1Trust区域"><a href="#4-1Trust区域" class="headerlink" title="4.1Trust区域"></a>4.1Trust区域</h2><h3 id="4-1-1-WLAN"><a href="#4-1-1-WLAN" class="headerlink" title="4.1.1 WLAN"></a>4.1.1 WLAN</h3><p>WLAN部分由一个AC，一个核心交换机及数个AP构成。其中，在核心交换机上还额外配置了动态</p>
+<p>dhcp，ospf,nat等配置，配置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">AC:</span><br><span class="line">[AC6005]int Vlanif 1</span><br><span class="line">[AC6005-Vlanif1]ip ad 10.1.15.1 24</span><br><span class="line">[AC6005]capwap source interface Vlanif 1</span><br><span class="line">[AC6005]wlan</span><br><span class="line">[AC6005-wlan-view]ap auth-mode no-auth</span><br><span class="line">[AC6005-wlan-view]ssid-profile name ssid</span><br><span class="line">[AC6005-wlan-prof-ssid]ssid huawei </span><br><span class="line">[AC6005-wlan-view]vap-profile name vap</span><br><span class="line">[AC6005-wlan-prof-vap]service-vlan vlan 100</span><br><span class="line">[AC6005-wlan-prof-vap]ssid-profile ssid</span><br><span class="line">[AC6005-wlan-view]rrm-profile name default</span><br><span class="line">[AC6005-wlan-prof-default]calibrate auto-txpower-select disable</span><br><span class="line">[AC6005-wlan-view]ap-group name default</span><br><span class="line">[AC6005-wlan-ap-group-default]radio 0</span><br><span class="line">[AC6005-wlan-group-default]vap-profile vap wlan 1</span><br><span class="line"></span><br><span class="line">LSW9:</span><br><span class="line">[S1]vlan 30</span><br><span class="line">[S1]vlan 300</span><br><span class="line">[S1]DHCP enable</span><br><span class="line">[S1]int g0/0/1</span><br><span class="line">[S1-GigabitEthernet0/0/1]port link-type trunk</span><br><span class="line">[S1-GigabitEthernet0/0/1]port trunk allow-pass vlan 300 30</span><br><span class="line">[S1]int g0/0/2</span><br><span class="line">[S1-GigabitEthernet0/0/2]port link-type trunk</span><br><span class="line">[S1-GigabitEthernet0/0/2]port trunk allow-pass vlan 300</span><br><span class="line">[S1]int g0/0/3</span><br><span class="line">[S1-GigabitEthernet0/0/3]port link-type trunk</span><br><span class="line">[S1-GigabitEthernet0/0/3]port trunk allow-pass vlan 300</span><br><span class="line">[S1]int g0/0/4</span><br><span class="line">[S1-GigabitEthernet0/0/4]port link-type trunk</span><br><span class="line">[S1-GigabitEthernet0/0/4]port trunk allow-pass vlan 300</span><br><span class="line">[S1]int Vlanif 300</span><br><span class="line">[S1-Vlanif300]ip ad 10.1.30.254 24</span><br><span class="line">[S1-Vlanif300]dhcp select interface</span><br><span class="line">[S1]int Vlanif 30</span><br><span class="line">[S1-Vlanif30]ip ad 10.1.3.10 24</span><br><span class="line">[S1-Vlanif30]dhcp select interface</span><br><span class="line">[S1]int Vlanif 1</span><br><span class="line">[S1-Vlanif1]ip ad 10.1.15.254 24</span><br><span class="line">[S1-Vlanif1]dhcp select interface</span><br><span class="line">[S1]ospf 1</span><br><span class="line">[S1-ospf-1]area 0</span><br><span class="line">[S1-ospf-1-area-0.0.0.0]net 10.1.3.0 0.0.0.255</span><br><span class="line">[S1-ospf-1-area-0.0.0.0]net 10.1.30.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-1-2-VLAN-动态DHCP-OSPF综合配置"><a href="#4-1-2-VLAN-动态DHCP-OSPF综合配置" class="headerlink" title="4.1.2 VLAN+动态DHCP+OSPF综合配置"></a>4.1.2 VLAN+动态DHCP+OSPF综合配置</h3><p>以LSW1设备所在区域为例，其余相同配置区域均与该区域类似，故后续不再赘述：</p>
+<p>首先配置VLAN，配置命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[Huawei]Vlan batch 40 401 402</span><br><span class="line">[Huawei]int vlanif 40</span><br><span class="line">[Huawei-Vlanif40]ip address 10.1.4.10 24</span><br><span class="line">[Huawei]int vlan 401</span><br><span class="line">[Huawei-Vlanif401]ip address 10.1.41.1 24</span><br><span class="line">[Huawei]int vlan 402</span><br><span class="line">[Huawei-Vlanif402]ip address 10.1.42.1 24</span><br><span class="line">[Huawei]int GigabitEthernet 0/0/1</span><br><span class="line">[Huawei-GigabitEthernet0/0/1]port link-type trunk</span><br><span class="line">[Huawei-GigabitEthernet0/0/1]port trunk allow-pass vlan 40 401 402</span><br><span class="line">[Huawei]int GigabitEthernet 0/0/2</span><br><span class="line">[Huawei-GigabitEthernet0/0/2]port link-type trunk</span><br><span class="line">[Huawei-GigabitEthernet0/0/2]port trunk allow-pass vlan 40 401 402</span><br><span class="line">[Huawei]int GigabitEthernet 0/0/3</span><br><span class="line">[Huawei-GigabitEthernet0/0/3]port link-type hybrid</span><br><span class="line">[Huawei-GigabitEthernet0/0/3]port hybrid pvid vlan 40</span><br><span class="line">[Huawei-GigabitEthernet0/0/3]port hybrid untagged vlan 40 401 402</span><br></pre></td></tr></table></figure>
+
+<p>划分地址池，配置DHCP，命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[Huawei]ip pool 401</span><br><span class="line">[Huawei-ip-pool-401]net 10.1.41.0 mask 255.255.255.0</span><br><span class="line">[Huawei-ip-pool-401]gateway-list 10.1.41.1</span><br><span class="line">[Huawei-ip-pool-401]dns-list 8.8.8.8</span><br><span class="line">[Huawei]ip pool 402</span><br><span class="line">[Huawei-ip-pool-402]net 10.1.42.0 mask 255.255.255.0</span><br><span class="line">[Huawei-ip-pool-402]gateway-list 10.1.42.1</span><br><span class="line">[Huawei-ip-pool-402]dns-list 8.8.8.8</span><br><span class="line">[Huawei-Vlanif401]Dhcp select interface</span><br><span class="line">[Huawei-Vlanif402]Dhcp select interface</span><br></pre></td></tr></table></figure>
+
+<p>最后配置ospf,配置命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[Huawei]ospf 1</span><br><span class="line">[Huawei-ospf-1]area 0</span><br><span class="line">[Huawei-ospf-1-area-0.0.0.0]Net 10.1.41.0 0.0.0.255</span><br><span class="line">[Huawei-ospf-1-area-0.0.0.0]Net 10.1.42.0 0.0.0.255</span><br><span class="line">[Huawei-ospf-1-area-0.0.0.0]Net 10.1.0.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-1-3-STP"><a href="#4-1-3-STP" class="headerlink" title="4.1.3 STP"></a>4.1.3 STP</h3><p>Stp配置命令以LSW11为例，命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[Huawei]stp enable</span><br><span class="line">[Huawei]stp mode stp</span><br><span class="line">Info: This operation may take a few seconds. Please wait for a moment...done.</span><br></pre></td></tr></table></figure>
+
+<p>设置LSW11为主root结点，命令为</p>
+<p> <code>[Huawei]stp root primary</code> </p>
+<p>设置LSW7 为备份root设备，命令为</p>
+<p><code>[Huawei]stp root secondary</code> </p>
+<p>查看各设备的stp生成树情况，命令为：<code>display stp brief</code></p>
+<p>各设备的stp协议树情况如下：</p>
+<ol>
+<li>LSW11：</li>
+</ol>
+<p><img src="https://i.loli.net/2020/06/18/TypJ2Edg5oMZkKe.png" alt="image-20200617164302532"></p>
+<p>LSW7：</p>
+<p><img src="https://i.loli.net/2020/06/18/djis7S6U52A4k3V.png" alt="image-20200617164446769"></p>
+<p>LSW12:</p>
+<p><img src="https://i.loli.net/2020/06/18/1k5tzXWjI2ohqdU.png" alt="image-20200617164708417"></p>
+<p>LSW14:</p>
+<p><img src="https://i.loli.net/2020/06/18/g3SCahTpGufi1UE.png" alt="image-20200617164721376"></p>
+<p>从上面的各交换机的端口状态可以看出stp设置成功。</p>
+<h3 id="4-1-4-链路聚合"><a href="#4-1-4-链路聚合" class="headerlink" title="4.1.4 链路聚合"></a>4.1.4 链路聚合</h3><p>链路聚合配置命令，以LSW21为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[Huawei]int Eth-Trunk 1</span><br><span class="line">[Huawei-Eth-Trunk1]bpdu enable </span><br><span class="line">[Huawei-Eth-Trunk1]mode lacp-static </span><br><span class="line">[Huawei-Eth-Trunk1]q</span><br><span class="line">[Huawei-Eth-Trunk1]port link-type trunk</span><br><span class="line">[Huawei-Eth-Trunk1]port trunk al	</span><br><span class="line">[Huawei-Eth-Trunk1]port trunk allow-pass vlan 70</span><br><span class="line">[Huawei-Eth-Trunk1]quit</span><br><span class="line">[Huawei]int GigabitEthernet 0/0/1</span><br><span class="line">[Huawei-GigabitEthernet0/0/1]eth-trunk 1</span><br><span class="line">Info: This operation may take a few seconds. Please wait for a moment...done.</span><br><span class="line">[Huawei-GigabitEthernet0/0/1]q</span><br><span class="line">[Huawei]int GigabitEthernet 0/0/2</span><br><span class="line">[Huawei-GigabitEthernet0/0/2]eth-trunk 1</span><br><span class="line">Info: This operation may take a few seconds. Please wait for a moment...done.</span><br><span class="line">[Huawei-GigabitEthernet0/0/2]q</span><br><span class="line">[Huawei]int vlanif 70</span><br><span class="line">[Huawei-Vlanif70]ip address 10.1.7.2 24</span><br></pre></td></tr></table></figure>
+
+<p>配置结果展示（LSW22ip为10.1.7.3/24）</p>
+<p><img src="https://i.loli.net/2020/06/18/fuhrz5aXW6l4UkK.png" alt="image-20200617163215700"></p>
+<p><img src="https://i.loli.net/2020/06/18/UaGgh6zsLrFdBZ7.png" alt="image-20200617163240930"></p>
+<p>ping测试：</p>
+<p><img src="https://i.loli.net/2020/06/18/BIDbj7vF2mtXOkr.png" alt="image-20200617163321995"></p>
+<h3 id="4-1-5-核心路由器配置（AR2）"><a href="#4-1-5-核心路由器配置（AR2）" class="headerlink" title="4.1.5 核心路由器配置（AR2）"></a>4.1.5 核心路由器配置（AR2）</h3><p>首先给该路由器中增加了额外接口，如下图所示：<img src="https://i.loli.net/2020/06/18/TypJ2Edg5oMZkKe.png" alt="image-20200618082032153"></p>
+<p>对于AR2的配置命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">[Huawei]int GigabitEthernet 1/0/0</span><br><span class="line">[Huawei-GigabitEthernet1/0/0]ip address 10.1.3.1 24</span><br><span class="line">[Huawei]int GigabitEthernet 0/0/1</span><br><span class="line">[Huawei-GigabitEthernet0/0/1]ip address 10.1.4.1 24</span><br><span class="line">[Huawei]int GigabitEthernet 0/0/2</span><br><span class="line">[Huawei-GigabitEthernet0/0/2]ip address 10.1.5.1 24</span><br><span class="line">[Huawei]int GigabitEthernet 0/0/0</span><br><span class="line">[Huawei-GigabitEthernet0/0/0]ip address 192.168.10.1 24</span><br><span class="line">[Huawei]int GigabitEthernet 2/0/0</span><br><span class="line">[Huawei-GigabitEthernet2/0/0]ip address 192.168.15.1 24</span><br><span class="line">[Huawei]int GigabitEthernet 4/0/0</span><br><span class="line">[Huawei-GigabitEthernet4/0/0]ip address 192.168.100.1 24</span><br><span class="line">[Huawei]ospf 1</span><br><span class="line">[Huawei-ospf-1]area 0</span><br><span class="line">[Huawei-ospf-1-area-0.0.0.0]Net 10.1.5.0 0.0.0.255</span><br><span class="line">[Huawei-ospf-1-area-0.0.0.0]Net 10.1.4.0 0.0.0.255</span><br><span class="line">[Huawei-ospf-1-area-0.0.0.0]Net 10.1.3.0 0.0.0.255</span><br><span class="line">[Huawei-ospf-1-area-0.0.0.0]Net 192.168.10.0 0.0.0.255</span><br><span class="line">[Huawei-ospf-1-area-0.0.0.0]Net 192.168.100.0 0.0.0.255</span><br><span class="line"></span><br><span class="line">[Huawei]nat address-group 1 192.168.10.10 192.168.10.30</span><br><span class="line">[Huawei]acl 2001</span><br><span class="line">[Huawei-acl-basic-2001]rule 5 permit <span class="built_in">source</span> 10.1.0.0 0.0.255.255</span><br><span class="line">[Huawei]int GigabitEthernet 0/0/0</span><br><span class="line">[Huawei-GigabitEthernet0/0/0]nat outbound 2001 address-group 1 no-pat</span><br><span class="line">[Huawei]telnet server <span class="built_in">enable</span> </span><br><span class="line">[Huawei]user-interface vty 0 4</span><br><span class="line">[Huawei-ui-vty0-4]authentication-mode password</span><br><span class="line">Please configure the login password (maximum length 16):huawei123</span><br><span class="line">[Huawei-ui-vty0-4]user privilege level 3</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-1-6-telnet"><a href="#4-1-6-telnet" class="headerlink" title="4.1.6 telnet"></a>4.1.6 telnet</h3><p>首先配置AR1，配置命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[Huawei]int GigabitEthernet 0/0/0</span><br><span class="line">[Huawei-GigabitEthernet0/0/0]ip address 192.168.15.2 24</span><br></pre></td></tr></table></figure>
+
+<p>由于在核心交换机AR2已经配置了telnet，这里直接展示操作。</p>
+<p><img src="https://i.loli.net/2020/06/18/neIwyORTNHx5p4Y.png" alt></p>
+<h3 id="4-1-7-防火墙配置"><a href="#4-1-7-防火墙配置" class="headerlink" title="4.1.7 防火墙配置"></a>4.1.7 防火墙配置</h3><p>配置命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">[SRG]firewall zone trust</span><br><span class="line">[SRG-zone-trust]add int g0/0/1 (g0/0/0端口默认为Trust区域)</span><br><span class="line">[SRG]firewall zone untrust</span><br><span class="line">[SRG-zone-untrust]add int g0/0/2</span><br><span class="line">[SRG]firewall zone dmz</span><br><span class="line">[SRG-zone-dmz]add int g0/0/3</span><br><span class="line">[SRG-zone-dmz]add int g0/0/4</span><br><span class="line"></span><br><span class="line">[SRG]int GigabitEthernet0/0/1</span><br><span class="line">[SRG-GigabitEthernet0/0/1]ip address 192.168.10.100 24</span><br><span class="line">[SRG]int GigabitEthernet0/0/2</span><br><span class="line">[SRG-GigabitEthernet0/0/2]ip address 192.168.40.1 24</span><br><span class="line">[SRG]int GigabitEthernet0/0/3</span><br><span class="line">[SRG-GigabitEthernet0/0/3]ip address 192.168.30.1 24</span><br><span class="line">[SRG]int GigabitEthernet0/0/4</span><br><span class="line">[SRG-GigabitEthernet0/0/3]ip address 192.168.20.1 24</span><br><span class="line"></span><br><span class="line">[SRG]firewall packet-filter default permit interzone trust dmz direction outbound</span><br><span class="line">[SRG]policy interzone trust dmz outbound</span><br><span class="line">[SRG-policy-interzone-trust-dmz-outbound]policy 1</span><br><span class="line">[SRG-policy-interzone-trust-dmz-outbound-1]policy source 192.168.10.0 mask 255.255.255.0</span><br><span class="line">[SRG-policy-interzone-trust-dmz-outbound-1]action permit</span><br><span class="line"></span><br><span class="line">[SRG]ospf 1</span><br><span class="line">[SRG-ospf-1]area 0</span><br><span class="line">[SRG-ospf-1-area-0.0.0.0]Net 192.168.10.0 0.0.0.255</span><br><span class="line">[SRG-ospf-1-area-0.0.0.0]Net 192.168.20.0 0.0.0.255</span><br><span class="line">[SRG-ospf-1-area-0.0.0.0]Net 192.168.30.0 0.0.0.255</span><br><span class="line">[SRG-ospf-1-area-0.0.0.0]Net 192.168.40.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-2DMZ区域"><a href="#4-2DMZ区域" class="headerlink" title="4.2DMZ区域"></a>4.2DMZ区域</h2><h3 id="4-2-1FTP服务器"><a href="#4-2-1FTP服务器" class="headerlink" title="4.2.1FTP服务器"></a>4.2.1FTP服务器</h3><p>由于在本机上使用ftp+内网穿透技术实现的网络硬盘共享服务，在此直接将ftp服务提供给ensp。</p>
+<p>服务为win10提供，服务端配置：</p>
+<p><img src="https://i.loli.net/2020/06/16/eYyRwafv29LzCFJ.png" alt="image-20200616155309043"></p>
+<p>ensp中连接如下：</p>
+<p><img src="https://i.loli.net/2020/06/16/7bMz1ApBlfdSEHc.png" alt="image-20200616155420223"></p>
+<h3 id="4-2-2linux服务器"><a href="#4-2-2linux服务器" class="headerlink" title="4.2.2linux服务器"></a>4.2.2linux服务器</h3><h4 id="4-2-2-1准备工作"><a href="#4-2-2-1准备工作" class="headerlink" title="4.2.2.1准备工作"></a>4.2.2.1准备工作</h4><h5 id="1-在虚拟机中安装老师提供的ubuntu-20-04-mate系统当作DMZ去的服务器。"><a href="#1-在虚拟机中安装老师提供的ubuntu-20-04-mate系统当作DMZ去的服务器。" class="headerlink" title="1. 在虚拟机中安装老师提供的ubuntu-20.04-mate系统当作DMZ去的服务器。"></a>1. 在虚拟机中安装老师提供的ubuntu-20.04-mate系统当作DMZ去的服务器。</h5><h5 id="2-换源"><a href="#2-换源" class="headerlink" title="2.换源"></a>2.换源</h5><p>在设置中选择系统设置，找到Software Updater，点击进入，再点击Settings按钮，</p>
+<p><img src="https://i.loli.net/2020/06/16/T2oMNG86Xr5wILW.png" alt="image-20200616092916772"></p>
+<p><img src="https://i.loli.net/2020/06/16/8OU6e1VxjuyDHm7.png" alt="image-20200616093031282"></p>
+<p><img src="https://i.loli.net/2020/06/16/qAn1YptUaRHFrLP.png" alt="image-20200616093227130"></p>
+<p><img src="https://i.loli.net/2020/06/16/Y4IUR98sBaWo5Su.png" alt="image-20200616093307249"></p>
+<p>选择Reload重新加载源。</p>
+<p>在终端输入如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get upgrade</span><br></pre></td></tr></table></figure>
+
+<p>更新源和软件。</p>
+<h5 id="3-连通性"><a href="#3-连通性" class="headerlink" title="3.连通性"></a>3.连通性</h5><p><strong>关闭防火墙，测试网路连通性。</strong></p>
+<p>关闭命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw <span class="built_in">disable</span> //关闭防火墙</span><br><span class="line">sudo ufw status  //查看防护墙状态</span><br></pre></td></tr></table></figure>
+
+<p>win7也需要关闭防护墙。</p>
+<p>测试连通性：</p>
+<p><img src="https://i.loli.net/2020/06/16/DbQxdyCL5vPEltU.png" alt="image-20200616094011730"></p>
+<h5 id="4-搭建web服务器"><a href="#4-搭建web服务器" class="headerlink" title="4.搭建web服务器"></a>4.搭建web服务器</h5><p><strong>安装nginx服务器</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br></pre></td></tr></table></figure>
+
+<p><strong>调整防火墙（也可以将防火墙直接关闭，在这里推荐将防火墙开启，对相应服务进行放行，配置如下）</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw app list</span><br><span class="line">  CUPS</span><br><span class="line">  Nginx Full</span><br><span class="line">  Nginx HTTP</span><br><span class="line">  Nginx HTTPS</span><br></pre></td></tr></table></figure>
+
+<p>正如你所看到的，Nginx有三个配置文件可用：Nginx Full、Nginx HTTP、Nginx HTTPS</p>
+<p>Nginx Full ：此配置文件打开端口80（正常，未加密的网络流量）和端口443（TLS / SSL加密流量）</p>
+<p>Nginx HTTP ：此配置文件仅打开端口80（正常，未加密的网络流量）</p>
+<p>Nginx HTTPS ：此配置文件仅打开端口443（TLS / SSL加密流量）</p>
+<p>输入以下命令以查看防火墙状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw status</span><br></pre></td></tr></table></figure>
+
+<p>可以看到允许通过的服务有哪些：</p>
+<p><img src="https://i.loli.net/2020/06/16/NhQq761kTlcia8e.png" alt="image-20200616154638847"></p>
+<p>Ubuntu 20.04上的Nginx默认启用了一个服务器模块，该模块被配置为在<code>/var/www/html</code>目录下提供文档。将写好的项目复制至/var/www/html目录下。</p>
+<p><strong>测试：在浏览器中输入<a href="http://192.168.10.121" target="_blank" rel="noopener">http://192.168.10.121</a></strong></p>
+<p><img src="https://i.loli.net/2020/06/16/3Ice8vWAhPpoCO2.png" alt="image-20200616154344810"></p>
+<h5 id="5-搭建VPN服务器（PPTP）"><a href="#5-搭建VPN服务器（PPTP）" class="headerlink" title="5.搭建VPN服务器（PPTP）"></a>5.搭建VPN服务器（PPTP）</h5><h6 id="5-1安装PPTPD"><a href="#5-1安装PPTPD" class="headerlink" title="5.1安装PPTPD"></a>5.1安装PPTPD</h6><p>第一步当然是安装这个软件包了。（下面所有的代码，如果需要修改的，我会特别标记出来的，其他都表示可以直接复制）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install pptpd</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/06/17/igebY2qfOFyJ81I.png" alt="image-20200617100516932"></p>
+<h6 id="5-2编辑PPTPD-CONF文件"><a href="#5-2编辑PPTPD-CONF文件" class="headerlink" title="5.2编辑PPTPD.CONF文件"></a>5.2编辑PPTPD.CONF文件</h6><p>打开这个文件并进入编辑模式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/pptpd.conf</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/06/17/IXBjQ6aAMZSmh9t.png" alt="image-20200617102931169"></p>
+<p>localip:表示PPTP服务地址及本机IP。</p>
+<p>remoteip：当客户机通过pptp连接到vpn后所能拿到的ip地址范围，默认从第一个开始分配给客户</p>
+<h6 id="5-3修改CHAP-SECRETS文件，添加可以登录的用户"><a href="#5-3修改CHAP-SECRETS文件，添加可以登录的用户" class="headerlink" title="5.3修改CHAP-SECRETS文件，添加可以登录的用户"></a>5.3修改CHAP-SECRETS文件，添加可以登录的用户</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/ppp/chap-secrets</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/06/17/Noq3EBz6cGMklhQ.png" alt="image-20200617101228399"></p>
+<p>client：连接用户名<br>server：连接的服务<br>secret：连接密码<br>IP addresses：可连接的IP，*表示所有</p>
+<h6 id="5-4修改远程连接用户的DNS"><a href="#5-4修改远程连接用户的DNS" class="headerlink" title="5.4修改远程连接用户的DNS"></a>5.4修改远程连接用户的DNS</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/ppp/pptpd-options</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/06/17/Gsk7SRaUxf6dnJX.png" alt="image-20200617101414509"></p>
+<h6 id="5-5开启网络转发功能"><a href="#5-5开启网络转发功能" class="headerlink" title="5.5开启网络转发功能"></a>5.5开启网络转发功能</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/sysctil.conf</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/06/17/SEI5OkULVhHiyjJ.png" alt="image-20200617101751708"></p>
+<p>去掉两行对应的注释，提供ipv4和ipv6的转发功能。</p>
+<p>更新配置命令如下：</p>
+<p><img src="https://i.loli.net/2020/06/17/MLXForGbRWD2CgK.png" alt="image-20200617102036260"></p>
+<h6 id="5-6配置iptables"><a href="#5-6配置iptables" class="headerlink" title="5.6配置iptables"></a>5.6配置iptables</h6><p><strong>开启gre协议</strong></p>
+<p>输入下面的指令，开启gre协议，并打开服务器47,1723号端口。</p>
+<p>使用VPN需要开启gre协议，而gre协议需要使用服务器的47和1723号端口。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo iptables -A INPUT -p gre -j ACCEPT </span><br><span class="line">sudo iptables -A INPUT -p tcp --dport 1723 -j ACCEPT   </span><br><span class="line">sudo iptables -A INPUT -p tcp --dport 47 -j ACCEPT</span><br></pre></td></tr></table></figure>
+
+<p><strong>开启NAT转发</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo iptables -t nat -A POSTROUTING -s 192.168.10.121/24 -o ens33 -j MASQUERADE</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong></p>
+<p>上面指令中ip要填写部署pptp步骤中第1.2步中设置的localip，也就是虚拟vpn的主机的ip。</p>
+<p>ens33表示当前服务器的网卡，这里不同机器可能不一样，可以通过ifconfig指令进行查询，之后</p>
+<p>修改成对应的设备名称即可。</p>
+<p>POSTROUTING参数表示，指定当数据包离开服务器的时候，对数据包进行处理。</p>
+<p>MASQUERADE这个参数的意思就是即将从服务器封包出去(-o)的那块网卡上的IP，由于实验室的</p>
+<p>服务器是固定ip，所以这里修改成服务器的虚拟ip也是可以的。</p>
+<p>通过上面的指令，iptables做了这样一件事情：将所有从服务器上传出的源地址为10.1.1.1-255之</p>
+<p>中的ip数据包的源ip改成服务器的ip。如果不做这个操作，服务器通过VPN传回的数据包将不包</p>
+<p>含服务器自己的源ip，所以远程访问主机的回复ip包会丢失。</p>
+<h6 id="5-7重启PPTP服务并查看状态"><a href="#5-7重启PPTP服务并查看状态" class="headerlink" title="5.7重启PPTP服务并查看状态"></a>5.7重启PPTP服务并查看状态</h6><p><img src="https://i.loli.net/2020/06/17/2b8jyBToNMIUscR.png" alt="image-20200617103114973"></p>
+<h6 id="5-8配置客户端，连接"><a href="#5-8配置客户端，连接" class="headerlink" title="5.8配置客户端，连接"></a>5.8配置客户端，连接</h6><p><img src="https://i.loli.net/2020/06/17/oij7bdWNUpSvr6g.png" alt="image-20200617110012250"></p>
+<h6 id="5-9进行连接测试"><a href="#5-9进行连接测试" class="headerlink" title="5.9进行连接测试"></a>5.9进行连接测试</h6><p><img src="https://i.loli.net/2020/06/17/2l78AzI6rQqgkSM.jpg" alt="img"></p>
+<p>连接成功之后查看一下获取到的IP地址</p>
+<p><img src="https://i.loli.net/2020/06/17/Ka4FzQTliIydRk1.png" alt="image-20200617235356285"></p>
+<h5 id="6-SSH（安全外壳协议）服务器"><a href="#6-SSH（安全外壳协议）服务器" class="headerlink" title="6.SSH（安全外壳协议）服务器"></a>6.SSH（安全外壳协议）服务器</h5><p> <strong>使用apt工具下载并安装openssh-server</strong></p>
+<p>输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install openssh-server</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/06/16/RCn267brXeU4lEv.png" alt="image-20200616161058823"></p>
+<p>等待安装结束即可。然后再次查看服务有没有启动，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ps -e | grep ssh</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="https://i.loli.net/2020/06/16/io7a8QJWSdN2kOj.png" alt="image-20200616161259612"></p>
+<p>再次确认或者没有图中的结果，使用如下命令来启动：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/ssh status</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/06/16/LwJMf76dZ4t8DyC.png" alt="image-20200616161426284"></p>
+<p>ssh服务端已经开启，在xshell中进行远程登陆测试。</p>
+<p><img src="https://i.loli.net/2020/06/16/8BZLinq6XrVH7QY.png" alt="image-20200616161545290"></p>
+<p>在主机栏填入开启ssh服务端的主机ip，点击确定进入如下界面：</p>
+<p><img src="https://i.loli.net/2020/06/16/kxpV1fbLr6HdZcm.png" alt="image-20200616161709692"></p>
+<p>这是密钥和算法协商阶段：</p>
+<p>客户请求连接-服务器将对应公钥、生成会话ID发给客户端、客户端生成会话密钥，并将会话密钥</p>
+<p>与会话ID进行xor逻辑运算后的值，使用服务器公钥加密发送给服务器、服务器采用私钥解密</p>
+<p>后，通过xor运算得到会话密钥-之后所有传输都会被会话密钥加密与解密。</p>
+<p>点击接受并保存后，进入认证阶段：</p>
+<p>password认证-输入用户名与密码，服务器验证是否合法。</p>
+<p>publickey认证-数字签名认证，客户端发送用户名、公共密钥、公共密钥算法的publickey认证请</p>
+<p>求给服务器端，服务器验证是否合法。使用ssh-keygen程序生成公钥 id_dsa.pub 和私钥 </p>
+<p>id_dsa。</p>
+<p><img src="https://i.loli.net/2020/06/16/7YbxIvFL9Jg8psr.png" alt="image-20200616161924769"></p>
+<p><img src="https://i.loli.net/2020/06/16/4PrdZ6DmenCAfg8.png" alt="image-20200616161949478"></p>
+<p>输入正确的用户名密码后，xshell界面如下：</p>
+<p><img src="https://i.loli.net/2020/06/16/9rHSfgCceAbZLaT.png" alt="image-20200616162022133"></p>
+<h2 id="4-3Untrust区域"><a href="#4-3Untrust区域" class="headerlink" title="4.3Untrust区域"></a>4.3Untrust区域</h2><h3 id="4-3-1-SNMP"><a href="#4-3-1-SNMP" class="headerlink" title="4.3.1 SNMP"></a>4.3.1 SNMP</h3><h4 id="4-3-1-1-ensp端"><a href="#4-3-1-1-ensp端" class="headerlink" title="4.3.1.1 ensp端"></a>4.3.1.1 ensp端</h4><p>在AR3处配置<strong>snmp-agent,</strong>设置读团体字为<strong>public</strong>，写团体字为<strong>private</strong>，配置命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[Huawei]snmp  </span><br><span class="line">[Huawei]snmp-agent </span><br><span class="line">[Huawei]snmp-agent sys-info version v1 </span><br><span class="line">[Huawei]snmp-agent community <span class="built_in">read</span> public</span><br><span class="line">[Huawei]snmp-agent community write private</span><br><span class="line">[Huawei]snmp-agent sys-info contact this_is_a_test_string. </span><br><span class="line">[Huawei]int GigabitEthernet 0/0/2 </span><br><span class="line">[Huawei-GigabitEthernet0/0/2]ip address 192.168.56.10 24</span><br></pre></td></tr></table></figure>
+
+<p>AR3配置完成后，将AR3与云连接，而云通过与Windows主机的Mib Browser连接从而实现设备</p>
+<p>管理，云的相关配置如下：</p>
+<p><img src="https://i.loli.net/2020/06/18/WDyibS2oMpT7qBh.png" alt="云设置"></p>
+<h4 id="4-3-1-2-Windows端"><a href="#4-3-1-2-Windows端" class="headerlink" title="4.3.1.2 Windows端"></a>4.3.1.2 Windows端</h4><p>在Windows端打开Mib Browser，进行IP，SNMPv1相关配置。</p>
+<p><img src="https://i.loli.net/2020/06/18/2bZDsCMcUwVlHdP.png" alt="配置"></p>
+<p>如上图所示，配置读团体字为<strong>public</strong>，写团体字为<strong>private</strong>，与ensp中保持一致，然后连接，出</p>
+<p>现下图界面，从图中可以看到，连接成功。</p>
+<p><img src="https://i.loli.net/2020/06/18/PdvjVaQBgJfDMyU.png" alt="连接成功"></p>
+<p>为了测试连接的正确性，这里进行了set测试，测试过程如下：</p>
+<p><img src="https://i.loli.net/2020/06/18/cvUWfiwxVKg7CJz.png" alt="Set操作"></p>
+<p>在发送set请求后，可以得到Mib Browser返回的Set响应，如下：</p>
+<p><img src="https://i.loli.net/2020/06/18/syIhcSJEjL6nN4G.png" alt="Set响应"></p>
+<p>然后我们打开ensp中，mib所管理的设备可以看到，set设置成功。</p>
+<p><img src="https://i.loli.net/2020/06/18/MmzUascDEPCFv1W.png" alt="Set结果"></p>
+<h4 id="4-3-1-3-SNMPv1报文分析"><a href="#4-3-1-3-SNMPv1报文分析" class="headerlink" title="4.3.1.3 SNMPv1报文分析"></a>4.3.1.3 SNMPv1报文分析</h4><ul>
+<li><p>报文交互过程</p>
+<p>SNMP 报文在管理站和代理之间传送。 </p>
+<p>管理站主动发出 GetRequest、GetNextRequest 和 SetRequest 类型的报文，代理以 GetResponse 报文响应。 </p>
+<p>代理则主动发出 Trap 报文给管理站，不需要应答。 </p>
+<p>一般来说，管理站可连续发出多个请求报文，然后等待代理返回应答报文。如果在规定的时</p>
+<p>间内收到应答，则按照请求标识进行配对。</p>
+</li>
+</ul>
+<p><img src="https://i.loli.net/2020/06/18/KueRqPD7r3NIOyv.png" alt="image-20200617230804937"></p>
+<p>报文解码分析</p>
+<p>用ASN.l表示的变量必须转换为串行的字节流才能在网络中传输，转换用ASN.l描述的数据机读代</p>
+<p>码的算法有多种，一般使用基本编码规则BER，BER在ISO 8825/X标准中进行了定义。</p>
+<p>SNMP 的报文是用 BER 方式编码的 BER 编码后生成的结构为类型-长度-值三元组， 简称 </p>
+<p>TLV（Type, Length, Value），TLV 每个域都是一系列八位组，T 字段表达数 据的类型信息，L 字</p>
+<p>段是值的长度，V 字段包含实际的数据，值部分还可以递归地再编码为 TLV 结构，如下图所示：</p>
+<p><img src="https://i.loli.net/2020/06/18/qRjzYCBQXe4a7fS.png" alt="image-20200617231028312"></p>
+<p>不同SNMP报文具有不同的PDU格式，接下来给出各PDU的格式，如下图所示：</p>
+<p><img src="https://i.loli.net/2020/06/18/6aceNMUOxVp54Eb.png" alt="image-20200617231051639"></p>
+<ul>
+<li>set </li>
+</ul>
+<p><img src="https://i.loli.net/2020/06/18/638eWfmHNg1CcG7.png" alt="img"></p>
+<p>分析如下表：</p>
+<table>
+<thead>
+<tr>
+<th>十六进制数据</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>30</td>
+<td>T  表示 SEQUENCE类型（即SNMP报文整体为SEQUENCE类型）</td>
+</tr>
+<tr>
+<td>33</td>
+<td>L  表示 后面总共有3*16+3= 51 个字节的内容</td>
+</tr>
+<tr>
+<td>02 01 00</td>
+<td>T L V  int型长度为1 ，值为0。对应到SNMPv1中可知，这里是代表version为1</td>
+</tr>
+<tr>
+<td>04 07 70 72 69 76 61 74 65</td>
+<td>TLV : OCTETSTRING 7 priavte。对应写团体字private</td>
+</tr>
+<tr>
+<td>A3 25</td>
+<td>T L : PDU Type –set (PDU的 type为 Set(3), 38字节)</td>
+</tr>
+<tr>
+<td>02 01 04</td>
+<td>T L V：int型长度为1 ，值为4，代表Request id为 4</td>
+</tr>
+<tr>
+<td>02 01 00</td>
+<td>T L V：int型长度为1 ，值为0，代表Error ststus 0</td>
+</tr>
+<tr>
+<td>02 01 00</td>
+<td>T L V：int型长度为1 ，值为0，代表Error index 0</td>
+</tr>
+<tr>
+<td>30 1A</td>
+<td>T L SEQUENCE 26字节 (代表Variable bindings )</td>
+</tr>
+<tr>
+<td>30 18</td>
+<td>T L SEQUENCE 24字节</td>
+</tr>
+<tr>
+<td>06 08 2B 06 01 02 01 01 05 00</td>
+<td>T L V：ObjectID 1.3.4.1.2.1.1.5.0</td>
+</tr>
+<tr>
+<td>04 0C 53 4E 4D 50 5F 43 6F 6E 74 6F 72 6C</td>
+<td>T L V : OCTET STRING SNMP_Contorl</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>Set—response</p>
+<p><img src="https://i.loli.net/2020/06/18/PFB2OGcXAu79LQx.png" alt="image-20200618004937128"></p>
+<table>
+<thead>
+<tr>
+<th>十六进制数据</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>30</td>
+<td>T  表示 SEQUENCE类型（即SNMP报文整体为SEQUENCE类型）</td>
+</tr>
+<tr>
+<td>33</td>
+<td>L  表示 后面总共有3*16+3= 51 个字节的内容</td>
+</tr>
+<tr>
+<td>02 01 00</td>
+<td>T L V  int型长度为1 ，值为0。对应到SNMPv1中可知，这里是代表version为1</td>
+</tr>
+<tr>
+<td>04 07 70 72 69 76 61 74 65</td>
+<td>TLV : OCTETSTRING 7 priavte。对应写团体字private</td>
+</tr>
+<tr>
+<td>A2 25</td>
+<td>T L : PDU Type –set-response (PDU的 type为 Set(2), 38字节)</td>
+</tr>
+<tr>
+<td>02 01 04</td>
+<td>T L V：int型长度为1 ，值为4，代表Request id为 4</td>
+</tr>
+<tr>
+<td>02 01 00</td>
+<td>T L V：int型长度为1 ，值为0，代表Error ststus 0</td>
+</tr>
+<tr>
+<td>02 01 00</td>
+<td>T L V：int型长度为1 ，值为0，代表Error index 0</td>
+</tr>
+<tr>
+<td>30 1A</td>
+<td>T L SEQUENCE 26字节 (代表Variable bindings )</td>
+</tr>
+<tr>
+<td>30 18</td>
+<td>T L SEQUENCE 24字节</td>
+</tr>
+<tr>
+<td>06 08 2B 06 01 02 01 01 05 00</td>
+<td>T L V：ObjectID 1.3.4.1.2.1.1.5.0</td>
+</tr>
+<tr>
+<td>04 0C 53 4E 4D 50 5F 43 6F 6E 74 6F 72 6C</td>
+<td>T L V : OCTET STRING SNMP_Contorl</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h1 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h1><p>通过这次课程设计使我充分的理解和运用了网络规划、配置与维护的相关知识，特别是对网络协</p>
+<p>议的配置有了极深的了解，学会了综合性的看待问题与解决网络规划设计问题。</p>
+<p>通过一周来的学习，我学到了不少的知识！学到了如何将课程中学到的零零散散的知识、协议汇</p>
+<p>总起来，也深刻体会到网络拓扑设计和协议的合理配置对于一个网络是否完善、健壮起着决定性</p>
+<p>作用。在学习的过程中有失败，也有困惑，有成功，也有喜悦。虽然只是课程设计，但我拿出了</p>
+<p>自己的全部精力去对待，能学到知识固然值得骄傲，能认识到自己的过错和不足也是一件幸事，</p>
+<p>我想这就是我学习这门课的最大感受吧。</p>
+<p>由于本人精力和时间有限，本课程设计中或多或少会存在一些缺点，所设计的网络难免存在一些</p>
+<p>不足，还恳请各位老师和同学给与批评和指正。</p>
+<p>最后，感谢我那坚强且饱受VMare Workstation、ensp摧残的笔记本，感谢全力燃烧的CPU和近</p>
+<p>乎拉满的内存。感谢高抬贵手。</p>
+<hr>
+<p>==本次课设由彭晨希、丁磊、李松柏共同完成。==</p>
+
+    </div>
+
+    
+    
+    
+      
+        <div class="reward-container">
+  <div>您的支持是我继续创作的动力</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="李松柏 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="李松柏 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>李松柏
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lisongbai.top/2020/06/17/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/" title="网络工程课程设计">http://lisongbai.top/2020/06/17/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/" rel="tag"># 网络工程设计</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/06/13/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4%E5%A4%A7%E4%BD%9C%E4%B8%9A/" rel="next" title="网络管理与维护大作业">
+                  <i class="fa fa-chevron-left"></i> 网络管理与维护大作业
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-disqus">disqus</a></li>
+            <li class="tab"><a href="#comment-livere">livere</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane disqus" id="comment-disqus">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+            <div class="tab-pane livere" id="comment-livere">
+              
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzY2MC8yNDE1OA=="></div>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+      <script>
+        window.addEventListener('tabs:register', () => {
+          let activeClass = '';
+            activeClass = localStorage.getItem('comments_active') || activeClass;
+          if (activeClass) {
+            let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+            if (activeTab) {
+              activeTab.click();
+            }
+          }
+        });
+        window.addEventListener('tabs:click', event => {
+          let commentClass = event.target.classList[1];
+          localStorage.setItem('comments_active', commentClass);
+        });
+      </script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、课程设计的目的及任务"><span class="nav-number">1.</span> <span class="nav-text">一、课程设计的目的及任务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、课程设计的基本要求"><span class="nav-number">2.</span> <span class="nav-text">二、课程设计的基本要求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、实验拓扑设计"><span class="nav-number">3.</span> <span class="nav-text">三、实验拓扑设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1设计思路"><span class="nav-number">3.1.</span> <span class="nav-text">3.1设计思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2拓扑图"><span class="nav-number">3.2.</span> <span class="nav-text">3.2拓扑图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、实验步骤、配置及测试"><span class="nav-number">4.</span> <span class="nav-text">四、实验步骤、配置及测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1Trust区域"><span class="nav-number">4.1.</span> <span class="nav-text">4.1Trust区域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-WLAN"><span class="nav-number">4.1.1.</span> <span class="nav-text">4.1.1 WLAN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-VLAN-动态DHCP-OSPF综合配置"><span class="nav-number">4.1.2.</span> <span class="nav-text">4.1.2 VLAN+动态DHCP+OSPF综合配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-3-STP"><span class="nav-number">4.1.3.</span> <span class="nav-text">4.1.3 STP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-4-链路聚合"><span class="nav-number">4.1.4.</span> <span class="nav-text">4.1.4 链路聚合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-5-核心路由器配置（AR2）"><span class="nav-number">4.1.5.</span> <span class="nav-text">4.1.5 核心路由器配置（AR2）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-6-telnet"><span class="nav-number">4.1.6.</span> <span class="nav-text">4.1.6 telnet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-7-防火墙配置"><span class="nav-number">4.1.7.</span> <span class="nav-text">4.1.7 防火墙配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2DMZ区域"><span class="nav-number">4.2.</span> <span class="nav-text">4.2DMZ区域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1FTP服务器"><span class="nav-number">4.2.1.</span> <span class="nav-text">4.2.1FTP服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2linux服务器"><span class="nav-number">4.2.2.</span> <span class="nav-text">4.2.2linux服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-2-1准备工作"><span class="nav-number">4.2.2.1.</span> <span class="nav-text">4.2.2.1准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-在虚拟机中安装老师提供的ubuntu-20-04-mate系统当作DMZ去的服务器。"><span class="nav-number">4.2.2.1.1.</span> <span class="nav-text">1. 在虚拟机中安装老师提供的ubuntu-20.04-mate系统当作DMZ去的服务器。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-换源"><span class="nav-number">4.2.2.1.2.</span> <span class="nav-text">2.换源</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-连通性"><span class="nav-number">4.2.2.1.3.</span> <span class="nav-text">3.连通性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-搭建web服务器"><span class="nav-number">4.2.2.1.4.</span> <span class="nav-text">4.搭建web服务器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-搭建VPN服务器（PPTP）"><span class="nav-number">4.2.2.1.5.</span> <span class="nav-text">5.搭建VPN服务器（PPTP）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#5-1安装PPTPD"><span class="nav-number">4.2.2.1.5.1.</span> <span class="nav-text">5.1安装PPTPD</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-2编辑PPTPD-CONF文件"><span class="nav-number">4.2.2.1.5.2.</span> <span class="nav-text">5.2编辑PPTPD.CONF文件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-3修改CHAP-SECRETS文件，添加可以登录的用户"><span class="nav-number">4.2.2.1.5.3.</span> <span class="nav-text">5.3修改CHAP-SECRETS文件，添加可以登录的用户</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-4修改远程连接用户的DNS"><span class="nav-number">4.2.2.1.5.4.</span> <span class="nav-text">5.4修改远程连接用户的DNS</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-5开启网络转发功能"><span class="nav-number">4.2.2.1.5.5.</span> <span class="nav-text">5.5开启网络转发功能</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-6配置iptables"><span class="nav-number">4.2.2.1.5.6.</span> <span class="nav-text">5.6配置iptables</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-7重启PPTP服务并查看状态"><span class="nav-number">4.2.2.1.5.7.</span> <span class="nav-text">5.7重启PPTP服务并查看状态</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-8配置客户端，连接"><span class="nav-number">4.2.2.1.5.8.</span> <span class="nav-text">5.8配置客户端，连接</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-9进行连接测试"><span class="nav-number">4.2.2.1.5.9.</span> <span class="nav-text">5.9进行连接测试</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-SSH（安全外壳协议）服务器"><span class="nav-number">4.2.2.1.6.</span> <span class="nav-text">6.SSH（安全外壳协议）服务器</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3Untrust区域"><span class="nav-number">4.3.</span> <span class="nav-text">4.3Untrust区域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1-SNMP"><span class="nav-number">4.3.1.</span> <span class="nav-text">4.3.1 SNMP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-1-1-ensp端"><span class="nav-number">4.3.1.1.</span> <span class="nav-text">4.3.1.1 ensp端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-1-2-Windows端"><span class="nav-number">4.3.1.2.</span> <span class="nav-text">4.3.1.2 Windows端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-1-3-SNMPv1报文分析"><span class="nav-number">4.3.1.3.</span> <span class="nav-text">4.3.1.3 SNMPv1报文分析</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、总结"><span class="nav-number">5.</span> <span class="nav-text">五、总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="李松柏"
+    src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">李松柏</p>
+  <div class="site-description" itemprop="description">记录学习的技能和遇到的问题</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yym08090809" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;yym08090809" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:songbai0112@163.com" title="E-Mail &amp;rarr; mailto:songbai0112@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李松柏</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.2
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': '',
+            'X-LC-Key': '',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+        if (localhost.test(document.URL)) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://visitor.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "http://lisongbai.top/2020/06/17/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/",
+            identifier: "2020/06/17/网络工程课程设计/",
+            title: "网络工程课程设计"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://visitor.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
+
+<script>
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+ 
+</body>
+</html>

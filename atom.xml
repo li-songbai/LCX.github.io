@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-06-14T15:33:40.908Z</updated>
+  <updated>2020-06-18T06:34:03.019Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网络工程课程设计</title>
+    <link href="http://lisongbai.top/2020/06/17/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
+    <id>http://lisongbai.top/2020/06/17/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/</id>
+    <published>2020-06-17T12:58:06.000Z</published>
+    <updated>2020-06-18T06:34:03.019Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一、课程设计的目的及任务&quot;&gt;&lt;a href=&quot;#一、课程设计的目的及任务&quot; class=&quot;headerlink&quot; title=&quot;一、课程设计的目的及任务&quot;&gt;&lt;/a&gt;一、课程设计的目的及任务&lt;/h1&gt;&lt;p&gt;网络工程课程设计是一门综合性实践课程，其包括网络工程设计和网络管理与维护的实践内容，其目的是：使学生在学习网络工程和网络管理的基础上，学习并掌握企业网及互联网工程设计、实施、管理和维护的基本知识和方法，培养学生综合运用所学的专业基础理论、基本技能和专业知识分析问题和解决工程设计问题的能力，培养学生调查研究，查阅技术文献、资料、手册，进行程序设计及编写技术文件的基本能力。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="网络工程设计" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
+    
+      <category term="课程设计" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
+    
+    
+      <category term="网络工程设计" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>网络管理与维护大作业</title>
@@ -505,36 +528,6 @@
     
     
       <category term="truffle" scheme="http://lisongbai.top/tags/truffle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringBoot-logging配置</title>
-    <link href="http://lisongbai.top/2020/02/22/SpringBoot-logging%E9%85%8D%E7%BD%AE/"/>
-    <id>http://lisongbai.top/2020/02/22/SpringBoot-logging%E9%85%8D%E7%BD%AE/</id>
-    <published>2020-02-22T01:40:01.000Z</published>
-    <updated>2020-06-13T13:47:09.152Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1-使用自带的日志系统（longback）进行配置&quot;&gt;&lt;a href=&quot;#1-使用自带的日志系统（longback）进行配置&quot; class=&quot;headerlink&quot; title=&quot;1.使用自带的日志系统（longback）进行配置&quot;&gt;&lt;/a&gt;1.使用自带的日志系统（longback）进行配置&lt;/h1&gt;&lt;h2 id=&quot;1-1longback简介&quot;&gt;&lt;a href=&quot;#1-1longback简介&quot; class=&quot;headerlink&quot; title=&quot;1.1longback简介&quot;&gt;&lt;/a&gt;1.1longback简介&lt;/h2&gt;&lt;h3 id=&quot;1-1-1Logback主要有下面的特性：&quot;&gt;&lt;a href=&quot;#1-1-1Logback主要有下面的特性：&quot; class=&quot;headerlink&quot; title=&quot;1.1.1Logback主要有下面的特性：&quot;&gt;&lt;/a&gt;1.1.1Logback主要有下面的特性：&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;更快的执行速度：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;基于我们先前在Log4j上的工作，Logback 重写了内部的实现，在某些特定的场景上面，甚至可以比之前的速度快上10倍。在保证Logback的组件更加快速的同时，同时所需的内存更加少；&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;充分的测试：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Logback 历经了几年，数不清小时数的测试。尽管Log4j也是测试过的，但是Logback的测试更加充分，跟Log4j不在同一个级别。我们认为，这正是人们选择Logback而不是Log4j的最重要的原因。谁不希望即使在恶劣的条件下，你的日志框架依然稳定而可靠呢？&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://lisongbai.top/categories/java/"/>
-    
-      <category term="框架" scheme="http://lisongbai.top/categories/java/%E6%A1%86%E6%9E%B6/"/>
-    
-    
-      <category term="java" scheme="http://lisongbai.top/tags/java/"/>
     
   </entry>
   
