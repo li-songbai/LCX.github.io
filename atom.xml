@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-06-18T06:38:13.645Z</updated>
+  <updated>2020-06-18T15:18:18.127Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>git上传</title>
+    <link href="http://lisongbai.top/2020/06/18/git%E4%B8%8A%E4%BC%A0/"/>
+    <id>http://lisongbai.top/2020/06/18/git%E4%B8%8A%E4%BC%A0/</id>
+    <published>2020-06-18T09:44:29.000Z</published>
+    <updated>2020-06-18T15:18:18.127Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一、Git手动上传文件&quot;&gt;&lt;a href=&quot;#一、Git手动上传文件&quot; class=&quot;headerlink&quot; title=&quot;一、Git手动上传文件&quot;&gt;&lt;/a&gt;一、Git手动上传文件&lt;/h1&gt;&lt;h2 id=&quot;1-创建远程仓库&quot;&gt;&lt;a href=&quot;#1-创建远程仓库&quot; class=&quot;headerlink&quot; title=&quot;1.创建远程仓库&quot;&gt;&lt;/a&gt;1.创建远程仓库&lt;/h2&gt;&lt;p&gt;在自己的Github上创建一个仓库&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/06/18/XAeHZzOkblIqTif.png&quot; alt=&quot;image-20200618215633512&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/06/18/HirE1N9pxGq4MLd.png&quot; alt=&quot;image-20200618215739080&quot;&gt;&lt;/p&gt;&lt;p&gt;填写仓库名、仓库描述、勾选&lt;strong&gt;Initialize this repostitory with a README&lt;/strong&gt;选项，在创建仓库时会初始化一个README.md文件，点击&lt;strong&gt;Create repository&lt;/strong&gt;按钮进行创建。&lt;/p&gt;&lt;h2 id=&quot;2-创建本地仓库&quot;&gt;&lt;a href=&quot;#2-创建本地仓库&quot; class=&quot;headerlink&quot; title=&quot;2.创建本地仓库&quot;&gt;&lt;/a&gt;2.创建本地仓库&lt;/h2&gt;
+    
+    </summary>
+    
+    
+      <category term="git" scheme="http://lisongbai.top/categories/git/"/>
+    
+    
+      <category term="git" scheme="http://lisongbai.top/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>网络工程课程设计</title>
@@ -36,6 +57,29 @@
     
     
       <category term="网络工程设计" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu-20.04-mate-for-server</title>
+    <link href="http://lisongbai.top/2020/06/16/ubuntu-20-04-mate-for-server/"/>
+    <id>http://lisongbai.top/2020/06/16/ubuntu-20-04-mate-for-server/</id>
+    <published>2020-06-16T01:13:28.000Z</published>
+    <updated>2020-06-18T09:22:44.637Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一、换源&quot;&gt;&lt;a href=&quot;#一、换源&quot; class=&quot;headerlink&quot; title=&quot;一、换源&quot;&gt;&lt;/a&gt;一、换源&lt;/h1&gt;&lt;p&gt;在设置中选择系统设置，找到Software Updater，点击进入，再点击Settings按钮，&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/06/16/T2oMNG86Xr5wILW.png&quot; alt=&quot;image-20200616092916772&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/06/16/8OU6e1VxjuyDHm7.png&quot; alt=&quot;image-20200616093031282&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/06/16/qAn1YptUaRHFrLP.png&quot; alt=&quot;image-20200616093227130&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/06/16/Y4IUR98sBaWo5Su.png&quot; alt=&quot;image-20200616093307249&quot;&gt;&lt;/p&gt;&lt;p&gt;选择Reload重新加载源。&lt;/p&gt;&lt;p&gt;在终端输入如下命令：&lt;/p&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo apt-get update&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sudo apt-get upgrade&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;更新源和软件。&lt;/p&gt;&lt;h1 id=&quot;二、为ensp搭建各种服务器&quot;&gt;&lt;a href=&quot;#二、为ensp搭建各种服务器&quot; class=&quot;headerlink&quot; title=&quot;二、为ensp搭建各种服务器&quot;&gt;&lt;/a&gt;二、为ensp搭建各种服务器&lt;/h1&gt;&lt;h2 id=&quot;2-1准备工作&quot;&gt;&lt;a href=&quot;#2-1准备工作&quot; class=&quot;headerlink&quot; title=&quot;2.1准备工作&quot;&gt;&lt;/a&gt;2.1准备工作&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;关闭防火墙，测试网路连通性。&lt;/strong&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://lisongbai.top/categories/linux/"/>
+    
+      <category term="ubuntu-20.04-mate" scheme="http://lisongbai.top/categories/linux/ubuntu-20-04-mate/"/>
+    
+    
+      <category term="linux" scheme="http://lisongbai.top/tags/linux/"/>
     
   </entry>
   
@@ -484,50 +528,6 @@
     
     
       <category term="java" scheme="http://lisongbai.top/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DES加解密算法浅析</title>
-    <link href="http://lisongbai.top/2020/02/23/DES%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95%E6%B5%85%E6%9E%90/"/>
-    <id>http://lisongbai.top/2020/02/23/DES%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95%E6%B5%85%E6%9E%90/</id>
-    <published>2020-02-23T10:56:18.000Z</published>
-    <updated>2020-06-13T12:23:18.719Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;DES加解密算法浅析&quot;&gt;&lt;a href=&quot;#DES加解密算法浅析&quot; class=&quot;headerlink&quot; title=&quot;DES加解密算法浅析&quot;&gt;&lt;/a&gt;DES加解密算法浅析&lt;/h1&gt;&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;DES是一个分组加密算法，它以64位为分组对数据加密。同时DES也是一个对称算法：加密和解密用的是同一个算法。DES是一个包含16个阶段的“替换–置换”的分组加密算法，64位的分组明文序列作为加密算法的输入，经过16轮加密得到64位的密文序列。&lt;/p&gt;&lt;p&gt;算法原理看下图：&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/11/09/MmQzp6.png&quot; alt=&quot;MmQzp6.png&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;原理浅析&quot;&gt;&lt;a href=&quot;#原理浅析&quot; class=&quot;headerlink&quot; title=&quot;原理浅析&quot;&gt;&lt;/a&gt;原理浅析&lt;/h2&gt;&lt;p&gt;DES算法主要分为3部分：加解密运算、f函数的处理、轮子密钥的生成，从右往左分别简单介绍一下。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="加密算法" scheme="http://lisongbai.top/categories/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="DES" scheme="http://lisongbai.top/categories/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/DES/"/>
-    
-    
-      <category term="网络信息安全" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>windows10搭建truffle及出现问题的解决方案</title>
-    <link href="http://lisongbai.top/2020/02/23/windows10%E6%90%AD%E5%BB%BAtruffle%E5%8F%8A%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-    <id>http://lisongbai.top/2020/02/23/windows10%E6%90%AD%E5%BB%BAtruffle%E5%8F%8A%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</id>
-    <published>2020-02-23T10:56:18.000Z</published>
-    <updated>2020-06-13T12:19:37.865Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1-版本信息&quot;&gt;&lt;a href=&quot;#1-版本信息&quot; class=&quot;headerlink&quot; title=&quot;1.版本信息&quot;&gt;&lt;/a&gt;1.版本信息&lt;/h1&gt;&lt;h2 id=&quot;1-1-node&quot;&gt;&lt;a href=&quot;#1-1-node&quot; class=&quot;headerlink&quot; title=&quot;1.1 node&quot;&gt;&lt;/a&gt;1.1 node&lt;/h2&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;node -v&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;v12.15.0&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&quot;1-2-npm&quot;&gt;&lt;a href=&quot;#1-2-npm&quot; class=&quot;headerlink&quot; title=&quot;1.2 npm&quot;&gt;&lt;/a&gt;1.2 npm&lt;/h2&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;npm -v&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6.13.4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;bash&quot;&gt;换源&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;npm config set registry https://registry.npm.taobao.org&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;npm config list&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;; cli configs&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;metrics-registry = &quot;https://registry.npm.taobao.org/&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;scope = &quot;&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;user-agent = &quot;npm/6.13.4 node/v12.15.0 win32 x64&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;; userconfig C:\Users\12173\.npmrc&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;registry = &quot;https://registry.npm.taobao.org/&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;; builtin config undefined&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;prefix = &quot;C:\\Users\\12173\\AppData\\Roaming\\npm&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;; node bin location = E:\Program Files\nodejs\node.exe&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;; cwd = C:\Users\12173&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;; HOME = C:\Users\12173&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;; &quot;npm config ls -l&quot; to show all defaults.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="truffle" scheme="http://lisongbai.top/categories/truffle/"/>
-    
-    
-      <category term="truffle" scheme="http://lisongbai.top/tags/truffle/"/>
     
   </entry>
   
