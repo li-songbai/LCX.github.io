@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-06-18T15:18:18.127Z</updated>
+  <updated>2020-06-18T16:56:43.279Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>力扣每日一题之有效的括号</title>
+    <link href="http://lisongbai.top/2020/06/18/%E5%8A%9B%E6%89%A3%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E4%B9%8B%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7/"/>
+    <id>http://lisongbai.top/2020/06/18/%E5%8A%9B%E6%89%A3%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E4%B9%8B%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7/</id>
+    <published>2020-06-18T15:22:56.000Z</published>
+    <updated>2020-06-18T16:56:43.279Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1、题目描述&quot;&gt;&lt;a href=&quot;#1、题目描述&quot; class=&quot;headerlink&quot; title=&quot;1、题目描述&quot;&gt;&lt;/a&gt;1、题目描述&lt;/h1&gt;&lt;p&gt;给定一个只包括 ‘(‘，’)’，’{‘，’}’，’[‘，’]’ 的字符串，判断字符串是否有效。&lt;/p&gt;&lt;p&gt;有效字符串需满足：&lt;/p&gt;&lt;p&gt;左括号必须用相同类型的右括号闭合。&lt;br&gt;左括号必须以正确的顺序闭合。&lt;br&gt;注意空字符串可被认为是有效字符串。&lt;/p&gt;&lt;h1 id=&quot;2、示例&quot;&gt;&lt;a href=&quot;#2、示例&quot; class=&quot;headerlink&quot; title=&quot;2、示例&quot;&gt;&lt;/a&gt;2、示例&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;示例 1:&lt;/strong&gt;&lt;/p&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;输入: &amp;quot;()&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;输出: true&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;strong&gt;示例 2:&lt;/strong&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://lisongbai.top/categories/java/"/>
+    
+      <category term="编程" scheme="http://lisongbai.top/categories/java/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="力扣" scheme="http://lisongbai.top/tags/%E5%8A%9B%E6%89%A3/"/>
+    
+  </entry>
   
   <entry>
     <title>git上传</title>
@@ -501,33 +524,6 @@
     
     
       <category term="网络管理与维护" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Postman</title>
-    <link href="http://lisongbai.top/2020/02/23/postman/"/>
-    <id>http://lisongbai.top/2020/02/23/postman/</id>
-    <published>2020-02-23T12:16:08.000Z</published>
-    <updated>2020-06-13T13:48:24.296Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一、Postman&quot;&gt;&lt;a href=&quot;#一、Postman&quot; class=&quot;headerlink&quot; title=&quot;一、Postman&quot;&gt;&lt;/a&gt;一、Postman&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;&lt;h2 id=&quot;postman简介&quot;&gt;&lt;a href=&quot;#postman简介&quot; class=&quot;headerlink&quot; title=&quot;postman简介&quot;&gt;&lt;/a&gt;postman简介&lt;/h2&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;p&gt;用户在开发或者调试网络程序或者是网页B/S模式的程序的时候是需要一些方法来跟踪网页请求的，用户可以使用一些网络的监视工具比如著名的Firebug等网页调试工具。今天给大家介绍的这款网页调试工具不仅可以调试简单的css、html、脚本等简单的网页基本信息，它还可以发送几乎所有类型的HTTP请求！Postman在发送网络HTTP请求方面可以说是Chrome插件类产品中的代表产品之一。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://lisongbai.top/categories/java/"/>
-    
-      <category term="工具" scheme="http://lisongbai.top/categories/java/%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="Postman" scheme="http://lisongbai.top/categories/java/%E5%B7%A5%E5%85%B7/Postman/"/>
-    
-    
-      <category term="java" scheme="http://lisongbai.top/tags/java/"/>
     
   </entry>
   
