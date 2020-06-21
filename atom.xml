@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-06-21T08:11:23.279Z</updated>
+  <updated>2020-06-21T15:00:19.451Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>牛客刷题之洗牌</title>
+    <link href="http://lisongbai.top/2020/06/21/%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98%E4%B9%8B%E6%B4%97%E7%89%8C/"/>
+    <id>http://lisongbai.top/2020/06/21/%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98%E4%B9%8B%E6%B4%97%E7%89%8C/</id>
+    <published>2020-06-21T14:57:55.000Z</published>
+    <updated>2020-06-21T15:00:19.451Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一、洗牌&quot;&gt;&lt;a href=&quot;#一、洗牌&quot; class=&quot;headerlink&quot; title=&quot;一、洗牌&quot;&gt;&lt;/a&gt;一、洗牌&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.nowcoder.com/questionTerminal/5a0a2c7e431e4fbbbb1ff32ac6e8dfa0&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;题目链接&lt;/a&gt;&lt;/p&gt;&lt;p&gt;洗牌在生活中十分常见，现在需要写一个程序模拟洗牌的过程。 现在需要洗2n张牌，从上到下依次是第1张，第2张，第3张一直到第2n张。首先，我们把这2n张牌分成两堆，左手拿着第1张到第n张（上半堆），右手拿着第n+1张到第2n张（下半堆）。接着就开始洗牌的过程，先放下右手的最后一张牌，再放下左手的最后一张牌，接着放下右手的倒数第二张牌，再放下左手的倒数第二张牌，直到最后放下左手的第一张牌。接着把牌合并起来就可以了。 例如有6张牌，最开始牌的序列是1,2,3,4,5,6。首先分成两组，左手拿着1,2,3；右手拿着4,5,6。在洗牌过程中按顺序放下了6,3,5,2,4,1。把这六张牌再次合成一组牌之后，我们按照从上往下的顺序看这组牌，就变成了序列1,4,2,5,3,6。 现在给出一个原始牌组，请输出这副牌洗牌k次之后从上往下的序列。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://lisongbai.top/categories/java/"/>
+    
+      <category term="编程" scheme="http://lisongbai.top/categories/java/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="牛客" scheme="http://lisongbai.top/tags/%E7%89%9B%E5%AE%A2/"/>
+    
+  </entry>
   
   <entry>
     <title>力扣每日一题之合并两个有序链表</title>
@@ -490,29 +513,6 @@
     
     
       <category term="网络工程设计" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>whiter-jotter</title>
-    <link href="http://lisongbai.top/2020/03/08/whiter-jotter/"/>
-    <id>http://lisongbai.top/2020/03/08/whiter-jotter/</id>
-    <published>2020-03-08T05:51:25.000Z</published>
-    <updated>2020-06-13T13:39:03.978Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1-项目概述&quot;&gt;&lt;a href=&quot;#1-项目概述&quot; class=&quot;headerlink&quot; title=&quot;1.项目概述&quot;&gt;&lt;/a&gt;1.项目概述&lt;/h1&gt;&lt;p&gt; 这个项目我把它命名为 &lt;strong&gt;“白卷”&lt;/strong&gt;，因为它随着开发的进展逐渐完善，象征着知识的从无到有，从有到多。另外我还给它起了一个英文名字，叫 &lt;strong&gt;White Jotter&lt;/strong&gt;（白色笔记本），纯粹是为了谐音。 &lt;/p&gt;&lt;p&gt; 我选用 Vue.js + Spring Boot 来开发这个项目 ， 是因为这两种框架当下比较热门，也是实现所谓 &lt;strong&gt;前后端分离&lt;/strong&gt; 的最佳选择之一。 &lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://lisongbai.top/categories/java/"/>
-    
-      <category term="项目" scheme="http://lisongbai.top/categories/java/%E9%A1%B9%E7%9B%AE/"/>
-    
-    
-      <category term="java" scheme="http://lisongbai.top/tags/java/"/>
     
   </entry>
   
