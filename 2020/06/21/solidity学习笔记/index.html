@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="一、Solidity 语言Solidity 是一种智能合约高级语言，运行在 Ethereum 虚拟机（EVM：Ethereum Virtual Machine）之上。 Solidity 的语法接近于 Javascript，是一种面向对象的语言，而且围绕着 Solidity 的各种开发工具链，都是使用属于 Javascript 生态系的 npm 来提供的。">
+<meta name="keywords" content="solidity">
+<meta property="og:type" content="article">
+<meta property="og:title" content="solidity学习笔记">
+<meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2020&#x2F;06&#x2F;21&#x2F;solidity%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;index.html">
+<meta property="og:site_name" content="小李の博客">
+<meta property="og:description" content="一、Solidity 语言Solidity 是一种智能合约高级语言，运行在 Ethereum 虚拟机（EVM：Ethereum Virtual Machine）之上。 Solidity 的语法接近于 Javascript，是一种面向对象的语言，而且围绕着 Solidity 的各种开发工具链，都是使用属于 Javascript 生态系的 npm 来提供的。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;21&#x2F;5AYqy1VvoKt2DG6.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;21&#x2F;faMwgiQSCtKsP8e.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;21&#x2F;PLz7U8byR25ajeQ.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;21&#x2F;6wnRoSe9gETpisV.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;21&#x2F;r9jhM3WgIS6UQpw.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;21&#x2F;roODI2PEgwJkXp4.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;21&#x2F;DZ1wM32A8rOTIGN.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;21&#x2F;aJOfp2vjVIUlDS5.png">
+<meta property="og:updated_time" content="2020-06-21T08:11:44.178Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;21&#x2F;5AYqy1VvoKt2DG6.png">
+
+<link rel="canonical" href="http://lisongbai.top/2020/06/21/solidity%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>solidity学习笔记 | 小李の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="小李の博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小李の博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">我有一壶酒，足以慰平生。</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/yym08090809" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/06/21/solidity%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李松柏">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小李の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          solidity学习笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-21 09:54:29 / 修改时间：16:11:44" itemprop="dateCreated datePublished" datetime="2020-06-21T09:54:29+08:00">2020-06-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/solidity/" itemprop="url" rel="index">
+                    <span itemprop="name">solidity</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/06/21/solidity%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-meta-item leancloud_visitors" data-flag-title="solidity学习笔记" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/06/21/solidity%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/06/21/solidity学习笔记/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="一、Solidity-语言"><a href="#一、Solidity-语言" class="headerlink" title="一、Solidity 语言"></a>一、Solidity 语言</h2><p><a href="https://solidity.readthedocs.io/en/develop/" target="_blank" rel="noopener">Solidity</a> 是一种智能合约高级语言，运行在 Ethereum 虚拟机（EVM：Ethereum Virtual Machine）之上。<br> Solidity 的语法接近于 Javascript，是一种面向对象的语言，而且围绕着 Solidity 的各种开发工具链，都是使用属于 Javascript 生态系的 <a href="https://www.npmjs.com/get-npm" target="_blank" rel="noopener">npm</a> 来提供的。</p><a id="more"></a>
+<blockquote>
+<p>Solidity语言：<a href="http://www.tryblockchain.org" target="_blank" rel="noopener">http://www.tryblockchain.org</a><br> Solidity documentation：<a href="https://solidity.readthedocs.org" target="_blank" rel="noopener">https://solidity.readthedocs.org</a><br> GitHub：<a href="https://github.com/ethereum/solidity" target="_blank" rel="noopener">https://github.com/ethereum/solidity</a></p>
+</blockquote>
+<h2 id="二、编辑器"><a href="#二、编辑器" class="headerlink" title="二、编辑器"></a>二、编辑器</h2><p>我目前是使用 <a href="https://atom.io" target="_blank" rel="noopener">Atom</a> 搭配 solidity（linter-solium和autocomplete-solidity） 插件来开发。</p>
+<h2 id="三、Truffle-框架"><a href="#三、Truffle-框架" class="headerlink" title="三、Truffle 框架"></a>三、Truffle 框架</h2><p><a href="http://truffleframework.com" target="_blank" rel="noopener">Truffle</a> 是针对基于以太坊的 Solidity 语言的一套开发框架，本身基于 Javascript。</p>
+<h2 id="四、工具安装"><a href="#四、工具安装" class="headerlink" title="四、工具安装"></a>四、工具安装</h2><p>见另一篇博客<a href="https://lisongbai.top/2020/02/23/windows10%E6%90%AD%E5%BB%BAtruffle%E5%8F%8A%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">win10搭建以太坊开发环境及truffle框架</a></p>
+<h2 id="五、启动-Ganache客户端"><a href="#五、启动-Ganache客户端" class="headerlink" title="五、启动 Ganache客户端"></a>五、启动 Ganache客户端</h2><p><img src="https://i.loli.net/2020/06/21/5AYqy1VvoKt2DG6.png" alt="image-20200621100049242"></p>
+<p>可以看到启动后自动建立了10个帐号（Accounts），与每个帐号对应的私钥（Private Key）。每个帐号中都有100个测试用的以太币（Ether）。</p>
+<h2 id="六、创建初始化项目"><a href="#六、创建初始化项目" class="headerlink" title="六、创建初始化项目"></a>六、创建初始化项目</h2><p>在空目录下打开cmd输入 truffle init 构建初始化项目。</p>
+<p>目录结构：</p>
+<ul>
+<li><code>contracts/</code>：Truffle默认的合约文件存放地址；</li>
+<li><code>migrations/</code>：存放发布的脚本文件；</li>
+<li><code>test/</code>：存放测试应用和合约的测试文件；</li>
+<li><code>truffle.js 和 truffle-config.js</code>：Truffle的配置文件。</li>
+</ul>
+<h2 id="七、新建-HelloWorld-合约"><a href="#七、新建-HelloWorld-合约" class="headerlink" title="七、新建 HelloWorld 合约"></a>七、新建 HelloWorld 合约</h2><p>在 <code>contracts</code> 文件夹下新建 Demo.sol 文件，合约内容如下：</p>
+<p><img src="https://i.loli.net/2020/06/21/faMwgiQSCtKsP8e.png" alt="image-20200621100413979"></p>
+<p>讲解：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">pragma</span> <span class="selector-tag">solidity</span> 0<span class="selector-class">.5</span><span class="selector-class">.16</span>;</span><br></pre></td></tr></table></figure>
+
+<p>第一行指名目前使用的 solidity 版本，不同版本的 solidity 可能会编译出不同的 bytecode。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">contract Demo&#123;</span><br><span class="line">  //构造方法</span><br><span class="line">  constructor() public &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  //sayHello  写死</span><br><span class="line">  function sayHello() public pure returns (string memory)&#123;</span><br><span class="line">    return (&quot;hello world!&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  //echo 接受一个参数 然后返回</span><br><span class="line">  function echo(string memory _name) public pure returns (string memory)&#123;</span><br><span class="line">    return _name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>contract</code> 关键字类似于其他语言中较常见的 <code>class</code>。因为solidity 是专为智能合约（Contact）设计的语言，声明 <code>contract</code> 后即内置了开发智能合约所需的功能。也可以把这句理解为 <code>class Demo extends Contract</code>。</p>
+<p>函数的结构与其他程序类似，但如果有传入的参数或回传值，需要指定参数或回传值的类型（<code>type</code>）。</p>
+<h2 id="八、编译合约"><a href="#八、编译合约" class="headerlink" title="八、编译合约"></a>八、编译合约</h2><p>现在执行 <code>truffle compile</code> 命令，我们可以将 <code>HelloWorld.sol</code> 原始码编译成 <code>Ethereum bytecode</code>：</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd ..`</span><br><span class="line"> `$ truffle compile</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>命令运行成功后会多出一个 <code>build</code> 的目录，如下：</p>
+<p><img src="https://i.loli.net/2020/06/21/PLz7U8byR25ajeQ.png" alt="image-20200621101128429"></p>
+<p>build 目录</p>
+<p>在 <code>HelloWorld</code> 文件夹下面的 <code>build/contracts</code> 文件夹下面会看见 <code>HelloWorld.json</code> 文件：</p>
+<p><img src="https://i.loli.net/2020/06/21/6wnRoSe9gETpisV.png" alt="image-20200621101435329"></p>
+<p>Demo.json</p>
+<h2 id="十、修改-truffle-js-文件内容："><a href="#十、修改-truffle-js-文件内容：" class="headerlink" title="十、修改 truffle.js 文件内容："></a>十、修改 truffle.js 文件内容：</h2><p>添加以下内容到 truffle.js 文件并保存 :</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">networks</span>: &#123;</span><br><span class="line">        <span class="attribute">development</span>: &#123;</span><br><span class="line">            host:<span class="string">"localhost"</span>,</span><br><span class="line">            port:<span class="number">7545</span>,</span><br><span class="line">            network_id:<span class="string">"*"</span>  // 匹配任何network id</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改 truffle.js 文件</p>
+<h2 id="十一、部署合约"><a href="#十一、部署合约" class="headerlink" title="十一、部署合约"></a>十一、部署合约</h2><p>在 <code>migrations</code> 目录下创建移植文件：</p>
+<p><img src="https://i.loli.net/2020/06/21/r9jhM3WgIS6UQpw.png" alt="image-20200621101633945"></p>
+<p>创建移植文件</p>
+<p>修改文件内容如下：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Demo = artifacts.require(<span class="string">"Demo"</span>);</span><br><span class="line"><span class="comment">//使用 artifacts.require 语句来取得准备部署的合约</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">deployer</span>)</span>&#123;</span><br><span class="line">  deployer.deploy(Demo);</span><br><span class="line">  <span class="comment">//使用deployer.deploy 语句将合约部署到区块链上。</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>修改移植文件内容</p>
+<p>使用 <code>artifacts.require</code> 语句来取得准备部署的合约。<br> 使用<code>deployer.deploy</code> 语句将合约部署到区块链上。<br> 这边<code>Demo</code> 是 <code>contract</code> 的名称而不是文件名。<br> 因此可以用此语法读入任一 <code>.sol</code> 文件中的任一合约。</p>
+<p>现在执行 <code>truffle migrate</code> 命令：</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ truffle migrate</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>部署合约</p>
+<p>部署成功你会看到 Ganache中生成了新的区块，表示已经将合约部署到区块链上了。</p>
+<p><img src="https://i.loli.net/2020/06/21/roODI2PEgwJkXp4.png" alt="image-20200621101919044"></p>
+<h2 id="十二、与合约互动"><a href="#十二、与合约互动" class="headerlink" title="十二、与合约互动"></a>十二、与合约互动</h2><p>Truffle 提供命令行工具，执行 <code>truffle console</code> 命令后，可用Javascript 来和刚刚部署的合约互动：</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cd ..`</span><br><span class="line"> `$ truffle console`</span><br><span class="line"> `$ Demo.deployed().then(instance =&gt; c = instance)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>与合约互动</p>
+<p><img src="https://i.loli.net/2020/06/21/DZ1wM32A8rOTIGN.png" alt="image-20200621102333408"></p>
+<p>讲解：</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Demo.deployed().then(instance =&gt; c = instance)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><code>truffle console</code> 中预载了 <code>truffle-contract</code> 函数库，以方便操作部署到区块链上的合约。<br> 这边使用 <code>Demo.deployed().then</code> 语句来取得 <code>Demo</code>合约的 <code>Instance</code>（实例），并存到 <code>contract</code> 变量中，以方便后续的调用。</p>
+<p>输入以下命令：</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c.echo(&quot;hello solidity&quot;)</span><br><span class="line">c.sayHello()</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="https://i.loli.net/2020/06/21/aJOfp2vjVIUlDS5.png" alt="image-20200621102546448"></p>
+<p>这里直接呼叫 <code>contract.sayHello.call()</code> 也会得到一样的结果。<code>truffle-contract</code> 提供使用 <code>call()</code> 来读取只读 <code>（read only）</code> 的数据，这样就不需提供 <code>gas</code>。因此如果遇到的操作需要向区块链写入数据，我们就不能用 <code>call</code> 语句了。</p>
+<p>如此一来，我们已写好并部署完成了第一个智能合约，也验证了合约确实可以运作。</p>
+
+    </div>
+
+    
+    
+    
+      
+        <div class="reward-container">
+  <div>您的支持是我继续创作的动力</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="李松柏 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="李松柏 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>李松柏
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lisongbai.top/2020/06/21/solidity%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="solidity学习笔记">http://lisongbai.top/2020/06/21/solidity%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/solidity/" rel="tag"># solidity</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/06/18/%E5%8A%9B%E6%89%A3%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E4%B9%8B%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7/" rel="next" title="力扣每日一题之有效的括号">
+                  <i class="fa fa-chevron-left"></i> 力扣每日一题之有效的括号
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2020/06/21/%E5%8A%9B%E6%89%A3%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E4%B9%8B%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8/" rel="prev" title="力扣每日一题之合并两个有序链表">
+                  力扣每日一题之合并两个有序链表 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-disqus">disqus</a></li>
+            <li class="tab"><a href="#comment-livere">livere</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane disqus" id="comment-disqus">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+            <div class="tab-pane livere" id="comment-livere">
+              
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzY2MC8yNDE1OA=="></div>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+      <script>
+        window.addEventListener('tabs:register', () => {
+          let activeClass = '';
+            activeClass = localStorage.getItem('comments_active') || activeClass;
+          if (activeClass) {
+            let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+            if (activeTab) {
+              activeTab.click();
+            }
+          }
+        });
+        window.addEventListener('tabs:click', event => {
+          let commentClass = event.target.classList[1];
+          localStorage.setItem('comments_active', commentClass);
+        });
+      </script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Solidity-语言"><span class="nav-number">1.</span> <span class="nav-text">一、Solidity 语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、编辑器"><span class="nav-number">2.</span> <span class="nav-text">二、编辑器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、Truffle-框架"><span class="nav-number">3.</span> <span class="nav-text">三、Truffle 框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、工具安装"><span class="nav-number">4.</span> <span class="nav-text">四、工具安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、启动-Ganache客户端"><span class="nav-number">5.</span> <span class="nav-text">五、启动 Ganache客户端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、创建初始化项目"><span class="nav-number">6.</span> <span class="nav-text">六、创建初始化项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、新建-HelloWorld-合约"><span class="nav-number">7.</span> <span class="nav-text">七、新建 HelloWorld 合约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、编译合约"><span class="nav-number">8.</span> <span class="nav-text">八、编译合约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十、修改-truffle-js-文件内容："><span class="nav-number">9.</span> <span class="nav-text">十、修改 truffle.js 文件内容：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十一、部署合约"><span class="nav-number">10.</span> <span class="nav-text">十一、部署合约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十二、与合约互动"><span class="nav-number">11.</span> <span class="nav-text">十二、与合约互动</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="李松柏"
+    src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">李松柏</p>
+  <div class="site-description" itemprop="description">记录学习的技能和遇到的问题</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yym08090809" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;yym08090809" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:songbai0112@163.com" title="E-Mail &amp;rarr; mailto:songbai0112@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李松柏</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.2
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': '',
+            'X-LC-Key': '',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+        if (localhost.test(document.URL)) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://visitor.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "http://lisongbai.top/2020/06/21/solidity%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/",
+            identifier: "2020/06/21/solidity学习笔记/",
+            title: "solidity学习笔记"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://visitor.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
+
+<script>
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+ 
+</body>
+</html>
