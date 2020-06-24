@@ -52,25 +52,18 @@
   };
 </script>
 
-  <meta name="description" content="1.拓扑图2.实验目的了解边界网管协议（BGP）实现两个域间的通讯。3.实验步骤3.1网关ip配置AR1配置，其他同理。12345678&amp;lt;Huawei&amp;gt;sys[Huawei]un in enInfo: Information center is disabled.[Huawei]sysname AR1[AR1]interface GigabitEthernet0&#x2F;0&#x2F;0[AR1-Gig">
-<meta name="keywords" content="网络工程设计">
+  <meta name="description" content="一、兔子繁殖题目链接有一只兔子，从出生后第3个月起每个月都生一只兔子，小兔子长到第三个月后每个月又生一只兔子，假如兔子都不死，问每个月的兔子总数为多少？12345678910&#x2F;**     * 统计出兔子总数。     *      * @param monthCount 第几个月     * @return 兔子总数     *&#x2F;    public static int getTotalCou">
+<meta name="keywords" content="牛客">
 <meta property="og:type" content="article">
-<meta property="og:title" content="边界网关协议实验（BGP）《一》">
-<meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2020&#x2F;05&#x2F;11&#x2F;%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B&#x2F;index.html">
+<meta property="og:title" content="牛客刷题之兔子繁殖">
+<meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2020&#x2F;06&#x2F;25&#x2F;%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98%E4%B9%8B%E5%85%94%E5%AD%90%E7%B9%81%E6%AE%96&#x2F;index.html">
 <meta property="og:site_name" content="小李の博客">
-<meta property="og:description" content="1.拓扑图2.实验目的了解边界网管协议（BGP）实现两个域间的通讯。3.实验步骤3.1网关ip配置AR1配置，其他同理。12345678&amp;lt;Huawei&amp;gt;sys[Huawei]un in enInfo: Information center is disabled.[Huawei]sysname AR1[AR1]interface GigabitEthernet0&#x2F;0&#x2F;0[AR1-Gig">
+<meta property="og:description" content="一、兔子繁殖题目链接有一只兔子，从出生后第3个月起每个月都生一只兔子，小兔子长到第三个月后每个月又生一只兔子，假如兔子都不死，问每个月的兔子总数为多少？12345678910&#x2F;**     * 统计出兔子总数。     *      * @param monthCount 第几个月     * @return 兔子总数     *&#x2F;    public static int getTotalCou">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;11&#x2F;YYn0l8.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;11&#x2F;YYnom4.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;11&#x2F;YYn779.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;11&#x2F;YYnqt1.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;11&#x2F;YYu97d.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;11&#x2F;YYuPAA.png">
-<meta property="og:updated_time" content="2020-06-13T13:41:51.272Z">
+<meta property="og:updated_time" content="2020-06-24T16:59:34.948Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;11&#x2F;YYn0l8.png">
 
-<link rel="canonical" href="http://lisongbai.top/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/">
+<link rel="canonical" href="http://lisongbai.top/2020/06/25/%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98%E4%B9%8B%E5%85%94%E5%AD%90%E7%B9%81%E6%AE%96/">
 
 
 <script id="page-configurations">
@@ -84,7 +77,7 @@
   };
 </script>
 
-  <title>边界网关协议实验（BGP）《一》 | 小李の博客</title>
+  <title>牛客刷题之兔子繁殖 | 小李の博客</title>
   
 
 
@@ -227,7 +220,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/">
+    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/06/25/%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98%E4%B9%8B%E5%85%94%E5%AD%90%E7%B9%81%E6%AE%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -240,7 +233,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          边界网关协议实验（BGP）《一》
+          牛客刷题之兔子繁殖
         </h1>
 
         <div class="post-meta">
@@ -249,36 +242,30 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-05-11 15:27:34" itemprop="dateCreated datePublished" datetime="2020-05-11T15:27:34+08:00">2020-05-11</time>
+              <time title="创建时间：2020-06-25 00:48:54 / 修改时间：00:59:34" itemprop="dateCreated datePublished" datetime="2020-06-25T00:48:54+08:00">2020-06-25</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-13 21:41:51" itemprop="dateModified" datetime="2020-06-13T21:41:51+08:00">2020-06-13</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index">
-                    <span itemprop="name">网络工程设计</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/BGP%E5%AE%9E%E9%AA%8C/" itemprop="url" rel="index">
-                    <span itemprop="name">BGP实验</span>
+                  <a href="/categories/java/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/" class="post-meta-item leancloud_visitors" data-flag-title="边界网关协议实验（BGP）《一》" title="阅读次数">
+            <span id="/2020/06/25/%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98%E4%B9%8B%E5%85%94%E5%AD%90%E7%B9%81%E6%AE%96/" class="post-meta-item leancloud_visitors" data-flag-title="牛客刷题之兔子繁殖" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -300,8 +287,8 @@
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/11/边界网关协议实验（BGP）《一》/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2020/06/25/%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98%E4%B9%8B%E5%85%94%E5%AD%90%E7%B9%81%E6%AE%96/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/06/25/牛客刷题之兔子繁殖/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -316,47 +303,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="1-拓扑图"><a href="#1-拓扑图" class="headerlink" title="1.拓扑图"></a>1.拓扑图</h1><p><img src="https://s1.ax1x.com/2020/05/11/YYn0l8.png" alt="YYn0l8.png"></p><h1 id="2-实验目的"><a href="#2-实验目的" class="headerlink" title="2.实验目的"></a>2.实验目的</h1><p>了解边界网管协议（BGP）</p><p>实现两个域间的通讯。</p><h1 id="3-实验步骤"><a href="#3-实验步骤" class="headerlink" title="3.实验步骤"></a>3.实验步骤</h1><h2 id="3-1网关ip配置"><a href="#3-1网关ip配置" class="headerlink" title="3.1网关ip配置"></a>3.1网关ip配置</h2><p>AR1配置，其他同理。</p><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&lt;Huawei&gt;sys</span></span><br><span class="line"><span class="meta">[Huawei]un</span> <span class="string">in en</span></span><br><span class="line"><span class="attr">Info</span>: <span class="string">Information center is disabled.</span></span><br><span class="line"><span class="meta">[Huawei]sysname</span> <span class="string">AR1</span></span><br><span class="line"><span class="meta">[AR1]interface</span> <span class="string">GigabitEthernet0/0/0</span></span><br><span class="line"><span class="meta">[AR1-GigabitEthernet0/0/0]ip</span> <span class="string">add 192.168.6.1 24</span></span><br><span class="line"><span class="meta">[AR1-GigabitEthernet0/0/0]interface</span> <span class="string">GigabitEthernet0/0/1</span></span><br><span class="line"><span class="meta">[AR1-GigabitEthernet0/0/1]ip</span> <span class="string">add 192.168.5.2 24</span></span><br></pre></td></tr></table></figure><a id="more"></a>
+        <h1 id="一、兔子繁殖"><a href="#一、兔子繁殖" class="headerlink" title="一、兔子繁殖"></a>一、兔子繁殖</h1><p><a href="https://www.nowcoder.com/questionTerminal/1221ec77125d4370833fd3ad5ba72395" target="_blank" rel="noopener">题目链接</a></p><p>有一只兔子，从出生后第3个月起每个月都生一只兔子，小兔子长到第三个月后每个月又生一只兔子，假如兔子都不死，问每个月的兔子总数为多少？</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 统计出兔子总数。</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> monthCount 第几个月</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 兔子总数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getTotalCount</span><span class="params">(<span class="keyword">int</span> monthCount)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
 
 
 
+<h1 id="二、输入描述"><a href="#二、输入描述" class="headerlink" title="二、输入描述"></a>二、输入描述</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入int型表示month</span><br></pre></td></tr></table></figure>
 
+<h1 id="三、输出描述"><a href="#三、输出描述" class="headerlink" title="三、输出描述"></a>三、输出描述</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输出兔子总数int型</span><br></pre></td></tr></table></figure>
 
-<h2 id="3-2AS1配置RIP协议"><a href="#3-2AS1配置RIP协议" class="headerlink" title="3.2AS1配置RIP协议"></a>3.2AS1配置RIP协议</h2><p>AR1配置：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">[AR1]rip</span></span><br><span class="line"><span class="meta">[AR1-rip-1]net</span> <span class="string">192.168.6.0</span></span><br><span class="line"><span class="meta">[AR1-rip-1]net</span> <span class="string">192.168.5.0</span></span><br></pre></td></tr></table></figure>
+<p><strong>示例：</strong></p>
+<p>输入：12</p>
+<p>输出：144</p>
+<h1 id="四、代码实现"><a href="#四、代码实现" class="headerlink" title="四、代码实现"></a>四、代码实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lcx.niuke;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Rabbit</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getTotalCount</span><span class="params">(<span class="keyword">int</span> monthCount)</span> </span>&#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> f1=<span class="number">1</span>,f2=<span class="number">1</span>;</span><br><span class="line">            map.put(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">            map.put(<span class="number">2</span>,<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= monthCount; i++) &#123;</span><br><span class="line">            map.put(i,map.get(i-<span class="number">1</span>)+map.get(i-<span class="number">2</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> map.get(monthCount);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">while</span> (scanner.hasNextInt()) &#123;</span><br><span class="line">            <span class="keyword">int</span> mountCount = scanner.nextInt();</span><br><span class="line">            System.out.println(getTotalCount(mountCount));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>AR7配置同理。</p>
-<h2 id="3-3AS2配置OSPF"><a href="#3-3AS2配置OSPF" class="headerlink" title="3.3AS2配置OSPF"></a>3.3AS2配置OSPF</h2><p>AR2配置：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">[AR2]ospf</span></span><br><span class="line"><span class="meta">[AR2-ospf-1]area</span> <span class="string">0</span></span><br><span class="line"><span class="meta">[AR2-ospf-1-area-0.0.0.0]net</span> <span class="string">192.168.5.0 0.0.0.255</span></span><br><span class="line"><span class="meta">[AR2-ospf-1-area-0.0.0.0]net</span> <span class="string">192.168.1.0 0.0.0.255</span></span><br></pre></td></tr></table></figure>
-
-<p>AR3~5同理。</p>
-<h2 id="3-4配置BGP"><a href="#3-4配置BGP" class="headerlink" title="3.4配置BGP"></a>3.4配置BGP</h2><p>AR1配置：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[AR1]bgp</span> <span class="string">1</span></span><br><span class="line"><span class="meta">[AR1-bgp]peer</span> <span class="string">192.168.5.1 as-number 2</span></span><br></pre></td></tr></table></figure>
-
-<p>AR2配置：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[AR2]bgp</span> <span class="string">2</span></span><br><span class="line"><span class="meta">[AR2-bgp]peer</span> <span class="string">192.168.5.2 as-number 1</span></span><br></pre></td></tr></table></figure>
-
-<p>查看BGP邻居关系（display bgp peer）</p>
-<p>AR1:</p>
-<p><img src="https://s1.ax1x.com/2020/05/11/YYnom4.png" alt="YYnom4.png"></p>
-<p>AR2:</p>
-<p><img src="https://s1.ax1x.com/2020/05/11/YYn779.png" alt="YYn779.png"></p>
-<p>再查看路由表（display bgp routing-table），由于没有引入路由表为空,</p>
-<p>引入：</p>
-<ul>
-<li><p>AR1：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[AR1-bgp]import-route</span> <span class="string">rip 1	</span></span><br><span class="line"><span class="meta">[AR1-bgp]import-route</span> <span class="string">direct</span></span><br></pre></td></tr></table></figure>
-
-<p>再次查看路由表，如下图所示：<img src="https://s1.ax1x.com/2020/05/11/YYnqt1.png" alt="YYnqt1.png"></p>
-</li>
-<li><p>AR2:</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[AR2-bgp]import-route</span> <span class="string">direct 	</span></span><br><span class="line"><span class="meta">[AR2-bgp]import-route</span> <span class="string">ospf 1</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s1.ax1x.com/2020/05/11/YYu97d.png" alt="YYu97d.png"></p>
-</li>
-</ul>
-<h2 id="3-5测试"><a href="#3-5测试" class="headerlink" title="3.5测试"></a>3.5测试</h2><p>AR5 GE0/0/0 Ping AR7 GE0/0/0  在AR2 GE0/0/0端口抓包结果如下：</p>
-<p><img src="https://s1.ax1x.com/2020/05/11/YYuPAA.png" alt="YYuPAA.png"></p>
+<h1 id="五、思路"><a href="#五、思路" class="headerlink" title="五、思路"></a>五、思路</h1><p>经过列表分析，得到规律，是斐波那契数列，采用map集合将月份与兔子总数一一对应。</p>
+<p>采用消耗空间的办法，来减少程序运行时间。</p>
+<p><a href="https://github.com/yym08090809/my-java-demo/blob/master/src/main/java/com/lcx/niuke/Rabbit.java" target="_blank" rel="noopener">代码已上传至github</a></p>
 
     </div>
 
@@ -393,7 +355,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://lisongbai.top/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/" title="边界网关协议实验（BGP）《一》">http://lisongbai.top/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/</a>
+    <a href="http://lisongbai.top/2020/06/25/%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98%E4%B9%8B%E5%85%94%E5%AD%90%E7%B9%81%E6%AE%96/" title="牛客刷题之兔子繁殖">http://lisongbai.top/2020/06/25/%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98%E4%B9%8B%E5%85%94%E5%AD%90%E7%B9%81%E6%AE%96/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -404,24 +366,21 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/" rel="tag"># 网络工程设计</a>
+              <a href="/tags/%E7%89%9B%E5%AE%A2/" rel="tag"># 牛客</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2020/04/30/%E5%8A%9B%E6%89%A3%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E4%B9%8B%E5%BF%AB%E4%B9%90%E6%95%B0/" rel="next" title="力扣每日一题之快乐数">
-                  <i class="fa fa-chevron-left"></i> 力扣每日一题之快乐数
+                <a href="/2020/06/21/%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98%E4%B9%8B%E6%B4%97%E7%89%8C/" rel="next" title="牛客刷题之洗牌">
+                  <i class="fa fa-chevron-left"></i> 牛客刷题之洗牌
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2020/05/13/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%BA%8C%E3%80%8B/" rel="prev" title="边界网关协议实验（BGP）《二》">
-                  边界网关协议实验（BGP）《二》 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -500,7 +459,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-拓扑图"><span class="nav-number">1.</span> <span class="nav-text">1.拓扑图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-实验目的"><span class="nav-number">2.</span> <span class="nav-text">2.实验目的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-实验步骤"><span class="nav-number">3.</span> <span class="nav-text">3.实验步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1网关ip配置"><span class="nav-number">3.1.</span> <span class="nav-text">3.1网关ip配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2AS1配置RIP协议"><span class="nav-number">3.2.</span> <span class="nav-text">3.2AS1配置RIP协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3AS2配置OSPF"><span class="nav-number">3.3.</span> <span class="nav-text">3.3AS2配置OSPF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4配置BGP"><span class="nav-number">3.4.</span> <span class="nav-text">3.4配置BGP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5测试"><span class="nav-number">3.5.</span> <span class="nav-text">3.5测试</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、兔子繁殖"><span class="nav-number">1.</span> <span class="nav-text">一、兔子繁殖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、输入描述"><span class="nav-number">2.</span> <span class="nav-text">二、输入描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、输出描述"><span class="nav-number">3.</span> <span class="nav-text">三、输出描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、代码实现"><span class="nav-number">4.</span> <span class="nav-text">四、代码实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、思路"><span class="nav-number">5.</span> <span class="nav-text">五、思路</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -756,9 +715,9 @@
       DISQUS.reset({
         reload: true,
         config: {page: {
-            url: "http://lisongbai.top/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/",
-            identifier: "2020/05/11/边界网关协议实验（BGP）《一》/",
-            title: "边界网关协议实验（BGP）《一》"
+            url: "http://lisongbai.top/2020/06/25/%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98%E4%B9%8B%E5%85%94%E5%AD%90%E7%B9%81%E6%AE%96/",
+            identifier: "2020/06/25/牛客刷题之兔子繁殖/",
+            title: "牛客刷题之兔子繁殖"
           }
         }
       });

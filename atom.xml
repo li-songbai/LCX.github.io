@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-06-21T15:00:19.451Z</updated>
+  <updated>2020-06-24T16:59:34.948Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>牛客刷题之兔子繁殖</title>
+    <link href="http://lisongbai.top/2020/06/25/%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98%E4%B9%8B%E5%85%94%E5%AD%90%E7%B9%81%E6%AE%96/"/>
+    <id>http://lisongbai.top/2020/06/25/%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98%E4%B9%8B%E5%85%94%E5%AD%90%E7%B9%81%E6%AE%96/</id>
+    <published>2020-06-24T16:48:54.000Z</published>
+    <updated>2020-06-24T16:59:34.948Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一、兔子繁殖&quot;&gt;&lt;a href=&quot;#一、兔子繁殖&quot; class=&quot;headerlink&quot; title=&quot;一、兔子繁殖&quot;&gt;&lt;/a&gt;一、兔子繁殖&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.nowcoder.com/questionTerminal/1221ec77125d4370833fd3ad5ba72395&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;题目链接&lt;/a&gt;&lt;/p&gt;&lt;p&gt;有一只兔子，从出生后第3个月起每个月都生一只兔子，小兔子长到第三个月后每个月又生一只兔子，假如兔子都不死，问每个月的兔子总数为多少？&lt;/p&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/**&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;     * 统计出兔子总数。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;     * &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;     * &lt;span class=&quot;doctag&quot;&gt;@param&lt;/span&gt; monthCount 第几个月&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;     * &lt;span class=&quot;doctag&quot;&gt;@return&lt;/span&gt; 兔子总数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;     */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;getTotalCount&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; monthCount)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;    &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://lisongbai.top/categories/java/"/>
+    
+      <category term="编程" scheme="http://lisongbai.top/categories/java/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="牛客" scheme="http://lisongbai.top/tags/%E7%89%9B%E5%AE%A2/"/>
+    
+  </entry>
   
   <entry>
     <title>牛客刷题之洗牌</title>
@@ -44,7 +67,7 @@
     <link href="http://lisongbai.top/2020/06/21/%E5%8A%9B%E6%89%A3%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E4%B9%8B%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8/"/>
     <id>http://lisongbai.top/2020/06/21/%E5%8A%9B%E6%89%A3%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E4%B9%8B%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8/</id>
     <published>2020-06-21T07:54:35.000Z</published>
-    <updated>2020-06-21T08:11:23.279Z</updated>
+    <updated>2020-06-24T16:59:54.243Z</updated>
     
     <summary type="html">
     
@@ -487,29 +510,6 @@
       <category term="网络工程设计" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
     
       <category term="路由实验" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E5%AE%9E%E9%AA%8C/"/>
-    
-    
-      <category term="网络工程设计" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vlan间通讯</title>
-    <link href="http://lisongbai.top/2020/03/08/vlan%E9%97%B4%E9%80%9A%E8%AE%AF/"/>
-    <id>http://lisongbai.top/2020/03/08/vlan%E9%97%B4%E9%80%9A%E8%AE%AF/</id>
-    <published>2020-03-08T07:27:34.000Z</published>
-    <updated>2020-06-13T13:42:49.633Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1-vlan拓扑图&quot;&gt;&lt;a href=&quot;#1-vlan拓扑图&quot; class=&quot;headerlink&quot; title=&quot;1.vlan拓扑图&quot;&gt;&lt;/a&gt;1.vlan拓扑图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2020/03/02/3Rmj76.png&quot; alt=&quot;3Rmj76.png&quot;&gt;&lt;/p&gt;&lt;h1 id=&quot;2-配置交换机&quot;&gt;&lt;a href=&quot;#2-配置交换机&quot; class=&quot;headerlink&quot; title=&quot;2.配置交换机&quot;&gt;&lt;/a&gt;2.配置交换机&lt;/h1&gt;&lt;h2 id=&quot;2-1配置S1命令如下-S2同理-：&quot;&gt;&lt;a href=&quot;#2-1配置S1命令如下-S2同理-：&quot; class=&quot;headerlink&quot; title=&quot;2.1配置S1命令如下(S2同理)：&quot;&gt;&lt;/a&gt;2.1配置S1命令如下(S2同理)：&lt;/h2&gt;&lt;figure class=&quot;highlight properties&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;&amp;lt;Huawei&amp;gt;system-view&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;sysname&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;S1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1]vlan&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;batch 2 3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;GigabitEthernet 0/0/1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-GigabitEthernet0/0/1]port&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;link-type access&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-GigabitEthernet0/0/1]port&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;default vlan 2     #将该端口加入到VLAN 2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;GigabitEthernet 0/0/2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-GigabitEthernet0/0/2]port&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;link-type access&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-GigabitEthernet0/0/2]port&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;default vlan 3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;GigabitEthernet 0/0/3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-GigabitEthernet0/0/3]port&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;link-type trunk&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-GigabitEthernet0/0/3]port&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;trunk allow-pass vlan 2 3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#只在S1中进行配置&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;vlanif 2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-Vlanif10]ip&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;address 192.168.2.254 24&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;vlanif 3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[S1-Vlanif20]ip&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;address 192.168.3.254 24&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="网络工程设计" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
-    
-      <category term="vlan间通讯" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/vlan%E9%97%B4%E9%80%9A%E8%AE%AF/"/>
     
     
       <category term="网络工程设计" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
