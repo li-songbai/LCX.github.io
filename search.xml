@@ -3807,7 +3807,254 @@
   <entry>
     <title>搭建僵尸工厂</title>
     <url>/2020/06/27/%E6%90%AD%E5%BB%BA%E5%83%B5%E5%B0%B8%E5%B7%A5%E5%8E%82/</url>
-    <content><![CDATA[<p>在学习solidity的过程中发现一个在线学习平台，这是一个第三方的在线智能合约学习环境，目标是教会大家实现 DApp 游戏。这个网站的特点是自作非常精良，各种辅助学习材料丰富，并且是对 Solidity 小白友好的。</p><p><a href="https://cryptozombies.io/" target="_blank" rel="noopener">点击这里进入学习平台</a></p><h1 id="第一课打卡"><a href="#第一课打卡" class="headerlink" title="第一课打卡"></a>第一课打卡</h1><p><img src="https://i.loli.net/2020/06/27/tRPioQMebZLw9nC.png" alt="image-20200627010158056"></p>]]></content>
+    <content><![CDATA[<p>在学习solidity的过程中发现一个在线学习平台，这是一个第三方的在线智能合约学习环境，目标是教会大家实现 DApp 游戏。这个网站的特点是自作非常精良，各种辅助学习材料丰富，并且是对 Solidity 小白友好的。</p><p><a href="https://cryptozombies.io/" target="_blank" rel="noopener">点击这里进入学习平台</a></p><h1 id="一、课程概述"><a href="#一、课程概述" class="headerlink" title="一、课程概述"></a>一、课程概述</h1><p>第一课你将创造一个”僵尸工厂”， 用它建立一支僵尸部队。</p><a id="more"></a>
+
+
+<ul>
+<li>我们的工厂会把我们部队中所有的僵尸保存到数据库中</li>
+<li>工厂会有一个函数能产生新的僵尸</li>
+<li>每个僵尸会有一个随机的独一无二的面孔</li>
+</ul>
+<p>在后面的课程里，我们会增加功能。比如，让僵尸能攻击人类或其它僵尸! 但是在实现这些好玩的功能之前，我们先要实现创建僵尸这样的基本功能。</p>
+<h2 id="僵尸DNA如何运作"><a href="#僵尸DNA如何运作" class="headerlink" title="僵尸DNA如何运作"></a>僵尸DNA如何运作</h2><p>僵尸的面孔取决于它的DNA。它的DNA很简单，由一个16位的整数组成：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">8356281049284737</span><br></pre></td></tr></table></figure>
+
+<p>如同真正的DNA, 这个数字的不同部分会对应不同的特点。 前2位代表头型，紧接着的2位代表眼睛，等等。</p>
+<blockquote>
+<p>注: 本教程我们尽量简化。我们的僵尸只有7种头型(虽然2位数字允许100种可能性)。以后我们会加入更多的头型, 如果我们想让僵尸有更多造型。</p>
+</blockquote>
+<p>例如，前两位数字是 <code>83</code>， 计算僵尸的头型，我们做<code>83 % 7 + 1</code> = 7 运算， 此僵尸将被赋予第七类头型。</p>
+<p>在右边页面，移动头基因<code>head gene</code> 滑块到第七位置(圣诞帽)可见<code>83</code>所对应的特点。</p>
+<h2 id="实战演习"><a href="#实战演习" class="headerlink" title="实战演习"></a>实战演习</h2><ol>
+<li>玩一下页面右侧的滑块。检验一下不同的数字对应不同的僵尸的长相。</li>
+</ol>
+<p>好了，这已经足够你玩一会儿了。 当你想继续的时候，点击下面的”下一章”，让我们来钻研 Solidity ！</p>
+<p><img src="https://i.loli.net/2020/06/27/u3XFU5HpdvCiTOE.png" alt="image-20200627010605297"></p>
+<h1 id="二、合约"><a href="#二、合约" class="headerlink" title="二、合约"></a>二、合约</h1><p>从最基本的开始入手:</p>
+<p>Solidity 的代码都包裹在<strong>合约</strong>里面. 一份<code>合约</code>就是以太应币应用的基本模块， 所有的变量和函数都属于一份合约, 它是你所有应用的起点.</p>
+<p>一份名为 <code>HelloWorld</code> 的空合约如下:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">contract HelloWorld &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="版本指令"><a href="#版本指令" class="headerlink" title="版本指令"></a>版本指令</h2><p>所有的 Solidity 源码都必须冠以 “version pragma” — 标明 Solidity 编译器的版本. 以避免将来新的编译器可能破坏你的代码。</p>
+<p>例如: <code>pragma solidity ^0.4.19;</code> (当前 Solidity 的最新版本是 0.4.19).</p>
+<p>综上所述， 下面就是一个最基本的合约 — 每次建立一个新的项目时的第一段代码:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.4.19;</span><br><span class="line"></span><br><span class="line">contract HelloWorld &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="实战演习-1"><a href="#实战演习-1" class="headerlink" title="实战演习"></a>实战演习</h2><p>为了建立我们的僵尸部队， 让我们先建立一个基础合约，称为 <code>ZombieFactory</code>。</p>
+<ol>
+<li>在右边的输入框里输入 <code>0.4.19</code>，我们的合约基于这个版本的编译器。</li>
+<li>建立一个空合约 <code>ZombieFactory</code>。</li>
+</ol>
+<p>一切完毕，点击下面 “答案” . 如果没效果，点击 “提示”。</p>
+<h2 id="合约的创建"><a href="#合约的创建" class="headerlink" title="合约的创建"></a>合约的创建</h2><p>Contract.sol</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"><span class="comment">//pragma solidity //1. 这里写版本指令</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//2. 这里建立智能合约</span></span><br><span class="line">contract ZombieFactory &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong>指定版本必须放在第一行，第一行前加注释也不可以。</p>
+<h1 id="三、状态变量和整数"><a href="#三、状态变量和整数" class="headerlink" title="三、状态变量和整数"></a>三、状态变量和整数</h1><p>真棒！我们已经为我们的合约做了一个外壳， 下面学习 Solidity 中如何使用变量。</p>
+<p><strong><em>状态变量\</em></strong>是被永久地保存在合约中。也就是说它们被写入以太币区块链中. 想象成写入一个数据库。</p>
+<h5 id="例子"><a href="#例子" class="headerlink" title="例子:"></a>例子:</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">contract Example &#123;</span><br><span class="line">  // 这个无符号整数将会永久的被保存在区块链中</span><br><span class="line">  uint myUnsignedInteger = 100;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的例子中，定义 <code>myUnsignedInteger</code> 为 <code>uint</code> 类型，并赋值100。</p>
+<h2 id="无符号整数-uint"><a href="#无符号整数-uint" class="headerlink" title="无符号整数: uint"></a>无符号整数: <code>uint</code></h2><p><code>uint</code> 无符号数据类型， 指<strong>其值不能是负数</strong>，对于有符号的整数存在名为 <code>int</code> 的数据类型。</p>
+<blockquote>
+<p>注: Solidity中， <code>uint</code> 实际上是 <code>uint256</code>代名词， 一个256位的无符号整数。你也可以定义位数少的uints — <code>uint8</code>， <code>uint16</code>， <code>uint32</code>， 等…… 但一般来讲你愿意使用简单的 <code>uint</code>， 除非在某些特殊情况下，这我们后面会讲。</p>
+</blockquote>
+<h2 id="实战演习-2"><a href="#实战演习-2" class="headerlink" title="实战演习"></a>实战演习</h2><p>我们的僵尸DNA将由一个十六位数字组成。</p>
+<p>定义 <code>dnaDigits</code> 为 <code>uint</code> 数据类型, 并赋值 <code>16</code>。</p>
+<h2 id="合约完善"><a href="#合约完善" class="headerlink" title="合约完善"></a>合约完善</h2><p>Contract.sol</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line">contract ZombieFactory &#123;</span><br><span class="line">    <span class="comment">//这里开始</span></span><br><span class="line">    uint dnaDigits = <span class="number">16</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="四、数学运算"><a href="#四、数学运算" class="headerlink" title="四、数学运算"></a>四、数学运算</h1><p>在 Solidity 中，数学运算很直观明了，与其它程序设计语言相同:</p>
+<ul>
+<li>加法: <code>x + y</code></li>
+<li>减法: <code>x - y</code>,</li>
+<li>乘法: <code>x * y</code></li>
+<li>除法: <code>x / y</code></li>
+<li>取模 / 求余: <code>x % y</code> <em>(例如, <code>13 % 5</code> 余 <code>3</code>, 因为13除以5，余3)</em></li>
+</ul>
+<p>Solidity 还支持 <strong><em>乘方操作\</em></strong> (如：x 的 y次方） // 例如： 5 ** 2 = 25</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">uint x = 5 ** 2; // equal to 5^2 = 25</span><br></pre></td></tr></table></figure>
+
+<h2 id="实战演习-3"><a href="#实战演习-3" class="headerlink" title="实战演习"></a>实战演习</h2><p>为了保证我们的僵尸的DNA只含有16个字符，我们先造一个<code>uint</code>数据，让它等于10^16。这样一来以后我们可以用模运算符 <code>%</code> 把一个整数变成16位。</p>
+<ol>
+<li>建立一个<code>uint</code>类型的变量，名字叫<code>dnaModulus</code>, 令其等于 <strong>10 的 <code>dnaDigits</code> 次方</strong>.</li>
+</ol>
+<h2 id="合约完善-1"><a href="#合约完善-1" class="headerlink" title="合约完善"></a>合约完善</h2><p>Contract.sol</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line">contract ZombieFactory &#123;</span><br><span class="line"></span><br><span class="line">    uint dnaDigits = <span class="number">16</span>;</span><br><span class="line">    <span class="comment">//这里开始</span></span><br><span class="line">    uint dnaModulus = <span class="number">10</span> ** dnaDigits;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="五、结构体"><a href="#五、结构体" class="headerlink" title="五、结构体"></a>五、结构体</h1><p>有时你需要更复杂的数据类型，Solidity 提供了 <strong>结构体</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">struct Person &#123;</span><br><span class="line">  uint age;</span><br><span class="line">  string name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结构体允许你生成一个更复杂的数据类型，它有多个属性。</p>
+<blockquote>
+<p>注：我们刚刚引进了一个新类型, <code>string</code>。 字符串用于保存任意长度的 UTF-8 编码数据。 如： <code>string greeting = &quot;Hello world!&quot;</code>。</p>
+</blockquote>
+<h2 id="实战演习-4"><a href="#实战演习-4" class="headerlink" title="实战演习"></a>实战演习</h2><p>在我们的程序中，我们将创建一些僵尸！每个僵尸将拥有多个属性，所以这是一个展示结构体的完美例子。</p>
+<ol>
+<li>建立一个<code>struct</code> 命名为 <code>Zombie</code>.</li>
+<li>我们的 <code>Zombie</code> 结构体有两个属性： <code>name</code> (类型为 <code>string</code>), 和 <code>dna</code> (类型为 <code>uint</code>)。</li>
+</ol>
+<h2 id="合约完善-2"><a href="#合约完善-2" class="headerlink" title="合约完善"></a>合约完善</h2><p>Contract.sol</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line">contract ZombieFactory &#123;</span><br><span class="line"></span><br><span class="line">    uint dnaDigits = <span class="number">16</span>;</span><br><span class="line">    uint dnaModulus = <span class="number">10</span> ** dnaDigits;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里开始</span></span><br><span class="line">    struct Zombie &#123;</span><br><span class="line">        string name;</span><br><span class="line">        uint dna;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="六、数组"><a href="#六、数组" class="headerlink" title="六、数组"></a>六、数组</h1><p>如果你想建立一个集合，可以用 <strong><em>数组</em></strong>这样的数据类型. Solidity 支持两种数组: <strong><em>静态</em></strong> 数组和<strong><em>动态</em></strong> 数组:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 固定长度为2的静态数组:</span><br><span class="line">uint[2] fixedArray;</span><br><span class="line">// 固定长度为5的string类型的静态数组:</span><br><span class="line">string[5] stringArray;</span><br><span class="line">// 动态数组，长度不固定，可以动态添加元素:</span><br><span class="line">uint[] dynamicArray;</span><br></pre></td></tr></table></figure>
+
+<p>你也可以建立一个 <strong><em>结构体\</em></strong>类型的数组 例如，上一章提到的 <code>Person</code>:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Person[] people; // 这是动态数组，我们可以不断添加元素</span><br></pre></td></tr></table></figure>
+
+<p>记住：状态变量被永久保存在区块链中。所以在你的合约中创建动态数组来保存成结构的数据是非常有意义的。</p>
+<h2 id="公共数组"><a href="#公共数组" class="headerlink" title="公共数组"></a>公共数组</h2><p>你可以定义 <code>public</code> 数组, Solidity 会自动创建 <strong><em>getter\</em></strong> 方法. 语法如下:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Person[] public people;</span><br></pre></td></tr></table></figure>
+
+<p>其它的合约可以从这个数组读取数据（但不能写入数据），所以这在合约中是一个有用的保存公共数据的模式。</p>
+<h2 id="实战演习-5"><a href="#实战演习-5" class="headerlink" title="实战演习"></a>实战演习</h2><p>为了把一个僵尸部队保存在我们的APP里，并且能够让其它APP看到这些僵尸，我们需要一个公共数组。</p>
+<ol>
+<li>创建一个数据类型为 <code>Zombie</code> 的结构体数组，用 <code>public</code> 修饰，命名为：<code>zombies</code>.</li>
+</ol>
+<h2 id="合约完善-3"><a href="#合约完善-3" class="headerlink" title="合约完善"></a>合约完善</h2><p>Contract.sol</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line">contract ZombieFactory &#123;</span><br><span class="line"></span><br><span class="line">    uint dnaDigits = <span class="number">16</span>;</span><br><span class="line">    uint dnaModulus = <span class="number">10</span> ** dnaDigits;</span><br><span class="line"></span><br><span class="line">    struct Zombie &#123;</span><br><span class="line">        string name;</span><br><span class="line">        uint dna;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里开始</span></span><br><span class="line">    Zombie[] public zombies;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="七、定义函数"><a href="#七、定义函数" class="headerlink" title="七、定义函数"></a>七、定义函数</h1><p>在 Solidity 中函数定义的句法如下:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function eatHamburgers(string _name, uint _amount) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是一个名为 <code>eatHamburgers</code> 的函数，它接受两个参数：一个 <code>string</code>类型的 和 一个 <code>uint</code>类型的。现在函数内部还是空的。</p>
+<blockquote>
+<p>注：: 习惯上函数里的变量都是以(<code>_</code>)开头 (但不是硬性规定) 以区别全局变量。我们整个教程都会沿用这个习惯。</p>
+</blockquote>
+<p>我们的函数定义如下:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">eatHamburgers(&quot;vitalik&quot;, 100);</span><br></pre></td></tr></table></figure>
+
+<h2 id="实战演习-6"><a href="#实战演习-6" class="headerlink" title="实战演习"></a>实战演习</h2><p>在我们的应用里，我们要能创建一些僵尸，让我们写一个函数做这件事吧！</p>
+<ol>
+<li>建立一个函数 <code>createZombie</code>。 它有两个参数: <strong>_name</strong> (类型为<code>string</code>), 和 <strong>_dna</strong> (类型为<code>uint</code>)。</li>
+</ol>
+<p>暂时让函数空着——我们在后面会增加内容。</p>
+<h2 id="合约完善-4"><a href="#合约完善-4" class="headerlink" title="合约完善"></a>合约完善</h2><p>Contract.sol</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line">contract ZombieFactory &#123;</span><br><span class="line"></span><br><span class="line">    uint dnaDigits = <span class="number">16</span>;</span><br><span class="line">    uint dnaModulus = <span class="number">10</span> ** dnaDigits;</span><br><span class="line"></span><br><span class="line">    struct Zombie &#123;</span><br><span class="line">        string name;</span><br><span class="line">        uint dna;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Zombie[] public zombies;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里开始</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">createZombie</span>(<span class="params">string _name, uint _dna</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="八、使用结构体和数组"><a href="#八、使用结构体和数组" class="headerlink" title="八、使用结构体和数组"></a>八、使用结构体和数组</h1><h2 id="创建新的结构体"><a href="#创建新的结构体" class="headerlink" title="创建新的结构体"></a>创建新的结构体</h2><p>还记得上个例子中的 <code>Person</code> 结构吗？</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">struct Person &#123;</span><br><span class="line">  uint age;</span><br><span class="line">  string name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person[] public people;</span><br></pre></td></tr></table></figure>
+
+<p>现在我们学习创建新的 <code>Person</code> 结构，然后把它加入到名为 <code>people</code> 的数组中.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 创建一个新的Person:</span><br><span class="line">Person satoshi = Person(172, &quot;Satoshi&quot;);</span><br><span class="line"></span><br><span class="line">// 将新创建的satoshi添加进people数组:</span><br><span class="line">people.push(satoshi);</span><br></pre></td></tr></table></figure>
+
+<p>你也可以两步并一步，用一行代码更简洁:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">people.push(Person(16, &quot;Vitalik&quot;));</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注：<code>array.push()</code> 在数组的 <strong>尾部</strong> 加入新元素 ，所以元素在数组中的顺序就是我们添加的顺序， 如:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">uint[] numbers;</span><br><span class="line">numbers.push(5);</span><br><span class="line">numbers.push(10);</span><br><span class="line">numbers.push(15);</span><br><span class="line">// numbers is now equal to [5, 10, 15]</span><br></pre></td></tr></table></figure>
+
+<h2 id="实战演习-7"><a href="#实战演习-7" class="headerlink" title="实战演习"></a>实战演习</h2><p>让我们创建名为createZombie的函数来做点儿什么吧。</p>
+<ol>
+<li>在函数体里新创建一个 <code>Zombie</code>， 然后把它加入 <code>zombies</code> 数组中。 新创建的僵尸的 <code>name</code> 和 <code>dna</code>，来自于函数的参数。</li>
+<li>让我们用一行代码简洁地完成它。</li>
+</ol>
+<h2 id="合约完善-5"><a href="#合约完善-5" class="headerlink" title="合约完善"></a>合约完善</h2><p>Contract.sol</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line">contract ZombieFactory &#123;</span><br><span class="line"></span><br><span class="line">    uint dnaDigits = <span class="number">16</span>;</span><br><span class="line">    uint dnaModulus = <span class="number">10</span> ** dnaDigits;</span><br><span class="line"></span><br><span class="line">    struct Zombie &#123;</span><br><span class="line">        string name;</span><br><span class="line">        uint dna;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Zombie[] public zombies;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">createZombie</span>(<span class="params">string _name, uint _dna</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 这里开始</span></span><br><span class="line">        zombies.push(Zombie(_name, _dna));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="九、私有-公共函数"><a href="#九、私有-公共函数" class="headerlink" title="九、私有 / 公共函数"></a>九、私有 / 公共函数</h1><p>Solidity 定义的函数的属性默认为<code>公共</code>。 这就意味着任何一方 (或其它合约) 都可以调用你合约里的函数。</p>
+<p>显然，不是什么时候都需要这样，而且这样的合约易于受到攻击。 所以将自己的函数定义为<code>私有</code>是一个好的编程习惯，只有当你需要外部世界调用它时才将它设置为<code>公共</code>。</p>
+<p>如何定义一个私有的函数呢？</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">uint[] numbers;</span><br><span class="line"></span><br><span class="line">function _addToArray(uint _number) private &#123;</span><br><span class="line">  numbers.push(_number);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这意味着只有我们合约中的其它函数才能够调用这个函数，给 <code>numbers</code> 数组添加新成员。</p>
+<p>可以看到，在函数名字后面使用关键字 <code>private</code> 即可。和函数的参数类似，私有函数的名字用(<code>_</code>)起始。</p>
+<h2 id="实战演习-8"><a href="#实战演习-8" class="headerlink" title="实战演习"></a>实战演习</h2><p>我们合约的函数 <code>createZombie</code> 的默认属性是公共的，这意味着任何一方都可以调用它去创建一个僵尸。 咱们来把它变成私有吧！</p>
+<ol>
+<li>变 <code>createZombie</code> 为私有函数，不要忘记遵守命名的规矩哦！</li>
+</ol>
+<h2 id="合约修改"><a href="#合约修改" class="headerlink" title="合约修改"></a>合约修改</h2><p>Contract.sol</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line">contract ZombieFactory &#123;</span><br><span class="line"></span><br><span class="line">    uint dnaDigits = <span class="number">16</span>;</span><br><span class="line">    uint dnaModulus = <span class="number">10</span> ** dnaDigits;</span><br><span class="line"></span><br><span class="line">    struct Zombie &#123;</span><br><span class="line">        string name;</span><br><span class="line">        uint dna;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Zombie[] public zombies;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//function createZombie(string _name, uint _dna) &#123;</span></span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">_createZombie</span>(<span class="params">string _name, uint _dna</span>) <span class="title">private</span> </span>&#123;</span><br><span class="line">        zombies.push(Zombie(_name, _dna));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="十、函数的更多属性"><a href="#十、函数的更多属性" class="headerlink" title="十、函数的更多属性"></a>十、函数的更多属性</h1><p>本章中我们将学习函数的返回值和修饰符。</p>
+<h2 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h2><p>要想函数返回一个数值，按如下定义：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">string greeting = &quot;What&apos;s up dog&quot;;</span><br><span class="line"></span><br><span class="line">function sayHello() public returns (string) &#123;</span><br><span class="line">  return greeting;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Solidity 里，函数的定义里可包含返回值的数据类型(如本例中 <code>string</code>)。</p>
+<h2 id="函数的修饰符"><a href="#函数的修饰符" class="headerlink" title="函数的修饰符"></a>函数的修饰符</h2><p>上面的函数实际上没有改变 Solidity 里的状态，即，它没有改变任何值或者写任何东西。</p>
+<p>这种情况下我们可以把函数定义为 <strong><em>view\</em></strong>, 意味着它只能读取数据不能更改数据:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function sayHello() public view returns (string) &#123;</span><br></pre></td></tr></table></figure>
+
+<p>Solidity 还支持 <strong><em>pure\</em></strong> 函数, 表明这个函数甚至都不访问应用里的数据，例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function _multiply(uint a, uint b) private pure returns (uint) &#123;</span><br><span class="line">  return a * b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个函数甚至都不读取应用里的状态 — 它的返回值完全取决于它的输入参数，在这种情况下我们把函数定义为 <strong><em>pure\</em></strong>.</p>
+<blockquote>
+<p>注：可能很难记住何时把函数标记为 pure/view。 幸运的是， Solidity 编辑器会给出提示，提醒你使用这些修饰符。</p>
+</blockquote>
+<h2 id="实战演习-9"><a href="#实战演习-9" class="headerlink" title="实战演习"></a>实战演习</h2><p>我们想建立一个帮助函数，它根据一个字符串随机生成一个DNA数据。</p>
+<ol>
+<li>创建一个 <code>private</code> 函数，命名为 <code>_generateRandomDna</code>。它只接收一个输入变量 <code>_str</code> (类型 <code>string</code>), 返回一个 <code>uint</code> 类型的数值。</li>
+<li>此函数只读取我们合约中的一些变量，所以标记为<code>view</code>。</li>
+<li>函数内部暂时留空，以后我们再添加代码。</li>
+</ol>
+<h2 id="合约完善-6"><a href="#合约完善-6" class="headerlink" title="合约完善"></a>合约完善</h2><p>Contract.sol</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line">contract ZombieFactory &#123;</span><br><span class="line"></span><br><span class="line">    uint dnaDigits = <span class="number">16</span>;</span><br><span class="line">    uint dnaModulus = <span class="number">10</span> ** dnaDigits;</span><br><span class="line"></span><br><span class="line">    struct Zombie &#123;</span><br><span class="line">        string name;</span><br><span class="line">        uint dna;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Zombie[] public zombies;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_createZombie</span>(<span class="params">string _name, uint _dna</span>) <span class="title">private</span> </span>&#123;</span><br><span class="line">        zombies.push(Zombie(_name, _dna));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里开始</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_generateRandomDna</span>(<span class="params">string _str</span>) <span class="title">private</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params">uint</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="十一、Keccak256-和-类型转换"><a href="#十一、Keccak256-和-类型转换" class="headerlink" title="十一、Keccak256 和 类型转换"></a>十一、Keccak256 和 类型转换</h1><p>如何让 <code>_generateRandomDna</code> 函数返回一个全(半) 随机的 <code>uint</code>?</p>
+<p>Ethereum 内部有一个散列函数<code>keccak256</code>，它用了SHA3版本。一个散列函数基本上就是把一个字符串转换为一个256位的16进制数字。字符串的一个微小变化会引起散列数据极大变化。</p>
+<p>这在 Ethereum 中有很多应用，但是现在我们只是用它造一个伪随机数。</p>
+<p>例子:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//6e91ec6b618bb462a4a6ee5aa2cb0e9cf30f7a052bb467b0ba58b8748c00d2e5</span><br><span class="line">keccak256(&quot;aaaab&quot;);</span><br><span class="line">//b1f078126895a1424524de5321b339ab00408010b7cf0e6ed451514981e58aa9</span><br><span class="line">keccak256(&quot;aaaac&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>显而易见，输入字符串只改变了一个字母，输出就已经天壤之别了。</p>
+<blockquote>
+<p>注: 在区块链中<strong>安全地</strong>产生一个随机数是一个很难的问题， 本例的方法不安全，但是在我们的Zombie DNA算法里不是那么重要，已经很好地满足我们的需要了。</p>
+</blockquote>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><p>有时你需要变换数据类型。例如:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">uint8 a = 5;</span><br><span class="line">uint b = 6;</span><br><span class="line">// 将会抛出错误，因为 a * b 返回 uint, 而不是 uint8:</span><br><span class="line">uint8 c = a * b;</span><br><span class="line">// 我们需要将 b 转换为 uint8:</span><br><span class="line">uint8 c = a * uint8(b);</span><br></pre></td></tr></table></figure>
+
+<p>上面, <code>a * b</code> 返回类型是 <code>uint</code>, 但是当我们尝试用 <code>uint8</code> 类型接收时, 就会造成潜在的错误。如果把它的数据类型转换为 <code>uint8</code>, 就可以了，编译器也不会出错。</p>
+<h2 id="实战演习-10"><a href="#实战演习-10" class="headerlink" title="实战演习"></a>实战演习</h2><p>给 <code>_generateRandomDna</code> 函数添加代码! 它应该完成如下功能:</p>
+<ol>
+<li>第一行代码取 <code>_str</code> 的 <code>keccak256</code> 散列值生成一个伪随机十六进制数，类型转换为 <code>uint</code>, 最后保存在类型为 <code>uint</code> 名为 <code>rand</code> 的变量中。</li>
+<li>我们只想让我们的DNA的长度为16位 (还记得 <code>dnaModulus</code>?)。所以第二行代码应该 <code>return</code> 上面计算的数值对 <code>dnaModulus</code> 求余数(<code>%</code>)。</li>
+</ol>
+<h2 id="合约完善-7"><a href="#合约完善-7" class="headerlink" title="合约完善"></a>合约完善</h2><p>Contract.sol</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line">contract ZombieFactory &#123;</span><br><span class="line"></span><br><span class="line">    uint dnaDigits = <span class="number">16</span>;</span><br><span class="line">    uint dnaModulus = <span class="number">10</span> ** dnaDigits;</span><br><span class="line"></span><br><span class="line">    struct Zombie &#123;</span><br><span class="line">        string name;</span><br><span class="line">        uint dna;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Zombie[] public zombies;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_createZombie</span>(<span class="params">string _name, uint _dna</span>) <span class="title">private</span> </span>&#123;</span><br><span class="line">        zombies.push(Zombie(_name, _dna));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_generateRandomDna</span>(<span class="params">string _str</span>) <span class="title">private</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params">uint</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 这里开始</span></span><br><span class="line">        uint rand = uint(keccak256(_str));</span><br><span class="line">        <span class="keyword">return</span> rand % dnaModulus;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="十二、放在一起"><a href="#十二、放在一起" class="headerlink" title="十二、放在一起"></a>十二、放在一起</h1><p>我们就快完成我们的随机僵尸制造器了，来写一个公共的函数把所有的部件连接起来。</p>
+<p>写一个公共函数，它有一个参数，用来接收僵尸的名字，之后用它生成僵尸的DNA。</p>
+<h2 id="实战演习-11"><a href="#实战演习-11" class="headerlink" title="实战演习"></a>实战演习</h2><ol>
+<li>创建一个 <code>public</code> 函数，命名为<code>createRandomZombie</code>. 它将被传入一个变量 <code>_name</code> (数据类型是 <code>string</code>)。 <em>(注: 定义公共函数 <code>public</code> 和定义一个私有 <code>private</code> 函数的做法一样)</em>。</li>
+<li>函数的第一行应该调用 <code>_generateRandomDna</code> 函数，传入 <code>_name</code> 参数, 结果保存在一个类型为 <code>uint</code> 的变量里，命名为 <code>randDna</code>。</li>
+<li>第二行调用 <code>_createZombie</code> 函数， 传入参数： <code>_name</code> 和 <code>randDna</code>。</li>
+<li>整个函数应该是4行代码 (包括函数的结束符号 <code>}</code> )。</li>
+</ol>
+<h2 id="合约完善-8"><a href="#合约完善-8" class="headerlink" title="合约完善"></a>合约完善</h2><p>Contract.sol</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line">contract ZombieFactory &#123;</span><br><span class="line"></span><br><span class="line">    uint dnaDigits = <span class="number">16</span>;</span><br><span class="line">    uint dnaModulus = <span class="number">10</span> ** dnaDigits;</span><br><span class="line"></span><br><span class="line">    struct Zombie &#123;</span><br><span class="line">        string name;</span><br><span class="line">        uint dna;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Zombie[] public zombies;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_createZombie</span>(<span class="params">string _name, uint _dna</span>) <span class="title">private</span> </span>&#123;</span><br><span class="line">        zombies.push(Zombie(_name, _dna));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_generateRandomDna</span>(<span class="params">string _str</span>) <span class="title">private</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params">uint</span>) </span>&#123;</span><br><span class="line">        uint rand = uint(keccak256(_str));</span><br><span class="line">        <span class="keyword">return</span> rand % dnaModulus;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 从这里开始</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">createRandomZombie</span>(<span class="params">string _name</span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">        uint randDna = _generateRandomDna(_name);</span><br><span class="line">        _createZombie(_name, randDna);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="十三、事件"><a href="#十三、事件" class="headerlink" title="十三、事件"></a>十三、事件</h1><p>我们的合约几乎就要完成了！让我们加上一个<strong>事件</strong>.</p>
+<p><strong>事件</strong> 是合约和区块链通讯的一种机制。你的前端应用“监听”某些事件，并做出反应。</p>
+<p>例子:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 这里建立事件</span><br><span class="line">event IntegersAdded(uint x, uint y, uint result);</span><br><span class="line"></span><br><span class="line">function add(uint _x, uint _y) public &#123;</span><br><span class="line">  uint result = _x + _y;</span><br><span class="line">  //触发事件，通知app</span><br><span class="line">  IntegersAdded(_x, _y, result);</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你的 app 前端可以监听这个事件。JavaScript 实现如下:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">YourContract.IntegersAdded(function(error, result) &#123; </span><br><span class="line">  // 干些事</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="实战演习-12"><a href="#实战演习-12" class="headerlink" title="实战演习"></a>实战演习</h2><p>我们想每当一个僵尸创造出来时，我们的前端都能监听到这个事件，并将它显示出来。</p>
+<p>1。 定义一个 <code>事件</code> 叫做 <code>NewZombie</code>。 它有3个参数: <code>zombieId</code> (<code>uint</code>)， <code>name</code> (<code>string</code>)， 和 <code>dna</code> (<code>uint</code>)。</p>
+<p>2。 修改 <code>_createZombie</code> 函数使得当新僵尸造出来并加入<code>zombies</code>数组后，生成事件<code>NewZombie</code>。</p>
+<p>3。 需要定义僵尸<code>id</code>。 <code>array.push()</code> 返回数组的长度类型是<code>uint</code> - 因为数组的第一个元素的索引是 0， <code>array.push() - 1</code> 将是我们加入的僵尸的索引。 <code>zombies.push() - 1</code> 就是 <code>id</code>，数据类型是 <code>uint</code>。在下一行中你可以把它用到 <code>NewZombie</code> 事件中。</p>
+<h2 id="合约修改-1"><a href="#合约修改-1" class="headerlink" title="合约修改"></a>合约修改</h2><p>Contract.sol</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line">contract ZombieFactory &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里建立事件</span></span><br><span class="line">    event NewZombie(uint zombieId, string name, uint dna);</span><br><span class="line"></span><br><span class="line">    uint dnaDigits = <span class="number">16</span>;</span><br><span class="line">    uint dnaModulus = <span class="number">10</span> ** dnaDigits;</span><br><span class="line"></span><br><span class="line">    struct Zombie &#123;</span><br><span class="line">        string name;</span><br><span class="line">        uint dna;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Zombie[] public zombies;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_createZombie</span>(<span class="params">string _name, uint _dna</span>) <span class="title">private</span> </span>&#123;</span><br><span class="line">        <span class="comment">//zombies.push(Zombie(_name, _dna));</span></span><br><span class="line">        uint id = zombies.push(Zombie(_name, _dna)) - <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 这里触发事件</span></span><br><span class="line">        NewZombie(id, _name, _dna);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_generateRandomDna</span>(<span class="params">string _str</span>) <span class="title">private</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params">uint</span>) </span>&#123;</span><br><span class="line">        uint rand = uint(keccak256(_str));</span><br><span class="line">        <span class="keyword">return</span> rand % dnaModulus;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">createRandomZombie</span>(<span class="params">string _name</span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">        uint randDna = _generateRandomDna(_name);</span><br><span class="line">        _createZombie(_name, randDna);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="十四、Web3-js"><a href="#十四、Web3-js" class="headerlink" title="十四、Web3.js"></a>十四、Web3.js</h1><p>我们的 Solidity 合约完工了！ 现在我们要写一段 JavaScript 前端代码来调用这个合约。</p>
+<p>以太坊有一个 JavaScript 库，名为<strong><em>Web3.js\</em></strong>。</p>
+<p>在后面的课程里，我们会进一步地教你如何安装一个合约，如何设置Web3.js。 但是现在我们通过一段代码来了解 Web3.js 是如何和我们发布的合约交互的吧。</p>
+<p>如果下面的代码你不能全都理解，不用担心。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 下面是调用合约的方式:</span></span><br><span class="line"><span class="keyword">var</span> abi = <span class="comment">/* abi是由编译器生成的 */</span></span><br><span class="line"><span class="keyword">var</span> ZombieFactoryContract = web3.eth.contract(abi)</span><br><span class="line"><span class="keyword">var</span> contractAddress = <span class="comment">/* 发布之后在以太坊上生成的合约地址 */</span></span><br><span class="line"><span class="keyword">var</span> ZombieFactory = ZombieFactoryContract.at(contractAddress)</span><br><span class="line"><span class="comment">// `ZombieFactory` 能访问公共的函数以及事件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 某个监听文本输入的监听器:</span></span><br><span class="line">$(<span class="string">"#ourButton"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = $(<span class="string">"#nameInput"</span>).val()</span><br><span class="line">  <span class="comment">//调用合约的 `createRandomZombie` 函数:</span></span><br><span class="line">  ZombieFactory.createRandomZombie(name)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 监听 `NewZombie` 事件, 并且更新UI</span></span><br><span class="line"><span class="keyword">var</span> event = ZombieFactory.NewZombie(<span class="function"><span class="keyword">function</span>(<span class="params">error, result</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (error) <span class="keyword">return</span></span><br><span class="line">  generateZombie(result.zombieId, result.name, result.dna)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取 Zombie 的 dna, 更新图像</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">generateZombie</span>(<span class="params">id, name, dna</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> dnaStr = <span class="built_in">String</span>(dna)</span><br><span class="line">  <span class="comment">// 如果dna少于16位,在它前面用0补上</span></span><br><span class="line">  <span class="keyword">while</span> (dnaStr.length &lt; <span class="number">16</span>)</span><br><span class="line">    dnaStr = <span class="string">"0"</span> + dnaStr</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> zombieDetails = &#123;</span><br><span class="line">    <span class="comment">// 前两位数构成头部.我们可能有7种头部, 所以 % 7</span></span><br><span class="line">    <span class="comment">// 得到的数在0-6,再加上1,数的范围变成1-7</span></span><br><span class="line">    <span class="comment">// 通过这样计算：</span></span><br><span class="line">    headChoice: dnaStr.substring(<span class="number">0</span>, <span class="number">2</span>) % <span class="number">7</span> + <span class="number">1</span>，</span><br><span class="line">    <span class="comment">// 我们得到的图片名称从head1.png 到 head7.png</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 接下来的两位数构成眼睛, 眼睛变化就对11取模:</span></span><br><span class="line">    eyeChoice: dnaStr.substring(<span class="number">2</span>, <span class="number">4</span>) % <span class="number">11</span> + <span class="number">1</span>,</span><br><span class="line">    <span class="comment">// 再接下来的两位数构成衣服，衣服变化就对6取模:</span></span><br><span class="line">    shirtChoice: dnaStr.substring(<span class="number">4</span>, <span class="number">6</span>) % <span class="number">6</span> + <span class="number">1</span>,</span><br><span class="line">    <span class="comment">//最后6位控制颜色. 用css选择器: hue-rotate来更新</span></span><br><span class="line">    <span class="comment">// 360度:</span></span><br><span class="line">    skinColorChoice: <span class="built_in">parseInt</span>(dnaStr.substring(<span class="number">6</span>, <span class="number">8</span>) / <span class="number">100</span> * <span class="number">360</span>),</span><br><span class="line">    eyeColorChoice: <span class="built_in">parseInt</span>(dnaStr.substring(<span class="number">8</span>, <span class="number">10</span>) / <span class="number">100</span> * <span class="number">360</span>),</span><br><span class="line">    clothesColorChoice: <span class="built_in">parseInt</span>(dnaStr.substring(<span class="number">10</span>, <span class="number">12</span>) / <span class="number">100</span> * <span class="number">360</span>),</span><br><span class="line">    zombieName: name,</span><br><span class="line">    zombieDescription: <span class="string">"A Level 1 CryptoZombie"</span>,</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> zombieDetails</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们的 JavaScript 所做的就是获取由<code>zombieDetails</code> 产生的数据, 并且利用浏览器里的 JavaScript 神奇功能 (我们用 Vue.js)，置换出图像以及使用CSS过滤器。在后面的课程中，你可以看到全部的代码。</p>
+<h2 id="试一下吧"><a href="#试一下吧" class="headerlink" title="试一下吧!"></a>试一下吧!</h2><p>在右面的输入框里输入你的名字，看看你能得到哪种僵尸！</p>
+<p><strong>一旦你得到一个满意的僵尸, 点击下面的 “下一章” 按钮保存你的僵尸，结束第一课!</strong></p>
+<p><img src="https://i.loli.net/2020/06/27/M7xR5BkscQhlyf2.png" alt="image-20200627013408075"></p>
+<h1 id="十五、第一课打卡"><a href="#十五、第一课打卡" class="headerlink" title="十五、第一课打卡"></a>十五、第一课打卡</h1><p><img src="https://i.loli.net/2020/06/27/J8bZ17ehKlOtckY.png" alt="image-20200627013444060"></p>
+<p><a href="https://share.cryptozombies.io/zh/lesson/1/share/truffle_solidity_web3.js_javaScript" target="_blank" rel="noopener">我的僵尸大军1</a></p>
+]]></content>
       <categories>
         <category>solidity</category>
       </categories>
@@ -5429,12 +5676,12 @@
 <h2 id="合约修改-9"><a href="#合约修改-9" class="headerlink" title="合约修改"></a>合约修改</h2><p>zombiehelper.sol</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"./zombiefeeding.sol"</span>;</span><br><span class="line"></span><br><span class="line">contract ZombieHelper is ZombieFeeding &#123;</span><br><span class="line"></span><br><span class="line">  modifier aboveLevel(uint _level, uint _zombieId) &#123;</span><br><span class="line">    <span class="built_in">require</span>(zombies[_zombieId].level &gt;= _level);</span><br><span class="line">    _;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">changeName</span>(<span class="params">uint _zombieId, string _newName</span>) <span class="title">external</span> <span class="title">aboveLevel</span>(<span class="params"><span class="number">2</span>, _zombieId</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">require</span>(msg.sender == zombieToOwner[_zombieId]);</span><br><span class="line">    zombies[_zombieId].name = _newName;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">changeDna</span>(<span class="params">uint _zombieId, uint _newDna</span>) <span class="title">external</span> <span class="title">aboveLevel</span>(<span class="params"><span class="number">20</span>, _zombieId</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">require</span>(msg.sender == zombieToOwner[_zombieId]);</span><br><span class="line">    zombies[_zombieId].dna = _newDna;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 在这里创建你的函数</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">getZombiesByOwner</span>(<span class="params">address _owner</span>) <span class="title">external</span> <span class="title">view</span> <span class="title">returns</span>(<span class="params">uint[]</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="存储非常昂贵"><a href="#存储非常昂贵" class="headerlink" title="存储非常昂贵"></a>存储非常昂贵</h1><p>Solidity 使用<code>storage</code>(存储)是相当昂贵的，”写入“操作尤其贵。</p>
+<h1 id="十一、存储非常昂贵"><a href="#十一、存储非常昂贵" class="headerlink" title="十一、存储非常昂贵"></a>十一、存储非常昂贵</h1><p>Solidity 使用<code>storage</code>(存储)是相当昂贵的，”写入“操作尤其贵。</p>
 <p>这是因为，无论是写入还是更改一段数据， 这都将永久性地写入区块链。”永久性“啊！需要在全球数千个节点的硬盘上存入这些数据，随着区块链的增长，拷贝份数更多，存储量也就越大。这是需要成本的！</p>
 <p>为了降低成本，不到万不得已，避免将数据写入存储。这也会导致效率低下的编程逻辑 - 比如每次调用一个函数，都需要在 <code>memory</code>(内存) 中重建一个数组，而不是简单地将上次计算的数组给存储下来以便快速查找。</p>
 <p>在大多数编程语言中，遍历大数据集合都是昂贵的。但是在 Solidity 中，使用一个标记了<code>external view</code>的函数，遍历比 <code>storage</code> 要便宜太多，因为 <code>view</code> 函数不会产生任何花销。 （gas可是真金白银啊！）。</p>
 <p>我们将在下一章讨论<code>for</code>循环，现在我们来看一下看如何如何在内存中声明数组。</p>
-<h2 id="十一、在内存中声明数组"><a href="#十一、在内存中声明数组" class="headerlink" title="十一、在内存中声明数组"></a>十一、在内存中声明数组</h2><p>在数组后面加上 <code>memory</code>关键字， 表明这个数组是仅仅在内存中创建，不需要写入外部存储，并且在函数调用结束时它就解散了。与在程序结束时把数据保存进 <code>storage</code> 的做法相比，内存运算可以大大节省gas开销 – 把这数组放在<code>view</code>里用，完全不用花钱。</p>
+<h2 id="在内存中声明数组"><a href="#在内存中声明数组" class="headerlink" title="在内存中声明数组"></a>在内存中声明数组</h2><p>在数组后面加上 <code>memory</code>关键字， 表明这个数组是仅仅在内存中创建，不需要写入外部存储，并且在函数调用结束时它就解散了。与在程序结束时把数据保存进 <code>storage</code> 的做法相比，内存运算可以大大节省gas开销 – 把这数组放在<code>view</code>里用，完全不用花钱。</p>
 <p>以下是申明一个内存数组的例子：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function getArray() external pure returns(uint[]) &#123;</span><br><span class="line">  // 初始化一个长度为3的内存数组</span><br><span class="line">  uint[] memory values = new uint[](3);</span><br><span class="line">  // 赋值</span><br><span class="line">  values.push(1);</span><br><span class="line">  values.push(2);</span><br><span class="line">  values.push(3);</span><br><span class="line">  // 返回数组</span><br><span class="line">  return values;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
