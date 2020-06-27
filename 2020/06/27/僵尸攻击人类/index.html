@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="第二课概览在第一课中，我们创建了一个函数用来生成僵尸，并且将它放入区块链上的僵尸数据库中。 在第二课里，我们会让我们的 app 看起来更像一个游戏： 它得支持多用户，并且采用更加有趣,而不仅仅使用随机的方式，来生成新的僵尸。如何生成新的僵尸呢？通过让现有的僵尸猎食其他生物！僵尸猎食僵尸猎食的时候，僵尸病毒侵入猎物，这些病毒会将猎物变为新的僵尸，加入你的僵尸大军。系统会通过猎物和猎食者僵尸的DNA计">
+<meta name="keywords" content="solidity">
+<meta property="og:type" content="article">
+<meta property="og:title" content="僵尸攻击人类">
+<meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2020&#x2F;06&#x2F;27&#x2F;%E5%83%B5%E5%B0%B8%E6%94%BB%E5%87%BB%E4%BA%BA%E7%B1%BB&#x2F;index.html">
+<meta property="og:site_name" content="小李の博客">
+<meta property="og:description" content="第二课概览在第一课中，我们创建了一个函数用来生成僵尸，并且将它放入区块链上的僵尸数据库中。 在第二课里，我们会让我们的 app 看起来更像一个游戏： 它得支持多用户，并且采用更加有趣,而不仅仅使用随机的方式，来生成新的僵尸。如何生成新的僵尸呢？通过让现有的僵尸猎食其他生物！僵尸猎食僵尸猎食的时候，僵尸病毒侵入猎物，这些病毒会将猎物变为新的僵尸，加入你的僵尸大军。系统会通过猎物和猎食者僵尸的DNA计">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;27&#x2F;SMihkOofrwEHxTF.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;27&#x2F;vQ8uDOcFknPNsmy.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;27&#x2F;I9YxPTeVDuKcfmr.png">
+<meta property="og:updated_time" content="2020-06-27T02:50:47.143Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;06&#x2F;27&#x2F;SMihkOofrwEHxTF.png">
+
+<link rel="canonical" href="http://lisongbai.top/2020/06/27/%E5%83%B5%E5%B0%B8%E6%94%BB%E5%87%BB%E4%BA%BA%E7%B1%BB/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>僵尸攻击人类 | 小李の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="小李の博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小李の博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">我有一壶酒，足以慰平生。</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/yym08090809" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/06/27/%E5%83%B5%E5%B0%B8%E6%94%BB%E5%87%BB%E4%BA%BA%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李松柏">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小李の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          僵尸攻击人类
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-27 09:54:54 / 修改时间：10:50:47" itemprop="dateCreated datePublished" datetime="2020-06-27T09:54:54+08:00">2020-06-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/solidity/" itemprop="url" rel="index">
+                    <span itemprop="name">solidity</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/06/27/%E5%83%B5%E5%B0%B8%E6%94%BB%E5%87%BB%E4%BA%BA%E7%B1%BB/" class="post-meta-item leancloud_visitors" data-flag-title="僵尸攻击人类" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/06/27/%E5%83%B5%E5%B0%B8%E6%94%BB%E5%87%BB%E4%BA%BA%E7%B1%BB/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/06/27/僵尸攻击人类/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="第二课概览"><a href="#第二课概览" class="headerlink" title="第二课概览"></a>第二课概览</h1><p>在第一课中，我们创建了一个函数用来生成僵尸，并且将它放入区块链上的僵尸数据库中。 在第二课里，我们会让我们的 app 看起来更像一个游戏： 它得支持多用户，并且采用更加有趣,而不仅仅使用随机的方式，来生成新的僵尸。</p><p>如何生成新的僵尸呢？通过让现有的僵尸猎食其他生物！</p><h2 id="僵尸猎食"><a href="#僵尸猎食" class="headerlink" title="僵尸猎食"></a>僵尸猎食</h2><p>僵尸猎食的时候，僵尸病毒侵入猎物，这些病毒会将猎物变为新的僵尸，加入你的僵尸大军。系统会通过猎物和猎食者僵尸的DNA计算出新僵尸的DNA。</p><a id="more"></a>
+
+
+<p>僵尸最喜欢猎食什么物种呢？ 等你学完第二课就知道了！</p>
+<h2 id="实战演习"><a href="#实战演习" class="headerlink" title="实战演习"></a>实战演习</h2><p>右边是一个简单的猎食演示。点击一个“人”，看看僵尸猎食的时候会发生什么? 可见，新僵尸的DNA是通过从原来的僵尸的DNA, 加上猎物的DNA计算得来的。</p>
+<p>学完这一章，请点击“下一章”， 我们该让游戏支持多玩家模式了。</p>
+<p><img src="https://i.loli.net/2020/06/27/SMihkOofrwEHxTF.png" alt="image-20200627095657273"></p>
+<h1 id="映射（Mapping）和地址（Address）"><a href="#映射（Mapping）和地址（Address）" class="headerlink" title="映射（Mapping）和地址（Address）"></a>映射（Mapping）和地址（Address）</h1><p>我们通过给数据库中的僵尸指定“主人”， 来支持“多玩家”模式。</p>
+<p>如此一来，我们需要引入2个新的数据类型：<code>mapping</code>（映射） 和 <code>address</code>（地址）。</p>
+<h2 id="Addresses-（地址）"><a href="#Addresses-（地址）" class="headerlink" title="Addresses （地址）"></a>Addresses （地址）</h2><p>以太坊区块链由 <strong>_ account _</strong> (账户)组成，你可以把它想象成银行账户。一个帐户的余额是 <strong><em>以太</em></strong> （在以太坊区块链上使用的币种），你可以和其他帐户之间支付和接受以太币，就像你的银行帐户可以电汇资金到其他银行帐户一样。</p>
+<p>每个帐户都有一个“地址”，你可以把它想象成银行账号。这是账户唯一的标识符，它看起来长这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x0cE446255506E92DF41614C46F1d6df9Cc969183</span><br></pre></td></tr></table></figure>
+
+<p>（这是 CryptoZombies 团队的地址，如果你喜欢 CryptoZombies 的话，请打赏我们一些以太币！😉）</p>
+<p>我们将在后面的课程中介绍地址的细节，现在你只需要了解<strong>地址属于特定用户（或智能合约）的</strong>。</p>
+<p>所以我们可以指定“地址”作为僵尸主人的 ID。当用户通过与我们的应用程序交互来创建新的僵尸时，新僵尸的所有权被设置到调用者的以太坊地址下。</p>
+<h2 id="Mapping（映射）"><a href="#Mapping（映射）" class="headerlink" title="Mapping（映射）"></a>Mapping（映射）</h2><p>在第1课中，我们看到了 <strong>_ 结构体 _</strong> 和 <strong>_ 数组 _</strong> 。 <strong><em>映射</em></strong> 是另一种在 Solidity 中存储有组织数据的方法。</p>
+<p>映射是这样定义的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//对于金融应用程序，将用户的余额保存在一个 uint类型的变量中：</span><br><span class="line">mapping (address =&gt; uint) public accountBalance;</span><br><span class="line">//或者可以用来通过userId 存储/查找的用户名</span><br><span class="line">mapping (uint =&gt; string) userIdToName;</span><br></pre></td></tr></table></figure>
+
+<p>映射本质上是存储和查找数据所用的键-值对。在第一个例子中，键是一个 <code>address</code>，值是一个 <code>uint</code>，在第二个例子中，键是一个<code>uint</code>，值是一个 <code>string</code>。</p>
+<h2 id="实战演习-1"><a href="#实战演习-1" class="headerlink" title="实战演习"></a>实战演习</h2><p>为了存储僵尸的所有权，我们会使用到两个映射：一个记录僵尸拥有者的地址，另一个记录某地址所拥有僵尸的数量。</p>
+<p>1.创建一个叫做 <code>zombieToOwner</code> 的映射。其键是一个<code>uint</code>（我们将根据它的 id 存储和查找僵尸），值为 <code>address</code>。映射属性为<code>public</code>。</p>
+<p>2.创建一个名为 <code>ownerZombieCount</code> 的映射，其中键是 <code>address</code>，值是 <code>uint</code>。</p>
+<h2 id="合约完善"><a href="#合约完善" class="headerlink" title="合约完善"></a>合约完善</h2><p>ZombieFactory.sol</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line">contract ZombieFactory &#123;</span><br><span class="line"></span><br><span class="line">    event NewZombie(uint zombieId, string name, uint dna);</span><br><span class="line"></span><br><span class="line">    uint dnaDigits = <span class="number">16</span>;</span><br><span class="line">    uint dnaModulus = <span class="number">10</span> ** dnaDigits;</span><br><span class="line"></span><br><span class="line">    struct Zombie &#123;</span><br><span class="line">        string name;</span><br><span class="line">        uint dna;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Zombie[] public zombies;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在这里定义映射</span></span><br><span class="line">    mapping (<span class="function"><span class="params">uint</span> =&gt;</span> address) public zombieToOwner;</span><br><span class="line">    mapping (<span class="function"><span class="params">address</span> =&gt;</span> uint) ownerZombieCount;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_createZombie</span>(<span class="params">string _name, uint _dna</span>) <span class="title">private</span> </span>&#123;</span><br><span class="line">        uint id = zombies.push(Zombie(_name, _dna)) - <span class="number">1</span>;</span><br><span class="line">        NewZombie(id, _name, _dna);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_generateRandomDna</span>(<span class="params">string _str</span>) <span class="title">private</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params">uint</span>) </span>&#123;</span><br><span class="line">        uint rand = uint(keccak256(_str));</span><br><span class="line">        <span class="keyword">return</span> rand % dnaModulus;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">createRandomZombie</span>(<span class="params">string _name</span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">        uint randDna = _generateRandomDna(_name);</span><br><span class="line">        _createZombie(_name, randDna);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Msg-sender"><a href="#Msg-sender" class="headerlink" title="Msg.sender"></a>Msg.sender</h1><p>现在有了一套映射来记录僵尸的所有权了，我们可以修改 <code>_createZombie</code> 方法来运用它们。</p>
+<p>为了做到这一点，我们要用到 <code>msg.sender</code>。</p>
+<h2 id="msg-sender"><a href="#msg-sender" class="headerlink" title="msg.sender"></a>msg.sender</h2><p>在 Solidity 中，有一些全局变量可以被所有函数调用。 其中一个就是 <code>msg.sender</code>，它指的是当前调用者（或智能合约）的 <code>address</code>。</p>
+<blockquote>
+<p>注意：在 Solidity 中，功能执行始终需要从外部调用者开始。 一个合约只会在区块链上什么也不做，除非有人调用其中的函数。所以 <code>msg.sender</code>总是存在的。</p>
+</blockquote>
+<p>以下是使用 <code>msg.sender</code> 来更新 <code>mapping</code> 的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mapping (<span class="function"><span class="params">address</span> =&gt;</span> uint) favoriteNumber;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setMyNumber</span>(<span class="params">uint _myNumber</span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 更新我们的 `favoriteNumber` 映射来将 `_myNumber`存储在 `msg.sender`名下</span></span><br><span class="line">  favoriteNumber[msg.sender] = _myNumber;</span><br><span class="line">  <span class="comment">// 存储数据至映射的方法和将数据存储在数组相似</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">whatIsMyNumber</span>(<span class="params"></span>) <span class="title">public</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params">uint</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 拿到存储在调用者地址名下的值</span></span><br><span class="line">  <span class="comment">// 若调用者还没调用 setMyNumber， 则值为 `0`</span></span><br><span class="line">  <span class="keyword">return</span> favoriteNumber[msg.sender];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个小小的例子中，任何人都可以调用 <code>setMyNumber</code> 在我们的合约中存下一个 <code>uint</code> 并且与他们的地址相绑定。 然后，他们调用 <code>whatIsMyNumber</code> 就会返回他们存储的 <code>uint</code>。</p>
+<p>使用 <code>msg.sender</code> 很安全，因为它具有以太坊区块链的安全保障 —— 除非窃取与以太坊地址相关联的私钥，否则是没有办法修改其他人的数据的。</p>
+<h2 id="实战演习-2"><a href="#实战演习-2" class="headerlink" title="实战演习"></a>实战演习</h2><p>我们来修改第1课的 <code>_createZombie</code> 方法，将僵尸分配给函数调用者吧。</p>
+<ol>
+<li>首先，在得到新的僵尸 <code>id</code> 后，更新 <code>zombieToOwner</code> 映射，在 <code>id</code> 下面存入 <code>msg.sender</code>。</li>
+<li>然后，我们为这个 <code>msg.sender</code> 名下的 <code>ownerZombieCount</code> 加 1。</li>
+</ol>
+<p>跟在 JavaScript 中一样， 在 Solidity 中你也可以用 <code>++</code> 使 <code>uint</code> 递增。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uint number = <span class="number">0</span>;</span><br><span class="line">number++;</span><br><span class="line"><span class="comment">// `number` 现在是 `1`了</span></span><br></pre></td></tr></table></figure>
+
+<p>修改两行代码即可。</p>
+<h2 id="合约完善-1"><a href="#合约完善-1" class="headerlink" title="合约完善"></a>合约完善</h2><p>ZombieFactory.sol</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line">contract ZombieFactory &#123;</span><br><span class="line"></span><br><span class="line">    event NewZombie(uint zombieId, string name, uint dna);</span><br><span class="line"></span><br><span class="line">    uint dnaDigits = <span class="number">16</span>;</span><br><span class="line">    uint dnaModulus = <span class="number">10</span> ** dnaDigits;</span><br><span class="line"></span><br><span class="line">    struct Zombie &#123;</span><br><span class="line">        string name;</span><br><span class="line">        uint dna;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Zombie[] public zombies;</span><br><span class="line"></span><br><span class="line">    mapping (<span class="function"><span class="params">uint</span> =&gt;</span> address) public zombieToOwner;</span><br><span class="line">    mapping (<span class="function"><span class="params">address</span> =&gt;</span> uint) ownerZombieCount;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_createZombie</span>(<span class="params">string _name, uint _dna</span>) <span class="title">private</span> </span>&#123;</span><br><span class="line">        uint id = zombies.push(Zombie(_name, _dna)) - <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 从这里开始</span></span><br><span class="line">        zombieToOwner[id] = msg.sender;</span><br><span class="line">        ownerZombieCount[msg.sender]++;</span><br><span class="line">        NewZombie(id, _name, _dna);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_generateRandomDna</span>(<span class="params">string _str</span>) <span class="title">private</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params">uint</span>) </span>&#123;</span><br><span class="line">        uint rand = uint(keccak256(_str));</span><br><span class="line">        <span class="keyword">return</span> rand % dnaModulus;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">createRandomZombie</span>(<span class="params">string _name</span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">        uint randDna = _generateRandomDna(_name);</span><br><span class="line">        _createZombie(_name, randDna);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Require"><a href="#Require" class="headerlink" title="Require"></a>Require</h1><p>在第一课中，我们成功让用户通过调用 <code>createRandomZombie</code>函数 并输入一个名字来创建新的僵尸。 但是，如果用户能持续调用这个函数来创建出无限多个僵尸加入他们的军团，这游戏就太没意思了！</p>
+<p>于是，我们作出限定：每个玩家只能调用一次这个函数。 这样一来，新玩家可以在刚开始玩游戏时通过调用它，为其军团创建初始僵尸。</p>
+<p>我们怎样才能限定每个玩家只调用一次这个函数呢？</p>
+<p>答案是使用<code>require</code>。 <code>require</code>使得函数在执行过程中，当不满足某些条件时抛出错误，并停止执行：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHiToVitalik</span>(<span class="params">string _name</span>) <span class="title">public</span> <span class="title">returns</span> (<span class="params">string</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 比较 _name 是否等于 "Vitalik". 如果不成立，抛出异常并终止程序</span></span><br><span class="line">  <span class="comment">// (敲黑板: Solidity 并不支持原生的字符串比较, 我们只能通过比较</span></span><br><span class="line">  <span class="comment">// 两字符串的 keccak256 哈希值来进行判断)</span></span><br><span class="line">  <span class="built_in">require</span>(keccak256(_name) == keccak256(<span class="string">"Vitalik"</span>));</span><br><span class="line">  <span class="comment">// 如果返回 true, 运行如下语句</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"Hi!"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果你这样调用函数 <code>sayHiToVitalik（“Vitalik”）</code> ,它会返回“Hi！”。而如果调用的时候使用了其他参数，它则会抛出错误并停止执行。</p>
+<p>因此，在调用一个函数之前，用 <code>require</code> 验证前置条件是非常有必要的。</p>
+<h2 id="实战演习-3"><a href="#实战演习-3" class="headerlink" title="实战演习"></a>实战演习</h2><p>在我们的僵尸游戏中，我们不希望用户通过反复调用 <code>createRandomZombie</code> 来給他们的军队创建无限多个僵尸 —— 这将使得游戏非常无聊。</p>
+<p>我们使用了 <code>require</code> 来确保这个函数只有在每个用户第一次调用它的时候执行，用以创建初始僵尸。</p>
+<ol>
+<li>在 <code>createRandomZombie</code> 的前面放置 <code>require</code> 语句。 使得函数先检查 <code>ownerZombieCount [msg.sender]</code> 的值为 <code>0</code> ，不然就抛出一个错误。</li>
+</ol>
+<blockquote>
+<p>注意：在 Solidity 中，关键词放置的顺序并不重要</p>
+<ul>
+<li>虽然参数的两个位置是等效的。 但是，由于我们的答案检查器比较呆板，它只能认定其中一个为正确答案</li>
+<li>于是在这里，我们就约定把<code>ownerZombieCount [msg.sender]</code>放前面吧</li>
+</ul>
+</blockquote>
+<h2 id="合约完善-2"><a href="#合约完善-2" class="headerlink" title="合约完善"></a>合约完善</h2><p>ZombieFactory.sol</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line">contract ZombieFactory &#123;</span><br><span class="line"></span><br><span class="line">    event NewZombie(uint zombieId, string name, uint dna);</span><br><span class="line"></span><br><span class="line">    uint dnaDigits = <span class="number">16</span>;</span><br><span class="line">    uint dnaModulus = <span class="number">10</span> ** dnaDigits;</span><br><span class="line"></span><br><span class="line">    struct Zombie &#123;</span><br><span class="line">        string name;</span><br><span class="line">        uint dna;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Zombie[] public zombies;</span><br><span class="line"></span><br><span class="line">    mapping (<span class="function"><span class="params">uint</span> =&gt;</span> address) public zombieToOwner;</span><br><span class="line">    mapping (<span class="function"><span class="params">address</span> =&gt;</span> uint) ownerZombieCount;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_createZombie</span>(<span class="params">string _name, uint _dna</span>) <span class="title">private</span> </span>&#123;</span><br><span class="line">        uint id = zombies.push(Zombie(_name, _dna)) - <span class="number">1</span>;</span><br><span class="line">        zombieToOwner[id] = msg.sender;</span><br><span class="line">        ownerZombieCount[msg.sender]++;</span><br><span class="line">        NewZombie(id, _name, _dna);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_generateRandomDna</span>(<span class="params">string _str</span>) <span class="title">private</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params">uint</span>) </span>&#123;</span><br><span class="line">        uint rand = uint(keccak256(_str));</span><br><span class="line">        <span class="keyword">return</span> rand % dnaModulus;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">createRandomZombie</span>(<span class="params">string _name</span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">        <span class="comment">// start here</span></span><br><span class="line">        <span class="built_in">require</span>(ownerZombieCount[msg.sender] == <span class="number">0</span>);</span><br><span class="line">        uint randDna = _generateRandomDna(_name);</span><br><span class="line">        _createZombie(_name, randDna);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="继承（Inheritance）"><a href="#继承（Inheritance）" class="headerlink" title="继承（Inheritance）"></a>继承（Inheritance）</h1><p>我们的游戏代码越来越长。 当代码过于冗长的时候，最好将代码和逻辑分拆到多个不同的合约中，以便于管理。</p>
+<p>有个让 Solidity 的代码易于管理的功能，就是合约 <strong>inheritance</strong> (继承)：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">contract Doge &#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">catchphrase</span>(<span class="params"></span>) <span class="title">public</span> <span class="title">returns</span> (<span class="params">string</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"So Wow CryptoDoge"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract BabyDoge is Doge &#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">anotherCatchphrase</span>(<span class="params"></span>) <span class="title">public</span> <span class="title">returns</span> (<span class="params">string</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Such Moon BabyDoge"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于 <code>BabyDoge</code> 是从 <code>Doge</code> 那里 <strong>inherits</strong> （继承)过来的。 这意味着当你编译和部署了 <code>BabyDoge</code>，它将可以访问 <code>catchphrase()</code> 和 <code>anotherCatchphrase()</code>和其他我们在 <code>Doge</code> 中定义的其他公共函数。</p>
+<p>这可以用于逻辑继承（比如表达子类的时候，<code>Cat</code> 是一种 <code>Animal</code>）。 但也可以简单地将类似的逻辑组合到不同的合约中以组织代码。</p>
+<h2 id="实战演习-4"><a href="#实战演习-4" class="headerlink" title="实战演习"></a>实战演习</h2><p>在接下来的章节中，我们将要为僵尸实现各种功能，让它可以“猎食”和“繁殖”。 通过将这些运算放到父类 <code>ZombieFactory</code> 中，使得所有 <code>ZombieFactory</code> 的继承者合约都可以使用这些方法。</p>
+<ol>
+<li>在 <code>ZombieFactory</code> 下创建一个叫 <code>ZombieFeeding</code> 的合约，它是继承自 `ZombieFactory 合约的。</li>
+</ol>
+<h2 id="合约完善-3"><a href="#合约完善-3" class="headerlink" title="合约完善"></a>合约完善</h2><p>ZombieFactory.sol</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line">contract ZombieFactory &#123;</span><br><span class="line"></span><br><span class="line">    event NewZombie(uint zombieId, string name, uint dna);</span><br><span class="line"></span><br><span class="line">    uint dnaDigits = <span class="number">16</span>;</span><br><span class="line">    uint dnaModulus = <span class="number">10</span> ** dnaDigits;</span><br><span class="line"></span><br><span class="line">    struct Zombie &#123;</span><br><span class="line">        string name;</span><br><span class="line">        uint dna;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Zombie[] public zombies;</span><br><span class="line"></span><br><span class="line">    mapping (<span class="function"><span class="params">uint</span> =&gt;</span> address) public zombieToOwner;</span><br><span class="line">    mapping (<span class="function"><span class="params">address</span> =&gt;</span> uint) ownerZombieCount;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_createZombie</span>(<span class="params">string _name, uint _dna</span>) <span class="title">private</span> </span>&#123;</span><br><span class="line">        uint id = zombies.push(Zombie(_name, _dna)) - <span class="number">1</span>;</span><br><span class="line">        zombieToOwner[id] = msg.sender;</span><br><span class="line">        ownerZombieCount[msg.sender]++;</span><br><span class="line">        NewZombie(id, _name, _dna);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_generateRandomDna</span>(<span class="params">string _str</span>) <span class="title">private</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params">uint</span>) </span>&#123;</span><br><span class="line">        uint rand = uint(keccak256(_str));</span><br><span class="line">        <span class="keyword">return</span> rand % dnaModulus;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">createRandomZombie</span>(<span class="params">string _name</span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">        <span class="built_in">require</span>(ownerZombieCount[msg.sender] == <span class="number">0</span>);</span><br><span class="line">        uint randDna = _generateRandomDna(_name);</span><br><span class="line">        _createZombie(_name, randDna);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Start here</span></span><br><span class="line">contract ZombieFeeding is ZombieFactory &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="引入（Import）"><a href="#引入（Import）" class="headerlink" title="引入（Import）"></a>引入（Import）</h1><p>哇！你有没有注意到，我们只是清理了下右边的代码，现在你的编辑器的顶部就多了个选项卡。 尝试点击它的标签，看看会发生什么吧！</p>
+<p>代码已经够长了，我们把它分成多个文件以便于管理。 通常情况下，当 Solidity 项目中的代码太长的时候我们就是这么做的。</p>
+<p>在 Solidity 中，当你有多个文件并且想把一个文件导入另一个文件时，可以使用 <code>import</code> 语句：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"./someothercontract.sol"</span>;</span><br><span class="line"></span><br><span class="line">contract newContract is SomeOtherContract &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样当我们在合约（contract）目录下有一个名为 <code>someothercontract.sol</code> 的文件（ <code>./</code> 就是同一目录的意思），它就会被编译器导入。</p>
+<h2 id="实战演习-5"><a href="#实战演习-5" class="headerlink" title="实战演习"></a>实战演习</h2><p>现在我们已经建立了一个多文件架构，并用 <code>import</code> 来读取来自另一个文件中合约的内容：</p>
+<p>1.将 <code>zombiefactory.sol</code> 导入到我们的新文件 <code>zombiefeeding.sol</code> 中。</p>
+<h2 id="合约完善-4"><a href="#合约完善-4" class="headerlink" title="合约完善"></a>合约完善</h2><p>zombiefeeding.sol</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// put import statement here</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"./zombiefactory.sol"</span>;</span><br><span class="line">contract ZombieFeeding is ZombieFactory &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Storage与Memory"><a href="#Storage与Memory" class="headerlink" title="Storage与Memory"></a>Storage与Memory</h1><p>在 Solidity 中，有两个地方可以存储变量 —— <code>storage</code> 或 <code>memory</code>。</p>
+<p><strong><em>Storage\</em></strong> 变量是指永久存储在区块链中的变量。 <strong><em>Memory\</em></strong> 变量则是临时的，当外部函数对某合约调用完成时，内存型变量即被移除。 你可以把它想象成存储在你电脑的硬盘或是RAM中数据的关系。</p>
+<p>大多数时候你都用不到这些关键字，默认情况下 Solidity 会自动处理它们。 状态变量（在函数之外声明的变量）默认为“存储”形式，并永久写入区块链；而在函数内部声明的变量是“内存”型的，它们函数调用结束后消失。</p>
+<p>然而也有一些情况下，你需要手动声明存储类型，主要用于处理函数内的 <strong>_ 结构体 _</strong> 和 <strong>_ 数组 _</strong> 时：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">contract SandwichFactory &#123;</span><br><span class="line">  struct Sandwich &#123;</span><br><span class="line">    string name;</span><br><span class="line">    string status;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Sandwich[] sandwiches;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">eatSandwich</span>(<span class="params">uint _index</span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Sandwich mySandwich = sandwiches[_index];</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// ^ 看上去很直接，不过 Solidity 将会给出警告</span></span><br><span class="line">    <span class="comment">// 告诉你应该明确在这里定义 `storage` 或者 `memory`。</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 所以你应该明确定义 `storage`:</span></span><br><span class="line">    Sandwich storage mySandwich = sandwiches[_index];</span><br><span class="line">    <span class="comment">// ...这样 `mySandwich` 是指向 `sandwiches[_index]`的指针</span></span><br><span class="line">    <span class="comment">// 在存储里，另外...</span></span><br><span class="line">    mySandwich.status = <span class="string">"Eaten!"</span>;</span><br><span class="line">    <span class="comment">// ...这将永久把 `sandwiches[_index]` 变为区块链上的存储</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果你只想要一个副本，可以使用`memory`:</span></span><br><span class="line">    Sandwich memory anotherSandwich = sandwiches[_index + <span class="number">1</span>];</span><br><span class="line">    <span class="comment">// ...这样 `anotherSandwich` 就仅仅是一个内存里的副本了</span></span><br><span class="line">    <span class="comment">// 另外</span></span><br><span class="line">    anotherSandwich.status = <span class="string">"Eaten!"</span>;</span><br><span class="line">    <span class="comment">// ...将仅仅修改临时变量，对 `sandwiches[_index + 1]` 没有任何影响</span></span><br><span class="line">    <span class="comment">// 不过你可以这样做:</span></span><br><span class="line">    sandwiches[_index + <span class="number">1</span>] = anotherSandwich;</span><br><span class="line">    <span class="comment">// ...如果你想把副本的改动保存回区块链存储</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果你还没有完全理解究竟应该使用哪一个，也不用担心 —— 在本教程中，我们将告诉你何时使用 <code>storage</code> 或是 <code>memory</code>，并且当你不得不使用到这些关键字的时候，Solidity 编译器也发警示提醒你的。</p>
+<p>现在，只要知道在某些场合下也需要你显式地声明 <code>storage</code> 或 <code>memory</code>就够了！</p>
+<h2 id="实战演习-6"><a href="#实战演习-6" class="headerlink" title="实战演习"></a>实战演习</h2><p>是时候给我们的僵尸增加“猎食”和“繁殖”功能了！</p>
+<p>当一个僵尸猎食其他生物体时，它自身的DNA将与猎物生物的DNA结合在一起，形成一个新的僵尸DNA。</p>
+<ol>
+<li>创建一个名为 <code>feedAndMultiply</code> 的函数。 使用两个参数：<code>_zombieId</code>（ <code>uint</code>类型 ）和<code>_targetDna</code> （也是 <code>uint</code> 类型）。 设置属性为 <code>public</code> 的。</li>
+<li>我们不希望别人用我们的僵尸去捕猎。 首先，我们确保对自己僵尸的所有权。 通过添加一个<code>require</code> 语句来确保 <code>msg.sender</code> 只能是这个僵尸的主人（类似于我们在 <code>createRandomZombie</code> 函数中做过的那样）。</li>
+</ol>
+<blockquote>
+<p>注意：同样，因为我们的答案检查器比较呆萌，只认识把 <code>msg.sender</code> 放在前面的答案，如果你切换了参数的顺序，它就不认得了。 但你正常编码时，如何安排参数顺序都是正确的。</p>
+</blockquote>
+<ol>
+<li>为了获取这个僵尸的DNA，我们的函数需要声明一个名为 <code>myZombie</code> 数据类型为<code>Zombie</code>的本地变量（这是一个 <code>storage</code> 型的指针）。 将其值设定为在 <code>zombies</code> 数组中索引为<code>_zombieId</code>所指向的值。</li>
+</ol>
+<p>到目前为止，包括函数结束符 <code>}</code> 的那一行， 总共4行代码。</p>
+<p>下一章里，我们会继续丰富这个功能。</p>
+<h2 id="合约完善-5"><a href="#合约完善-5" class="headerlink" title="合约完善"></a>合约完善</h2><p>zombiefeeding.sol</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"./zombiefactory.sol"</span>;</span><br><span class="line"></span><br><span class="line">contract ZombieFeeding is ZombieFactory &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Start here</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">feedAndMultiply</span>(<span class="params">uint _zombieId, uint _targetDna</span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">    <span class="built_in">require</span>(msg.sender == zombieToOwner[_zombieId]);</span><br><span class="line">    Zombie storage myZombie = zombies[_zombieId];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="僵尸的DNA"><a href="#僵尸的DNA" class="headerlink" title="僵尸的DNA"></a>僵尸的DNA</h1><p>我们来把 <code>feedAndMultiply</code> 函数写完吧。</p>
+<p>获取新的僵尸DNA的公式很简单：计算猎食僵尸DNA和被猎僵尸DNA之间的平均值。</p>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testDnaSplicing</span>(<span class="params"></span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">  uint zombieDna = <span class="number">2222222222222222</span>;</span><br><span class="line">  uint targetDna = <span class="number">4444444444444444</span>;</span><br><span class="line">  uint newZombieDna = (zombieDna + targetDna) / <span class="number">2</span>;</span><br><span class="line">  <span class="comment">// newZombieDna 将等于 3333333333333333</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以后，我们也可以让函数变得更复杂些，比方给新的僵尸的 DNA 增加一些随机性之类的。但现在先从最简单的开始 —— 以后还可以回来完善它嘛。</p>
+<h2 id="实战演习-7"><a href="#实战演习-7" class="headerlink" title="实战演习"></a>实战演习</h2><ol>
+<li>首先我们确保 <code>_targetDna</code> 不长于16位。要做到这一点，我们可以设置 <code>_targetDna</code> 为 <code>_targetDna ％ dnaModulus</code> ，并且只取其最后16位数字。</li>
+<li>接下来为我们的函数声明一个名叫 <code>newDna</code> 的 <code>uint</code>类型的变量，并将其值设置为 <code>myZombie</code>的 DNA 和 <code>_targetDna</code> 的平均值（如上例所示）。</li>
+</ol>
+<blockquote>
+<p>注意：您可以用 <code>myZombie.name</code> 或 <code>myZombie.dna</code> 访问 <code>myZombie</code> 的属性。</p>
+</blockquote>
+<ol>
+<li>一旦我们计算出新的DNA，再调用 <code>_createZombie</code> 就可以生成新的僵尸了。如果你忘了调用这个函数所需要的参数，可以查看 <code>zombiefactory.sol</code> 选项卡。请注意，需要先给它命名，所以现在我们把新的僵尸的名字设为<code>NoName</code> - 我们回头可以编写一个函数来更改僵尸的名字。</li>
+</ol>
+<blockquote>
+<p>注意：对于 Solidity 高手，你可能会注意到我们的代码存在一个问题。别担心，下一章会解决这个问题的 ;）</p>
+</blockquote>
+<h2 id="合约完善-6"><a href="#合约完善-6" class="headerlink" title="合约完善"></a>合约完善</h2><p>zombiefeeding.sol</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"./zombiefactory.sol"</span>;</span><br><span class="line"></span><br><span class="line">contract ZombieFeeding is ZombieFactory &#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">feedAndMultiply</span>(<span class="params">uint _zombieId, uint _targetDna</span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">    <span class="built_in">require</span>(msg.sender == zombieToOwner[_zombieId]);</span><br><span class="line">    Zombie storage myZombie = zombies[_zombieId];</span><br><span class="line">    <span class="comment">// start here</span></span><br><span class="line">    _targetDna = _targetDna % dnaModulus;</span><br><span class="line">    uint newDna = (myZombie.dna + _targetDna) / <span class="number">2</span>;</span><br><span class="line">    _createZombie(<span class="string">"NoName"</span>, newDna);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="更多关于函数可见性"><a href="#更多关于函数可见性" class="headerlink" title="更多关于函数可见性"></a>更多关于函数可见性</h1><p><strong>我们上一课的代码有问题！</strong></p>
+<p>编译的时候编译器就会报错。</p>
+<p>错误在于，我们尝试从 <code>ZombieFeeding</code> 中调用 <code>_createZombie</code> 函数，但 <code>_createZombie</code> 却是 <code>ZombieFactory</code> 的 <code>private</code> （私有）函数。这意味着任何继承自 <code>ZombieFactory</code> 的子合约都不能访问它。</p>
+<h2 id="internal-和-external"><a href="#internal-和-external" class="headerlink" title="internal 和 external"></a>internal 和 external</h2><p>除 <code>public</code> 和 <code>private</code> 属性之外，Solidity 还使用了另外两个描述函数可见性的修饰词：<code>internal</code>（内部） 和 <code>external</code>（外部）。</p>
+<p><code>internal</code> 和 <code>private</code> 类似，不过， 如果某个合约继承自其父合约，这个合约即可以访问父合约中定义的“内部”函数。（嘿，这听起来正是我们想要的那样！）。</p>
+<p><code>external</code> 与<code>public</code> 类似，只不过这些函数只能在合约之外调用 - 它们不能被合约内的其他函数调用。稍后我们将讨论什么时候使用 <code>external</code> 和 <code>public</code>。</p>
+<p>声明函数 <code>internal</code> 或 <code>external</code> 类型的语法，与声明 <code>private</code> 和 <code>public</code>类 型相同：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">contract Sandwich &#123;</span><br><span class="line">  uint private sandwichesEaten = 0;</span><br><span class="line"></span><br><span class="line">  function eat() internal &#123;</span><br><span class="line">    sandwichesEaten++;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract BLT is Sandwich &#123;</span><br><span class="line">  uint private baconSandwichesEaten = 0;</span><br><span class="line"></span><br><span class="line">  function eatWithBacon() public returns (string) &#123;</span><br><span class="line">    baconSandwichesEaten++;</span><br><span class="line">    // 因为eat() 是internal 的，所以我们能在这里调用</span><br><span class="line">    eat();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="实战演习-8"><a href="#实战演习-8" class="headerlink" title="实战演习"></a>实战演习</h2><ol>
+<li><p>将 <code>_createZombie()</code> 函数的属性从 <code>private</code> 改为 <code>internal</code> ， 使得其他的合约也能访问到它。</p>
+<p>我们已经成功把你的注意力集中在到<code>zombiefactory.sol</code>这个选项卡上啦。</p>
+</li>
+</ol>
+<h2 id="合约完善-7"><a href="#合约完善-7" class="headerlink" title="合约完善"></a>合约完善</h2><p>ZombieFactory.sol</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line">contract ZombieFactory &#123;</span><br><span class="line"></span><br><span class="line">    event NewZombie(uint zombieId, string name, uint dna);</span><br><span class="line"></span><br><span class="line">    uint dnaDigits = <span class="number">16</span>;</span><br><span class="line">    uint dnaModulus = <span class="number">10</span> ** dnaDigits;</span><br><span class="line"></span><br><span class="line">    struct Zombie &#123;</span><br><span class="line">        string name;</span><br><span class="line">        uint dna;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Zombie[] public zombies;</span><br><span class="line"></span><br><span class="line">    mapping (<span class="function"><span class="params">uint</span> =&gt;</span> address) public zombieToOwner;</span><br><span class="line">    mapping (<span class="function"><span class="params">address</span> =&gt;</span> uint) ownerZombieCount;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在这里修改函数的功能</span></span><br><span class="line">    <span class="comment">//function _createZombie(string _name, uint _dna) private &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_createZombie</span>(<span class="params">string _name, uint _dna</span>) <span class="title">internal</span> </span>&#123;</span><br><span class="line">        uint id = zombies.push(Zombie(_name, _dna)) - <span class="number">1</span>;</span><br><span class="line">        zombieToOwner[id] = msg.sender;</span><br><span class="line">        ownerZombieCount[msg.sender]++;</span><br><span class="line">        NewZombie(id, _name, _dna);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_generateRandomDna</span>(<span class="params">string _str</span>) <span class="title">private</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params">uint</span>) </span>&#123;</span><br><span class="line">        uint rand = uint(keccak256(_str));</span><br><span class="line">        <span class="keyword">return</span> rand % dnaModulus;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">createRandomZombie</span>(<span class="params">string _name</span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">        <span class="built_in">require</span>(ownerZombieCount[msg.sender] == <span class="number">0</span>);</span><br><span class="line">        uint randDna = _generateRandomDna(_name);</span><br><span class="line">        _createZombie(_name, randDna);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="僵尸吃什么"><a href="#僵尸吃什么" class="headerlink" title="僵尸吃什么?"></a>僵尸吃什么?</h1><p>是时候让我们的僵尸去捕猎！ 那僵尸最喜欢的食物是什么呢？</p>
+<p>Crypto 僵尸喜欢吃的是…</p>
+<p><strong>CryptoKitties！</strong> 😱😱😱</p>
+<p>（正经点，我可不是开玩笑😆）</p>
+<p>为了做到这一点，我们要读出 CryptoKitties 智能合约中的 kittyDna。这些数据是公开存储在区块链上的。区块链是不是很酷？</p>
+<p>别担心 —— 我们的游戏并不会伤害到任何真正的CryptoKitty。 我们只 <em>读取</em> CryptoKitties 数据，但却无法在物理上删除它。</p>
+<h2 id="与其他合约的交互"><a href="#与其他合约的交互" class="headerlink" title="与其他合约的交互"></a>与其他合约的交互</h2><p>如果我们的合约需要和区块链上的其他的合约会话，则需先定义一个 <strong><em>interface\</em></strong> (接口)。</p>
+<p>先举一个简单的栗子。 假设在区块链上有这么一个合约：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">contract LuckyNumber &#123;</span><br><span class="line">  mapping(<span class="function"><span class="params">address</span> =&gt;</span> uint) numbers;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">setNum</span>(<span class="params">uint _num</span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">    numbers[msg.sender] = _num;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">getNum</span>(<span class="params">address _myAddress</span>) <span class="title">public</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params">uint</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> numbers[_myAddress];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是个很简单的合约，您可以用它存储自己的幸运号码，并将其与您的以太坊地址关联。 这样其他人就可以通过您的地址查找您的幸运号码了。</p>
+<p>现在假设我们有一个外部合约，使用 <code>getNum</code> 函数可读取其中的数据。</p>
+<p>首先，我们定义 <code>LuckyNumber</code> 合约的 <strong><em>interface\</em></strong> ：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">contract NumberInterface &#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">getNum</span>(<span class="params">address _myAddress</span>) <span class="title">public</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params">uint</span>);</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>请注意，这个过程虽然看起来像在定义一个合约，但其实内里不同：</p>
+<p>首先，我们只声明了要与之交互的函数 —— 在本例中为 <code>getNum</code> —— 在其中我们没有使用到任何其他的函数或状态变量。</p>
+<p>其次，我们并没有使用大括号（<code>{</code> 和 <code>}</code>）定义函数体，我们单单用分号（<code>;</code>）结束了函数声明。这使它看起来像一个合约框架。</p>
+<p>编译器就是靠这些特征认出它是一个接口的。</p>
+<p>在我们的 app 代码中使用这个接口，合约就知道其他合约的函数是怎样的，应该如何调用，以及可期待什么类型的返回值。</p>
+<p>在下一课中，我们将真正调用其他合约的函数。目前我们只要声明一个接口，用于调用 CryptoKitties 合约就行了。</p>
+<h2 id="实战演习-9"><a href="#实战演习-9" class="headerlink" title="实战演习"></a>实战演习</h2><p>我们已经为你查看过了 CryptoKitties 的源代码，并且找到了一个名为 <code>getKitty</code>的函数，它返回所有的加密猫的数据，包括它的“基因”（我们的僵尸游戏要用它生成新的僵尸）。</p>
+<p>该函数如下所示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getKitty</span>(<span class="params">uint256 _id</span>) <span class="title">external</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    bool isGestating,</span></span></span><br><span class="line"><span class="function"><span class="params">    bool isReady,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 cooldownIndex,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 nextActionAt,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 siringWithId,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 birthTime,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 matronId,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 sireId,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 generation,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 genes</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) </span>&#123;</span><br><span class="line">    Kitty storage kit = kitties[_id];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// if this variable is 0 then it's not gestating</span></span><br><span class="line">    isGestating = (kit.siringWithId != <span class="number">0</span>);</span><br><span class="line">    isReady = (kit.cooldownEndBlock &lt;= block.number);</span><br><span class="line">    cooldownIndex = uint256(kit.cooldownIndex);</span><br><span class="line">    nextActionAt = uint256(kit.cooldownEndBlock);</span><br><span class="line">    siringWithId = uint256(kit.siringWithId);</span><br><span class="line">    birthTime = uint256(kit.birthTime);</span><br><span class="line">    matronId = uint256(kit.matronId);</span><br><span class="line">    sireId = uint256(kit.sireId);</span><br><span class="line">    generation = uint256(kit.generation);</span><br><span class="line">    genes = kit.genes;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个函数看起来跟我们习惯的函数不太一样。 它竟然返回了…一堆不同的值！ 如果您用过 JavaScript 之类的编程语言，一定会感到奇怪 —— 在 Solidity中，您可以让一个函数返回多个值。</p>
+<p>现在我们知道这个函数长什么样的了，就可以用它来创建一个接口：</p>
+<p>1.定义一个名为 <code>KittyInterface</code> 的接口。 请注意，因为我们使用了 <code>contract</code> 关键字， 这过程看起来就像创建一个新的合约一样。</p>
+<p>2.在interface里定义了 <code>getKitty</code> 函数（不过是复制/粘贴上面的函数，但在 <code>returns</code> 语句之后用分号，而不是大括号内的所有内容。</p>
+<h2 id="合约完善-8"><a href="#合约完善-8" class="headerlink" title="合约完善"></a>合约完善</h2><p>zombiefeeding.sol</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"./zombiefactory.sol"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create KittyInterface here</span></span><br><span class="line">contract KittyInterface &#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">getKitty</span>(<span class="params">uint256 _id</span>) <span class="title">external</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    bool isGestating,</span></span></span><br><span class="line"><span class="function"><span class="params">    bool isReady,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 cooldownIndex,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 nextActionAt,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 siringWithId,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 birthTime,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 matronId,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 sireId,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 generation,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 genes</span></span></span><br><span class="line"><span class="function"><span class="params">  </span>);</span></span><br><span class="line"><span class="function">&#125;</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">contract</span> <span class="title">ZombieFeeding</span> <span class="title">is</span> <span class="title">ZombieFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">feedAndMultiply</span>(<span class="params">uint _zombieId, uint _targetDna</span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">    <span class="built_in">require</span>(msg.sender == zombieToOwner[_zombieId]);</span><br><span class="line">    Zombie storage myZombie = zombies[_zombieId];</span><br><span class="line">    _targetDna = _targetDna % dnaModulus;</span><br><span class="line">    uint newDna = (myZombie.dna + _targetDna) / <span class="number">2</span>;</span><br><span class="line">    _createZombie(<span class="string">"NoName"</span>, newDna);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="使用接口"><a href="#使用接口" class="headerlink" title="使用接口"></a>使用接口</h1><p>继续前面 <code>NumberInterface</code> 的例子，我们既然将接口定义为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">contract NumberInterface &#123;</span><br><span class="line">  function getNum(address _myAddress) public view returns (uint);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以在合约中这样使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">contract MyContract &#123;</span><br><span class="line">  address NumberInterfaceAddress = 0xab38...;</span><br><span class="line">  // ^ 这是FavoriteNumber合约在以太坊上的地址</span><br><span class="line">  NumberInterface numberContract = NumberInterface(NumberInterfaceAddress);</span><br><span class="line">  // 现在变量 `numberContract` 指向另一个合约对象</span><br><span class="line"></span><br><span class="line">  function someFunction() public &#123;</span><br><span class="line">    // 现在我们可以调用在那个合约中声明的 `getNum`函数:</span><br><span class="line">    uint num = numberContract.getNum(msg.sender);</span><br><span class="line">    // ...在这儿使用 `num`变量做些什么</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过这种方式，只要将您合约的可见性设置为<code>public</code>(公共)或<code>external</code>(外部)，它们就可以与以太坊区块链上的任何其他合约进行交互。</p>
+<h2 id="实战演习-10"><a href="#实战演习-10" class="headerlink" title="实战演习"></a>实战演习</h2><p>我们来建个自己的合约去读取另一个智能合约– CryptoKitties 的内容吧！</p>
+<ol>
+<li>我已经将代码中 CryptoKitties 合约的地址保存在一个名为 <code>ckAddress</code> 的变量中。在下一行中，请创建一个名为 <code>kittyContract</code> 的 KittyInterface，并用 <code>ckAddress</code> 为它初始化 —— 就像我们为 <code>numberContract</code>所做的一样。</li>
+</ol>
+<h2 id="合约完善-9"><a href="#合约完善-9" class="headerlink" title="合约完善"></a>合约完善</h2><p>zombiefeeding.sol</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"./zombiefactory.sol"</span>;</span><br><span class="line"></span><br><span class="line">contract KittyInterface &#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">getKitty</span>(<span class="params">uint256 _id</span>) <span class="title">external</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    bool isGestating,</span></span></span><br><span class="line"><span class="function"><span class="params">    bool isReady,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 cooldownIndex,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 nextActionAt,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 siringWithId,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 birthTime,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 matronId,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 sireId,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 generation,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 genes</span></span></span><br><span class="line"><span class="function"><span class="params">  </span>);</span></span><br><span class="line"><span class="function">&#125;</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">contract</span> <span class="title">ZombieFeeding</span> <span class="title">is</span> <span class="title">ZombieFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  address ckAddress = <span class="number">0x06012c8cf97BEaD5deAe237070F9587f8E7A266d</span>;</span><br><span class="line">  <span class="comment">// Initialize kittyContract here using `ckAddress` from above</span></span><br><span class="line">  KittyInterface kittyContract = KittyInterface(ckAddress);</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">feedAndMultiply</span>(<span class="params">uint _zombieId, uint _targetDna</span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">    <span class="built_in">require</span>(msg.sender == zombieToOwner[_zombieId]);</span><br><span class="line">    Zombie storage myZombie = zombies[_zombieId];</span><br><span class="line">    _targetDna = _targetDna % dnaModulus;</span><br><span class="line">    uint newDna = (myZombie.dna + _targetDna) / <span class="number">2</span>;</span><br><span class="line">    _createZombie(<span class="string">"NoName"</span>, newDna);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="处理多返回值"><a href="#处理多返回值" class="headerlink" title="处理多返回值"></a>处理多返回值</h1><p><code>getKitty</code> 是我们所看到的第一个返回多个值的函数。我们来看看是如何处理的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">multipleReturns</span>(<span class="params"></span>) <span class="title">internal</span> <span class="title">returns</span>(<span class="params">uint a, uint b, uint c</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">processMultipleReturns</span>(<span class="params"></span>) <span class="title">external</span> </span>&#123;</span><br><span class="line">  uint a;</span><br><span class="line">  uint b;</span><br><span class="line">  uint c;</span><br><span class="line">  <span class="comment">// 这样来做批量赋值:</span></span><br><span class="line">  (a, b, c) = multipleReturns();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者如果我们只想返回其中一个变量:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getLastReturnValue</span>(<span class="params"></span>) <span class="title">external</span> </span>&#123;</span><br><span class="line">  uint c;</span><br><span class="line">  <span class="comment">// 可以对其他字段留空:</span></span><br><span class="line">  (,,c) = multipleReturns();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="实战演习-11"><a href="#实战演习-11" class="headerlink" title="实战演习"></a>实战演习</h2><p>是时候与 CryptoKitties 合约交互起来了！</p>
+<p>我们来定义一个函数，从 kitty 合约中获取它的基因：</p>
+<ol>
+<li><p>创建一个名为 <code>feedOnKitty</code> 的函数。它需要2个 <code>uint</code> 类型的参数，<code>_zombieId</code> 和<code>_kittyId</code> ，这是一个 <code>public</code> 类型的函数。</p>
+</li>
+<li><p>函数首先要声明一个名为 <code>kittyDna</code> 的 <code>uint</code>。</p>
+<blockquote>
+<p>注意：在我们的 <code>KittyInterface</code> 中，<code>genes</code> 是一个 <code>uint256</code> 类型的变量，但是如果你记得，我们在第一课中提到过，<code>uint</code> 是 <code>uint256</code> 的别名，也就是说它们是一回事。</p>
+</blockquote>
+</li>
+<li><p>这个函数接下来调用 <code>kittyContract.getKitty</code>函数, 传入 <code>_kittyId</code> ，将返回的 <code>genes</code> 存储在 <code>kittyDna</code> 中。记住 —— <code>getKitty</code> 会返回一大堆变量。 （确切地说10个 - 我已经为你数过了，不错吧！）。但是我们只关心最后一个– <code>genes</code>。数逗号的时候小心点哦！</p>
+</li>
+<li><p>最后，函数调用了 <code>feedAndMultiply</code> ，并传入了 <code>_zombieId</code> 和 <code>kittyDna</code> 两个参数。</p>
+</li>
+</ol>
+<h2 id="合约完善-10"><a href="#合约完善-10" class="headerlink" title="合约完善"></a>合约完善</h2><p>zombiefeeding.sol</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"./zombiefactory.sol"</span>;</span><br><span class="line"></span><br><span class="line">contract KittyInterface &#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">getKitty</span>(<span class="params">uint256 _id</span>) <span class="title">external</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    bool isGestating,</span></span></span><br><span class="line"><span class="function"><span class="params">    bool isReady,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 cooldownIndex,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 nextActionAt,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 siringWithId,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 birthTime,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 matronId,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 sireId,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 generation,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 genes</span></span></span><br><span class="line"><span class="function"><span class="params">  </span>);</span></span><br><span class="line"><span class="function">&#125;</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">contract</span> <span class="title">ZombieFeeding</span> <span class="title">is</span> <span class="title">ZombieFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  address ckAddress = <span class="number">0x06012c8cf97BEaD5deAe237070F9587f8E7A266d</span>;</span><br><span class="line">  KittyInterface kittyContract = KittyInterface(ckAddress);</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">feedAndMultiply</span>(<span class="params">uint _zombieId, uint _targetDna</span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">    <span class="built_in">require</span>(msg.sender == zombieToOwner[_zombieId]);</span><br><span class="line">    Zombie storage myZombie = zombies[_zombieId];</span><br><span class="line">    _targetDna = _targetDna % dnaModulus;</span><br><span class="line">    uint newDna = (myZombie.dna + _targetDna) / <span class="number">2</span>;</span><br><span class="line">    _createZombie(<span class="string">"NoName"</span>, newDna);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// define function here</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">feedOnKitty</span>(<span class="params">uint _zombieId, uint _kittyId</span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">    uint kittyDna;</span><br><span class="line">    (,,,,,,,,,kittyDna) = kittyContract.getKitty(_kittyId);</span><br><span class="line">    feedAndMultiply(_zombieId, kittyDna);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="奖励-Kitty-基因"><a href="#奖励-Kitty-基因" class="headerlink" title="奖励: Kitty 基因"></a>奖励: Kitty 基因</h1><p>我们的功能逻辑主体已经完成了…现在让我们来添一个奖励功能吧。</p>
+<p>这样吧，给从小猫制造出的僵尸添加些特征，以显示他们是猫僵尸。</p>
+<p>要做到这一点，咱们在新僵尸的DNA中添加一些特殊的小猫代码。</p>
+<p>还记得吗，第一课中我们提到，我们目前只使用16位DNA的前12位数来指定僵尸的外观。所以现在我们可以使用最后2个数字来处理“特殊”的特征。</p>
+<p>这样吧，把猫僵尸DNA的最后两个数字设定为<code>99</code>（因为猫有9条命）。所以在我们这么来写代码：<code>如果</code>这个僵尸是一只猫变来的，就将它DNA的最后两位数字设置为<code>99</code>。</p>
+<h2 id="if-语句"><a href="#if-语句" class="headerlink" title="if 语句"></a>if 语句</h2><p>if语句的语法在 Solidity 中，与在 JavaScript 中差不多：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function eatBLT(string sandwich) public &#123;</span><br><span class="line">  // 看清楚了，当我们比较字符串的时候，需要比较他们的 keccak256 哈希码</span><br><span class="line">  if (keccak256(sandwich) == keccak256(&quot;BLT&quot;)) &#123;</span><br><span class="line">    eat();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="实战演习-12"><a href="#实战演习-12" class="headerlink" title="实战演习"></a>实战演习</h2><p>让我们在我们的僵尸代码中实现小猫的基因。</p>
+<ol>
+<li><p>首先，我们修改下 <code>feedAndMultiply</code> 函数的定义，给它传入第三个参数：一条名为 <code>_species</code> 的字符串。</p>
+</li>
+<li><p>接下来，在我们计算出新的僵尸的DNA之后，添加一个 <code>if</code> 语句来比较 <code>_species</code> 和字符串 <code>&quot;kitty&quot;</code> 的 <code>keccak256</code> 哈希值。</p>
+</li>
+<li><p>在 <code>if</code> 语句中，我们用 <code>99</code> 替换了新僵尸DNA的最后两位数字。可以这么做：<code>newDna = newDna - newDna % 100 + 99;</code>。</p>
+<blockquote>
+<p>解释：假设 <code>newDna</code> 是 <code>334455</code>。那么 <code>newDna % 100</code> 是 <code>55</code>，所以 <code>newDna - newDna % 100</code> 得到 <code>334400</code>。最后加上 <code>99</code> 可得到 <code>334499</code>。</p>
+</blockquote>
+</li>
+<li><p>最后，我们修改了 <code>feedOnKitty</code> 中的函数调用。当它调用 <code>feedAndMultiply</code> 时，增加 <code>“kitty”</code> 作为最后一个参数。</p>
+</li>
+</ol>
+<h2 id="合约完善-11"><a href="#合约完善-11" class="headerlink" title="合约完善"></a>合约完善</h2><p>zombiefeeding.sol</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.19</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"./zombiefactory.sol"</span>;</span><br><span class="line"></span><br><span class="line">contract KittyInterface &#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">getKitty</span>(<span class="params">uint256 _id</span>) <span class="title">external</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    bool isGestating,</span></span></span><br><span class="line"><span class="function"><span class="params">    bool isReady,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 cooldownIndex,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 nextActionAt,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 siringWithId,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 birthTime,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 matronId,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 sireId,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 generation,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 genes</span></span></span><br><span class="line"><span class="function"><span class="params">  </span>);</span></span><br><span class="line"><span class="function">&#125;</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">contract</span> <span class="title">ZombieFeeding</span> <span class="title">is</span> <span class="title">ZombieFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  address ckAddress = <span class="number">0x06012c8cf97BEaD5deAe237070F9587f8E7A266d</span>;</span><br><span class="line">  KittyInterface kittyContract = KittyInterface(ckAddress);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 这里修改函数定义</span></span><br><span class="line">  <span class="comment">//function feedAndMultiply(uint _zombieId, uint _targetDna) public &#123;</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">feedAndMultiply</span>(<span class="params">uint _zombieId, uint _targetDna, string _species</span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">    <span class="built_in">require</span>(msg.sender == zombieToOwner[_zombieId]);</span><br><span class="line">    Zombie storage myZombie = zombies[_zombieId];</span><br><span class="line">    _targetDna = _targetDna % dnaModulus;</span><br><span class="line">    uint newDna = (myZombie.dna + _targetDna) / <span class="number">2</span>;</span><br><span class="line">    <span class="comment">// 这里增加一个 if 语句</span></span><br><span class="line">    <span class="keyword">if</span> (keccak256(_species) == keccak256(<span class="string">"kitty"</span>)) &#123;</span><br><span class="line">      newDna = newDna - newDna % <span class="number">100</span> + <span class="number">99</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    _createZombie(<span class="string">"NoName"</span>, newDna);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">feedOnKitty</span>(<span class="params">uint _zombieId, uint _kittyId</span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">    uint kittyDna;</span><br><span class="line">    (,,,,,,,,,kittyDna) = kittyContract.getKitty(_kittyId);</span><br><span class="line">    <span class="comment">// 并修改函数调用</span></span><br><span class="line">    <span class="comment">//feedAndMultiply(_zombieId, kittyDna);</span></span><br><span class="line">    feedAndMultiply(_zombieId, kittyDna, <span class="string">"kitty"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="放在一起"><a href="#放在一起" class="headerlink" title="放在一起"></a>放在一起</h1><p>至此，你已经学完第二课了！</p>
+<p>查看下→_→的演示，看看他们怎么运行起来得吧。继续，你肯定等不及看完这一页😉。点击小猫，攻击！看到你斩获一个新的小猫僵尸了吧！</p>
+<h2 id="JavaScript-实现"><a href="#JavaScript-实现" class="headerlink" title="JavaScript 实现"></a>JavaScript 实现</h2><p>我们只用编译和部署 <code>ZombieFeeding</code>，就可以将这个合约部署到以太坊了。我们最终完成的这个合约继承自 <code>ZombieFactory</code>，因此它可以访问自己和父辈合约中的所有 public 方法。</p>
+<p>我们来看一个与我们的刚部署的合约进行交互的例子， 这个例子使用了 JavaScript 和 web3.js：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> abi = <span class="comment">/* abi generated by the compiler */</span></span><br><span class="line"><span class="keyword">var</span> ZombieFeedingContract = web3.eth.contract(abi)</span><br><span class="line"><span class="keyword">var</span> contractAddress = <span class="comment">/* our contract address on Ethereum after deploying */</span></span><br><span class="line"><span class="keyword">var</span> ZombieFeeding = ZombieFeedingContract.at(contractAddress)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 假设我们有我们的僵尸ID和要攻击的猫咪ID</span></span><br><span class="line"><span class="keyword">let</span> zombieId = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> kittyId = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 要拿到猫咪的DNA，我们需要调用它的API。这些数据保存在它们的服务器上而不是区块链上。</span></span><br><span class="line"><span class="comment">// 如果一切都在区块链上，我们就不用担心它们的服务器挂了，或者它们修改了API，</span></span><br><span class="line"><span class="comment">// 或者因为不喜欢我们的僵尸游戏而封杀了我们</span></span><br><span class="line"><span class="keyword">let</span> apiUrl = <span class="string">"https://api.cryptokitties.co/kitties/"</span> + kittyId</span><br><span class="line">$.<span class="keyword">get</span>(apiUrl, function(data) &#123;</span><br><span class="line">  <span class="keyword">let</span> imgUrl = data.image_url</span><br><span class="line">  <span class="comment">// 一些显示图片的代码</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当用户点击一只猫咪的时候:</span></span><br><span class="line">$(<span class="string">".kittyImage"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 调用我们合约的 `feedOnKitty` 函数</span></span><br><span class="line">  ZombieFeeding.feedOnKitty(zombieId, kittyId)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 侦听来自我们合约的新僵尸事件好来处理</span></span><br><span class="line">ZombieFactory.NewZombie(<span class="function"><span class="keyword">function</span>(<span class="params">error, result</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (error) <span class="keyword">return</span></span><br><span class="line">  <span class="comment">// 这个函数用来显示僵尸:</span></span><br><span class="line">  generateZombie(result.zombieId, result.name, result.dna)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="实战演习-13"><a href="#实战演习-13" class="headerlink" title="实战演习"></a>实战演习</h2><p>选择一只你想猎食的小猫。你自家僵尸的 DNA 会和小猫的 DNA 结合，生成一个新的小猫僵尸，加入你的军团！</p>
+<p>看到新僵尸上那可爱的猫咪腿了么？这是新僵尸最后DNA中最后两位数字 <code>99</code> 的功劳！</p>
+<p>你想要的话随时可以重新开始。捕获了一只猫咪僵尸，你一定很高兴吧！（不过你只能持有一只），继续前进到下一章，完成第二课吧！</p>
+<p><img src="https://i.loli.net/2020/06/27/vQ8uDOcFknPNsmy.png" alt="image-20200627105007659"></p>
+<h2 id="融合"><a href="#融合" class="headerlink" title="融合"></a>融合</h2><p><img src="https://i.loli.net/2020/06/27/I9YxPTeVDuKcfmr.png" alt="image-20200627105033754"></p>
+
+    </div>
+
+    
+    
+    
+      
+        <div class="reward-container">
+  <div>您的支持是我继续创作的动力</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="李松柏 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="李松柏 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>李松柏
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lisongbai.top/2020/06/27/%E5%83%B5%E5%B0%B8%E6%94%BB%E5%87%BB%E4%BA%BA%E7%B1%BB/" title="僵尸攻击人类">http://lisongbai.top/2020/06/27/%E5%83%B5%E5%B0%B8%E6%94%BB%E5%87%BB%E4%BA%BA%E7%B1%BB/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/solidity/" rel="tag"># solidity</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/06/27/%E6%90%AD%E5%BB%BA%E5%83%B5%E5%B0%B8%E5%B7%A5%E5%8E%82/" rel="next" title="搭建僵尸工厂">
+                  <i class="fa fa-chevron-left"></i> 搭建僵尸工厂
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-disqus">disqus</a></li>
+            <li class="tab"><a href="#comment-livere">livere</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane disqus" id="comment-disqus">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+            <div class="tab-pane livere" id="comment-livere">
+              
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzY2MC8yNDE1OA=="></div>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+      <script>
+        window.addEventListener('tabs:register', () => {
+          let activeClass = '';
+            activeClass = localStorage.getItem('comments_active') || activeClass;
+          if (activeClass) {
+            let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+            if (activeTab) {
+              activeTab.click();
+            }
+          }
+        });
+        window.addEventListener('tabs:click', event => {
+          let commentClass = event.target.classList[1];
+          localStorage.setItem('comments_active', commentClass);
+        });
+      </script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第二课概览"><span class="nav-number">1.</span> <span class="nav-text">第二课概览</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#僵尸猎食"><span class="nav-number">1.1.</span> <span class="nav-text">僵尸猎食</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实战演习"><span class="nav-number">1.2.</span> <span class="nav-text">实战演习</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#映射（Mapping）和地址（Address）"><span class="nav-number">2.</span> <span class="nav-text">映射（Mapping）和地址（Address）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Addresses-（地址）"><span class="nav-number">2.1.</span> <span class="nav-text">Addresses （地址）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mapping（映射）"><span class="nav-number">2.2.</span> <span class="nav-text">Mapping（映射）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实战演习-1"><span class="nav-number">2.3.</span> <span class="nav-text">实战演习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合约完善"><span class="nav-number">2.4.</span> <span class="nav-text">合约完善</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Msg-sender"><span class="nav-number">3.</span> <span class="nav-text">Msg.sender</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#msg-sender"><span class="nav-number">3.1.</span> <span class="nav-text">msg.sender</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实战演习-2"><span class="nav-number">3.2.</span> <span class="nav-text">实战演习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合约完善-1"><span class="nav-number">3.3.</span> <span class="nav-text">合约完善</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Require"><span class="nav-number">4.</span> <span class="nav-text">Require</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实战演习-3"><span class="nav-number">4.1.</span> <span class="nav-text">实战演习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合约完善-2"><span class="nav-number">4.2.</span> <span class="nav-text">合约完善</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#继承（Inheritance）"><span class="nav-number">5.</span> <span class="nav-text">继承（Inheritance）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实战演习-4"><span class="nav-number">5.1.</span> <span class="nav-text">实战演习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合约完善-3"><span class="nav-number">5.2.</span> <span class="nav-text">合约完善</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引入（Import）"><span class="nav-number">6.</span> <span class="nav-text">引入（Import）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实战演习-5"><span class="nav-number">6.1.</span> <span class="nav-text">实战演习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合约完善-4"><span class="nav-number">6.2.</span> <span class="nav-text">合约完善</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Storage与Memory"><span class="nav-number">7.</span> <span class="nav-text">Storage与Memory</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实战演习-6"><span class="nav-number">7.1.</span> <span class="nav-text">实战演习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合约完善-5"><span class="nav-number">7.2.</span> <span class="nav-text">合约完善</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#僵尸的DNA"><span class="nav-number">8.</span> <span class="nav-text">僵尸的DNA</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实战演习-7"><span class="nav-number">8.1.</span> <span class="nav-text">实战演习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合约完善-6"><span class="nav-number">8.2.</span> <span class="nav-text">合约完善</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更多关于函数可见性"><span class="nav-number">9.</span> <span class="nav-text">更多关于函数可见性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#internal-和-external"><span class="nav-number">9.1.</span> <span class="nav-text">internal 和 external</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实战演习-8"><span class="nav-number">9.2.</span> <span class="nav-text">实战演习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合约完善-7"><span class="nav-number">9.3.</span> <span class="nav-text">合约完善</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#僵尸吃什么"><span class="nav-number">10.</span> <span class="nav-text">僵尸吃什么?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#与其他合约的交互"><span class="nav-number">10.1.</span> <span class="nav-text">与其他合约的交互</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实战演习-9"><span class="nav-number">10.2.</span> <span class="nav-text">实战演习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合约完善-8"><span class="nav-number">10.3.</span> <span class="nav-text">合约完善</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用接口"><span class="nav-number">11.</span> <span class="nav-text">使用接口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实战演习-10"><span class="nav-number">11.1.</span> <span class="nav-text">实战演习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合约完善-9"><span class="nav-number">11.2.</span> <span class="nav-text">合约完善</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#处理多返回值"><span class="nav-number">12.</span> <span class="nav-text">处理多返回值</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实战演习-11"><span class="nav-number">12.1.</span> <span class="nav-text">实战演习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合约完善-10"><span class="nav-number">12.2.</span> <span class="nav-text">合约完善</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#奖励-Kitty-基因"><span class="nav-number">13.</span> <span class="nav-text">奖励: Kitty 基因</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#if-语句"><span class="nav-number">13.1.</span> <span class="nav-text">if 语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实战演习-12"><span class="nav-number">13.2.</span> <span class="nav-text">实战演习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合约完善-11"><span class="nav-number">13.3.</span> <span class="nav-text">合约完善</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#放在一起"><span class="nav-number">14.</span> <span class="nav-text">放在一起</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-实现"><span class="nav-number">14.1.</span> <span class="nav-text">JavaScript 实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实战演习-13"><span class="nav-number">14.2.</span> <span class="nav-text">实战演习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#融合"><span class="nav-number">14.3.</span> <span class="nav-text">融合</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="李松柏"
+    src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">李松柏</p>
+  <div class="site-description" itemprop="description">记录学习的技能和遇到的问题</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yym08090809" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;yym08090809" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:songbai0112@163.com" title="E-Mail &amp;rarr; mailto:songbai0112@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李松柏</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.2
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': '',
+            'X-LC-Key': '',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+        if (localhost.test(document.URL)) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://visitor.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "http://lisongbai.top/2020/06/27/%E5%83%B5%E5%B0%B8%E6%94%BB%E5%87%BB%E4%BA%BA%E7%B1%BB/",
+            identifier: "2020/06/27/僵尸攻击人类/",
+            title: "僵尸攻击人类"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://visitor.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
+
+<script>
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+ 
+</body>
+</html>
