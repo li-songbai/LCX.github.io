@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-06-27T02:54:19.259Z</updated>
+  <updated>2020-06-29T10:42:42.280Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>僵尸作战系统</title>
+    <link href="http://lisongbai.top/2020/06/27/%E5%83%B5%E5%B0%B8%E4%BD%9C%E6%88%98%E7%B3%BB%E7%BB%9F/"/>
+    <id>http://lisongbai.top/2020/06/27/%E5%83%B5%E5%B0%B8%E4%BD%9C%E6%88%98%E7%B3%BB%E7%BB%9F/</id>
+    <published>2020-06-27T06:14:48.000Z</published>
+    <updated>2020-06-29T10:42:42.280Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;可支付&quot;&gt;&lt;a href=&quot;#可支付&quot; class=&quot;headerlink&quot; title=&quot;可支付&quot;&gt;&lt;/a&gt;可支付&lt;/h1&gt;&lt;p&gt;截至目前，我们只接触到很少的 &lt;strong&gt;&lt;em&gt;函数修饰符\&lt;/em&gt;&lt;/strong&gt;。 要记住所有的东西很难，所以我们来个概览：&lt;/p&gt;&lt;ol&gt;
+&lt;li&gt;我们有决定函数何时和被谁调用的可见性修饰符: &lt;code&gt;private&lt;/code&gt; 意味着它只能被合约内部调用； &lt;code&gt;internal&lt;/code&gt; 就像 &lt;code&gt;private&lt;/code&gt; 但是也能被继承的合约调用； &lt;code&gt;external&lt;/code&gt; 只能从合约外部调用；最后 &lt;code&gt;public&lt;/code&gt; 可以在任何地方调用，不管是内部还是外部。&lt;/li&gt;
+&lt;li&gt;我们也有状态修饰符， 告诉我们函数如何和区块链交互: &lt;code&gt;view&lt;/code&gt; 告诉我们运行这个函数不会更改和保存任何数据； &lt;code&gt;pure&lt;/code&gt; 告诉我们这个函数不但不会往区块链写数据，它甚至不从区块链读取数据。这两种在被从合约外部调用的时候都不花费任何gas（但是它们在被内部其他函数调用的时候将会耗费gas）。&lt;/li&gt;
+&lt;li&gt;然后我们有了自定义的 &lt;code&gt;modifiers&lt;/code&gt;，例如在第三课学习的: &lt;code&gt;onlyOwner&lt;/code&gt; 和 &lt;code&gt;aboveLevel&lt;/code&gt;。 对于这些修饰符我们可以自定义其对函数的约束逻辑。&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="loom network" scheme="http://lisongbai.top/categories/loom-network/"/>
+    
+    
+      <category term="solidity" scheme="http://lisongbai.top/tags/solidity/"/>
+    
+  </entry>
+  
+  <entry>
     <title>僵尸攻击人类</title>
     <link href="http://lisongbai.top/2020/06/27/%E5%83%B5%E5%B0%B8%E6%94%BB%E5%87%BB%E4%BA%BA%E7%B1%BB/"/>
     <id>http://lisongbai.top/2020/06/27/%E5%83%B5%E5%B0%B8%E6%94%BB%E5%87%BB%E4%BA%BA%E7%B1%BB/</id>
     <published>2020-06-27T01:54:54.000Z</published>
-    <updated>2020-06-27T02:54:19.259Z</updated>
+    <updated>2020-06-27T06:16:40.927Z</updated>
     
     <summary type="html">
     
@@ -30,7 +55,7 @@
     </summary>
     
     
-      <category term="solidity" scheme="http://lisongbai.top/categories/solidity/"/>
+      <category term="loom network" scheme="http://lisongbai.top/categories/loom-network/"/>
     
     
       <category term="solidity" scheme="http://lisongbai.top/tags/solidity/"/>
@@ -42,7 +67,7 @@
     <link href="http://lisongbai.top/2020/06/27/%E6%90%AD%E5%BB%BA%E5%83%B5%E5%B0%B8%E5%B7%A5%E5%8E%82/"/>
     <id>http://lisongbai.top/2020/06/27/%E6%90%AD%E5%BB%BA%E5%83%B5%E5%B0%B8%E5%B7%A5%E5%8E%82/</id>
     <published>2020-06-26T17:00:29.000Z</published>
-    <updated>2020-06-26T17:41:11.433Z</updated>
+    <updated>2020-06-27T06:17:22.530Z</updated>
     
     <summary type="html">
     
@@ -51,7 +76,7 @@
     </summary>
     
     
-      <category term="solidity" scheme="http://lisongbai.top/categories/solidity/"/>
+      <category term="loom network" scheme="http://lisongbai.top/categories/loom-network/"/>
     
     
       <category term="solidity" scheme="http://lisongbai.top/tags/solidity/"/>
@@ -63,7 +88,7 @@
     <link href="http://lisongbai.top/2020/06/26/%E9%AB%98%E7%BA%A7%20Solidity%20%E7%90%86%E8%AE%BA/"/>
     <id>http://lisongbai.top/2020/06/26/%E9%AB%98%E7%BA%A7%20Solidity%20%E7%90%86%E8%AE%BA/</id>
     <published>2020-06-26T15:50:04.000Z</published>
-    <updated>2020-06-26T17:40:59.002Z</updated>
+    <updated>2020-06-27T06:17:32.171Z</updated>
     
     <summary type="html">
     
@@ -72,7 +97,7 @@
     </summary>
     
     
-      <category term="solidity" scheme="http://lisongbai.top/categories/solidity/"/>
+      <category term="loom network" scheme="http://lisongbai.top/categories/loom-network/"/>
     
     
       <category term="solidity" scheme="http://lisongbai.top/tags/solidity/"/>
@@ -449,33 +474,6 @@
     </summary>
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>ospf组网实验</title>
-    <link href="http://lisongbai.top/2020/03/22/ospf%E7%BB%84%E7%BD%91%E5%AE%9E%E9%AA%8C/"/>
-    <id>http://lisongbai.top/2020/03/22/ospf%E7%BB%84%E7%BD%91%E5%AE%9E%E9%AA%8C/</id>
-    <published>2020-03-22T07:27:34.000Z</published>
-    <updated>2020-06-13T13:33:35.450Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1、网络拓扑图&quot;&gt;&lt;a href=&quot;#1、网络拓扑图&quot; class=&quot;headerlink&quot; title=&quot;1、网络拓扑图&quot;&gt;&lt;/a&gt;1、网络拓扑图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://s1.ax1x.com/2020/03/22/85DWGD.png&quot; alt=&quot;85DWGD.png&quot;&gt;&lt;/p&gt;&lt;h1 id=&quot;2、实验目的&quot;&gt;&lt;a href=&quot;#2、实验目的&quot; class=&quot;headerlink&quot; title=&quot;2、实验目的&quot;&gt;&lt;/a&gt;2、实验目的&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;OSPF的基本配置（静态路由及动态路由）&lt;/li&gt;
-&lt;li&gt;OSPF协议报文交互过程&lt;/li&gt;
-&lt;li&gt;区域划分&lt;/li&gt;
-&lt;/ul&gt;&lt;h1 id=&quot;3、实验步骤&quot;&gt;&lt;a href=&quot;#3、实验步骤&quot; class=&quot;headerlink&quot; title=&quot;3、实验步骤&quot;&gt;&lt;/a&gt;3、实验步骤&lt;/h1&gt;&lt;h2 id=&quot;3-1-连接拓扑并配置PC机的IP及网关&quot;&gt;&lt;a href=&quot;#3-1-连接拓扑并配置PC机的IP及网关&quot; class=&quot;headerlink&quot; title=&quot;3.1 连接拓扑并配置PC机的IP及网关&quot;&gt;&lt;/a&gt;3.1 连接拓扑并配置PC机的IP及网关&lt;/h2&gt;&lt;p&gt;PC1配置如下：（其他PC同理）&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://s1.ax1x.com/2020/03/22/85shDA.png&quot; alt=&quot;PC1&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;3-2-配置路由器的各个端口&quot;&gt;&lt;a href=&quot;#3-2-配置路由器的各个端口&quot; class=&quot;headerlink&quot; title=&quot;3.2 配置路由器的各个端口&quot;&gt;&lt;/a&gt;3.2 配置路由器的各个端口&lt;/h2&gt;&lt;h3 id=&quot;3-2-1-AR3端口配置&quot;&gt;&lt;a href=&quot;#3-2-1-AR3端口配置&quot; class=&quot;headerlink&quot; title=&quot;3.2.1 AR3端口配置&quot;&gt;&lt;/a&gt;3.2.1 AR3端口配置&lt;/h3&gt;&lt;figure class=&quot;highlight properties&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;&amp;lt;Huawei&amp;gt;sys&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;Enter&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;system view, return user view with Ctrl+Z.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[Huawei]sysname&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;R3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[R3]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;GigabitEthernet 0/0/0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[R3-GigabitEthernet0/0/0]ip&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;address 192.168.4.254 24&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;[R3-GigabitEthernet0/0/0]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;Mar&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;22 2020 14:23:11-08:00 R3 %%01IFNET/4/LINK_STATE(l)[0]:The line protocol IP &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;the interface GigabitEthernet0/0/0 has entered the UP state. &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[R3-GigabitEthernet0/0/0]quit&lt;/span&gt;	&lt;span class=&quot;string&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[R3]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;GigabitEthernet 0/0/1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[R3-GigabitEthernet0/0/1]ip&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;address 192.168.34.4 24&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="网络工程设计" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
-    
-      <category term="OSPF实验" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/OSPF%E5%AE%9E%E9%AA%8C/"/>
-    
-    
-      <category term="网络工程设计" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
     
   </entry>
   
