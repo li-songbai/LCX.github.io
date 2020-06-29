@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-06-29T10:42:42.280Z</updated>
+  <updated>2020-06-29T15:34:10.047Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ERC721标准和加密收藏品</title>
+    <link href="http://lisongbai.top/2020/06/29/ERC721%E6%A0%87%E5%87%86%E5%92%8C%E5%8A%A0%E5%AF%86%E6%94%B6%E8%97%8F%E5%93%81/"/>
+    <id>http://lisongbai.top/2020/06/29/ERC721%E6%A0%87%E5%87%86%E5%92%8C%E5%8A%A0%E5%AF%86%E6%94%B6%E8%97%8F%E5%93%81/</id>
+    <published>2020-06-29T10:44:50.000Z</published>
+    <updated>2020-06-29T15:34:10.047Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;以太坊上的代币&quot;&gt;&lt;a href=&quot;#以太坊上的代币&quot; class=&quot;headerlink&quot; title=&quot;以太坊上的代币&quot;&gt;&lt;/a&gt;以太坊上的代币&lt;/h1&gt;&lt;p&gt;让我们来聊聊 &lt;strong&gt;&lt;em&gt;代币&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;&lt;p&gt;如果你对以太坊的世界有一些了解，你很可能听过人们聊到代币——尤其是 &lt;strong&gt;&lt;em&gt;ERC20 代币\&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;&lt;p&gt;一个 &lt;strong&gt;&lt;em&gt;代币&lt;/em&gt;&lt;/strong&gt; 在以太坊基本上就是一个遵循一些共同规则的智能合约——即它实现了所有其他代币合约共享的一组标准函数，例如 &lt;code&gt;transfer(address _to, uint256 _value)&lt;/code&gt; 和 &lt;code&gt;balanceOf(address _owner)&lt;/code&gt;.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="loom network" scheme="http://lisongbai.top/categories/loom-network/"/>
+    
+    
+      <category term="solidity" scheme="http://lisongbai.top/tags/solidity/"/>
+    
+  </entry>
   
   <entry>
     <title>僵尸作战系统</title>
@@ -454,26 +475,6 @@
     
     
       <category term="力扣" scheme="http://lisongbai.top/tags/%E5%8A%9B%E6%89%A3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DHCP跨路由转发</title>
-    <link href="http://lisongbai.top/2020/04/13/DHCP%E8%B7%A8%E8%B7%AF%E7%94%B1%E8%BD%AC%E5%8F%91/"/>
-    <id>http://lisongbai.top/2020/04/13/DHCP%E8%B7%A8%E8%B7%AF%E7%94%B1%E8%BD%AC%E5%8F%91/</id>
-    <published>2020-04-13T10:36:43.000Z</published>
-    <updated>2020-04-13T10:44:58.511Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1-拓扑图&quot;&gt;&lt;a href=&quot;#1-拓扑图&quot; class=&quot;headerlink&quot; title=&quot;1.拓扑图&quot;&gt;&lt;/a&gt;1.拓扑图&lt;/h1&gt;&lt;img src=&quot;/2020/04/13/DHCP%E8%B7%A8%E8%B7%AF%E7%94%B1%E8%BD%AC%E5%8F%91/11.png&quot; class&gt;&lt;h1 id=&quot;2-实验目的&quot;&gt;&lt;a href=&quot;#2-实验目的&quot; class=&quot;headerlink&quot; title=&quot;2.实验目的&quot;&gt;&lt;/a&gt;2.实验目的&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;DHCP协议工作过程配置&lt;/li&gt;
-&lt;li&gt;DHCP协议报文格式&lt;/li&gt;
-&lt;/ul&gt;&lt;h1 id=&quot;3-实验原理&quot;&gt;&lt;a href=&quot;#3-实验原理&quot; class=&quot;headerlink&quot; title=&quot;3.实验原理&quot;&gt;&lt;/a&gt;3.实验原理&lt;/h1&gt;&lt;h2 id=&quot;3-1DHCP概述&quot;&gt;&lt;a href=&quot;#3-1DHCP概述&quot; class=&quot;headerlink&quot; title=&quot;3.1DHCP概述&quot;&gt;&lt;/a&gt;3.1DHCP概述&lt;/h2&gt;&lt;p&gt; DHCP，动态主机配置协议，前身是BOOTP协议，是一个局域网的网络协议，使用UDP协议工作，常用的2个端口：67(DHCP server),68(DHCP client)。DHCP通常被用于局域网环境，主要作用是集中的管理、分配IP地址，使client动态的获得IP地址、Gateway地址、DNS服务器地址等信息，并能够提升地址的使用率。简单来说，DHCP就是一个不需要账号密码登录的、自动给内网机器分配IP地址等信息的协议。 &lt;/p&gt;
-    
-    </summary>
-    
-    
     
   </entry>
   
