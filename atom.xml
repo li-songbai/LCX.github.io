@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-06-29T15:34:10.047Z</updated>
+  <updated>2020-06-30T16:11:53.411Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,46 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Testing Smart Contracts with Truffle</title>
+    <link href="http://lisongbai.top/2020/06/30/%E4%BD%BF%E7%94%A8truffle%E6%B5%8B%E8%AF%95%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/"/>
+    <id>http://lisongbai.top/2020/06/30/%E4%BD%BF%E7%94%A8truffle%E6%B5%8B%E8%AF%95%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</id>
+    <published>2020-06-30T06:41:19.000Z</published>
+    <updated>2020-06-30T16:11:53.411Z</updated>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;&lt;p&gt;&lt;strong&gt;引言：&lt;/strong&gt;这部分的教程网址没做中文页面，我自己英语不太好😫，就用谷歌翻译，翻译了下，大家凑合看吧。英语好的同学可以&lt;a href=&quot;https://cryptozombies.io/zh/lesson/11&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;点击这里&lt;/a&gt;去网站学习。&lt;/p&gt;&lt;h1 id=&quot;Getting-Set-Up&quot;&gt;&lt;a href=&quot;#Getting-Set-Up&quot; class=&quot;headerlink&quot; title=&quot;Getting Set Up&quot;&gt;&lt;/a&gt;Getting Set Up&lt;/h1&gt;&lt;p&gt;在本课程中，我们将介绍测试&lt;strong&gt;以太坊&lt;/strong&gt;智能合约背后的理论，重点是&lt;strong&gt;Truffle&lt;/strong&gt;，&lt;strong&gt;Mocha&lt;/strong&gt;和&lt;strong&gt;Chai&lt;/strong&gt;。您将需要对&lt;strong&gt;Solidity&lt;/strong&gt;和&lt;strong&gt;JavaScript&lt;/strong&gt;有中等程度的了解，以帮助您充分利用这些课程。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="truffle" scheme="http://lisongbai.top/tags/truffle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>web3.js</title>
+    <link href="http://lisongbai.top/2020/06/30/web3-js/"/>
+    <id>http://lisongbai.top/2020/06/30/web3-js/</id>
+    <published>2020-06-29T16:03:22.000Z</published>
+    <updated>2020-06-30T06:44:35.723Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;介绍-Web3-js&quot;&gt;&lt;a href=&quot;#介绍-Web3-js&quot; class=&quot;headerlink&quot; title=&quot;介绍 Web3.js&quot;&gt;&lt;/a&gt;介绍 Web3.js&lt;/h1&gt;&lt;p&gt;完成第五课以后，我们的僵尸 DApp 的 Solidity 合约部分就完成了。现在我们来做一个基本的网页好让你的用户能玩它。 要做到这一点，我们将使用以太坊基金发布的 JavaScript 库 —— &lt;strong&gt;&lt;em&gt;Web3.js\&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;&lt;h2 id=&quot;什么是-Web3-js&quot;&gt;&lt;a href=&quot;#什么是-Web3-js&quot; class=&quot;headerlink&quot; title=&quot;什么是 Web3.js?&quot;&gt;&lt;/a&gt;什么是 Web3.js?&lt;/h2&gt;&lt;p&gt;还记得么？以太坊网络是由节点组成的，每一个节点都包含了区块链的一份拷贝。当你想要调用一份智能合约的一个方法，你需要从其中一个节点中查找并告诉它:&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Solidity Path" scheme="http://lisongbai.top/categories/Solidity-Path/"/>
+    
+    
+      <category term="web3.js" scheme="http://lisongbai.top/tags/web3-js/"/>
+    
+  </entry>
   
   <entry>
     <title>ERC721标准和加密收藏品</title>
@@ -42,7 +82,7 @@
     <link href="http://lisongbai.top/2020/06/27/%E5%83%B5%E5%B0%B8%E4%BD%9C%E6%88%98%E7%B3%BB%E7%BB%9F/"/>
     <id>http://lisongbai.top/2020/06/27/%E5%83%B5%E5%B0%B8%E4%BD%9C%E6%88%98%E7%B3%BB%E7%BB%9F/</id>
     <published>2020-06-27T06:14:48.000Z</published>
-    <updated>2020-06-29T10:42:42.280Z</updated>
+    <updated>2020-06-30T06:43:48.483Z</updated>
     
     <summary type="html">
     
@@ -55,7 +95,7 @@
     </summary>
     
     
-      <category term="loom network" scheme="http://lisongbai.top/categories/loom-network/"/>
+      <category term="Solidity Path" scheme="http://lisongbai.top/categories/Solidity-Path/"/>
     
     
       <category term="solidity" scheme="http://lisongbai.top/tags/solidity/"/>
@@ -67,7 +107,7 @@
     <link href="http://lisongbai.top/2020/06/27/%E5%83%B5%E5%B0%B8%E6%94%BB%E5%87%BB%E4%BA%BA%E7%B1%BB/"/>
     <id>http://lisongbai.top/2020/06/27/%E5%83%B5%E5%B0%B8%E6%94%BB%E5%87%BB%E4%BA%BA%E7%B1%BB/</id>
     <published>2020-06-27T01:54:54.000Z</published>
-    <updated>2020-06-27T06:16:40.927Z</updated>
+    <updated>2020-06-30T06:42:50.789Z</updated>
     
     <summary type="html">
     
@@ -76,7 +116,7 @@
     </summary>
     
     
-      <category term="loom network" scheme="http://lisongbai.top/categories/loom-network/"/>
+      <category term="Solidity Path" scheme="http://lisongbai.top/categories/Solidity-Path/"/>
     
     
       <category term="solidity" scheme="http://lisongbai.top/tags/solidity/"/>
@@ -88,7 +128,7 @@
     <link href="http://lisongbai.top/2020/06/27/%E6%90%AD%E5%BB%BA%E5%83%B5%E5%B0%B8%E5%B7%A5%E5%8E%82/"/>
     <id>http://lisongbai.top/2020/06/27/%E6%90%AD%E5%BB%BA%E5%83%B5%E5%B0%B8%E5%B7%A5%E5%8E%82/</id>
     <published>2020-06-26T17:00:29.000Z</published>
-    <updated>2020-06-27T06:17:22.530Z</updated>
+    <updated>2020-06-30T07:50:44.724Z</updated>
     
     <summary type="html">
     
@@ -97,7 +137,7 @@
     </summary>
     
     
-      <category term="loom network" scheme="http://lisongbai.top/categories/loom-network/"/>
+      <category term="Solidity Path" scheme="http://lisongbai.top/categories/Solidity-Path/"/>
     
     
       <category term="solidity" scheme="http://lisongbai.top/tags/solidity/"/>
@@ -109,7 +149,7 @@
     <link href="http://lisongbai.top/2020/06/26/%E9%AB%98%E7%BA%A7%20Solidity%20%E7%90%86%E8%AE%BA/"/>
     <id>http://lisongbai.top/2020/06/26/%E9%AB%98%E7%BA%A7%20Solidity%20%E7%90%86%E8%AE%BA/</id>
     <published>2020-06-26T15:50:04.000Z</published>
-    <updated>2020-06-27T06:17:32.171Z</updated>
+    <updated>2020-06-30T06:43:23.042Z</updated>
     
     <summary type="html">
     
@@ -118,7 +158,7 @@
     </summary>
     
     
-      <category term="loom network" scheme="http://lisongbai.top/categories/loom-network/"/>
+      <category term="Solidity Path" scheme="http://lisongbai.top/categories/Solidity-Path/"/>
     
     
       <category term="solidity" scheme="http://lisongbai.top/tags/solidity/"/>
@@ -429,52 +469,6 @@
     
     
       <category term="网络工程设计" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>边界网关协议实验（BGP）《一》</title>
-    <link href="http://lisongbai.top/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/"/>
-    <id>http://lisongbai.top/2020/05/11/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%80%E3%80%8B/</id>
-    <published>2020-05-11T07:27:34.000Z</published>
-    <updated>2020-06-13T13:41:51.272Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1-拓扑图&quot;&gt;&lt;a href=&quot;#1-拓扑图&quot; class=&quot;headerlink&quot; title=&quot;1.拓扑图&quot;&gt;&lt;/a&gt;1.拓扑图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://s1.ax1x.com/2020/05/11/YYn0l8.png&quot; alt=&quot;YYn0l8.png&quot;&gt;&lt;/p&gt;&lt;h1 id=&quot;2-实验目的&quot;&gt;&lt;a href=&quot;#2-实验目的&quot; class=&quot;headerlink&quot; title=&quot;2.实验目的&quot;&gt;&lt;/a&gt;2.实验目的&lt;/h1&gt;&lt;p&gt;了解边界网管协议（BGP）&lt;/p&gt;&lt;p&gt;实现两个域间的通讯。&lt;/p&gt;&lt;h1 id=&quot;3-实验步骤&quot;&gt;&lt;a href=&quot;#3-实验步骤&quot; class=&quot;headerlink&quot; title=&quot;3.实验步骤&quot;&gt;&lt;/a&gt;3.实验步骤&lt;/h1&gt;&lt;h2 id=&quot;3-1网关ip配置&quot;&gt;&lt;a href=&quot;#3-1网关ip配置&quot; class=&quot;headerlink&quot; title=&quot;3.1网关ip配置&quot;&gt;&lt;/a&gt;3.1网关ip配置&lt;/h2&gt;&lt;p&gt;AR1配置，其他同理。&lt;/p&gt;&lt;figure class=&quot;highlight properties&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;&amp;lt;Huawei&amp;gt;sys&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[Huawei]un&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;in en&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;Info&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;Information center is disabled.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[Huawei]sysname&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;AR1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR1]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;GigabitEthernet0/0/0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR1-GigabitEthernet0/0/0]ip&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;add 192.168.6.1 24&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR1-GigabitEthernet0/0/0]interface&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;GigabitEthernet0/0/1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR1-GigabitEthernet0/0/1]ip&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;add 192.168.5.2 24&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="网络工程设计" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
-    
-      <category term="BGP实验" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/BGP%E5%AE%9E%E9%AA%8C/"/>
-    
-    
-      <category term="网络工程设计" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>力扣每日一题之快乐数</title>
-    <link href="http://lisongbai.top/2020/04/30/%E5%8A%9B%E6%89%A3%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E4%B9%8B%E5%BF%AB%E4%B9%90%E6%95%B0/"/>
-    <id>http://lisongbai.top/2020/04/30/%E5%8A%9B%E6%89%A3%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E4%B9%8B%E5%BF%AB%E4%B9%90%E6%95%B0/</id>
-    <published>2020-04-30T02:39:33.000Z</published>
-    <updated>2020-06-13T14:05:30.961Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1、题目描述&quot;&gt;&lt;a href=&quot;#1、题目描述&quot; class=&quot;headerlink&quot; title=&quot;1、题目描述&quot;&gt;&lt;/a&gt;1、题目描述&lt;/h1&gt;&lt;p&gt;编写一个算法来判断一个数 n 是不是快乐数。&lt;/p&gt;&lt;p&gt;「快乐数」定义为：对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和，然后重复这个过程直到这个数变为 1，也可能是 无限循环 但始终变不到 1。如果 可以变为  1，那么这个数就是快乐数。&lt;/p&gt;&lt;p&gt;如果 n 是快乐数就返回 True ；不是，则返回 False 。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://lisongbai.top/categories/java/"/>
-    
-      <category term="编程" scheme="http://lisongbai.top/categories/java/%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="力扣" scheme="http://lisongbai.top/tags/%E5%8A%9B%E6%89%A3/"/>
     
   </entry>
   
