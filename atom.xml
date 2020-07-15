@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-07-02T05:53:56.991Z</updated>
+  <updated>2020-07-15T05:53:52.186Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,44 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hive学习笔记</title>
+    <link href="http://lisongbai.top/2020/07/15/Hive%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://lisongbai.top/2020/07/15/Hive%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <published>2020-07-15T05:52:20.000Z</published>
+    <updated>2020-07-15T05:53:52.186Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Hive&quot;&gt;&lt;a href=&quot;#Hive&quot; class=&quot;headerlink&quot; title=&quot;Hive&quot;&gt;&lt;/a&gt;Hive&lt;/h1&gt;&lt;h2 id=&quot;数据仓库和数据库的区别&quot;&gt;&lt;a href=&quot;#数据仓库和数据库的区别&quot; class=&quot;headerlink&quot; title=&quot;数据仓库和数据库的区别&quot;&gt;&lt;/a&gt;数据仓库和数据库的区别&lt;/h2&gt;&lt;p&gt;数据库：数据持久化操作（存储数据）。&lt;/p&gt;&lt;p&gt;数据仓库：对数据进行处理分析（没有增删改操作）。&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/07/13/YEO7LA92JktSjNC.png&quot; alt=&quot;image-20200713145956604&quot;&gt;&lt;/p&gt;&lt;p&gt;Java生成API文档&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/07/14/Q4kLDFxwcAzHPvB.png&quot; alt=&quot;image-20200713150955522&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;Hive环境搭建&quot;&gt;&lt;a href=&quot;#Hive环境搭建&quot; class=&quot;headerlink&quot; title=&quot;Hive环境搭建&quot;&gt;&lt;/a&gt;Hive环境搭建&lt;/h2&gt;&lt;p&gt;==hive是基于hadoop运行的，在搭建环境前必须保证hdfs环境可用。==&lt;/p&gt;&lt;h3 id=&quot;下载安装&quot;&gt;&lt;a href=&quot;#下载安装&quot; class=&quot;headerlink&quot; title=&quot;下载安装&quot;&gt;&lt;/a&gt;下载安装&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://hive.apache.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;hive官网&lt;/a&gt;&lt;/p&gt;&lt;p&gt;上传tar包至集群的namenode&lt;/p&gt;&lt;p&gt;解压安装命令如下：&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="hive" scheme="http://lisongbai.top/categories/hive/"/>
+    
+    
+      <category term="大数据" scheme="http://lisongbai.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HDFS机制</title>
+    <link href="http://lisongbai.top/2020/07/10/HDFS%E6%9C%BA%E5%88%B6/"/>
+    <id>http://lisongbai.top/2020/07/10/HDFS%E6%9C%BA%E5%88%B6/</id>
+    <published>2020-07-10T07:03:50.000Z</published>
+    <updated>2020-07-10T10:16:56.700Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;HDFS前言&quot;&gt;&lt;a href=&quot;#HDFS前言&quot; class=&quot;headerlink&quot; title=&quot;HDFS前言&quot;&gt;&lt;/a&gt;HDFS前言&lt;/h1&gt;&lt;h2 id=&quot;设计思想&quot;&gt;&lt;a href=&quot;#设计思想&quot; class=&quot;headerlink&quot; title=&quot;设计思想&quot;&gt;&lt;/a&gt;设计思想&lt;/h2&gt;&lt;p&gt;分而治之：将大文件、大批量文件，分布式存放在大量服务器上，&lt;strong&gt;以便于采取分而治之的方式对海量数据进行运算分析；&lt;/strong&gt;&lt;/p&gt;&lt;h2 id=&quot;在大数据系统中作用：&quot;&gt;&lt;a href=&quot;#在大数据系统中作用：&quot; class=&quot;headerlink&quot; title=&quot;在大数据系统中作用：&quot;&gt;&lt;/a&gt;在大数据系统中作用：&lt;/h2&gt;&lt;p&gt;为各类分布式运算框架（如：mapreduce，spark……）提供数据存储服务&lt;/p&gt;&lt;h2 id=&quot;重点概念：&quot;&gt;&lt;a href=&quot;#重点概念：&quot; class=&quot;headerlink&quot; title=&quot;重点概念：&quot;&gt;&lt;/a&gt;重点概念：&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;文件切块&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;副本存放&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;元数据&lt;/strong&gt;&lt;/p&gt;&lt;h1 id=&quot;HDFS概述&quot;&gt;&lt;a href=&quot;#HDFS概述&quot; class=&quot;headerlink&quot; title=&quot;HDFS概述&quot;&gt;&lt;/a&gt;HDFS概述&lt;/h1&gt;&lt;p&gt;Hadoop分布式文件系统(HDFS)是指被设计成适合运行在通用硬件(commodity hardware)上的分布式文件系统（Distributed File System）。它和现有的分布式文件系统有很多共同点。但同时，它和其他的分布式文件系统的区别也是很明显的。HDFS是一个高度容错性的系统，适合部署在廉价的机器上。HDFS能提供高吞吐量的数据访问，非常适合大规模数据集上的应用。HDFS放宽了一部分POSIX约束，来实现流式读取文件系统数据的目的。HDFS在最开始是作为Apache Nutch搜索引擎项目的基础架构而开发的。HDFS是Apache Hadoop Core项目的一部分。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>使用truffle部署DAPP</title>
@@ -408,57 +446,6 @@
       <category term="网络工程设计" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
     
       <category term="网络安全实验" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E9%AA%8C/"/>
-    
-    
-      <category term="网络工程设计" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SNMP实验</title>
-    <link href="http://lisongbai.top/2020/05/24/snmp/"/>
-    <id>http://lisongbai.top/2020/05/24/snmp/</id>
-    <published>2020-05-24T07:27:34.000Z</published>
-    <updated>2020-06-13T13:36:42.257Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1、实验拓扑&quot;&gt;&lt;a href=&quot;#1、实验拓扑&quot; class=&quot;headerlink&quot; title=&quot;1、实验拓扑&quot;&gt;&lt;/a&gt;1、实验拓扑&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://imgchr.com/i/tCOoR0&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;img src=&quot;https://s1.ax1x.com/2020/05/26/tCOoR0.png&quot; alt=&quot;tCOoR0.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;h1 id=&quot;2、实验要求&quot;&gt;&lt;a href=&quot;#2、实验要求&quot; class=&quot;headerlink&quot; title=&quot;2、实验要求&quot;&gt;&lt;/a&gt;2、实验要求&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;通过eNSP里的“云”，可以使得虚拟环境中的设备访问“本机”。在本机中运行MIB Browser，访问eNSP虚拟环境中设备的MIB库。 &lt;/li&gt;
-&lt;li&gt;浏览设备MIB树的各个节点 。&lt;/li&gt;
-&lt;li&gt;还要捕获分组 ，分析协议交互过程。&lt;/li&gt;
-&lt;li&gt;自己手工编码/解码分组中的数据。也就是ASN.1 TLV编码解码过程。 &lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-    
-      <category term="网络工程设计" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
-    
-      <category term="SNMP实验" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/SNMP%E5%AE%9E%E9%AA%8C/"/>
-    
-    
-      <category term="网络工程设计" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>边界网关协议实验（BGP）《三》</title>
-    <link href="http://lisongbai.top/2020/05/18/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%89%E3%80%8B/"/>
-    <id>http://lisongbai.top/2020/05/18/%E8%BE%B9%E7%95%8C%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AE%E5%AE%9E%E9%AA%8C%EF%BC%88BGP%EF%BC%89%E3%80%8A%E4%B8%89%E3%80%8B/</id>
-    <published>2020-05-18T07:27:34.000Z</published>
-    <updated>2020-06-13T13:41:19.606Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1-拓扑图&quot;&gt;&lt;a href=&quot;#1-拓扑图&quot; class=&quot;headerlink&quot; title=&quot;1.拓扑图&quot;&gt;&lt;/a&gt;1.拓扑图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://s1.ax1x.com/2020/05/18/Yhp0fK.png&quot; alt=&quot;Yhp0fK.png&quot;&gt;、&lt;/p&gt;&lt;h1 id=&quot;2-实验目的&quot;&gt;&lt;a href=&quot;#2-实验目的&quot; class=&quot;headerlink&quot; title=&quot;2.实验目的&quot;&gt;&lt;/a&gt;2.实验目的&lt;/h1&gt;&lt;p&gt;利用AS-path属性实现路由策略，使得AR2不向AR1通告AS300内的任何路由。&lt;/p&gt;&lt;h1 id=&quot;3-实验步骤&quot;&gt;&lt;a href=&quot;#3-实验步骤&quot; class=&quot;headerlink&quot; title=&quot;3.实验步骤&quot;&gt;&lt;/a&gt;3.实验步骤&lt;/h1&gt;&lt;h2 id=&quot;3-1配置AR1-AR4路由器的网关ip&quot;&gt;&lt;a href=&quot;#3-1配置AR1-AR4路由器的网关ip&quot; class=&quot;headerlink&quot; title=&quot;3.1配置AR1~AR4路由器的网关ip&quot;&gt;&lt;/a&gt;3.1配置AR1~AR4路由器的网关ip&lt;/h2&gt;&lt;h2 id=&quot;3-2配置域间路由协议（BGP）&quot;&gt;&lt;a href=&quot;#3-2配置域间路由协议（BGP）&quot; class=&quot;headerlink&quot; title=&quot;3.2配置域间路由协议（BGP）&quot;&gt;&lt;/a&gt;3.2配置域间路由协议（BGP）&lt;/h2&gt;&lt;p&gt;AR1配置如下：&lt;/p&gt;&lt;figure class=&quot;highlight properties&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR1]bgp&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;100&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR1-bgp]peer&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;11.2.1.2 as-number 200&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;[AR1-bgp]import-route&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;direct&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="网络工程设计" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
-    
-      <category term="BGP实验" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/BGP%E5%AE%9E%E9%AA%8C/"/>
     
     
       <category term="网络工程设计" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
