@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-07-15T05:53:52.186Z</updated>
+  <updated>2020-07-18T06:24:12.719Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -21,11 +21,11 @@
     <link href="http://lisongbai.top/2020/07/15/Hive%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>http://lisongbai.top/2020/07/15/Hive%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
     <published>2020-07-15T05:52:20.000Z</published>
-    <updated>2020-07-15T05:53:52.186Z</updated>
+    <updated>2020-07-18T06:24:12.719Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Hive&quot;&gt;&lt;a href=&quot;#Hive&quot; class=&quot;headerlink&quot; title=&quot;Hive&quot;&gt;&lt;/a&gt;Hive&lt;/h1&gt;&lt;h2 id=&quot;数据仓库和数据库的区别&quot;&gt;&lt;a href=&quot;#数据仓库和数据库的区别&quot; class=&quot;headerlink&quot; title=&quot;数据仓库和数据库的区别&quot;&gt;&lt;/a&gt;数据仓库和数据库的区别&lt;/h2&gt;&lt;p&gt;数据库：数据持久化操作（存储数据）。&lt;/p&gt;&lt;p&gt;数据仓库：对数据进行处理分析（没有增删改操作）。&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/07/13/YEO7LA92JktSjNC.png&quot; alt=&quot;image-20200713145956604&quot;&gt;&lt;/p&gt;&lt;p&gt;Java生成API文档&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/07/14/Q4kLDFxwcAzHPvB.png&quot; alt=&quot;image-20200713150955522&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;Hive环境搭建&quot;&gt;&lt;a href=&quot;#Hive环境搭建&quot; class=&quot;headerlink&quot; title=&quot;Hive环境搭建&quot;&gt;&lt;/a&gt;Hive环境搭建&lt;/h2&gt;&lt;p&gt;==hive是基于hadoop运行的，在搭建环境前必须保证hdfs环境可用。==&lt;/p&gt;&lt;h3 id=&quot;下载安装&quot;&gt;&lt;a href=&quot;#下载安装&quot; class=&quot;headerlink&quot; title=&quot;下载安装&quot;&gt;&lt;/a&gt;下载安装&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://hive.apache.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;hive官网&lt;/a&gt;&lt;/p&gt;&lt;p&gt;上传tar包至集群的namenode&lt;/p&gt;&lt;p&gt;解压安装命令如下：&lt;/p&gt;
+      &lt;h1 id=&quot;kkHive&quot;&gt;&lt;a href=&quot;#kkHive&quot; class=&quot;headerlink&quot; title=&quot;kkHive&quot;&gt;&lt;/a&gt;kkHive&lt;/h1&gt;&lt;h2 id=&quot;数据仓库和数据库的区别&quot;&gt;&lt;a href=&quot;#数据仓库和数据库的区别&quot; class=&quot;headerlink&quot; title=&quot;数据仓库和数据库的区别&quot;&gt;&lt;/a&gt;数据仓库和数据库的区别&lt;/h2&gt;&lt;p&gt;数据库：数据持久化操作（存储数据）。&lt;/p&gt;&lt;p&gt;数据仓库：对数据进行处理分析（没有增删改操作）。&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/07/13/YEO7LA92JktSjNC.png&quot; alt=&quot;image-20200713145956604&quot;&gt;&lt;/p&gt;&lt;p&gt;Java生成API文档&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/07/14/Q4kLDFxwcAzHPvB.png&quot; alt=&quot;image-20200713150955522&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;Hive环境搭建&quot;&gt;&lt;a href=&quot;#Hive环境搭建&quot; class=&quot;headerlink&quot; title=&quot;Hive环境搭建&quot;&gt;&lt;/a&gt;Hive环境搭建&lt;/h2&gt;&lt;p&gt;==hive是基于hadoop运行的，在搭建环境前必须保证hdfs环境可用。==&lt;/p&gt;&lt;h3 id=&quot;下载安装&quot;&gt;&lt;a href=&quot;#下载安装&quot; class=&quot;headerlink&quot; title=&quot;下载安装&quot;&gt;&lt;/a&gt;下载安装&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://hive.apache.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;hive官网&lt;/a&gt;&lt;/p&gt;&lt;p&gt;上传tar包至集群的namenode&lt;/p&gt;&lt;p&gt;解压安装命令如下：&lt;/p&gt;
     
     </summary>
     

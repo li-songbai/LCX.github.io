@@ -52,19 +52,19 @@
   };
 </script>
 
-  <meta name="description" content="Hive数据仓库和数据库的区别数据库：数据持久化操作（存储数据）。数据仓库：对数据进行处理分析（没有增删改操作）。Java生成API文档Hive环境搭建==hive是基于hadoop运行的，在搭建环境前必须保证hdfs环境可用。==下载安装hive官网上传tar包至集群的namenode解压安装命令如下：">
+  <meta name="description" content="kkHive数据仓库和数据库的区别数据库：数据持久化操作（存储数据）。数据仓库：对数据进行处理分析（没有增删改操作）。Java生成API文档Hive环境搭建==hive是基于hadoop运行的，在搭建环境前必须保证hdfs环境可用。==下载安装hive官网上传tar包至集群的namenode解压安装命令如下：">
 <meta name="keywords" content="大数据">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hive学习笔记">
 <meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2020&#x2F;07&#x2F;15&#x2F;Hive%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;index.html">
 <meta property="og:site_name" content="小李の博客">
-<meta property="og:description" content="Hive数据仓库和数据库的区别数据库：数据持久化操作（存储数据）。数据仓库：对数据进行处理分析（没有增删改操作）。Java生成API文档Hive环境搭建==hive是基于hadoop运行的，在搭建环境前必须保证hdfs环境可用。==下载安装hive官网上传tar包至集群的namenode解压安装命令如下：">
+<meta property="og:description" content="kkHive数据仓库和数据库的区别数据库：数据持久化操作（存储数据）。数据仓库：对数据进行处理分析（没有增删改操作）。Java生成API文档Hive环境搭建==hive是基于hadoop运行的，在搭建环境前必须保证hdfs环境可用。==下载安装hive官网上传tar包至集群的namenode解压安装命令如下：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;13&#x2F;YEO7LA92JktSjNC.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;14&#x2F;Q4kLDFxwcAzHPvB.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;14&#x2F;fbGYqzJR9ZnscDa.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;14&#x2F;3MA6Jb1qPOtsI4z.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;15&#x2F;n8mt1zZuCbxg2QH.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2020&#x2F;07&#x2F;15&#x2F;Hive%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;Users&#x2F;12173&#x2F;AppData&#x2F;Roaming&#x2F;Typora&#x2F;typora-user-images&#x2F;image-20200714152336298.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;14&#x2F;fpnWDry98FQuexm.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;14&#x2F;b7uKRAJ3MfN2gHk.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;14&#x2F;ewkZOY5vyAG7hNm.png">
@@ -73,7 +73,22 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;14&#x2F;SdJD1hVnc4kApul.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;14&#x2F;M4fmJVyKXdHuRGD.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;14&#x2F;JcpTbWI87y6HQmP.png">
-<meta property="og:updated_time" content="2020-07-15T05:53:52.186Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;15&#x2F;zy1AsjmfOZp76xT.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;15&#x2F;uhgbtxs5zdT4Fa1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;15&#x2F;PmOjiAwtIh3LdkV.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;18&#x2F;OojYdrZ3JcHNlks.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;15&#x2F;vWYEDagslxcPXbT.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;18&#x2F;maMcJ47OHzIb8Pl.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;17&#x2F;H1fylBTIiJup8qM.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;16&#x2F;bYuA8UrHfzRVBSE.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;16&#x2F;HWnIkhATgDYEeaR.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;16&#x2F;7yndoWib1a8BGYE.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;16&#x2F;lPDTfeQb18FMavj.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;17&#x2F;JLyEh1WNtDTYXvp.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;17&#x2F;wfuSkqezL7yVvsj.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;17&#x2F;wSe4JNsR3v8bEnT.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;17&#x2F;6oxWsN7plGfUIvh.png">
+<meta property="og:updated_time" content="2020-07-18T06:24:12.719Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;07&#x2F;13&#x2F;YEO7LA92JktSjNC.png">
 
@@ -256,10 +271,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-07-15 13:52:20 / 修改时间：13:53:52" itemprop="dateCreated datePublished" datetime="2020-07-15T13:52:20+08:00">2020-07-15</time>
+              <time title="创建时间：2020-07-15 13:52:20" itemprop="dateCreated datePublished" datetime="2020-07-15T13:52:20+08:00">2020-07-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-18 14:24:12" itemprop="dateModified" datetime="2020-07-18T14:24:12+08:00">2020-07-18</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -311,7 +332,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Hive"><a href="#Hive" class="headerlink" title="Hive"></a>Hive</h1><h2 id="数据仓库和数据库的区别"><a href="#数据仓库和数据库的区别" class="headerlink" title="数据仓库和数据库的区别"></a>数据仓库和数据库的区别</h2><p>数据库：数据持久化操作（存储数据）。</p><p>数据仓库：对数据进行处理分析（没有增删改操作）。</p><p><img src="https://i.loli.net/2020/07/13/YEO7LA92JktSjNC.png" alt="image-20200713145956604"></p><p>Java生成API文档</p><p><img src="https://i.loli.net/2020/07/14/Q4kLDFxwcAzHPvB.png" alt="image-20200713150955522"></p><h2 id="Hive环境搭建"><a href="#Hive环境搭建" class="headerlink" title="Hive环境搭建"></a>Hive环境搭建</h2><p>==hive是基于hadoop运行的，在搭建环境前必须保证hdfs环境可用。==</p><h3 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h3><p><a href="https://hive.apache.org/" target="_blank" rel="noopener">hive官网</a></p><p>上传tar包至集群的namenode</p><p>解压安装命令如下：</p><a id="more"></a>
+        <h1 id="kkHive"><a href="#kkHive" class="headerlink" title="kkHive"></a>kkHive</h1><h2 id="数据仓库和数据库的区别"><a href="#数据仓库和数据库的区别" class="headerlink" title="数据仓库和数据库的区别"></a>数据仓库和数据库的区别</h2><p>数据库：数据持久化操作（存储数据）。</p><p>数据仓库：对数据进行处理分析（没有增删改操作）。</p><p><img src="https://i.loli.net/2020/07/13/YEO7LA92JktSjNC.png" alt="image-20200713145956604"></p><p>Java生成API文档</p><p><img src="https://i.loli.net/2020/07/14/Q4kLDFxwcAzHPvB.png" alt="image-20200713150955522"></p><h2 id="Hive环境搭建"><a href="#Hive环境搭建" class="headerlink" title="Hive环境搭建"></a>Hive环境搭建</h2><p>==hive是基于hadoop运行的，在搭建环境前必须保证hdfs环境可用。==</p><h3 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h3><p><a href="https://hive.apache.org/" target="_blank" rel="noopener">hive官网</a></p><p>上传tar包至集群的namenode</p><p>解压安装命令如下：</p><a id="more"></a>
 
 
 
@@ -322,7 +343,8 @@
 
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf apache-hive......   -C /usr/loacal</span><br></pre></td></tr></table></figure>
 
-<h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><h2 id="Hive表操作"><a href="#Hive表操作" class="headerlink" title="Hive表操作"></a>Hive表操作</h2><h3 id="正规建表"><a href="#正规建表" class="headerlink" title="正规建表"></a>正规建表</h3><h3 id="加载数据"><a href="#加载数据" class="headerlink" title="加载数据"></a>加载数据</h3><h3 id="内部表与外部表的区别"><a href="#内部表与外部表的区别" class="headerlink" title="内部表与外部表的区别"></a>内部表与外部表的区别</h3><h1 id="合并多个文件至一个文件"><a href="#合并多个文件至一个文件" class="headerlink" title="合并多个文件至一个文件"></a>合并多个文件至一个文件</h1><p><img src="https://i.loli.net/2020/07/14/fbGYqzJR9ZnscDa.png" alt="image-20200713164148216"></p>
+<h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><p><a href="https://blog.csdn.net/weixin_43861175/article/details/90372513" target="_blank" rel="noopener">这篇文章</a></p>
+<h2 id="Hive表操作"><a href="#Hive表操作" class="headerlink" title="Hive表操作"></a>Hive表操作</h2><h3 id="正规建表"><a href="#正规建表" class="headerlink" title="正规建表"></a>正规建表</h3><h3 id="加载数据"><a href="#加载数据" class="headerlink" title="加载数据"></a>加载数据</h3><h3 id="内部表与外部表的区别"><a href="#内部表与外部表的区别" class="headerlink" title="内部表与外部表的区别"></a>内部表与外部表的区别</h3><h1 id="合并多个文件至一个文件"><a href="#合并多个文件至一个文件" class="headerlink" title="合并多个文件至一个文件"></a>合并多个文件至一个文件</h1><p><img src="https://i.loli.net/2020/07/14/fbGYqzJR9ZnscDa.png" alt="image-20200713164148216"></p>
 <h2 id="Hive中的函数"><a href="#Hive中的函数" class="headerlink" title="Hive中的函数"></a>Hive中的函数</h2><p>HIve中的函数可以互相嵌套。</p>
 <h3 id="字符串截取substring"><a href="#字符串截取substring" class="headerlink" title="字符串截取substring"></a>字符串截取substring</h3><p>select substring（“asdasdas”，2，5）；</p>
 <p>第一个参数为截取字段，第二个字段为截取开始的下标，第三个字段为截取长度。</p>
@@ -385,7 +407,7 @@
 <h4 id="if（判断体，true返回的内容，false返回的内容）"><a href="#if（判断体，true返回的内容，false返回的内容）" class="headerlink" title="if（判断体，true返回的内容，false返回的内容）"></a>if（判断体，true返回的内容，false返回的内容）</h4><p>array_contains(“a”,”b”);</p>
 <p>若a包含b返回true。</p>
 <h3 id="表生成函数"><a href="#表生成函数" class="headerlink" title="表生成函数"></a>表生成函数</h3><h4 id="炸裂函数-explode（数组和集合）等价于for循环"><a href="#炸裂函数-explode（数组和集合）等价于for循环" class="headerlink" title="炸裂函数 explode（数组和集合）等价于for循环"></a>炸裂函数 explode（数组和集合）等价于for循环</h4><p>select explode（）</p>
-<p><img src="https://i.loli.net/2020/07/15/n8mt1zZuCbxg2QH.png" alt="image-20200714152336298"></p>
+<p><img src="/2020/07/15/Hive%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Users/12173/AppData/Roaming/Typora/typora-user-images/image-20200714152336298.png" alt="image-20200714152336298"></p>
 <h4 id="行转列函数-及-表生成函数"><a href="#行转列函数-及-表生成函数" class="headerlink" title="行转列函数 及 表生成函数"></a>行转列函数 及 表生成函数</h4><p><img src="https://i.loli.net/2020/07/14/fpnWDry98FQuexm.png" alt="image-20200714152757533"></p>
 <p><strong>wordcount案例</strong></p>
 <p><a href="https://github.com/yym08090809/Anything/blob/master/wc.txt" target="_blank" rel="noopener">数据链接</a></p>
@@ -431,6 +453,94 @@
 <p><img src="https://i.loli.net/2020/07/14/M4fmJVyKXdHuRGD.png" alt="image-20200714172305550"></p>
 <p>row_number() over(partition by 字段 order by 字段 desc（降序）)</p>
 <h2 id="任务："><a href="#任务：" class="headerlink" title="任务："></a>任务：</h2><p><img src="https://i.loli.net/2020/07/14/JcpTbWI87y6HQmP.png" alt="image-20200714173230178"></p>
+<h3 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h3><ol>
+<li>在idea下需要导入hive客户端的包</li>
+</ol>
+<p><img src="https://i.loli.net/2020/07/15/zy1AsjmfOZp76xT.png" alt="image-20200715140808438"></p>
+<ol start="2">
+<li><p>开发一个java类 集成 （HIVE的父类 UDF） 写自己的方法</p>
+<p>实现横向比较最大值。</p>
+<p><img src="https://i.loli.net/2020/07/15/uhgbtxs5zdT4Fa1.png" alt="image-20200715165214328"></p>
+</li>
+<li><p>打成jar包，上传至服务器</p>
+</li>
+</ol>
+<p><img src="https://i.loli.net/2020/07/15/PmOjiAwtIh3LdkV.png" alt="image-20200715165242265"></p>
+<ol start="4">
+<li><p>添加到hive中</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add jar /root/hive_function.jar</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="5">
+<li><p>创建一个临时函数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> temporay <span class="keyword">function</span>  get_max <span class="keyword">as</span> <span class="string">'com.lcx.CustomDemo'</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="6">
+<li><p>创建表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> t_custom(<span class="keyword">id</span> <span class="keyword">string</span>,jiben <span class="built_in">int</span>,yeji <span class="built_in">int</span>,guquan <span class="built_in">int</span>)</span><br><span class="line"><span class="keyword">row</span> <span class="keyword">format</span> <span class="keyword">delimited</span> <span class="keyword">fields</span> <span class="keyword">terminated</span> <span class="keyword">by</span> <span class="string">','</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>临时函数只能在一次hive会话中有效</p>
+</li>
+<li><p>创建永久生效的方法</p>
+<ul>
+<li><p>将jar 包 放置 hive 安装目录下的lib下。</p>
+</li>
+<li><p>创建永久函数。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">function</span>  getmax <span class="keyword">as</span> <span class="string">'com.lcx.CustomDemo'</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>删除函数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">function</span> function_name;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><p>需要查询出每个人的三类收益中最高的是哪一种收益？</p>
+<p><img src="https://i.loli.net/2020/07/18/OojYdrZ3JcHNlks.png" alt="image-20200715165706678"></p>
+<ol>
+<li><p>自定义函数</p>
+</li>
+<li><p>上传至服务器</p>
+</li>
+<li><p>创建永久方法</p>
+</li>
+<li><p>写sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>,jiben,yeji,guquan,</span><br><span class="line"><span class="keyword">case</span></span><br><span class="line"><span class="keyword">when</span> getmax(jiben,yeji,guquan)=<span class="number">1</span> <span class="keyword">then</span> <span class="string">"基本工资"</span></span><br><span class="line"><span class="keyword">when</span> getmax(jiben,yeji,guquan)=<span class="number">2</span> <span class="keyword">then</span> <span class="string">"业绩提成"</span></span><br><span class="line"><span class="keyword">else</span> <span class="string">"股权收益"</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">as</span> tab</span><br><span class="line"><span class="keyword">from</span> t_custom;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>结果</p>
+<p><img src="https://i.loli.net/2020/07/15/vWYEDagslxcPXbT.png" alt="image-20200715170002271"></p>
+</li>
+</ol>
+<h2 id="Idea连接hive"><a href="#Idea连接hive" class="headerlink" title="Idea连接hive"></a>Idea连接hive</h2><p>先启动 hiveserver2</p>
+<p><img src="https://i.loli.net/2020/07/18/maMcJ47OHzIb8Pl.png" alt="image-20200716165303070"></p>
+<h3 id="去除json数据的"><a href="#去除json数据的" class="headerlink" title="去除json数据的[]"></a>去除json数据的[]</h3><p><img src="https://i.loli.net/2020/07/17/H1fylBTIiJup8qM.png" alt="image-20200717150907903"></p>
+<h2 id="别的知识点"><a href="#别的知识点" class="headerlink" title="别的知识点"></a>别的知识点</h2><h3 id="sql中插入新字段"><a href="#sql中插入新字段" class="headerlink" title="sql中插入新字段"></a>sql中插入新字段</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//<span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">add</span> 字段名 字段类型</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> t_farm <span class="keyword">add</span> crawl_time <span class="keyword">string</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="sql中-where-和-hiving的区别"><a href="#sql中-where-和-hiving的区别" class="headerlink" title="sql中 where 和 hiving的区别"></a>sql中 where 和 hiving的区别</h3><p>where：在计算发生前排查数据</p>
+<p>hiving：在计算完成后，不显示脏数据。==hiving 需要和group by 联合使用==</p>
+<h3 id="awk命令-文本编辑工具（截取字符串）"><a href="#awk命令-文本编辑工具（截取字符串）" class="headerlink" title="awk命令  文本编辑工具（截取字符串）"></a>awk命令  文本编辑工具（截取字符串）</h3><p>例子数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">香菜,2.80,4.00,4.00,4.00,2.20,山西汾阳市晋阳农副产品批发市场,山西,汾阳</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/07/16/bYuA8UrHfzRVBSE.png" alt="image-20200716152143114"></p>
+<h3 id="sed命令-文本替换工具（）"><a href="#sed命令-文本替换工具（）" class="headerlink" title="sed命令  文本替换工具（）"></a>sed命令  文本替换工具（）</h3><p><img src="https://i.loli.net/2020/07/16/HWnIkhATgDYEeaR.png" alt="image-20200716153448035"></p>
+<p><img src="https://i.loli.net/2020/07/16/7yndoWib1a8BGYE.png" alt="image-20200716153509904"></p>
+<p><img src="https://i.loli.net/2020/07/16/lPDTfeQb18FMavj.png" alt="image-20200716153757225"></p>
+<h3 id="PreparedStatement和Statement-的区别"><a href="#PreparedStatement和Statement-的区别" class="headerlink" title="PreparedStatement和Statement 的区别"></a>PreparedStatement和Statement 的区别</h3><p>Statement 和 PreparedStatement之间的关系和区别.<br>   关系：PreparedStatement继承自Statement,都是接口<br>   区别：PreparedStatement可以使用占位符，是预编译的，批处理比Statement效率高</p>
+<p><a href="https://blog.csdn.net/lsx2017/article/details/82630838" target="_blank" rel="noopener">详细看这里</a></p>
+<h3 id="zeppelin安装"><a href="#zeppelin安装" class="headerlink" title="zeppelin安装"></a>zeppelin安装</h3><p><a href="https://blog.csdn.net/oba_gaga/article/details/80684064" target="_blank" rel="noopener">安装教程</a></p>
+<p>相关截图</p>
+<p><img src="https://i.loli.net/2020/07/17/JLyEh1WNtDTYXvp.png" alt="image-20200717155256219"></p>
+<p><img src="https://i.loli.net/2020/07/17/wfuSkqezL7yVvsj.png" alt="image-20200717172052796"></p>
+<p><img src="https://i.loli.net/2020/07/17/wSe4JNsR3v8bEnT.png" alt="image-20200717192046295"></p>
+<h3 id="beeline"><a href="#beeline" class="headerlink" title="beeline"></a>beeline</h3><p>外界接入hive进行数据操作。</p>
+<p><img src="https://i.loli.net/2020/07/17/6oxWsN7plGfUIvh.png" alt="image-20200717172951163"></p>
 
     </div>
 
@@ -571,7 +681,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hive"><span class="nav-number">1.</span> <span class="nav-text">Hive</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据仓库和数据库的区别"><span class="nav-number">1.1.</span> <span class="nav-text">数据仓库和数据库的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hive环境搭建"><span class="nav-number">1.2.</span> <span class="nav-text">Hive环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载安装"><span class="nav-number">1.2.1.</span> <span class="nav-text">下载安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改配置"><span class="nav-number">1.2.2.</span> <span class="nav-text">修改配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hive表操作"><span class="nav-number">1.3.</span> <span class="nav-text">Hive表操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#正规建表"><span class="nav-number">1.3.1.</span> <span class="nav-text">正规建表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载数据"><span class="nav-number">1.3.2.</span> <span class="nav-text">加载数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内部表与外部表的区别"><span class="nav-number">1.3.3.</span> <span class="nav-text">内部表与外部表的区别</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#合并多个文件至一个文件"><span class="nav-number">2.</span> <span class="nav-text">合并多个文件至一个文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hive中的函数"><span class="nav-number">2.1.</span> <span class="nav-text">Hive中的函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串截取substring"><span class="nav-number">2.1.1.</span> <span class="nav-text">字符串截取substring</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型转化cast"><span class="nav-number">2.1.2.</span> <span class="nav-text">类型转化cast</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学运算函数"><span class="nav-number">2.1.3.</span> <span class="nav-text">数学运算函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拼接字符串"><span class="nav-number">2.1.4.</span> <span class="nav-text">拼接字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串长度"><span class="nav-number">2.1.5.</span> <span class="nav-text">字符串长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串切分函数"><span class="nav-number">2.1.6.</span> <span class="nav-text">字符串切分函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大小写转化函数"><span class="nav-number">2.1.7.</span> <span class="nav-text">大小写转化函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间转时间戳函数"><span class="nav-number">2.1.8.</span> <span class="nav-text">时间转时间戳函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间戳转时间"><span class="nav-number">2.1.9.</span> <span class="nav-text">时间戳转时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件控制函数"><span class="nav-number">2.1.10.</span> <span class="nav-text">条件控制函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#case-when"><span class="nav-number">2.1.10.1.</span> <span class="nav-text">case   when</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#if（判断体，true返回的内容，false返回的内容）"><span class="nav-number">2.1.10.2.</span> <span class="nav-text">if（判断体，true返回的内容，false返回的内容）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表生成函数"><span class="nav-number">2.1.11.</span> <span class="nav-text">表生成函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#炸裂函数-explode（数组和集合）等价于for循环"><span class="nav-number">2.1.11.1.</span> <span class="nav-text">炸裂函数 explode（数组和集合）等价于for循环</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#行转列函数-及-表生成函数"><span class="nav-number">2.1.11.2.</span> <span class="nav-text">行转列函数 及 表生成函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON解析函数"><span class="nav-number">2.1.12.</span> <span class="nav-text">JSON解析函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析函数-row-number-over"><span class="nav-number">2.1.13.</span> <span class="nav-text">分析函数 row_number() over()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#任务："><span class="nav-number">2.2.</span> <span class="nav-text">任务：</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#kkHive"><span class="nav-number">1.</span> <span class="nav-text">kkHive</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据仓库和数据库的区别"><span class="nav-number">1.1.</span> <span class="nav-text">数据仓库和数据库的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hive环境搭建"><span class="nav-number">1.2.</span> <span class="nav-text">Hive环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载安装"><span class="nav-number">1.2.1.</span> <span class="nav-text">下载安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改配置"><span class="nav-number">1.2.2.</span> <span class="nav-text">修改配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hive表操作"><span class="nav-number">1.3.</span> <span class="nav-text">Hive表操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#正规建表"><span class="nav-number">1.3.1.</span> <span class="nav-text">正规建表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载数据"><span class="nav-number">1.3.2.</span> <span class="nav-text">加载数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内部表与外部表的区别"><span class="nav-number">1.3.3.</span> <span class="nav-text">内部表与外部表的区别</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#合并多个文件至一个文件"><span class="nav-number">2.</span> <span class="nav-text">合并多个文件至一个文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hive中的函数"><span class="nav-number">2.1.</span> <span class="nav-text">Hive中的函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串截取substring"><span class="nav-number">2.1.1.</span> <span class="nav-text">字符串截取substring</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型转化cast"><span class="nav-number">2.1.2.</span> <span class="nav-text">类型转化cast</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学运算函数"><span class="nav-number">2.1.3.</span> <span class="nav-text">数学运算函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拼接字符串"><span class="nav-number">2.1.4.</span> <span class="nav-text">拼接字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串长度"><span class="nav-number">2.1.5.</span> <span class="nav-text">字符串长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串切分函数"><span class="nav-number">2.1.6.</span> <span class="nav-text">字符串切分函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大小写转化函数"><span class="nav-number">2.1.7.</span> <span class="nav-text">大小写转化函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间转时间戳函数"><span class="nav-number">2.1.8.</span> <span class="nav-text">时间转时间戳函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间戳转时间"><span class="nav-number">2.1.9.</span> <span class="nav-text">时间戳转时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件控制函数"><span class="nav-number">2.1.10.</span> <span class="nav-text">条件控制函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#case-when"><span class="nav-number">2.1.10.1.</span> <span class="nav-text">case   when</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#if（判断体，true返回的内容，false返回的内容）"><span class="nav-number">2.1.10.2.</span> <span class="nav-text">if（判断体，true返回的内容，false返回的内容）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表生成函数"><span class="nav-number">2.1.11.</span> <span class="nav-text">表生成函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#炸裂函数-explode（数组和集合）等价于for循环"><span class="nav-number">2.1.11.1.</span> <span class="nav-text">炸裂函数 explode（数组和集合）等价于for循环</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#行转列函数-及-表生成函数"><span class="nav-number">2.1.11.2.</span> <span class="nav-text">行转列函数 及 表生成函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON解析函数"><span class="nav-number">2.1.12.</span> <span class="nav-text">JSON解析函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析函数-row-number-over"><span class="nav-number">2.1.13.</span> <span class="nav-text">分析函数 row_number() over()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#任务："><span class="nav-number">2.2.</span> <span class="nav-text">任务：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义函数"><span class="nav-number">2.2.1.</span> <span class="nav-text">自定义函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#案例"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">案例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Idea连接hive"><span class="nav-number">2.3.</span> <span class="nav-text">Idea连接hive</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#去除json数据的"><span class="nav-number">2.3.1.</span> <span class="nav-text">去除json数据的[]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#别的知识点"><span class="nav-number">2.4.</span> <span class="nav-text">别的知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sql中插入新字段"><span class="nav-number">2.4.1.</span> <span class="nav-text">sql中插入新字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sql中-where-和-hiving的区别"><span class="nav-number">2.4.2.</span> <span class="nav-text">sql中 where 和 hiving的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#awk命令-文本编辑工具（截取字符串）"><span class="nav-number">2.4.3.</span> <span class="nav-text">awk命令  文本编辑工具（截取字符串）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sed命令-文本替换工具（）"><span class="nav-number">2.4.4.</span> <span class="nav-text">sed命令  文本替换工具（）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PreparedStatement和Statement-的区别"><span class="nav-number">2.4.5.</span> <span class="nav-text">PreparedStatement和Statement 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zeppelin安装"><span class="nav-number">2.4.6.</span> <span class="nav-text">zeppelin安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#beeline"><span class="nav-number">2.4.7.</span> <span class="nav-text">beeline</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
