@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-07-18T06:24:12.719Z</updated>
+  <updated>2020-07-19T03:31:11.549Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -17,15 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>zookeeper</title>
+    <link href="http://lisongbai.top/2020/07/19/zookeeper/"/>
+    <id>http://lisongbai.top/2020/07/19/zookeeper/</id>
+    <published>2020-07-19T03:27:12.000Z</published>
+    <updated>2020-07-19T03:31:11.549Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Zookeeper&quot;&gt;&lt;a href=&quot;#Zookeeper&quot; class=&quot;headerlink&quot; title=&quot;Zookeeper&quot;&gt;&lt;/a&gt;Zookeeper&lt;/h1&gt;&lt;h3 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h3&gt;&lt;p&gt;Zookeeper是一个开源的分布式的，为分布式应用提供协调服务的Apache项目。&lt;/p&gt;&lt;p&gt;Zookeeper从设计模式角度来理解：是一个基于观察者模式设计的分布式服务管理框架，它负责存储和管理大家都关心的数据，然后接受观察者的注册，一旦这些数据的状态发生变化，Zookeeper就将负责通知已经在Zookeeper上注册的那些观察者做出相应的反应，从而实现集群中类似Master/Slave管理模式。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="zookeeper" scheme="http://lisongbai.top/categories/zookeeper/"/>
+    
+    
+      <category term="大数据" scheme="http://lisongbai.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hive学习笔记</title>
     <link href="http://lisongbai.top/2020/07/15/Hive%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>http://lisongbai.top/2020/07/15/Hive%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
     <published>2020-07-15T05:52:20.000Z</published>
-    <updated>2020-07-18T06:24:12.719Z</updated>
+    <updated>2020-07-19T03:33:02.990Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;kkHive&quot;&gt;&lt;a href=&quot;#kkHive&quot; class=&quot;headerlink&quot; title=&quot;kkHive&quot;&gt;&lt;/a&gt;kkHive&lt;/h1&gt;&lt;h2 id=&quot;数据仓库和数据库的区别&quot;&gt;&lt;a href=&quot;#数据仓库和数据库的区别&quot; class=&quot;headerlink&quot; title=&quot;数据仓库和数据库的区别&quot;&gt;&lt;/a&gt;数据仓库和数据库的区别&lt;/h2&gt;&lt;p&gt;数据库：数据持久化操作（存储数据）。&lt;/p&gt;&lt;p&gt;数据仓库：对数据进行处理分析（没有增删改操作）。&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/07/13/YEO7LA92JktSjNC.png&quot; alt=&quot;image-20200713145956604&quot;&gt;&lt;/p&gt;&lt;p&gt;Java生成API文档&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/07/14/Q4kLDFxwcAzHPvB.png&quot; alt=&quot;image-20200713150955522&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;Hive环境搭建&quot;&gt;&lt;a href=&quot;#Hive环境搭建&quot; class=&quot;headerlink&quot; title=&quot;Hive环境搭建&quot;&gt;&lt;/a&gt;Hive环境搭建&lt;/h2&gt;&lt;p&gt;==hive是基于hadoop运行的，在搭建环境前必须保证hdfs环境可用。==&lt;/p&gt;&lt;h3 id=&quot;下载安装&quot;&gt;&lt;a href=&quot;#下载安装&quot; class=&quot;headerlink&quot; title=&quot;下载安装&quot;&gt;&lt;/a&gt;下载安装&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://hive.apache.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;hive官网&lt;/a&gt;&lt;/p&gt;&lt;p&gt;上传tar包至集群的namenode&lt;/p&gt;&lt;p&gt;解压安装命令如下：&lt;/p&gt;
+      &lt;h1 id=&quot;Hive&quot;&gt;&lt;a href=&quot;#Hive&quot; class=&quot;headerlink&quot; title=&quot;Hive&quot;&gt;&lt;/a&gt;Hive&lt;/h1&gt;&lt;h2 id=&quot;数据仓库和数据库的区别&quot;&gt;&lt;a href=&quot;#数据仓库和数据库的区别&quot; class=&quot;headerlink&quot; title=&quot;数据仓库和数据库的区别&quot;&gt;&lt;/a&gt;数据仓库和数据库的区别&lt;/h2&gt;&lt;p&gt;数据库：数据持久化操作（存储数据）。&lt;/p&gt;&lt;p&gt;数据仓库：对数据进行处理分析（没有增删改操作）。&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/07/13/YEO7LA92JktSjNC.png&quot; alt=&quot;image-20200713145956604&quot;&gt;&lt;/p&gt;&lt;p&gt;Java生成API文档&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/07/14/Q4kLDFxwcAzHPvB.png&quot; alt=&quot;image-20200713150955522&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;Hive环境搭建&quot;&gt;&lt;a href=&quot;#Hive环境搭建&quot; class=&quot;headerlink&quot; title=&quot;Hive环境搭建&quot;&gt;&lt;/a&gt;Hive环境搭建&lt;/h2&gt;&lt;p&gt;==hive是基于hadoop运行的，在搭建环境前必须保证hdfs环境可用。==&lt;/p&gt;&lt;h3 id=&quot;下载安装&quot;&gt;&lt;a href=&quot;#下载安装&quot; class=&quot;headerlink&quot; title=&quot;下载安装&quot;&gt;&lt;/a&gt;下载安装&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://hive.apache.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;hive官网&lt;/a&gt;&lt;/p&gt;&lt;p&gt;上传tar包至集群的namenode&lt;/p&gt;&lt;p&gt;解压安装命令如下：&lt;/p&gt;
     
     </summary>
     
@@ -42,7 +63,7 @@
     <link href="http://lisongbai.top/2020/07/10/HDFS%E6%9C%BA%E5%88%B6/"/>
     <id>http://lisongbai.top/2020/07/10/HDFS%E6%9C%BA%E5%88%B6/</id>
     <published>2020-07-10T07:03:50.000Z</published>
-    <updated>2020-07-10T10:16:56.700Z</updated>
+    <updated>2020-07-19T03:30:16.435Z</updated>
     
     <summary type="html">
     
@@ -51,6 +72,10 @@
     </summary>
     
     
+      <category term="HDFS" scheme="http://lisongbai.top/categories/HDFS/"/>
+    
+    
+      <category term="大数据" scheme="http://lisongbai.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
   </entry>
   
@@ -420,35 +445,6 @@
     
     
       <category term="网络管理与维护" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BB%B4%E6%8A%A4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>网络安全综合实验篇</title>
-    <link href="http://lisongbai.top/2020/06/01/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%BB%BC%E5%90%88%E5%AE%9E%E9%AA%8C%E7%AF%87/"/>
-    <id>http://lisongbai.top/2020/06/01/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%BB%BC%E5%90%88%E5%AE%9E%E9%AA%8C%E7%AF%87/</id>
-    <published>2020-06-01T07:27:34.000Z</published>
-    <updated>2020-06-13T13:44:06.503Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;网络安全综合实验篇&quot;&gt;&lt;a href=&quot;#网络安全综合实验篇&quot; class=&quot;headerlink&quot; title=&quot;网络安全综合实验篇&quot;&gt;&lt;/a&gt;网络安全综合实验篇&lt;/h1&gt;&lt;h2 id=&quot;1、实验要求&quot;&gt;&lt;a href=&quot;#1、实验要求&quot; class=&quot;headerlink&quot; title=&quot;1、实验要求&quot;&gt;&lt;/a&gt;1、实验要求&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;配置ACL，过滤具有某种特点的分组。&lt;/li&gt;
-&lt;li&gt;配置NAT。在企业内部结构化分层使用NAT地址。&lt;/li&gt;
-&lt;li&gt;实验测试一种网络攻击，比如SYN_Flood、MAC泛洪攻击或ARP攻击。&lt;/li&gt;
-&lt;li&gt;配置防火墙，禁止某种网络服务（防火墙在企业内网与外网之间）。&lt;/li&gt;
-&lt;li&gt;配置VPN。企业内网与外网之间可能有防火墙，也可能有NAT。从企业外部，用户不能直接访问企业内部。企业员工外出，或跨地区、跨国家企业都有跨越公众互联网，访问企业内部网络的需求。配置NAT某种VPN，比如L2TP VPN 或SSL VPN。&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-    
-      <category term="网络工程设计" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
-    
-      <category term="网络安全实验" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E9%AA%8C/"/>
-    
-    
-      <category term="网络工程设计" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
     
   </entry>
   
