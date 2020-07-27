@@ -218,6 +218,218 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/06/27/%E5%83%B5%E5%B0%B8%E4%BD%9C%E6%88%98%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李松柏">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小李の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/27/%E5%83%B5%E5%B0%B8%E4%BD%9C%E6%88%98%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">僵尸作战系统</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-27 14:14:48" itemprop="dateCreated datePublished" datetime="2020-06-27T14:14:48+08:00">2020-06-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-30 14:43:48" itemprop="dateModified" datetime="2020-06-30T14:43:48+08:00">2020-06-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Solidity-Path/" itemprop="url" rel="index">
+                    <span itemprop="name">Solidity Path</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/06/27/%E5%83%B5%E5%B0%B8%E4%BD%9C%E6%88%98%E7%B3%BB%E7%BB%9F/" class="post-meta-item leancloud_visitors" data-flag-title="僵尸作战系统" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/06/27/%E5%83%B5%E5%B0%B8%E4%BD%9C%E6%88%98%E7%B3%BB%E7%BB%9F/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/06/27/僵尸作战系统/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="可支付"><a href="#可支付" class="headerlink" title="可支付"></a>可支付</h1><p>截至目前，我们只接触到很少的 <strong><em>函数修饰符\</em></strong>。 要记住所有的东西很难，所以我们来个概览：</p><ol>
+<li>我们有决定函数何时和被谁调用的可见性修饰符: <code>private</code> 意味着它只能被合约内部调用； <code>internal</code> 就像 <code>private</code> 但是也能被继承的合约调用； <code>external</code> 只能从合约外部调用；最后 <code>public</code> 可以在任何地方调用，不管是内部还是外部。</li>
+<li>我们也有状态修饰符， 告诉我们函数如何和区块链交互: <code>view</code> 告诉我们运行这个函数不会更改和保存任何数据； <code>pure</code> 告诉我们这个函数不但不会往区块链写数据，它甚至不从区块链读取数据。这两种在被从合约外部调用的时候都不花费任何gas（但是它们在被内部其他函数调用的时候将会耗费gas）。</li>
+<li>然后我们有了自定义的 <code>modifiers</code>，例如在第三课学习的: <code>onlyOwner</code> 和 <code>aboveLevel</code>。 对于这些修饰符我们可以自定义其对函数的约束逻辑。</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/27/%E5%83%B5%E5%B0%B8%E4%BD%9C%E6%88%98%E7%B3%BB%E7%BB%9F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/06/27/%E5%83%B5%E5%B0%B8%E6%94%BB%E5%87%BB%E4%BA%BA%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李松柏">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小李の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/27/%E5%83%B5%E5%B0%B8%E6%94%BB%E5%87%BB%E4%BA%BA%E7%B1%BB/" class="post-title-link" itemprop="url">僵尸攻击人类</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-27 09:54:54" itemprop="dateCreated datePublished" datetime="2020-06-27T09:54:54+08:00">2020-06-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-30 14:42:50" itemprop="dateModified" datetime="2020-06-30T14:42:50+08:00">2020-06-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Solidity-Path/" itemprop="url" rel="index">
+                    <span itemprop="name">Solidity Path</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/06/27/%E5%83%B5%E5%B0%B8%E6%94%BB%E5%87%BB%E4%BA%BA%E7%B1%BB/" class="post-meta-item leancloud_visitors" data-flag-title="僵尸攻击人类" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/06/27/%E5%83%B5%E5%B0%B8%E6%94%BB%E5%87%BB%E4%BA%BA%E7%B1%BB/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/06/27/僵尸攻击人类/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="第二课概览"><a href="#第二课概览" class="headerlink" title="第二课概览"></a>第二课概览</h1><p>在第一课中，我们创建了一个函数用来生成僵尸，并且将它放入区块链上的僵尸数据库中。 在第二课里，我们会让我们的 app 看起来更像一个游戏： 它得支持多用户，并且采用更加有趣,而不仅仅使用随机的方式，来生成新的僵尸。</p><p>如何生成新的僵尸呢？通过让现有的僵尸猎食其他生物！</p><h2 id="僵尸猎食"><a href="#僵尸猎食" class="headerlink" title="僵尸猎食"></a>僵尸猎食</h2><p>僵尸猎食的时候，僵尸病毒侵入猎物，这些病毒会将猎物变为新的僵尸，加入你的僵尸大军。系统会通过猎物和猎食者僵尸的DNA计算出新僵尸的DNA。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/27/%E5%83%B5%E5%B0%B8%E6%94%BB%E5%87%BB%E4%BA%BA%E7%B1%BB/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/06/27/%E6%90%AD%E5%BB%BA%E5%83%B5%E5%B0%B8%E5%B7%A5%E5%8E%82/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1046,226 +1258,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/06/17/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="李松柏">
-      <meta itemprop="description" content="记录学习的技能和遇到的问题">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小李の博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/17/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/" class="post-title-link" itemprop="url">网络工程课程设计</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-17 20:58:06" itemprop="dateCreated datePublished" datetime="2020-06-17T20:58:06+08:00">2020-06-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-18 14:38:13" itemprop="dateModified" datetime="2020-06-18T14:38:13+08:00">2020-06-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index">
-                    <span itemprop="name">网络工程设计</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index">
-                    <span itemprop="name">课程设计</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/06/17/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/" class="post-meta-item leancloud_visitors" data-flag-title="网络工程课程设计" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2020/06/17/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/06/17/网络工程课程设计/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="一、课程设计的目的及任务"><a href="#一、课程设计的目的及任务" class="headerlink" title="一、课程设计的目的及任务"></a>一、课程设计的目的及任务</h1><p>网络工程课程设计是一门综合性实践课程，其包括网络工程设计和网络管理与维护的实践内容，其目的是：使学生在学习网络工程和网络管理的基础上，学习并掌握企业网及互联网工程设计、实施、管理和维护的基本知识和方法，培养学生综合运用所学的专业基础理论、基本技能和专业知识分析问题和解决工程设计问题的能力，培养学生调查研究，查阅技术文献、资料、手册，进行程序设计及编写技术文件的基本能力。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/17/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/06/16/ubuntu-20-04-mate-for-server/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="李松柏">
-      <meta itemprop="description" content="记录学习的技能和遇到的问题">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小李の博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/16/ubuntu-20-04-mate-for-server/" class="post-title-link" itemprop="url">ubuntu-20.04-mate-for-server</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-16 09:13:28" itemprop="dateCreated datePublished" datetime="2020-06-16T09:13:28+08:00">2020-06-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-18 17:22:44" itemprop="dateModified" datetime="2020-06-18T17:22:44+08:00">2020-06-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/ubuntu-20-04-mate/" itemprop="url" rel="index">
-                    <span itemprop="name">ubuntu-20.04-mate</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/06/16/ubuntu-20-04-mate-for-server/" class="post-meta-item leancloud_visitors" data-flag-title="ubuntu-20.04-mate-for-server" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2020/06/16/ubuntu-20-04-mate-for-server/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/06/16/ubuntu-20-04-mate-for-server/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="一、换源"><a href="#一、换源" class="headerlink" title="一、换源"></a>一、换源</h1><p>在设置中选择系统设置，找到Software Updater，点击进入，再点击Settings按钮，</p><p><img src="https://i.loli.net/2020/06/16/T2oMNG86Xr5wILW.png" alt="image-20200616092916772"></p><p><img src="https://i.loli.net/2020/06/16/8OU6e1VxjuyDHm7.png" alt="image-20200616093031282"></p><p><img src="https://i.loli.net/2020/06/16/qAn1YptUaRHFrLP.png" alt="image-20200616093227130"></p><p><img src="https://i.loli.net/2020/06/16/Y4IUR98sBaWo5Su.png" alt="image-20200616093307249"></p><p>选择Reload重新加载源。</p><p>在终端输入如下命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get upgrade</span><br></pre></td></tr></table></figure><p>更新源和软件。</p><h1 id="二、为ensp搭建各种服务器"><a href="#二、为ensp搭建各种服务器" class="headerlink" title="二、为ensp搭建各种服务器"></a>二、为ensp搭建各种服务器</h1><h2 id="2-1准备工作"><a href="#2-1准备工作" class="headerlink" title="2.1准备工作"></a>2.1准备工作</h2><p><strong>关闭防火墙，测试网路连通性。</strong></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/16/ubuntu-20-04-mate-for-server/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1316,14 +1308,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-count">64</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-count">49</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

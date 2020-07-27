@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-07-24T14:56:30.113Z</updated>
+  <updated>2020-07-27T15:12:07.091Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>oozie学习笔记</title>
+    <link href="http://lisongbai.top/2020/07/27/oozie%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://lisongbai.top/2020/07/27/oozie%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <published>2020-07-27T15:09:31.000Z</published>
+    <updated>2020-07-27T15:12:07.091Z</updated>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;bin/oozie-setup.sh sharelib create -fs hdfs://hadoop01:9000 -locallib oozie-sharelib-4.0.0-cdh5.3.6-yarn.tar.gz&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h1 id=&quot;Oozie&quot;&gt;&lt;a href=&quot;#Oozie&quot; class=&quot;headerlink&quot; title=&quot;Oozie&quot;&gt;&lt;/a&gt;Oozie&lt;/h1&gt;&lt;h2 id=&quot;Oozie简介&quot;&gt;&lt;a href=&quot;#Oozie简介&quot; class=&quot;headerlink&quot; title=&quot;Oozie简介&quot;&gt;&lt;/a&gt;Oozie简介&lt;/h2&gt;&lt;p&gt;Oozie英文翻译为：驯象人。一个基于工作流引擎的开源框架，由Cloudera公司贡献给Apache，提供对Hadoop Mapreduce、Pig Jobs的任务调度与协调。Oozie需要部署到Java Servlet容器中运行。主要用于定时调度任务，多任务可以按照执行的逻辑顺序调度。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="oozie" scheme="http://lisongbai.top/categories/oozie/"/>
+    
+    
+      <category term="大数据" scheme="http://lisongbai.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sqoop学习笔记</title>
+    <link href="http://lisongbai.top/2020/07/27/sqoop%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://lisongbai.top/2020/07/27/sqoop%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <published>2020-07-27T15:00:34.000Z</published>
+    <updated>2020-07-27T15:08:55.498Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Sqoop&quot;&gt;&lt;a href=&quot;#Sqoop&quot; class=&quot;headerlink&quot; title=&quot;Sqoop&quot;&gt;&lt;/a&gt;Sqoop&lt;/h1&gt;&lt;h2 id=&quot;sqoop概述&quot;&gt;&lt;a href=&quot;#sqoop概述&quot; class=&quot;headerlink&quot; title=&quot;sqoop概述&quot;&gt;&lt;/a&gt;sqoop概述&lt;/h2&gt;&lt;p&gt;Sqoop(发音：skup)是一款开源的工具，主要用于在Hadoop(Hive)与传统的数据库(mysql、postgresql…)间进行数据的传递，可以将一个关系型数据库&lt;em&gt;（例如 ： MySQL ,Oracle ,Postgres等）&lt;/em&gt;中的数据导进到Hadoop的HDFS中，也可以将HDFS的数据导进到关系型数据库中。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="sqoop" scheme="http://lisongbai.top/categories/sqoop/"/>
+    
+    
+      <category term="大数据" scheme="http://lisongbai.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+  </entry>
   
   <entry>
     <title>HBase学习笔记</title>
@@ -399,52 +441,6 @@
     
     
       <category term="git" scheme="http://lisongbai.top/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>网络工程课程设计</title>
-    <link href="http://lisongbai.top/2020/06/17/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
-    <id>http://lisongbai.top/2020/06/17/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/</id>
-    <published>2020-06-17T12:58:06.000Z</published>
-    <updated>2020-06-18T06:38:13.645Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一、课程设计的目的及任务&quot;&gt;&lt;a href=&quot;#一、课程设计的目的及任务&quot; class=&quot;headerlink&quot; title=&quot;一、课程设计的目的及任务&quot;&gt;&lt;/a&gt;一、课程设计的目的及任务&lt;/h1&gt;&lt;p&gt;网络工程课程设计是一门综合性实践课程，其包括网络工程设计和网络管理与维护的实践内容，其目的是：使学生在学习网络工程和网络管理的基础上，学习并掌握企业网及互联网工程设计、实施、管理和维护的基本知识和方法，培养学生综合运用所学的专业基础理论、基本技能和专业知识分析问题和解决工程设计问题的能力，培养学生调查研究，查阅技术文献、资料、手册，进行程序设计及编写技术文件的基本能力。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="网络工程设计" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
-    
-      <category term="课程设计" scheme="http://lisongbai.top/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
-    
-    
-      <category term="网络工程设计" scheme="http://lisongbai.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ubuntu-20.04-mate-for-server</title>
-    <link href="http://lisongbai.top/2020/06/16/ubuntu-20-04-mate-for-server/"/>
-    <id>http://lisongbai.top/2020/06/16/ubuntu-20-04-mate-for-server/</id>
-    <published>2020-06-16T01:13:28.000Z</published>
-    <updated>2020-06-18T09:22:44.637Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一、换源&quot;&gt;&lt;a href=&quot;#一、换源&quot; class=&quot;headerlink&quot; title=&quot;一、换源&quot;&gt;&lt;/a&gt;一、换源&lt;/h1&gt;&lt;p&gt;在设置中选择系统设置，找到Software Updater，点击进入，再点击Settings按钮，&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/06/16/T2oMNG86Xr5wILW.png&quot; alt=&quot;image-20200616092916772&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/06/16/8OU6e1VxjuyDHm7.png&quot; alt=&quot;image-20200616093031282&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/06/16/qAn1YptUaRHFrLP.png&quot; alt=&quot;image-20200616093227130&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/06/16/Y4IUR98sBaWo5Su.png&quot; alt=&quot;image-20200616093307249&quot;&gt;&lt;/p&gt;&lt;p&gt;选择Reload重新加载源。&lt;/p&gt;&lt;p&gt;在终端输入如下命令：&lt;/p&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo apt-get update&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sudo apt-get upgrade&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;更新源和软件。&lt;/p&gt;&lt;h1 id=&quot;二、为ensp搭建各种服务器&quot;&gt;&lt;a href=&quot;#二、为ensp搭建各种服务器&quot; class=&quot;headerlink&quot; title=&quot;二、为ensp搭建各种服务器&quot;&gt;&lt;/a&gt;二、为ensp搭建各种服务器&lt;/h1&gt;&lt;h2 id=&quot;2-1准备工作&quot;&gt;&lt;a href=&quot;#2-1准备工作&quot; class=&quot;headerlink&quot; title=&quot;2.1准备工作&quot;&gt;&lt;/a&gt;2.1准备工作&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;关闭防火墙，测试网路连通性。&lt;/strong&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="linux" scheme="http://lisongbai.top/categories/linux/"/>
-    
-      <category term="ubuntu-20.04-mate" scheme="http://lisongbai.top/categories/linux/ubuntu-20-04-mate/"/>
-    
-    
-      <category term="linux" scheme="http://lisongbai.top/tags/linux/"/>
     
   </entry>
   
