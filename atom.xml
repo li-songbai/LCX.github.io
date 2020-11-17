@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-09-28T12:26:32.955Z</updated>
+  <updated>2020-11-17T05:02:26.350Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>presto学习笔记</title>
+    <link href="http://lisongbai.top/2020/11/17/presto%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://lisongbai.top/2020/11/17/presto%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <published>2020-11-17T05:01:25.000Z</published>
+    <updated>2020-11-17T05:02:26.350Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Presto部署安装&quot;&gt;&lt;a href=&quot;#Presto部署安装&quot; class=&quot;headerlink&quot; title=&quot;Presto部署安装&quot;&gt;&lt;/a&gt;Presto部署安装&lt;/h1&gt;&lt;h2 id=&quot;下载（0-243-2）&quot;&gt;&lt;a href=&quot;#下载（0-243-2）&quot; class=&quot;headerlink&quot; title=&quot;下载（0.243.2）&quot;&gt;&lt;/a&gt;下载（0.243.2）&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://prestodb.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;官网&lt;/a&gt;&lt;/p&gt;&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tar -zxcf presto-server-0.243.1 -C:/usr/local&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&quot;配置&quot;&gt;&lt;a href=&quot;#配置&quot; class=&quot;headerlink&quot; title=&quot;配置&quot;&gt;&lt;/a&gt;配置&lt;/h2&gt;&lt;p&gt;在安装目录中创建etc目录。这将具有以下配置：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;Node Properties: 特定于每个节点的环境配置&lt;/li&gt;
+&lt;li&gt;JVM Config: Java虚拟机的命令行选项&lt;/li&gt;
+&lt;li&gt;Config Properties: Presto服务器的配置&lt;/li&gt;
+&lt;li&gt;Catalog Properties: &lt;a href=&quot;https://prestodb.io/docs/current/connector.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;连接器的&lt;/a&gt;配置（数据源）&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://lisongbai.top/categories/java/"/>
+    
+      <category term="mysql" scheme="http://lisongbai.top/categories/java/mysql/"/>
+    
+    
+      <category term="java" scheme="http://lisongbai.top/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>Hadoop集群环境搭建</title>
@@ -424,29 +452,6 @@
     <summary type="html">
     
       &lt;h1 id=&quot;一、兔子繁殖&quot;&gt;&lt;a href=&quot;#一、兔子繁殖&quot; class=&quot;headerlink&quot; title=&quot;一、兔子繁殖&quot;&gt;&lt;/a&gt;一、兔子繁殖&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.nowcoder.com/questionTerminal/1221ec77125d4370833fd3ad5ba72395&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;题目链接&lt;/a&gt;&lt;/p&gt;&lt;p&gt;有一只兔子，从出生后第3个月起每个月都生一只兔子，小兔子长到第三个月后每个月又生一只兔子，假如兔子都不死，问每个月的兔子总数为多少？&lt;/p&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/**&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;     * 统计出兔子总数。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;     * &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;     * &lt;span class=&quot;doctag&quot;&gt;@param&lt;/span&gt; monthCount 第几个月&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;     * &lt;span class=&quot;doctag&quot;&gt;@return&lt;/span&gt; 兔子总数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;     */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;getTotalCount&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; monthCount)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;    &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://lisongbai.top/categories/java/"/>
-    
-      <category term="编程" scheme="http://lisongbai.top/categories/java/%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="牛客" scheme="http://lisongbai.top/tags/%E7%89%9B%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>牛客刷题之洗牌</title>
-    <link href="http://lisongbai.top/2020/06/21/%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98%E4%B9%8B%E6%B4%97%E7%89%8C/"/>
-    <id>http://lisongbai.top/2020/06/21/%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98%E4%B9%8B%E6%B4%97%E7%89%8C/</id>
-    <published>2020-06-21T14:57:55.000Z</published>
-    <updated>2020-06-21T15:00:19.451Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一、洗牌&quot;&gt;&lt;a href=&quot;#一、洗牌&quot; class=&quot;headerlink&quot; title=&quot;一、洗牌&quot;&gt;&lt;/a&gt;一、洗牌&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.nowcoder.com/questionTerminal/5a0a2c7e431e4fbbbb1ff32ac6e8dfa0&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;题目链接&lt;/a&gt;&lt;/p&gt;&lt;p&gt;洗牌在生活中十分常见，现在需要写一个程序模拟洗牌的过程。 现在需要洗2n张牌，从上到下依次是第1张，第2张，第3张一直到第2n张。首先，我们把这2n张牌分成两堆，左手拿着第1张到第n张（上半堆），右手拿着第n+1张到第2n张（下半堆）。接着就开始洗牌的过程，先放下右手的最后一张牌，再放下左手的最后一张牌，接着放下右手的倒数第二张牌，再放下左手的倒数第二张牌，直到最后放下左手的第一张牌。接着把牌合并起来就可以了。 例如有6张牌，最开始牌的序列是1,2,3,4,5,6。首先分成两组，左手拿着1,2,3；右手拿着4,5,6。在洗牌过程中按顺序放下了6,3,5,2,4,1。把这六张牌再次合成一组牌之后，我们按照从上往下的顺序看这组牌，就变成了序列1,4,2,5,3,6。 现在给出一个原始牌组，请输出这副牌洗牌k次之后从上往下的序列。&lt;/p&gt;
     
     </summary>
     
