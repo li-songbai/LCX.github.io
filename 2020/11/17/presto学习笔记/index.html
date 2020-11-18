@@ -52,17 +52,31 @@
   };
 </script>
 
-  <meta name="description" content="Presto部署安装下载（0.243.2）官网安装1tar -zxcf presto-server-0.243.1 -C:&#x2F;usr&#x2F;local配置在安装目录中创建etc目录。这将具有以下配置： Node Properties: 特定于每个节点的环境配置 JVM Config: Java虚拟机的命令行选项 Config Properties: Presto服务器的配置 Catalog Propert">
+  <meta name="description" content="Presto概述及应用场景Presto是一种分布式SQL查询引擎，旨在查询分布在一个或多个异构数据源上的大型数据集。例如，查询TB或者PB级别的数据，是查询 HDFS、hive的一个可选项，但同时不局限于 HDFS, presto 适用于 OLAP (On-Line Analytical Processing)联机分析处理) 的场景。presto 并不能用来替代 mysql&#x2F;pg&#x2F;oracle，p">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="presto学习笔记">
 <meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2020&#x2F;11&#x2F;17&#x2F;presto%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;index.html">
 <meta property="og:site_name" content="小李の博客">
-<meta property="og:description" content="Presto部署安装下载（0.243.2）官网安装1tar -zxcf presto-server-0.243.1 -C:&#x2F;usr&#x2F;local配置在安装目录中创建etc目录。这将具有以下配置： Node Properties: 特定于每个节点的环境配置 JVM Config: Java虚拟机的命令行选项 Config Properties: Presto服务器的配置 Catalog Propert">
+<meta property="og:description" content="Presto概述及应用场景Presto是一种分布式SQL查询引擎，旨在查询分布在一个或多个异构数据源上的大型数据集。例如，查询TB或者PB级别的数据，是查询 HDFS、hive的一个可选项，但同时不局限于 HDFS, presto 适用于 OLAP (On-Line Analytical Processing)联机分析处理) 的场景。presto 并不能用来替代 mysql&#x2F;pg&#x2F;oracle，p">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;17&#x2F;z3vmxhBjAFPOQU2.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;17&#x2F;6RzaXuqDBlwYAge.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;pic3.zhimg.com&#x2F;80&#x2F;v2-0fb8a1c4eab616f28e31b3de496c34fa_720w.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;pic3.zhimg.com&#x2F;80&#x2F;v2-436aafb40eda9725169199c80bff4ee6_720w.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;18&#x2F;uJNFiW3KjbXRmMz.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;pic4.zhimg.com&#x2F;80&#x2F;v2-5a1a310fa2df37293f7d0c2ccb4b55a3_720w.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;pic1.zhimg.com&#x2F;80&#x2F;v2-6f34aaa5f6eb0384fa3e5f067941a4cc_720w.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;pic2.zhimg.com&#x2F;80&#x2F;v2-f629c9bf0ba2cec6e2f8225659f5f629_720w.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;YZAziNEyStrQHO1.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;4TcUGDKnSu2E9kV.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;1nbYhuNAzylVmO8.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;17&#x2F;LiRrAtB1D3Sqzup.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;17&#x2F;jyIWkqwsm5YeLlX.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;17&#x2F;MQ6wGXKOkjAEoLF.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;17&#x2F;XxPOToFDplzR9QY.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;17&#x2F;cUv3TtIFlzrK4PE.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;17&#x2F;hk7YQS1t4WNdXRu.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;EM1Gw6qclKBWApF.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;pHRq2vCwMPm8lYh.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;tbecID6O372u4BU.png">
@@ -72,9 +86,9 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;17&#x2F;OlAgqi9R1k4cKsw.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;17&#x2F;Pto9671UauzW2nA.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;17&#x2F;kqYheGHUBJ6rvCg.png">
-<meta property="og:updated_time" content="2020-11-17T05:02:26.350Z">
+<meta property="og:updated_time" content="2020-11-18T00:47:00.959Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;16&#x2F;YZAziNEyStrQHO1.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;17&#x2F;z3vmxhBjAFPOQU2.jpg">
 
 <link rel="canonical" href="http://lisongbai.top/2020/11/17/presto%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
 
@@ -255,10 +269,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-11-17 13:01:25 / 修改时间：13:02:26" itemprop="dateCreated datePublished" datetime="2020-11-17T13:01:25+08:00">2020-11-17</time>
+              <time title="创建时间：2020-11-17 13:01:25" itemprop="dateCreated datePublished" datetime="2020-11-17T13:01:25+08:00">2020-11-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-18 08:47:00" itemprop="dateModified" datetime="2020-11-18T08:47:00+08:00">2020-11-18</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -316,16 +336,65 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Presto部署安装"><a href="#Presto部署安装" class="headerlink" title="Presto部署安装"></a>Presto部署安装</h1><h2 id="下载（0-243-2）"><a href="#下载（0-243-2）" class="headerlink" title="下载（0.243.2）"></a>下载（0.243.2）</h2><p><a href="https://prestodb.io/" target="_blank" rel="noopener">官网</a></p><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxcf presto-server-0.243.1 -C:/usr/local</span><br></pre></td></tr></table></figure><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>在安装目录中创建etc目录。这将具有以下配置：</p><ul>
+        <h1 id="Presto概述及应用场景"><a href="#Presto概述及应用场景" class="headerlink" title="Presto概述及应用场景"></a>Presto概述及应用场景</h1><p>Presto是一种分布式SQL查询引擎，旨在查询分布在一个或多个异构数据源上的大型数据集。例如，查询TB或者PB级别的数据，是查询 HDFS、hive的一个可选项，但同时不局限于 HDFS, presto 适用于 OLAP (On-Line Analytical Processing)联机分析处理) 的场景。presto 并不能用来替代 mysql/pg/oracle，presto 设计的目的也不是用来处理 (OLTP (On-Line Transaction Processing) 联机事务处理) 场景。</p><a id="more"></a>
+<h1 id="Presto架构"><a href="#Presto架构" class="headerlink" title="Presto架构"></a>Presto架构</h1><h2 id="架构图"><a href="#架构图" class="headerlink" title="架构图"></a>架构图</h2><p><img src="https://i.loli.net/2020/11/17/z3vmxhBjAFPOQU2.jpg" alt="1"></p>
+<h2 id="节点角色"><a href="#节点角色" class="headerlink" title="节点角色"></a>节点角色</h2><ul>
+<li><p><strong>coordinator</strong></p>
+<p>Presto coordinator是负责解析语句，计划查询和管理Presto worker程序节点的服务器。它是Presto安装的“大脑”，也是客户端连接到以提交执行语句的节点。每个Presto安装必须在一个或多个Presto工作人员旁边配备一个Presto coordinator。出于开发或测试目的，可以将Presto的单个实例配置为执行这两个角色。</p>
+<p>coordinator跟踪每个工作人员上的活动并协调查询的执行。coordinator创建涉及一系列阶段的查询的逻辑模型，然后将其转换为在Presto worker群集上运行的一系列关联任务。</p>
+<p>coordinator使用REST API与workers和客户进行通信。</p>
+</li>
+<li><p><strong>worker</strong></p>
+<p>Presto worker是Presto安装中的服务器，负责执行任务和处理数据。辅助节点从连接器获取数据并相互交换中间数据。coordinator负责从worker那里获取结果并将最终结果返回给客户。</p>
+<p>当Presto worker进程启动时，它将自己通告给coordinator中的发现服务器，这使Presto coordinator可以使用它来执行任务。</p>
+<p>worker使用REST API与其他workers和Presto coordinators进行通信。</p>
+</li>
+<li><p><strong>Discovery Service</strong></p>
+<p>presto 使用服务发现来查找集群中所有的节点，每个注册到 Discovery Service 的节点周期性发送心跳信号，这可以使 coordinator 获取最新的可用 worker 节点列表，worker 发送心跳失败，Discovery Service 会触发失败检测，worker 将不会被分配任务。Discovery Service 是内置在 coordinator 节点中。</p>
+</li>
+</ul>
+<h2 id="基于Connector-的架构"><a href="#基于Connector-的架构" class="headerlink" title="基于Connector 的架构"></a>基于Connector 的架构</h2><p>只要已有数据在使用 presto 的数据类型时，也可以以表、行、列的形式表达，connector 就可以创建，查询引擎也可以使用这些数据进行查询处理。</p>
+<p>Presto 提供了 SPI 来实现一个 connector，通过在 connector 中实现 SPI，Presto 可以使用内部标准操作在任何数据上连接数据源和实施操作。每个 connector 都需要实现这个 API的三个部分：</p>
+<ul>
+<li>Operations to fetch table/view/schema metadata</li>
+<li>Operations to produce logical units of data partitioning, so that Presto can parallelize reads and writes</li>
+<li>Data sources and sinks that convert the source data to/from the in-memory format expected by the query engine</li>
+</ul>
+<p><img src="https://i.loli.net/2020/11/17/6RzaXuqDBlwYAge.jpg" alt="img"></p>
+<h2 id="查询执行模型-Query-Execution-Model"><a href="#查询执行模型-Query-Execution-Model" class="headerlink" title="查询执行模型(Query Execution Model)"></a>查询执行模型(Query Execution Model)</h2><p>当一个 SQL 语句提交给 coordinator 节点,coordinator 会接收sql 文本，解析并分析它。然后使用被称作查询计划的内部数据结构创建一个用于执行的计划。这个查询计划大体上代表了每个 SQL 语句处理数据并且返回结果所需要的步骤。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-0fb8a1c4eab616f28e31b3de496c34fa_720w.jpg" alt="img"></p>
+<p>查询计划生成器使用了 metadata SPI 与 data statistics SPI 来创建查询计划。所以 coordinator 通过直接连接数据源，使用 SPI 来收集关于数据表和其他元数据。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-436aafb40eda9725169199c80bff4ee6_720w.jpg" alt="img"></p>
+<p>coordinator 使用 metadata SPI 来获取表、列和字段类型信息，它们用于验证查询在语义上是否有效，并执行原始查询中表达式的类型检查和安全检查。</p>
+<p>statistics SPI 被用来获取关于行数计数和表大小信息，从而在执行计划时实施基于成本的查询优化。</p>
+<p>data location SPI 简化了分布式查询计划的创建。它被用来生成表内容的逻辑拆分，split 块是工作分配和并行工作的最小单位。</p>
+<p>分布式查询计划是由一个或多个 stage 组成的简单查询计划的扩展。简单的查询计划被分割成计划片段。stage 是计划片段的运行时化身，它包含由 stage 的计划片段描述的工作的所有任务。</p>
+<p>coordinator 拆分整个计划，使得集群中的 worker 节点能够并行处理，加速了整个查询过程。拥有多个阶段会导致创建阶段的依赖树。stage 的数量依赖于查询的复杂度。</p>
+<img src="https://i.loli.net/2020/11/18/uJNFiW3KjbXRmMz.jpg" alt="v2-243a2a1abaa1f76dc17ec7cf248cccd5_720w" style="zoom:50%;">
+
+<p>分布式查询计划定义了查询在 presto 集群上执行的 stage 和方式。coordinator 用来进一步在 worker 之间计划和调度任务。一个 stage 由一个或多个 任务构成。</p>
+<img src="https://pic4.zhimg.com/80/v2-5a1a310fa2df37293f7d0c2ccb4b55a3_720w.jpg" alt="img" style="zoom:50%;">
+
+<p>任务处理的数据单位被称为 split，split 是底层数据段的描述符，可以由工作进程检索和处理。它是并行和工作分配的单位。连接器对数据执行的特定操作取决于基础数据源。例如，hive connector 用文件的路径、offset、程度来描述 split，来表示文件的哪部分是需要被处理的。</p>
+<p>任务在源阶段以 pages 的形式处理数据，这是一组列格式的行。这些 pages 流向其他中间下游阶段。Pages 通过交换操作在 stages 之间转换，这是从上游 stage 的任务读取数据。</p>
+<p>source 任务在 connector 的帮助下，使用 data source SPI 从底层数据源获取数据，这些数据以页面的形式呈现给Presto并流经引擎。Operators 根据他们的语法，处理并产生 pages。一个 task 操作的序列被称作 pipeline.</p>
+<p>pipeline 的最后一个操作通常是放置它的 output pages 到任务的 output buffer。下游任务的交换操作消费来自上游任务 output buffer 的 pages。所有的这个操作并行发生在不同的 worker 中。</p>
+<img src="https://pic1.zhimg.com/80/v2-6f34aaa5f6eb0384fa3e5f067941a4cc_720w.jpg" alt="img" style="zoom: 80%;">
+
+<p>所以任务被指定到 worker 节点时，是运行时计划片段的化身。当任务被创建后，它给每一个 split 实例化一个 driver。每个 driver 是对 split 中数据操作处理的 pipeline 的实例化。一个 task 可能使用一个或多个 driver，这取决于 presto 的配置。一旦 所有的 driver 结束，数据将会传递到下一个 split，driver 和 task 将随着他们工作的结束被销毁。</p>
+<img src="https://pic2.zhimg.com/80/v2-f629c9bf0ba2cec6e2f8225659f5f629_720w.jpg" alt="img" style="zoom: 50%;">
+
+<p>为了处理查询，协调器将使用连接器中的元数据创建 split 列表。通过使用 split 列表，协调器开始调度 worker 节点上的任务，以收集 split 中的数据。在查询执行期间，协调器跟踪可用于处理的所有 split，以及在工作线程和处理 split 上运行任务的位置。当任务完成处理并为下游处理生成更多split时，协调器将继续调度任务，直到没有 split 可供处理为止。在worker上处理完所有 split后，所有数据都可用，协调器可以将结果提供给 client。</p>
+<h1 id="Presto部署安装"><a href="#Presto部署安装" class="headerlink" title="Presto部署安装"></a>Presto部署安装</h1><h2 id="下载（0-243-2）"><a href="#下载（0-243-2）" class="headerlink" title="下载（0.243.2）"></a>下载（0.243.2）</h2><p><a href="https://prestodb.io/" target="_blank" rel="noopener">官网</a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxcf presto-server-0.243.1 -C:/usr/local</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>在安装目录中创建etc目录。这将具有以下配置：</p>
+<ul>
 <li>Node Properties: 特定于每个节点的环境配置</li>
 <li>JVM Config: Java虚拟机的命令行选项</li>
 <li>Config Properties: Presto服务器的配置</li>
 <li>Catalog Properties: <a href="https://prestodb.io/docs/current/connector.html" target="_blank" rel="noopener">连接器的</a>配置（数据源）</li>
-</ul><a id="more"></a>
-
-
-
-
+</ul>
 <p>目录树如下：</p>
 <p><img src="https://i.loli.net/2020/11/16/YZAziNEyStrQHO1.png" alt="image-20201116143331173"></p>
 <p>具体配置如下：</p>
@@ -347,16 +416,10 @@
 <p><strong>config.properties(集群版）</strong></p>
 <ul>
 <li><p><strong>coordinator</strong></p>
-<p>Presto coordinator是负责解析语句，计划查询和管理Presto worker程序节点的服务器。它是Presto安装的“大脑”，也是客户端连接到以提交执行语句的节点。每个Presto安装必须在一个或多个Presto工作人员旁边配备一个Presto coordinator。出于开发或测试目的，可以将Presto的单个实例配置为执行这两个角色。</p>
-<p>coordinator跟踪每个工作人员上的活动并协调查询的执行。coordinator创建涉及一系列阶段的查询的逻辑模型，然后将其转换为在Presto worker群集上运行的一系列关联任务。</p>
-<p>coordinator使用REST API与workers和客户进行通信。</p>
 <p><strong>config.properties(主)</strong></p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">coordinator</span>=<span class="string">true</span></span><br><span class="line"><span class="meta">node-scheduler.include-coordinator</span>=<span class="string">false</span></span><br><span class="line"><span class="meta">http-server.http.port</span>=<span class="string">8080</span></span><br><span class="line"><span class="meta">query.max-memory</span>=<span class="string">50GB</span></span><br><span class="line"><span class="meta">query.max-memory-per-node</span>=<span class="string">1GB</span></span><br><span class="line"><span class="meta">query.max-total-memory-per-node</span>=<span class="string">2GB</span></span><br><span class="line"><span class="meta">discovery-server.enabled</span>=<span class="string">true</span></span><br><span class="line"><span class="meta">discovery.uri</span>=<span class="string">http://example.net:8080</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>worker</strong></p>
-<p>Presto worker是Presto安装中的服务器，负责执行任务和处理数据。辅助节点从连接器获取数据并相互交换中间数据。coordinator负责从worker那里获取结果并将最终结果返回给客户。</p>
-<p>当Presto worker进程启动时，它将自己通告给coordinator中的发现服务器，这使Presto coordinator可以使用它来执行任务。</p>
-<p>worker使用REST API与其他workers和Presto coordinators进行通信。</p>
 <p><strong>config.properties（从）</strong></p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">coordinator</span>=<span class="string">false</span></span><br><span class="line"><span class="meta">http-server.http.port</span>=<span class="string">8080</span></span><br><span class="line"><span class="meta">query.max-memory</span>=<span class="string">50GB</span></span><br><span class="line"><span class="meta">query.max-memory-per-node</span>=<span class="string">1GB</span></span><br><span class="line"><span class="meta">query.max-total-memory-per-node</span>=<span class="string">2GB</span></span><br><span class="line"><span class="meta">discovery.uri</span>=<span class="string">http://example.net:8080</span></span><br></pre></td></tr></table></figure>
 
@@ -420,7 +483,44 @@
 <p>集群中所有查询在一秒钟处理的总共的Bytes。</p>
 <p><strong>Worker Parallelism</strong></p>
 <p>Worker的并发总数，在集群中运行的所有Worker和所有查询的CPU Time总和。</p>
-<h3 id="查询列表"><a href="#查询列表" class="headerlink" title="查询列表"></a>查询列表</h3><h1 id="Presto操作"><a href="#Presto操作" class="headerlink" title="Presto操作"></a>Presto操作</h1><p>==注：presto连接hive时需要启动hiveserver2和hive元数据服务==</p>
+<h3 id="查询列表"><a href="#查询列表" class="headerlink" title="查询列表"></a>查询列表</h3><p>WBE UI首页下部分就是查询列表的展示，当前列表中可以展示的查询的数量时可以配置的。如下图所示</p>
+<p><img src="https://i.loli.net/2020/11/17/LiRrAtB1D3Sqzup.png" alt="image-20201117135230278"></p>
+<p>你可以根据一些条件过滤和定位你想要的查询；同时提供了搜索输入框用于定位查询，输入的值会匹配很多项，包括：用户名、查询发起人，查询source，查询ID，resource group甚至SQL文本，和查询状态。同样你可以根据后面预设的一些状态（running, queued, finished, and failed）对查询进行筛选；</p>
+<p>最左边的控件允许你确定显示的查询的排序顺序、重新排序的时间以及要显示的查询的最大数量。</p>
+<p>下面的每一行表示一个查询，左侧如下图所示，右侧为查询的SQL文本；</p>
+<p><img src="https://i.loli.net/2020/11/17/jyIWkqwsm5YeLlX.png" alt="image-20201117135433029"></p>
+<p>根据上图可以观察当前查询的细节； 对于每个查询运行，左上角的文本是查询ID，图三中为：<strong><em>20201116_160228_00002_63fws</em></strong></p>
+<p>前面是YYYYMMDD_HHMMSS格式的日期，具体的时间是当前查询运行时的时间，后半部分是一个自增的计数器，00010的含义表示这个查询时Coordinator重启以来第10个查询，最后的字符：63fws，是随机生成的Coordinator的标识符，每次coordinator重启会重置标识符和计数器。</p>
+<p>root：提交该查询的用户</p>
+<p>presto-jdbc:查询来源</p>
+<p>global:当前查询的Resource Group</p>
+<p>最下面的9个指标对应下面的表格；</p>
+<table>
+<thead>
+<tr>
+<th><strong>Completed Splits</strong>: 查询的已完成Splits的数目。这个例子显示了25个已完成的Splits。在查询执行的开始时和执行完成时这个值是0。当查询正在进行期间这个值会一直增加</th>
+<th><strong>Running Splits</strong>: 查询中正在运行的运行Splits的数量。当查询完成时，这个值总是0。但是，在执行过程中，随着Splits的运行和完成，这个数字会发生变化</th>
+<th><strong>Queued Splits</strong>： 当前查询里出于队列中的Splits数。当查询完成时，这个值总是0。但是，在执行期间，这个数字会发生变化</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Wall Time</strong>： 执行查询所花费的Wall Time。即使在分页结果时，此值也会继续增长</td>
+<td><strong>Total Wall Time</strong>: 此值与Wall Time相同，但它也包括排队时间。Wall Time不包括查询排队的任何时间。这是您观察的总时间，从您提交查询到您接收结果</td>
+<td><strong>CPU Time</strong>： 处理查询所花费的总CPU时间。这个值通常比wallTine时间大，因为如果使用四个CPU花费1秒来处理一个查询，那么总的CPU时间是4秒</td>
+</tr>
+<tr>
+<td><strong>Current Total Reserved Memory</strong>：当前用于查询执行总的reserved memory使用。对于已完成的查询，此值为0</td>
+<td><strong>Peak Total Memory</strong>： 查询执行期间的峰值总内存使用量。查询执行期间的某些操作可能需要大量内存，了解峰值是多大是很有用的</td>
+<td><strong>Cumulative User Memory</strong>： 在整个查询处理过程中使用的累积内存。这并不意味着所有的内存都是同时使用的。它是累积的内存总量</td>
+</tr>
+</tbody></table>
+<h3 id="查询明细视图："><a href="#查询明细视图：" class="headerlink" title="查询明细视图："></a>查询明细视图：</h3><p>通过点击查询ID可以跳转到该查询的明细界面：</p>
+<p><img src="https://i.loli.net/2020/11/17/MQ6wGXKOkjAEoLF.png" alt="image-20201117140000722"></p>
+<p>Overview页面包括查询列表的查询细节信息如下：</p>
+<p><img src="https://i.loli.net/2020/11/17/XxPOToFDplzR9QY.png" alt="image-20201117140029913"></p>
+<p><img src="https://i.loli.net/2020/11/17/cUv3TtIFlzrK4PE.png" alt="image-20201117140043514"></p>
+<p><img src="https://i.loli.net/2020/11/17/hk7YQS1t4WNdXRu.png" alt="image-20201117140104958"></p>
+<h1 id="Presto操作"><a href="#Presto操作" class="headerlink" title="Presto操作"></a>Presto操作</h1><p>==注：presto连接hive时需要启动hiveserver2和hive元数据服务==</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hive --service hiveserver2 &amp;</span><br><span class="line"></span><br><span class="line">hive --service metastore &amp;</span><br></pre></td></tr></table></figure>
 
 <h3 id="presto客户端（cmd）"><a href="#presto客户端（cmd）" class="headerlink" title="presto客户端（cmd）"></a>presto客户端（cmd）</h3><ol>
@@ -479,6 +579,7 @@
 <p><img src="https://i.loli.net/2020/11/17/kqYheGHUBJ6rvCg.png" alt="image-20201117105203028"></p>
 <h3 id="适用于Tableau的Web连接器"><a href="#适用于Tableau的Web连接器" class="headerlink" title="适用于Tableau的Web连接器"></a>适用于Tableau的Web连接器</h3><p>用于Tableau的Presto Web连接器使用户可以针对Presto从Tableau运行查询。</p>
 <h3 id="在Spark上执行Presto"><a href="#在Spark上执行Presto" class="headerlink" title="在Spark上执行Presto"></a>在Spark上执行Presto</h3><p>Presto on Spark使利用Spark作为Presto查询的执行框架成为可能。这对于我们要在数千个节点上运行，需要10或100 TB的内存以及消耗很多CPU年的查询很有用。</p>
+<p><em>架构部分摘自知乎<a href="https://zhuanlan.zhihu.com/p/146669390?from=singlemessage" target="_blank" rel="noopener">Presto详解</a></em></p>
 
     </div>
 
@@ -619,7 +720,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Presto部署安装"><span class="nav-number">1.</span> <span class="nav-text">Presto部署安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载（0-243-2）"><span class="nav-number">1.1.</span> <span class="nav-text">下载（0.243.2）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">1.3.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动"><span class="nav-number">1.4.</span> <span class="nav-text">启动</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Presto-Web-UI"><span class="nav-number">2.</span> <span class="nav-text">Presto Web UI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#首页"><span class="nav-number">2.1.</span> <span class="nav-text">首页</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集群信息"><span class="nav-number">2.1.1.</span> <span class="nav-text">集群信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询列表"><span class="nav-number">2.1.2.</span> <span class="nav-text">查询列表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Presto操作"><span class="nav-number">3.</span> <span class="nav-text">Presto操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#presto客户端（cmd）"><span class="nav-number">3.0.1.</span> <span class="nav-text">presto客户端（cmd）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#javaAPI操作"><span class="nav-number">3.0.2.</span> <span class="nav-text">javaAPI操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询所有表名"><span class="nav-number">3.0.2.1.</span> <span class="nav-text">查询所有表名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询hive库下某张表中的数据"><span class="nav-number">3.0.2.2.</span> <span class="nav-text">查询hive库下某张表中的数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#适用于Tableau的Web连接器"><span class="nav-number">3.0.3.</span> <span class="nav-text">适用于Tableau的Web连接器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在Spark上执行Presto"><span class="nav-number">3.0.4.</span> <span class="nav-text">在Spark上执行Presto</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Presto概述及应用场景"><span class="nav-number">1.</span> <span class="nav-text">Presto概述及应用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Presto架构"><span class="nav-number">2.</span> <span class="nav-text">Presto架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#架构图"><span class="nav-number">2.1.</span> <span class="nav-text">架构图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#节点角色"><span class="nav-number">2.2.</span> <span class="nav-text">节点角色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于Connector-的架构"><span class="nav-number">2.3.</span> <span class="nav-text">基于Connector 的架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询执行模型-Query-Execution-Model"><span class="nav-number">2.4.</span> <span class="nav-text">查询执行模型(Query Execution Model)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Presto部署安装"><span class="nav-number">3.</span> <span class="nav-text">Presto部署安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载（0-243-2）"><span class="nav-number">3.1.</span> <span class="nav-text">下载（0.243.2）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">3.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">3.3.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动"><span class="nav-number">3.4.</span> <span class="nav-text">启动</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Presto-Web-UI"><span class="nav-number">4.</span> <span class="nav-text">Presto Web UI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#首页"><span class="nav-number">4.1.</span> <span class="nav-text">首页</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集群信息"><span class="nav-number">4.1.1.</span> <span class="nav-text">集群信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询列表"><span class="nav-number">4.1.2.</span> <span class="nav-text">查询列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询明细视图："><span class="nav-number">4.1.3.</span> <span class="nav-text">查询明细视图：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Presto操作"><span class="nav-number">5.</span> <span class="nav-text">Presto操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#presto客户端（cmd）"><span class="nav-number">5.0.1.</span> <span class="nav-text">presto客户端（cmd）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#javaAPI操作"><span class="nav-number">5.0.2.</span> <span class="nav-text">javaAPI操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询所有表名"><span class="nav-number">5.0.2.1.</span> <span class="nav-text">查询所有表名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询hive库下某张表中的数据"><span class="nav-number">5.0.2.2.</span> <span class="nav-text">查询hive库下某张表中的数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#适用于Tableau的Web连接器"><span class="nav-number">5.0.3.</span> <span class="nav-text">适用于Tableau的Web连接器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在Spark上执行Presto"><span class="nav-number">5.0.4.</span> <span class="nav-text">在Spark上执行Presto</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

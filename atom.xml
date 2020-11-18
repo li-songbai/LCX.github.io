@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-11-17T05:02:26.350Z</updated>
+  <updated>2020-11-18T00:47:00.959Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -21,16 +21,11 @@
     <link href="http://lisongbai.top/2020/11/17/presto%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>http://lisongbai.top/2020/11/17/presto%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
     <published>2020-11-17T05:01:25.000Z</published>
-    <updated>2020-11-17T05:02:26.350Z</updated>
+    <updated>2020-11-18T00:47:00.959Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Presto部署安装&quot;&gt;&lt;a href=&quot;#Presto部署安装&quot; class=&quot;headerlink&quot; title=&quot;Presto部署安装&quot;&gt;&lt;/a&gt;Presto部署安装&lt;/h1&gt;&lt;h2 id=&quot;下载（0-243-2）&quot;&gt;&lt;a href=&quot;#下载（0-243-2）&quot; class=&quot;headerlink&quot; title=&quot;下载（0.243.2）&quot;&gt;&lt;/a&gt;下载（0.243.2）&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://prestodb.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;官网&lt;/a&gt;&lt;/p&gt;&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tar -zxcf presto-server-0.243.1 -C:/usr/local&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&quot;配置&quot;&gt;&lt;a href=&quot;#配置&quot; class=&quot;headerlink&quot; title=&quot;配置&quot;&gt;&lt;/a&gt;配置&lt;/h2&gt;&lt;p&gt;在安装目录中创建etc目录。这将具有以下配置：&lt;/p&gt;&lt;ul&gt;
-&lt;li&gt;Node Properties: 特定于每个节点的环境配置&lt;/li&gt;
-&lt;li&gt;JVM Config: Java虚拟机的命令行选项&lt;/li&gt;
-&lt;li&gt;Config Properties: Presto服务器的配置&lt;/li&gt;
-&lt;li&gt;Catalog Properties: &lt;a href=&quot;https://prestodb.io/docs/current/connector.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;连接器的&lt;/a&gt;配置（数据源）&lt;/li&gt;
-&lt;/ul&gt;
+      &lt;h1 id=&quot;Presto概述及应用场景&quot;&gt;&lt;a href=&quot;#Presto概述及应用场景&quot; class=&quot;headerlink&quot; title=&quot;Presto概述及应用场景&quot;&gt;&lt;/a&gt;Presto概述及应用场景&lt;/h1&gt;&lt;p&gt;Presto是一种分布式SQL查询引擎，旨在查询分布在一个或多个异构数据源上的大型数据集。例如，查询TB或者PB级别的数据，是查询 HDFS、hive的一个可选项，但同时不局限于 HDFS, presto 适用于 OLAP (On-Line Analytical Processing)联机分析处理) 的场景。presto 并不能用来替代 mysql/pg/oracle，presto 设计的目的也不是用来处理 (OLTP (On-Line Transaction Processing) 联机事务处理) 场景。&lt;/p&gt;
     
     </summary>
     
