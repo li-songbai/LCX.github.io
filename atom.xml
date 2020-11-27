@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-11-18T00:47:00.959Z</updated>
+  <updated>2020-11-27T07:37:38.936Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>centos7搭建fisco-bcos国密环境</title>
+    <link href="http://lisongbai.top/2020/11/27/centos7%E6%90%AD%E5%BB%BAfisco-bcos%E5%9B%BD%E5%AF%86%E7%8E%AF%E5%A2%83/"/>
+    <id>http://lisongbai.top/2020/11/27/centos7%E6%90%AD%E5%BB%BAfisco-bcos%E5%9B%BD%E5%AF%86%E7%8E%AF%E5%A2%83/</id>
+    <published>2020-11-27T07:36:48.000Z</published>
+    <updated>2020-11-27T07:37:38.936Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;fisco（v2-6-0）国密环境搭建&quot;&gt;&lt;a href=&quot;#fisco（v2-6-0）国密环境搭建&quot; class=&quot;headerlink&quot; title=&quot;fisco（v2.6.0）国密环境搭建&quot;&gt;&lt;/a&gt;fisco（v2.6.0）国密环境搭建&lt;/h1&gt;&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;p&gt;使用&lt;a href=&quot;https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/build_chain.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;build_chain&lt;/a&gt;脚本在本地搭建一条4节点的FISCO BCOS链&lt;/p&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# Ubuntu安装依赖&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sudo apt install -y openssl curl&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# centos安装环境&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sudo yum install -y openssl openssl-devel&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 准备环境&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;cd&lt;/span&gt; ~ &amp;amp;&amp;amp; mkdir -p fisco &amp;amp;&amp;amp; &lt;span class=&quot;built_in&quot;&gt;cd&lt;/span&gt; fisco&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 下载build_chain.sh脚本&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;curl -&lt;span class=&quot;comment&quot;&gt;#LO https://github.com/FISCO-BCOS/FISCO-BCOS/releases/download/v2.6.0/build_chain.sh &amp;amp;&amp;amp; chmod u+x build_chain.sh&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="fisco-bcos" scheme="http://lisongbai.top/categories/fisco-bcos/"/>
+    
+    
+      <category term="fisco-bcos" scheme="http://lisongbai.top/tags/fisco-bcos/"/>
+    
+  </entry>
   
   <entry>
     <title>presto学习笔记</title>
@@ -434,29 +455,6 @@
     
     
       <category term="solidity" scheme="http://lisongbai.top/tags/solidity/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>牛客刷题之兔子繁殖</title>
-    <link href="http://lisongbai.top/2020/06/25/%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98%E4%B9%8B%E5%85%94%E5%AD%90%E7%B9%81%E6%AE%96/"/>
-    <id>http://lisongbai.top/2020/06/25/%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98%E4%B9%8B%E5%85%94%E5%AD%90%E7%B9%81%E6%AE%96/</id>
-    <published>2020-06-24T16:48:54.000Z</published>
-    <updated>2020-06-24T16:59:34.948Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一、兔子繁殖&quot;&gt;&lt;a href=&quot;#一、兔子繁殖&quot; class=&quot;headerlink&quot; title=&quot;一、兔子繁殖&quot;&gt;&lt;/a&gt;一、兔子繁殖&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.nowcoder.com/questionTerminal/1221ec77125d4370833fd3ad5ba72395&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;题目链接&lt;/a&gt;&lt;/p&gt;&lt;p&gt;有一只兔子，从出生后第3个月起每个月都生一只兔子，小兔子长到第三个月后每个月又生一只兔子，假如兔子都不死，问每个月的兔子总数为多少？&lt;/p&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/**&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;     * 统计出兔子总数。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;     * &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;     * &lt;span class=&quot;doctag&quot;&gt;@param&lt;/span&gt; monthCount 第几个月&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;     * &lt;span class=&quot;doctag&quot;&gt;@return&lt;/span&gt; 兔子总数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;     */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;getTotalCount&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; monthCount)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;    &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://lisongbai.top/categories/java/"/>
-    
-      <category term="编程" scheme="http://lisongbai.top/categories/java/%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="牛客" scheme="http://lisongbai.top/tags/%E7%89%9B%E5%AE%A2/"/>
     
   </entry>
   

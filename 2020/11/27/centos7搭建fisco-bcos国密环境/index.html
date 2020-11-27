@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="fisco（v2.6.0）国密环境搭建安装使用build_chain脚本在本地搭建一条4节点的FISCO BCOS链12345678# Ubuntu安装依赖sudo apt install -y openssl curl# centos安装环境sudo yum install -y openssl openssl-devel# 准备环境cd ~ &amp;amp;&amp;amp; mkdir -p fisco">
+<meta name="keywords" content="fisco-bcos">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centos7搭建fisco-bcos国密环境">
+<meta property="og:url" content="http:&#x2F;&#x2F;lisongbai.top&#x2F;2020&#x2F;11&#x2F;27&#x2F;centos7%E6%90%AD%E5%BB%BAfisco-bcos%E5%9B%BD%E5%AF%86%E7%8E%AF%E5%A2%83&#x2F;index.html">
+<meta property="og:site_name" content="小李の博客">
+<meta property="og:description" content="fisco（v2.6.0）国密环境搭建安装使用build_chain脚本在本地搭建一条4节点的FISCO BCOS链12345678# Ubuntu安装依赖sudo apt install -y openssl curl# centos安装环境sudo yum install -y openssl openssl-devel# 准备环境cd ~ &amp;amp;&amp;amp; mkdir -p fisco">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;26&#x2F;RJtoSGOf6WgL38Z.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;27&#x2F;Zv5AkDBg3iPq4UM.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;27&#x2F;9HA8vJRCbsh7N24.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;27&#x2F;u7fjN9mgTYetSv1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;27&#x2F;LIWpnKQYt7OVijx.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;27&#x2F;BuPQm7bTeGZDcVS.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;27&#x2F;2aT3AVuUqKinpWt.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;27&#x2F;RNxadEQYTJyqH3P.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;27&#x2F;tQLA1KMdm2GfwTq.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;27&#x2F;Uo4we6u2KhZcS8a.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;27&#x2F;rvmLOWwzNPYg6yX.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;27&#x2F;w7q2LY8GfpMs5rB.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;27&#x2F;S1sDCIlXZhUtFa4.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;27&#x2F;ioxqseHSRbdBjn6.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;27&#x2F;nRCrZiMDAT14QPS.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;27&#x2F;m56xuIyFJWU4VAM.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;27&#x2F;n9TL1XV6yq8s5eo.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;27&#x2F;u1lSaEmUQ6XnADq.png">
+<meta property="og:updated_time" content="2020-11-27T07:37:38.936Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;11&#x2F;26&#x2F;RJtoSGOf6WgL38Z.png">
+
+<link rel="canonical" href="http://lisongbai.top/2020/11/27/centos7%E6%90%AD%E5%BB%BAfisco-bcos%E5%9B%BD%E5%AF%86%E7%8E%AF%E5%A2%83/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>centos7搭建fisco-bcos国密环境 | 小李の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="小李の博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小李の博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">我有一壶酒，足以慰平生。</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/yym08090809" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lisongbai.top/2020/11/27/centos7%E6%90%AD%E5%BB%BAfisco-bcos%E5%9B%BD%E5%AF%86%E7%8E%AF%E5%A2%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李松柏">
+      <meta itemprop="description" content="记录学习的技能和遇到的问题">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小李の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          centos7搭建fisco-bcos国密环境
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-27 15:36:48 / 修改时间：15:37:38" itemprop="dateCreated datePublished" datetime="2020-11-27T15:36:48+08:00">2020-11-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/fisco-bcos/" itemprop="url" rel="index">
+                    <span itemprop="name">fisco-bcos</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/11/27/centos7%E6%90%AD%E5%BB%BAfisco-bcos%E5%9B%BD%E5%AF%86%E7%8E%AF%E5%A2%83/" class="post-meta-item leancloud_visitors" data-flag-title="centos7搭建fisco-bcos国密环境" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/11/27/centos7%E6%90%AD%E5%BB%BAfisco-bcos%E5%9B%BD%E5%AF%86%E7%8E%AF%E5%A2%83/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/27/centos7搭建fisco-bcos国密环境/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="fisco（v2-6-0）国密环境搭建"><a href="#fisco（v2-6-0）国密环境搭建" class="headerlink" title="fisco（v2.6.0）国密环境搭建"></a>fisco（v2.6.0）国密环境搭建</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>使用<a href="https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/build_chain.html" target="_blank" rel="noopener">build_chain</a>脚本在本地搭建一条4节点的FISCO BCOS链</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Ubuntu安装依赖</span></span><br><span class="line">sudo apt install -y openssl curl</span><br><span class="line"><span class="comment"># centos安装环境</span></span><br><span class="line">sudo yum install -y openssl openssl-devel</span><br><span class="line"><span class="comment"># 准备环境</span></span><br><span class="line"><span class="built_in">cd</span> ~ &amp;&amp; mkdir -p fisco &amp;&amp; <span class="built_in">cd</span> fisco</span><br><span class="line"><span class="comment"># 下载build_chain.sh脚本</span></span><br><span class="line">curl -<span class="comment">#LO https://github.com/FISCO-BCOS/FISCO-BCOS/releases/download/v2.6.0/build_chain.sh &amp;&amp; chmod u+x build_chain.sh</span></span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<p><em>如果因为网络问题导致长时间无法下载build_chain.sh脚本，请尝试 curl -#LO <a href="https://gitee.com/FISCO-BCOS/FISCO-BCOS/raw/master/tools/build_chain.sh" target="_blank" rel="noopener">https://gitee.com/FISCO-BCOS/FISCO-BCOS/raw/master/tools/build_chain.sh</a> &amp;&amp; chmod u+x build_chain.sh</em></p>
+<p>搭建4节点FISCO BCOS链</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成一条4节点的FISCO链 4个节点都属于group1 下面指令在fisco目录下执行</span></span><br><span class="line"><span class="comment"># -p指定起始端口，分别是p2p_port,channel_port,jsonrpc_port</span></span><br><span class="line"><span class="comment"># 根据下面的指令，需要保证机器的30300~30303，20200~20203，8545~8548端口没有被占用</span></span><br><span class="line"><span class="comment"># -g 搭建国密版本的链</span></span><br><span class="line"><span class="comment"># -G 设置`chain.sm_crypto_channel=true`。确认sdk支持的情况下（web3sdk v2.5.0+），可以指定-G参数，连接也使用国密SSL</span></span><br><span class="line">$ ./build_chain.sh -l 127.0.0.1:4 -p 30300,20200,8545 -g -G</span><br></pre></td></tr></table></figure>
+
+<p>执行成功会打印如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[INFO] All completed. Files <span class="keyword">in</span> /home/ubuntu/fisco/nodes</span><br></pre></td></tr></table></figure>
+
+<h2 id="启动FISCO-BCOS链"><a href="#启动FISCO-BCOS链" class="headerlink" title="启动FISCO BCOS链"></a>启动FISCO BCOS链</h2><p>启动命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash nodes/127.0.0.1/start_all.sh</span><br></pre></td></tr></table></figure>
+
+<p>检查进程是否启动：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep -v grep | grep fisco-bcos</span><br></pre></td></tr></table></figure>
+
+<p>正常执行结果如下：</p>
+<p><img src="https://i.loli.net/2020/11/26/RJtoSGOf6WgL38Z.png" alt="image-20201126172404054"></p>
+<p>检测日志输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -f nodes/127.0.0.1/node0/<span class="built_in">log</span>/<span class="built_in">log</span>*  | grep connected</span><br></pre></td></tr></table></figure>
+
+<p>正常情况会不停地输出链接信息，从输出可以看出node0与另外3个节点有链接。</p>
+<p><img src="https://i.loli.net/2020/11/27/Zv5AkDBg3iPq4UM.png" alt="image-20201127142825361"></p>
+<p>执行下面指令，检查是否在共识：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -f nodes/127.0.0.1/node0/<span class="built_in">log</span>/<span class="built_in">log</span>*  | grep +++</span><br></pre></td></tr></table></figure>
+
+<p>正常情况会不停输出<code>++++Generating seal</code>，表示共识正常。</p>
+<p><img src="https://i.loli.net/2020/11/27/9HA8vJRCbsh7N24.png" alt="image-20201127142938274"></p>
+<h2 id="配置及使用控制台"><a href="#配置及使用控制台" class="headerlink" title="配置及使用控制台"></a>配置及使用控制台</h2><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ul>
+<li><code>控制台1.x</code> 系列基于 <a href="https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/java_sdk.html" target="_blank" rel="noopener">Web3SDK</a> 实现，<code>控制台2.6之后</code> 基于 <a href="https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/java_sdk/index.html" target="_blank" rel="noopener">Java SDK</a> 实现，最新版本控制台基于 <code>Java SDK</code> 实现</li>
+<li>2.6及其以上版本控制台使用文档请 <a href="https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/console_of_java_sdk.html" target="_blank" rel="noopener">参考这里</a> ，1.x版本控制台使用文档请 <a href="https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/console.html" target="_blank" rel="noopener">参考这里</a></li>
+<li>可通过命令 <code>./start.sh --version</code> 查看当前控制台版本</li>
+<li>基于 <a href="https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/java_sdk.html" target="_blank" rel="noopener">Web3SDK</a> 开发应用时将 <code>solidity</code> 代码转换为 <code>java</code> 代码时，必须使用 <code>1.x</code> 版本控制台，具体请参考 <a href="https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/tutorial/download_console.html" target="_blank" rel="noopener">这里</a></li>
+</ul>
+<h3 id="准备依赖"><a href="#准备依赖" class="headerlink" title="准备依赖"></a>准备依赖</h3><ul>
+<li>安装java（官方推荐java14 这里用的是jdk1.8）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ubuntu系统安装java</span></span><br><span class="line">sudo apt install -y default-jdk</span><br><span class="line"></span><br><span class="line"><span class="comment">#centos系统安装java</span></span><br><span class="line">sudo yum install -y java java-devel</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取控制台并回到fisco目录</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/fisco &amp;&amp; curl -<span class="comment">#LO https://github.com/FISCO-BCOS/console/releases/download/v2.7.0/download_console.sh &amp;&amp; bash download_console.sh</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>拷贝控制台配置文件</p>
+<p>若节点未采用默认端口，请将文件中的20200替换成节点对应的channel端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 最新版本控制台使用如下命令拷贝配置文件</span></span><br><span class="line">cp -n console/conf/config-example.toml console/conf/config.toml</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置控制台证书</p>
+<p>搭建国密版时，如果使用国密SSL请执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp nodes/127.0.0.1/sdk/gm/* console/conf/</span><br></pre></td></tr></table></figure>
+
+<p><em>搭建国密版时，请修改 applicationContext.xml 中 encryptType 修改为1</em></p>
+</li>
+</ul>
+<h3 id="启动并使用控制台"><a href="#启动并使用控制台" class="headerlink" title="启动并使用控制台"></a>启动并使用控制台</h3><ul>
+<li><p>启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/fisco/console &amp;&amp; bash start.sh</span><br></pre></td></tr></table></figure>
+
+<p>输出下述信息表明启动成功 否则请检查conf/config.toml中节点端口配置是否正确</p>
+<p><img src="https://i.loli.net/2020/11/27/u7fjN9mgTYetSv1.png" alt="image-20201127143815133"></p>
+</li>
+</ul>
+<ul>
+<li><p>用控制台获取信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取客户端版本</span></span><br><span class="line">[group:1]&gt; getNodeVersion</span><br><span class="line"><span class="comment"># 获取节点信息</span></span><br><span class="line">[group:1]&gt; getPeers</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/11/27/LIWpnKQYt7OVijx.png" alt="image-20201127143945877"></p>
+</li>
+</ul>
+<h2 id="部署及调用官方用例HelloWorld合约"><a href="#部署及调用官方用例HelloWorld合约" class="headerlink" title="部署及调用官方用例HelloWorld合约"></a>部署及调用官方用例HelloWorld合约</h2><h3 id="第一步-编写HelloWorld合约"><a href="#第一步-编写HelloWorld合约" class="headerlink" title="第一步. 编写HelloWorld合约"></a>第一步. 编写HelloWorld合约</h3><p>==官方已给出不用自己编写了==</p>
+<p>HelloWorld合约提供两个接口，分别是<code>get()</code>和<code>set()</code>，用于获取/设置合约变量<code>name</code>。</p>
+<p>合约内容如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.24</span>;</span><br><span class="line"></span><br><span class="line">contract HelloWorld &#123;</span><br><span class="line">    string name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">HelloWorld</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        name = <span class="string">"Hello, World!"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params"></span>)<span class="title">constant</span> <span class="title">returns</span>(<span class="params">string</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">set</span>(<span class="params">string n</span>) </span>&#123;</span><br><span class="line">        name = n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="第二步-部署HelloWorld合约"><a href="#第二步-部署HelloWorld合约" class="headerlink" title="第二步. 部署HelloWorld合约"></a>第二步. 部署HelloWorld合约</h3><p>HelloWorld合约已经内置于控制台中，位于控制台目录下<code>contracts/solidity/HelloWorld.sol</code>，参考下面命令部署即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在控制台输入以下指令 部署成功则返回合约地址</span></span><br><span class="line">[group:1]&gt; deploy HelloWorld</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/11/27/BuPQm7bTeGZDcVS.png" alt="image-20201127144307896"></p>
+<h3 id="第三步-调用HelloWorld合约"><a href="#第三步-调用HelloWorld合约" class="headerlink" title="第三步. 调用HelloWorld合约"></a>第三步. 调用HelloWorld合约</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看当前块高</span></span><br><span class="line">[group:1]&gt; getBlockNumber</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用get接口获取name变量 此处的合约地址是deploy指令返回的地址</span></span><br><span class="line">[group:1]&gt; call HelloWorld 0x10f342ac7104b71b098e6740006e5ec6ac1606e4 get</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前块高，块高不变，因为get接口不更改账本状态</span></span><br><span class="line">[group:1]&gt; getBlockNumber</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用set设置name</span></span><br><span class="line">[group:1]&gt; call HelloWorld 0x10f342ac7104b71b098e6740006e5ec6ac1606e4 <span class="built_in">set</span> <span class="string">"Hello, FISCO BCOS"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 再次查看当前块高，块高增加表示已出块，账本状态已更改</span></span><br><span class="line">[group:1]&gt; getBlockNumber</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用get接口获取name变量，检查设置是否生效</span></span><br><span class="line">[group:1]&gt; call HelloWorld 0x10f342ac7104b71b098e6740006e5ec6ac1606e4 get</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/11/27/2aT3AVuUqKinpWt.png" alt="image-20201127144827615"></p>
+<h1 id="WeBASE搭建"><a href="#WeBASE搭建" class="headerlink" title="WeBASE搭建"></a>WeBASE搭建</h1><p>微众银行开源的自研区块链中间件平台——<a href="https://webasedoc.readthedocs.io/zh_CN/latest/" target="_blank" rel="noopener">WeBASE(WeBank Blockchain Application Software Extension)</a> 是区块链应用和FISCO BCOS节点之间搭建的中间件平台。WeBASE屏蔽了区块链底层的复杂度，降低区块链使用的门槛，大幅提高区块链应用的开发效率，包含节点前置、节点管理、交易链路，数据导出，Web管理平台等子系统。用户可以根据业务所需，选择子系统进行部署，可以进一步体验丰富交互的体验、可视化智能合约开发环境IDE。</p>
+<h2 id="WeBASE快速入门环境搭建"><a href="#WeBASE快速入门环境搭建" class="headerlink" title="WeBASE快速入门环境搭建"></a>WeBASE快速入门环境搭建</h2><p>快速入门，只需要搭建节点和节点前置服务(WeBASE-Front)，就可通过WeBASE-Front的合约编辑器进行合约的编辑，编译，部署，调试。</p>
+<h3 id="节点搭建"><a href="#节点搭建" class="headerlink" title="节点搭建"></a>节点搭建</h3><p>及上述过程所作的事情。</p>
+<h3 id="节点前置服务-WeBASE-Front-搭建"><a href="#节点前置服务-WeBASE-Front-搭建" class="headerlink" title="节点前置服务(WeBASE-Front)搭建"></a>节点前置服务(WeBASE-Front)搭建</h3><p><strong>前提条件</strong></p>
+<table>
+<thead>
+<tr>
+<th>依赖软件</th>
+<th>支持版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Java</td>
+<td><a href="https://webasedoc.readthedocs.io/zh_CN/latest/docs/WeBASE-Front/appendix.html#java" target="_blank" rel="noopener">JDK8或以上版本</a></td>
+</tr>
+</tbody></table>
+<ol>
+<li><p>下载安装包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://osp-1257653870.cos.ap-guangzhou.myqcloud.com/WeBASE/releases/download/v1.4.1/webase-front.zip</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解压</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unzip webase-front.zip</span><br><span class="line"><span class="built_in">cd</span> webase-front</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>拷贝sdk证书文件（build_chain的时候生成的）</p>
+<p>将节点所在目录nodes/${ip}/sdk/gm/下的的<strong>所有证书</strong>拷贝到conf目录下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -r nodes/127.0.0.1/sdk/gm/* /webase-front/conf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>服务起停</p>
+<p><strong>国密版</strong>则通过vi修改<code>application.yml</code>中将<code>sdk-encryptType</code>设置为<code>1</code>（默认为0），也可以直接通过以下命令进行快速修改，修改后即可执行启停命令进行服务启停。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">"s%encryptType: 0%encryptType: 1%g"</span> ./conf/application.yml</span><br></pre></td></tr></table></figure>
+
+<p>服务启停命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">启动： bash start.sh</span><br><span class="line">停止： bash stop.sh</span><br><span class="line">检查： bash status.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>访问 http://{deployIP}:{frontPort}/WeBASE-Front</p>
+<p>结果如下：</p>
+<p><img src="https://i.loli.net/2020/11/27/RNxadEQYTJyqH3P.png" alt="image-20201127145940125"></p>
+</li>
+</ol>
+<h1 id="构建第一个区块链应用"><a href="#构建第一个区块链应用" class="headerlink" title="构建第一个区块链应用"></a>构建第一个区块链应用</h1><p>==官方案例搬砖学习==</p>
+<p><strong>通过学习教程，你将会了解到以下内容：</strong></p>
+<ol>
+<li>如何将一个业务场景的逻辑用合约的形式表达</li>
+<li>如何将Solidity合约转化成Java类</li>
+<li>如何配置Web3SDK</li>
+<li>如何构建一个应用，并集成Web3SDK到应用工程</li>
+<li>如何通过Web3SDK调用合约接口，了解Web3SDK调用合约接口的原理</li>
+</ol>
+<p>要求用户熟悉Linux操作环境，具备Java开发的基本技能，能够使用Gradle工具，熟悉<a href="https://solidity.readthedocs.io/en/latest/" target="_blank" rel="noopener">Solidity语法</a>。</p>
+<p>具体详情见<a href="https://fisco-bcos-documentation.readthedocs.io/zh_CN/v2.6.0/docs/tutorial/sdk_application.html" target="_blank" rel="noopener">官方文档</a>，这里只记录具体的操作过程，不牵扯到solidity合约的语法讲解，想了解solidity语法的同学可以看<a href="https://lisongbai.top/tags/solidity/">几篇博客</a>。</p>
+<h3 id="应用需求"><a href="#应用需求" class="headerlink" title="应用需求"></a>应用需求</h3><p>区块链天然具有防篡改，可追溯等特性，这些特性决定其更容易受金融领域的青睐，本文将会提供一个简易的资产管理的开发示例，并最终实现以下功能：</p>
+<ul>
+<li>能够在区块链上进行资产注册</li>
+<li>能够实现不同账户的转账</li>
+<li>可以查询账户的资产金额</li>
+</ul>
+<h3 id="合约源码"><a href="#合约源码" class="headerlink" title="合约源码"></a>合约源码</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.24</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"./Table.sol"</span>;</span><br><span class="line"></span><br><span class="line">contract Asset &#123;</span><br><span class="line">    <span class="comment">// event</span></span><br><span class="line">    event RegisterEvent(int256 ret, string account, uint256 asset_value);</span><br><span class="line">    event TransferEvent(int256 ret, string from_account, string to_account, uint256 amount);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>() public &#123;</span><br><span class="line">        <span class="comment">// 构造函数中创建t_asset表</span></span><br><span class="line">        createTable();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">createTable</span>(<span class="params"></span>) <span class="title">private</span> </span>&#123;</span><br><span class="line">        TableFactory tf = TableFactory(<span class="number">0x1001</span>);</span><br><span class="line">        <span class="comment">// 资产管理表, key : account, field : asset_value</span></span><br><span class="line">        <span class="comment">// |  资产账户(主键)      |     资产金额       |</span></span><br><span class="line">        <span class="comment">// |-------------------- |-------------------|</span></span><br><span class="line">        <span class="comment">// |        account      |    asset_value    |</span></span><br><span class="line">        <span class="comment">// |---------------------|-------------------|</span></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="comment">// 创建表</span></span><br><span class="line">        tf.createTable(<span class="string">"t_asset"</span>, <span class="string">"account"</span>, <span class="string">"asset_value"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">openTable</span>(<span class="params"></span>) <span class="title">private</span> <span class="title">returns</span>(<span class="params">Table</span>) </span>&#123;</span><br><span class="line">        TableFactory tf = TableFactory(<span class="number">0x1001</span>);</span><br><span class="line">        Table table = tf.openTable(<span class="string">"t_asset"</span>);</span><br><span class="line">        <span class="keyword">return</span> table;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    描述 : 根据资产账户查询资产金额</span></span><br><span class="line"><span class="comment">    参数 ：</span></span><br><span class="line"><span class="comment">            account : 资产账户</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    返回值：</span></span><br><span class="line"><span class="comment">            参数一： 成功返回0, 账户不存在返回-1</span></span><br><span class="line"><span class="comment">            参数二： 第一个参数为0时有效，资产金额</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">select</span>(<span class="params">string account</span>) <span class="title">public</span> <span class="title">constant</span> <span class="title">returns</span>(<span class="params">int256, uint256</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 打开表</span></span><br><span class="line">        Table table = openTable();</span><br><span class="line">        <span class="comment">// 查询</span></span><br><span class="line">        Entries entries = table.select(account, table.newCondition());</span><br><span class="line">        uint256 asset_value = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="number">0</span> == uint256(entries.size())) &#123;</span><br><span class="line">            <span class="keyword">return</span> (<span class="number">-1</span>, asset_value);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            Entry entry = entries.get(<span class="number">0</span>);</span><br><span class="line">            <span class="keyword">return</span> (<span class="number">0</span>, uint256(entry.getInt(<span class="string">"asset_value"</span>)));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    描述 : 资产注册</span></span><br><span class="line"><span class="comment">    参数 ：</span></span><br><span class="line"><span class="comment">            account : 资产账户</span></span><br><span class="line"><span class="comment">            amount  : 资产金额</span></span><br><span class="line"><span class="comment">    返回值：</span></span><br><span class="line"><span class="comment">            0  资产注册成功</span></span><br><span class="line"><span class="comment">            -1 资产账户已存在</span></span><br><span class="line"><span class="comment">            -2 其他错误</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">register</span>(<span class="params">string account, uint256 asset_value</span>) <span class="title">public</span> <span class="title">returns</span>(<span class="params">int256</span>)</span>&#123;</span><br><span class="line">        int256 ret_code = <span class="number">0</span>;</span><br><span class="line">        int256 ret= <span class="number">0</span>;</span><br><span class="line">        uint256 temp_asset_value = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 查询账户是否存在</span></span><br><span class="line">        (ret, temp_asset_value) = select(account);</span><br><span class="line">        <span class="keyword">if</span>(ret != <span class="number">0</span>) &#123;</span><br><span class="line">            Table table = openTable();</span><br><span class="line"></span><br><span class="line">            Entry entry = table.newEntry();</span><br><span class="line">            entry.set(<span class="string">"account"</span>, account);</span><br><span class="line">            entry.set(<span class="string">"asset_value"</span>, int256(asset_value));</span><br><span class="line">            <span class="comment">// 插入</span></span><br><span class="line">            int count = table.insert(account, entry);</span><br><span class="line">            <span class="keyword">if</span> (count == <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="comment">// 成功</span></span><br><span class="line">                ret_code = <span class="number">0</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 失败? 无权限或者其他错误</span></span><br><span class="line">                ret_code = <span class="number">-2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 账户已存在</span></span><br><span class="line">            ret_code = <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        emit RegisterEvent(ret_code, account, asset_value);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ret_code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    描述 : 资产转移</span></span><br><span class="line"><span class="comment">    参数 ：</span></span><br><span class="line"><span class="comment">            from_account : 转移资产账户</span></span><br><span class="line"><span class="comment">            to_account ： 接收资产账户</span></span><br><span class="line"><span class="comment">            amount ： 转移金额</span></span><br><span class="line"><span class="comment">    返回值：</span></span><br><span class="line"><span class="comment">            0  资产转移成功</span></span><br><span class="line"><span class="comment">            -1 转移资产账户不存在</span></span><br><span class="line"><span class="comment">            -2 接收资产账户不存在</span></span><br><span class="line"><span class="comment">            -3 金额不足</span></span><br><span class="line"><span class="comment">            -4 金额溢出</span></span><br><span class="line"><span class="comment">            -5 其他错误</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">transfer</span>(<span class="params">string from_account, string to_account, uint256 amount</span>) <span class="title">public</span> <span class="title">returns</span>(<span class="params">int256</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 查询转移资产账户信息</span></span><br><span class="line">        int ret_code = <span class="number">0</span>;</span><br><span class="line">        int256 ret = <span class="number">0</span>;</span><br><span class="line">        uint256 from_asset_value = <span class="number">0</span>;</span><br><span class="line">        uint256 to_asset_value = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 转移账户是否存在?</span></span><br><span class="line">        (ret, from_asset_value) = select(from_account);</span><br><span class="line">        <span class="keyword">if</span>(ret != <span class="number">0</span>) &#123;</span><br><span class="line">            ret_code = <span class="number">-1</span>;</span><br><span class="line">            <span class="comment">// 转移账户不存在</span></span><br><span class="line">            emit TransferEvent(ret_code, from_account, to_account, amount);</span><br><span class="line">            <span class="keyword">return</span> ret_code;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 接受账户是否存在?</span></span><br><span class="line">        (ret, to_asset_value) = select(to_account);</span><br><span class="line">        <span class="keyword">if</span>(ret != <span class="number">0</span>) &#123;</span><br><span class="line">            ret_code = <span class="number">-2</span>;</span><br><span class="line">            <span class="comment">// 接收资产的账户不存在</span></span><br><span class="line">            emit TransferEvent(ret_code, from_account, to_account, amount);</span><br><span class="line">            <span class="keyword">return</span> ret_code;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(from_asset_value &lt; amount) &#123;</span><br><span class="line">            ret_code = <span class="number">-3</span>;</span><br><span class="line">            <span class="comment">// 转移资产的账户金额不足</span></span><br><span class="line">            emit TransferEvent(ret_code, from_account, to_account, amount);</span><br><span class="line">            <span class="keyword">return</span> ret_code;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (to_asset_value + amount &lt; to_asset_value) &#123;</span><br><span class="line">            ret_code = <span class="number">-4</span>;</span><br><span class="line">            <span class="comment">// 接收账户金额溢出</span></span><br><span class="line">            emit TransferEvent(ret_code, from_account, to_account, amount);</span><br><span class="line">            <span class="keyword">return</span> ret_code;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Table table = openTable();</span><br><span class="line"></span><br><span class="line">        Entry entry0 = table.newEntry();</span><br><span class="line">        entry0.set(<span class="string">"account"</span>, from_account);</span><br><span class="line">        entry0.set(<span class="string">"asset_value"</span>, int256(from_asset_value - amount));</span><br><span class="line">        <span class="comment">// 更新转账账户</span></span><br><span class="line">        int count = table.update(from_account, entry0, table.newCondition());</span><br><span class="line">        <span class="keyword">if</span>(count != <span class="number">1</span>) &#123;</span><br><span class="line">            ret_code = <span class="number">-5</span>;</span><br><span class="line">            <span class="comment">// 失败? 无权限或者其他错误?</span></span><br><span class="line">            emit TransferEvent(ret_code, from_account, to_account, amount);</span><br><span class="line">            <span class="keyword">return</span> ret_code;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Entry entry1 = table.newEntry();</span><br><span class="line">        entry1.set(<span class="string">"account"</span>, to_account);</span><br><span class="line">        entry1.set(<span class="string">"asset_value"</span>, int256(to_asset_value + amount));</span><br><span class="line">        <span class="comment">// 更新接收账户</span></span><br><span class="line">        table.update(to_account, entry1, table.newCondition());</span><br><span class="line"></span><br><span class="line">        emit TransferEvent(ret_code, from_account, to_account, amount);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ret_code;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注：</strong> <code>Asset.sol</code>合约的实现需要引入FISCO BCOS提供的一个系统合约接口文件 <code>Table.sol</code> ，该系统合约文件中的接口由FISCO BCOS底层实现。当业务合约需要操作CRUD接口时，均需要引入该接口合约文件。<code>Table.sol</code> 合约详细接口<a href="https://fisco-bcos-documentation.readthedocs.io/zh_CN/v2.6.0/docs/manual/smart_contract.html#crud" target="_blank" rel="noopener">参考这里</a>。</p>
+<h3 id="合约编译"><a href="#合约编译" class="headerlink" title="合约编译"></a>合约编译</h3><p>根据业务需求设计了合约<code>Asset.sol</code>的存储与接口，给出了完整实现，但是Java程序无法直接调用Solidity合约，需要先将Solidity合约文件编译为Java文件。</p>
+<p>控制台提供了编译工具，可以将<code>Asset.sol</code>合约文件存放在<code>console/contracts/solidity</code>目录。利用console目录下提供的<code>sol2java.sh</code>脚本进行编译，操作如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切换到fisco/console/目录</span></span><br><span class="line">$ <span class="built_in">cd</span> ~/fisco/console/</span><br><span class="line"><span class="comment"># 编译合约，后面指定一个Java的包名参数，可以根据实际项目路径指定包名</span></span><br><span class="line">$ ./sol2java.sh org.fisco.bcos.asset.contract</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<p><img src="https://i.loli.net/2020/11/27/tQLA1KMdm2GfwTq.png" alt="image-20201127151343874"></p>
+<p>运行成功之后，将会在<code>console/contracts/sdk</code>目录生成java、abi和bin目录，如下所示。</p>
+<p><img src="https://i.loli.net/2020/11/27/Uo4we6u2KhZcS8a.png" alt="image-20201127151426979"></p>
+<p>java目录下生成了<code>org/fisco/bcos/asset/contract/</code>包路径目录，该目录下包含<code>Asset.java</code>和<code>Table.java</code>两个文件，其中<code>Asset.java</code>是Java应用调用<code>Asset.sol</code>合约需要的文件。</p>
+<p><code>Asset.java</code>的主要接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.fisco.bcos.asset.contract;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Asset</span> <span class="keyword">extends</span> <span class="title">Contract</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Asset.sol合约 transfer接口生成</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RemoteCall&lt;TransactionReceipt&gt; <span class="title">transfer</span><span class="params">(String from_account, String to_account, BigInteger amount)</span></span>;</span><br><span class="line">    <span class="comment">// Asset.sol合约 register接口生成</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RemoteCall&lt;TransactionReceipt&gt; <span class="title">register</span><span class="params">(String account, BigInteger asset_value)</span></span>;</span><br><span class="line">    <span class="comment">// Asset.sol合约 select接口生成</span></span><br><span class="line">    <span class="keyword">public</span> RemoteCall&lt;Tuple2&lt;BigInteger, BigInteger&gt;&gt; select(String account);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 加载Asset合约地址，生成Asset对象</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Asset <span class="title">load</span><span class="params">(String contractAddress, Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 部署Assert.sol合约，生成Asset对象</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RemoteCall&lt;Asset&gt; <span class="title">deploy</span><span class="params">(Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中load与deploy函数用于构造Asset对象，其他接口分别用来调用对应的solidity合约的接口，详细使用在下文会有介绍。</p>
+<h3 id="SDK配置"><a href="#SDK配置" class="headerlink" title="SDK配置"></a>SDK配置</h3><p>官方提供了一个Java工程项目供开发使用，首先获取Java工程项目：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取Java工程项目压缩包</span></span><br><span class="line">$ <span class="built_in">cd</span> ~</span><br><span class="line">$ curl -<span class="comment">#LO https://github.com/FISCO-BCOS/LargeFiles/raw/master/tools/asset-app.tar.gz</span></span><br><span class="line"><span class="comment"># 解压得到Java工程项目asset-app目录</span></span><br><span class="line">$ tar -zxf asset-app.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>asset-app项目的目录结构如下：</p>
+<p><img src="https://i.loli.net/2020/11/27/rvmLOWwzNPYg6yX.png" alt="image-20201127151645443"></p>
+<h3 id="项目引入Web3SDK"><a href="#项目引入Web3SDK" class="headerlink" title="项目引入Web3SDK"></a>项目引入Web3SDK</h3><p><strong>项目的<code>build.gradle</code>文件已引入Web3SDK，不需修改</strong>。其引入方法介绍如下：</p>
+<ul>
+<li>Web3SDK引入了以太坊的solidity编译器相关jar包，因此在<code>build.gradle</code>文件需要添加以太坊的远程仓库：</li>
+</ul>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">repositories</span> &#123;</span><br><span class="line">    maven &#123;</span><br><span class="line">        url <span class="string">"http：//maven.aliyun.com/nexus/content/groups/public/"</span></span><br><span class="line">    &#125;</span><br><span class="line">    maven &#123; url <span class="string">"https：//dl.bintray.com/ethereum/maven/"</span> &#125;</span><br><span class="line">    mavenCentral()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>引入Web3SDK jar包</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">compile</span> (<span class="string">'org.fisco-bcos：web3sdk：2.5.0'</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="证书与配置文件"><a href="#证书与配置文件" class="headerlink" title="证书与配置文件"></a>证书与配置文件</h3><ul>
+<li><p>区块链节点证书配置</p>
+<p>拷贝区块链节点对应的SDK证书</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 拷贝节点证书到项目的资源目录</span></span><br><span class="line">$ <span class="built_in">cd</span> ~</span><br><span class="line">$ cp fisco/nodes/127.0.0.1/sdk/* asset-app/src/<span class="built_in">test</span>/resources/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>applicationContext.xml</p>
+<p>如果搭链时设置的jsonrpc_listen_ip为127.0.0.1或者0.0.0.0，channel_port为20200， 则<code>applicationContext.xml</code>配置不用修改。若区块链节点配置有改动，需要同样修改配置<code>applicationContext.xml</code>，具体请参考<a href="https://fisco-bcos-documentation.readthedocs.io/zh_CN/v2.6.0/docs/sdk/java_sdk.html#spring" target="_blank" rel="noopener">SDK使用文档</a>。</p>
+<p>在这里搭建国密版本需要改动applicationContext.xml的几个部分如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"encryptType"</span> <span class="attr">class</span>=<span class="string">"org.fisco.bcos.web3j.crypto.EncryptType"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">value</span>=<span class="string">"1"</span>/&gt;</span> </span><br><span class="line">    <span class="comment">&lt;!-- 0:standard 1:guomi --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 这里将value值改为1 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"caCert"</span> <span class="attr">value</span>=<span class="string">"ca.crt"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sslCert"</span> <span class="attr">value</span>=<span class="string">"sdk.crt"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sslKey"</span> <span class="attr">value</span>=<span class="string">"sdk.key"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 修改为如下： --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"caCert"</span> <span class="attr">value</span>=<span class="string">"gmca.crt"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sslCert"</span> <span class="attr">value</span>=<span class="string">"gmensdk.crt"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sslKey"</span> <span class="attr">value</span>=<span class="string">"gmensdk.key"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>运行项目，测试功能是否正常</p>
+<ul>
+<li><p>编译</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切换到项目目录</span></span><br><span class="line">$ <span class="built_in">cd</span> ~/asset-app</span><br><span class="line"><span class="comment"># 编译项目</span></span><br><span class="line">$ ./gradlew build</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/11/27/w7q2LY8GfpMs5rB.png" alt="image-20201127152650738"></p>
+</li>
+<li><p>部署<code>Asset.sol</code>合约</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入dist目录</span></span><br><span class="line">$ <span class="built_in">cd</span> dist</span><br><span class="line">$ bash asset_run.sh deploy</span><br></pre></td></tr></table></figure>
+
+<p>运行成功截图如下：</p>
+<p><img src="https://i.loli.net/2020/11/27/S1sDCIlXZhUtFa4.png" alt="image-20201127152743890"></p>
+<p>笔者在执行部署命令时遇到如下错误：</p>
+<p><img src="https://i.loli.net/2020/11/27/ioxqseHSRbdBjn6.png" alt="image-20201127152848482"></p>
+<p> 出现这个问题是上一步证书与配置文件没修改正确。在更换国密时需格外注意。</p>
+</li>
+<li><p>注册资产</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bash asset_run.sh register LCX 10000</span><br><span class="line"></span><br><span class="line">bash asset_run.sh register LFH 9999</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/11/27/nRCrZiMDAT14QPS.png" alt="image-20201127153151951"></p>
+</li>
+<li><p>查询资产</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bash asset_run.sh query LCX</span><br><span class="line"></span><br><span class="line">bash asset_run.sh query LFH</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/11/27/m56xuIyFJWU4VAM.png" alt="image-20201127153238596"></p>
+</li>
+<li><p>资产转移</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash asset_run.sh transfer LCX LFH  1</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/11/27/n9TL1XV6yq8s5eo.png" alt="image-20201127153352675"></p>
+<p><img src="https://i.loli.net/2020/11/27/u1lSaEmUQ6XnADq.png" alt="image-20201127153406362"></p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+        <div class="reward-container">
+  <div>您的支持是我继续创作的动力</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="李松柏 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="李松柏 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>李松柏
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lisongbai.top/2020/11/27/centos7%E6%90%AD%E5%BB%BAfisco-bcos%E5%9B%BD%E5%AF%86%E7%8E%AF%E5%A2%83/" title="centos7搭建fisco-bcos国密环境">http://lisongbai.top/2020/11/27/centos7%E6%90%AD%E5%BB%BAfisco-bcos%E5%9B%BD%E5%AF%86%E7%8E%AF%E5%A2%83/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/fisco-bcos/" rel="tag"># fisco-bcos</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/11/17/presto%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="presto学习笔记">
+                  <i class="fa fa-chevron-left"></i> presto学习笔记
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-disqus">disqus</a></li>
+            <li class="tab"><a href="#comment-livere">livere</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane disqus" id="comment-disqus">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+            <div class="tab-pane livere" id="comment-livere">
+              
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzY2MC8yNDE1OA=="></div>
+  </div>
+  
+            </div>
+        </div>
+      </div>
+      <script>
+        window.addEventListener('tabs:register', () => {
+          let activeClass = '';
+            activeClass = localStorage.getItem('comments_active') || activeClass;
+          if (activeClass) {
+            let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+            if (activeTab) {
+              activeTab.click();
+            }
+          }
+        });
+        window.addEventListener('tabs:click', event => {
+          let commentClass = event.target.classList[1];
+          localStorage.setItem('comments_active', commentClass);
+        });
+      </script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#fisco（v2-6-0）国密环境搭建"><span class="nav-number">1.</span> <span class="nav-text">fisco（v2.6.0）国密环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动FISCO-BCOS链"><span class="nav-number">1.2.</span> <span class="nav-text">启动FISCO BCOS链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置及使用控制台"><span class="nav-number">1.3.</span> <span class="nav-text">配置及使用控制台</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#说明"><span class="nav-number">1.3.1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备依赖"><span class="nav-number">1.3.2.</span> <span class="nav-text">准备依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动并使用控制台"><span class="nav-number">1.3.3.</span> <span class="nav-text">启动并使用控制台</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署及调用官方用例HelloWorld合约"><span class="nav-number">1.4.</span> <span class="nav-text">部署及调用官方用例HelloWorld合约</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步-编写HelloWorld合约"><span class="nav-number">1.4.1.</span> <span class="nav-text">第一步. 编写HelloWorld合约</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步-部署HelloWorld合约"><span class="nav-number">1.4.2.</span> <span class="nav-text">第二步. 部署HelloWorld合约</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步-调用HelloWorld合约"><span class="nav-number">1.4.3.</span> <span class="nav-text">第三步. 调用HelloWorld合约</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WeBASE搭建"><span class="nav-number">2.</span> <span class="nav-text">WeBASE搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#WeBASE快速入门环境搭建"><span class="nav-number">2.1.</span> <span class="nav-text">WeBASE快速入门环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#节点搭建"><span class="nav-number">2.1.1.</span> <span class="nav-text">节点搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#节点前置服务-WeBASE-Front-搭建"><span class="nav-number">2.1.2.</span> <span class="nav-text">节点前置服务(WeBASE-Front)搭建</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#构建第一个区块链应用"><span class="nav-number">3.</span> <span class="nav-text">构建第一个区块链应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用需求"><span class="nav-number">3.0.1.</span> <span class="nav-text">应用需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合约源码"><span class="nav-number">3.0.2.</span> <span class="nav-text">合约源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合约编译"><span class="nav-number">3.0.3.</span> <span class="nav-text">合约编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SDK配置"><span class="nav-number">3.0.4.</span> <span class="nav-text">SDK配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目引入Web3SDK"><span class="nav-number">3.0.5.</span> <span class="nav-text">项目引入Web3SDK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证书与配置文件"><span class="nav-number">3.0.6.</span> <span class="nav-text">证书与配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行"><span class="nav-number">3.0.7.</span> <span class="nav-text">运行</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="李松柏"
+    src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">李松柏</p>
+  <div class="site-description" itemprop="description">记录学习的技能和遇到的问题</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yym08090809" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;yym08090809" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:songbai0112@163.com" title="E-Mail &amp;rarr; mailto:songbai0112@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李松柏</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.2
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': '',
+            'X-LC-Key': '',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+        if (localhost.test(document.URL)) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://visitor.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "http://lisongbai.top/2020/11/27/centos7%E6%90%AD%E5%BB%BAfisco-bcos%E5%9B%BD%E5%AF%86%E7%8E%AF%E5%A2%83/",
+            identifier: "2020/11/27/centos7搭建fisco-bcos国密环境/",
+            title: "centos7搭建fisco-bcos国密环境"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://visitor.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
+
+<script>
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+ 
+</body>
+</html>
