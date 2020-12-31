@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lisongbai.top/"/>
-  <updated>2020-11-27T07:37:38.936Z</updated>
+  <updated>2020-12-03T09:18:28.641Z</updated>
   <id>http://lisongbai.top/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数据结构与算法再学习</title>
+    <link href="http://lisongbai.top/2020/12/03/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%86%8D%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://lisongbai.top/2020/12/03/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%86%8D%E5%AD%A6%E4%B9%A0/</id>
+    <published>2020-12-03T01:05:22.000Z</published>
+    <updated>2020-12-03T09:18:28.641Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;数据结构与算法&quot;&gt;&lt;a href=&quot;#数据结构与算法&quot; class=&quot;headerlink&quot; title=&quot;数据结构与算法&quot;&gt;&lt;/a&gt;数据结构与算法&lt;/h1&gt;&lt;h2 id=&quot;数据结构&quot;&gt;&lt;a href=&quot;#数据结构&quot; class=&quot;headerlink&quot; title=&quot;数据结构&quot;&gt;&lt;/a&gt;数据结构&lt;/h2&gt;&lt;h3 id=&quot;线性结构&quot;&gt;&lt;a href=&quot;#线性结构&quot; class=&quot;headerlink&quot; title=&quot;线性结构&quot;&gt;&lt;/a&gt;线性结构&lt;/h3&gt;&lt;h4 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;特点：&lt;/strong&gt;数据元素之间存在一对一的线性关系。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;存储结构：&lt;/strong&gt;顺序存储结构和链式存储结构。&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;顺序存储结构：顺序存储的线性表称为顺序表，顺序表中存储的元素是连续的。&lt;/li&gt;
+&lt;li&gt;链式存储结构：链式存储的线性表称为链表，链表中存储的元素不一定是连续的，元素节点中存放&lt;strong&gt;数据元素&lt;/strong&gt;以及&lt;strong&gt;相邻元素的地址信息&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="数据结构与算法" scheme="http://lisongbai.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="java" scheme="http://lisongbai.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/java/"/>
+    
+    
+      <category term="数据结构与算法" scheme="http://lisongbai.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>centos7搭建fisco-bcos国密环境</title>
@@ -426,27 +452,6 @@
     <summary type="html">
     
       &lt;p&gt;在学习solidity的过程中发现一个在线学习平台，这是一个第三方的在线智能合约学习环境，目标是教会大家实现 DApp 游戏。这个网站的特点是自作非常精良，各种辅助学习材料丰富，并且是对 Solidity 小白友好的。&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://cryptozombies.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;点击这里进入学习平台&lt;/a&gt;&lt;/p&gt;&lt;h1 id=&quot;一、课程概述&quot;&gt;&lt;a href=&quot;#一、课程概述&quot; class=&quot;headerlink&quot; title=&quot;一、课程概述&quot;&gt;&lt;/a&gt;一、课程概述&lt;/h1&gt;&lt;p&gt;第一课你将创造一个”僵尸工厂”， 用它建立一支僵尸部队。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Solidity Path" scheme="http://lisongbai.top/categories/Solidity-Path/"/>
-    
-    
-      <category term="solidity" scheme="http://lisongbai.top/tags/solidity/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>高级 Solidity 理论</title>
-    <link href="http://lisongbai.top/2020/06/26/%E9%AB%98%E7%BA%A7%20Solidity%20%E7%90%86%E8%AE%BA/"/>
-    <id>http://lisongbai.top/2020/06/26/%E9%AB%98%E7%BA%A7%20Solidity%20%E7%90%86%E8%AE%BA/</id>
-    <published>2020-06-26T15:50:04.000Z</published>
-    <updated>2020-06-30T06:43:23.042Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在学习solidity的过程中发现一个在线学习平台，这是一个第三方的在线智能合约学习环境，目标是教会大家实现 DApp 游戏。这个网站的特点是自作非常精良，各种辅助学习材料丰富，并且是对 Solidity 小白友好的。&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://cryptozombies.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;点击这里进入学习平台&lt;/a&gt;&lt;/p&gt;&lt;h1 id=&quot;一、智能协议的永固性&quot;&gt;&lt;a href=&quot;#一、智能协议的永固性&quot; class=&quot;headerlink&quot; title=&quot;一、智能协议的永固性&quot;&gt;&lt;/a&gt;一、智能协议的永固性&lt;/h1&gt;&lt;p&gt;到现在为止，我们讲的 Solidity 和其他语言没有质的区别，它长得也很像 JavaScript。&lt;/p&gt;
     
     </summary>
     
